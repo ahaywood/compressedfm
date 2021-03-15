@@ -1,0 +1,4 @@
+[build]
+  base = "nextjs/"
+  publish = "build/"
+  command = "CI= npm run build"
