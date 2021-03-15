@@ -13,6 +13,7 @@ const Theme = {
   // font weights
   fontBlack: "900",
   fontBold: "bold",
+  fontNormal: "400",
 
 
   // margin, padding, spacing

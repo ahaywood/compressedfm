@@ -95,6 +95,10 @@ const StyledSocialMedia = styled.ul`
       margin-right: 0;
     }
   }
+
+  svg {
+    fill: currentColor;
+  }
 `;
 
 export { SocialMedia }
