@@ -1,9 +1,11 @@
 {
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.2.0",
     "date-fns": "^2.17.0",
     "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-hook-form": "^6.15.4",
     "styled-components": "^5.2.1"
   },
   "name": "nextjs",

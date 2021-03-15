@@ -1,12 +1,15 @@
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import { UserProvider } from '@auth0/nextjs-auth0';
 import Theme from "../styles/Theme";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={Theme}>
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <UserProvider>
+      <ThemeProvider theme={Theme}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </UserProvider>
   )
 }
 
