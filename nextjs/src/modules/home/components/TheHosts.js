@@ -15,7 +15,7 @@ const TheHosts = () => {
         <div>
           <div className="meta">
             <div className="avatar">
-              <Image alt="James Q Quick" src="/images/james.png" height={187} width={187} layout={intrinsic} />
+              <Image alt="James Q Quick" src="/images/james.png" height={187} width={187} layout="intrinsic" />
             </div>
             <div>
               <h2 className="name"><span className="first">James</span> <span className="last">Q Quick</span></h2>
@@ -47,7 +47,7 @@ const TheHosts = () => {
         <div>
           <div className="meta">
             <div className="avatar">
-              <Image alt="Amy Dutton" src="/images/amy.png" height={187} width={187} layout={intrinsic} />
+              <Image alt="Amy Dutton" src="/images/amy.png" height={187} width={187} layout="intrinsic" />
             </div>
             <div>
               <h2 className="name"><span className="first">Amy</span> <span className="last">Dutton</span></h2>
