@@ -1,4 +1,0 @@
-[build]
-  base = "nextjs/"
-  publish = "out/"
-  command = "yarn run build && yarn run export"
