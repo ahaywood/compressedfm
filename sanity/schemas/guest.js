@@ -4,18 +4,41 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'title',
       title: 'Title',
+      name: 'title',
       type: 'string',
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
+      title: 'Guest Email',
+      name: 'guestEmail',
+      description: 'Used for Guest Login',
+      type: 'string'
     },
+    {
+      title: 'Job Title',
+      name: 'jobTitle',
+      type: 'string'
+    },
+    {
+      title: 'Avatar',
+      name: 'avatar',
+      type: 'image'
+    },
+    {
+      title: 'Social Media',
+      name: 'socialMedia',
+      type: 'socialMedia',
+      options: {
+        collapsible: true,
+        collapsed: true,
+        columns: 2,
+      }
+    },
+    {
+      title: 'Bio',
+      name: 'bio',
+      type: 'array',
+      of: [{ type: 'block' }]
+    }
   ]
 };

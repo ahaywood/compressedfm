@@ -2,7 +2,29 @@ export default {
   name: 'episode',
   title: 'Episode',
   type: 'document',
+  orderings: [
+    {
+      title: 'Ep No, New',
+      name: 'episodeNumber',
+      by: [
+        { field: 'episodeNumber', direction: 'desc' }
+      ]
+    },
+    {
+      title: 'Ep No, Old',
+      name: 'episodeNumber',
+      by: [
+        { field: 'episodeNumber', direction: 'asc' }
+      ]
+    }
+  ],
   fields: [
+    {
+      name: 'episodeNumber',
+      title: 'Episode Number',
+      type: 'number',
+      validation: Rule => Rule.greaterThan(0).integer()
+    },
     {
       name: 'title',
       title: 'Title',
@@ -13,17 +35,51 @@ export default {
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'episodeNumber',
         maxLength: 96,
+        slugify: input => input.toString()
       },
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'publishedAt',
+      title: 'Published at',
+      type: 'datetime',
+    },
+    {
+      name: 'published',
+      title: 'Published',
+      type: 'boolean',
+    },
+    {
+      name: 'guest',
+      title: 'Guest',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'guest' } }],
+    },
+    {
+      name: 'sponsor',
+      title: 'Sponsor',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'sponsor' } }],
+    },
+    {
+      name: 'episodeCover',
+      title: 'Episode Cover',
       type: 'image',
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'briefDescription',
+      title: "Brief Description",
+      type: 'text',
+    },
+    {
+      name: 'audioPath',
+      title: 'Audio Path',
+      type: 'string',
+      description: 'URL for Audio File in Transistor.fm'
     },
     {
       name: 'categories',
@@ -32,27 +88,41 @@ export default {
       of: [{ type: 'reference', to: { type: 'category' } }],
     },
     {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
+      name: 'listLink',
+      title: 'Link List',
+      type: 'array',
+      of: [{ type: 'linkList' }]
+    },
+    {
+      name: 'timeJump',
+      title: 'Time Jumps',
+      type: 'array',
+      of: [{ type: 'timeJump' }]
     },
     {
       name: 'transcript',
       title: 'Transcript',
       type: 'blockContent',
     },
+    {
+      name: 'episodeStats',
+      title: 'Episode Stats',
+      type: 'episodeStats'
+    }
   ],
 
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
-      media: 'mainImage',
+      episodeNumber: 'episodeNumber',
+      media: 'episodeCover',
+      published: 'published',
     },
     prepare(selection) {
-      const { author } = selection
+      const { episodeNumber, published, title } = selection
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`,
+        title: `${title} ${published ? "✅" : '❌'}`,
+        subtitle: `Episode ${episodeNumber}`,
       })
     },
   },

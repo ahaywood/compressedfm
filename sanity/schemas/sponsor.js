@@ -9,15 +9,6 @@ export default {
       type: 'string',
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
-    },
-    {
       name: 'logo',
       title: 'Logo',
       type: 'image',
@@ -25,7 +16,7 @@ export default {
     {
       name: 'offer',
       title: 'Offer',
-      type: 'text',
+      type: 'string',
       description: 'Examples: "Promo Code: Compressed" or "20% off"'
     },
     {
@@ -48,11 +39,16 @@ export default {
       type: 'boolean',
     },
     {
-      name: 'sponsoredEpisodes',
-      title: 'Sponsored Episodes',
-      type: 'reference',
-      to: [{ type: 'episode' }]
+      name: 'associatedEmails',
+      title: 'Associated Email(s)',
+      type: 'string',
+      description: 'Comma deliminated list'
+    },
+    {
+      name: 'contractsInvoices',
+      title: 'Contracts and Invoices',
+      type: 'array',
+      of: [{ type: 'contractInvoice' }]
     }
-
   ]
 };
