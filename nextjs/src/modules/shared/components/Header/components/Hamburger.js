@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const Hamburger = ({ className, handleClick }) => {
-  const [toggled, useToggled] = useState(true);
+  const [toggled, useToggled] = useState(false);
 
   const toggle = () => {
     useToggled(!toggled);
