@@ -70,7 +70,7 @@ const StyledPodcatcher = styled.section`
   ul {
     display: flex;
     justify-content: space-between;
-    list-style: none;
+    list-style-type: none;
     margin: 0 auto;
     padding: 0;
     position: relative;
