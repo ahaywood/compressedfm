@@ -36,6 +36,10 @@ const StyledFooter = styled.footer`
   .social-media {
     a {
       color: ${props => props.theme.mediumOrchard};
+
+      &:hover {
+        color: ${props => props.theme.yellow};
+      }
     }
 
     svg {
