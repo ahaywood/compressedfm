@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { MixinSectionHeading } from "src/styles/Typography"
+import { MixinSectionHeading } from "styles/Typography"
 
 const TheHosts = () => {
   return (
@@ -48,7 +48,7 @@ const StyledTheHosts = styled.section`
 
   /* job title */
   h3 {
-
+    ${MixinSectionHeading}
   }
 `;
 
