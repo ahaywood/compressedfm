@@ -15,7 +15,7 @@ const HomePage = () => {
       <header>
         <div>
           <h1>
-            <Image src="/images/logo.svg" width={850} height={272} />
+            <Image src="/images/logo.svg" width={850} height={272} layout="intrinsic" />
           </h1>
           <h2>
             A weekly podcast about web design and development from{" "}
@@ -51,34 +51,34 @@ const StyledHomePage = styled.div`
     text-align: center;
     padding-top: 110px;
     width: 100%;
-  }
 
-  /* wraps logo */
-  h1 {
-    margin: 0 0 20px;
-    padding: 0;
-    position: relative;
-    left: 50px;
-  }
+    /* wraps logo */
+    h1 {
+      margin: 0 auto 20px;
+      padding: 0 0 0 140px;
+      position: relative;
+      max-width: 850px;
+    }
 
-  /* A weekly podcast about... */
-  h2 {
-    font-family: ${props => props.theme.sansSerif};
-    font-size: 3.6rem;
-    font-weight: ${props => props.theme.fontBlack};
-    text-align: left;
-    margin: 0 auto;
-    padding: 0 40px 120px 0;
-    position: relative;
-    width: 710px;
+    /* A weekly podcast about... */
+    h2 {
+      font-family: ${props => props.theme.sansSerif};
+      font-size: 3.6rem;
+      font-weight: ${props => props.theme.fontBlack};
+      text-align: left;
+      margin: 0 auto;
+      padding: 0 0 120px 0;
+      position: relative;
+      width: 710px;
 
-    a {
-      color: #AAA;
-      text-decoration: none;
-      white-space: nowrap;
+      a {
+        color: #AAA;
+        text-decoration: none;
+        white-space: nowrap;
 
-      &:hover {
-        color: ${props => props.theme.yellow};
+        &:hover {
+          color: ${props => props.theme.yellow};
+        }
       }
     }
   }
