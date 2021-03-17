@@ -43,7 +43,6 @@ const StyledFooter = styled.footer`
     }
 
     svg {
-      fill: currentColor;
       height: 32px;
       width: 32px;
     }
