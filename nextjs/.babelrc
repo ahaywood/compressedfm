@@ -6,7 +6,11 @@
     [
       "styled-components",
       {
-        "ssr": true
+        "ssr": true,
+        "transpileTemplateLiterals": true,
+        "pure": true,
+        "displayName": true,
+        "preprocess": false
       }
     ]
   ]
