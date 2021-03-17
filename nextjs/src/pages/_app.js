@@ -102,4 +102,8 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: 62.5%;
   }
+
+  svg {
+    fill: currentColor;
+  }
 `;

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { Arrow } from "./Arrow";
 import { Dribbble } from "./Dribbble";
 import { Facebook } from "./Facebook";
 import { GitHub } from "./GitHub";
@@ -13,6 +14,8 @@ import { YouTube } from "./YouTube";
 
 const Icon = (props) => {
   switch (props.name.toLowerCase()) {
+    case "arrow":
+      return <Arrow {...props} />;
     case "dribbble":
       return <Dribbble {...props} />;
     case "facebook":

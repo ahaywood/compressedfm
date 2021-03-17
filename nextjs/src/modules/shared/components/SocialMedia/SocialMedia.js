@@ -118,9 +118,6 @@ const StyledSocialMedia = styled.ul`
     }
   }
 
-  svg {
-    fill: currentColor;
-  }
 `;
 
 export { SocialMedia }

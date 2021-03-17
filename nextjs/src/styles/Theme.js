@@ -17,7 +17,7 @@ const Theme = {
 
 
   // margin, padding, spacing
-
+  pageWidth: "1300px",
 
 }
 
