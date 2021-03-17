@@ -75,7 +75,7 @@ const StyledTheHosts = styled.section`
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 0;
   margin: 0 auto 60px;
-  max-width: 1300px;
+  max-width: ${props => props.theme.pageWidth};
   width: 100%;
 
   .james {
