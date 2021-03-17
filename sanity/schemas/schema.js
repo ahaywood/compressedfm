@@ -5,19 +5,21 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // document schemas
-import blockContent from './blockContent'
-import category from './category'
-import episode from './episode'
-import sponsor from './sponsor'
-import guest from './guest'
+import category from './documents/category'
+import episode from './documents/episode'
+import guest from './documents/guest'
+import legal from './documents/legal'
+import siteSettings from './documents/siteSettings'
+import sponsor from './documents/sponsor'
 
-// object scheams
-import contractInvoice from './contractInvoice'
-import episodeStats from './episodeStats'
-import linkList from './linkList'
-import socialMedia from './socialMedia'
-import stat from './stat'
-import timeJump from './timeJump'
+// object schemas
+import blockContent from './objects/blockContent'
+import contractInvoice from './objects/contractInvoice'
+import episodeStats from './objects/episodeStats'
+import linkList from './objects/linkList'
+import socialMedia from './objects/socialMedia'
+import stat from './objects/stat'
+import timeJump from './objects/timeJump'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -31,6 +33,8 @@ export default createSchema({
     episode,
     category,
     guest,
+    legal,
+    siteSettings,
     sponsor,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
