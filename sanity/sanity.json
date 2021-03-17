@@ -1,19 +1,8 @@
 {
-  "root": true,
-  "project": {
-    "name": "COMPRESSEDfm"
-  },
   "api": {
-    "projectId": "gqnsvyvh",
-    "dataset": "production"
+    "dataset": "production",
+    "projectId": "gqnsvyvh"
   },
-  "plugins": [
-    "@sanity/base",
-    "@sanity/components",
-    "@sanity/default-layout",
-    "@sanity/default-login",
-    "@sanity/desk-tool"
-  ],
   "env": {
     "development": {
       "plugins": [
@@ -25,6 +14,21 @@
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.js"
     }
-  ]
+  ],
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool"
+  ],
+  "project": {
+    "name": "COMPRESSEDfm"
+  },
+  "root": true
 }
