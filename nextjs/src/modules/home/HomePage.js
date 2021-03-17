@@ -6,8 +6,8 @@ import { Podcatchers } from "../shared/components/Podcatchers";
 import { VerticalDivider } from "../shared/components/VerticalDivider";
 import { FeaturedEpisode } from "./components/FeaturedEpisode";
 import { TheHosts } from "./components/TheHosts";
-// import { EpisodeGrid } from "modules/shared/components/EpisodeGrid";
-// import { Newsletter } from "modules/shared/components/Newsletter";
+import { EpisodeGrid } from "modules/shared/components/EpisodeGrid";
+import { Newsletter } from "modules/shared/components/Newsletter";
 
 const HomePage = () => {
   return (
@@ -26,12 +26,14 @@ const HomePage = () => {
       </header>
       <Podcatchers className="podcatchers" />
       <VerticalDivider />
-      <FeaturedEpisode />
+      <FeaturedEpisode
+        episodeNumber="1"
+      />
       <VerticalDivider />
       <TheHosts />
       <VerticalDivider />
-      {/* <EpisodeGrid /> */}
-      {/* <Newsletter /> */}
+      <EpisodeGrid />
+      <Newsletter />
     </StyledHomePage>
   )
 }
