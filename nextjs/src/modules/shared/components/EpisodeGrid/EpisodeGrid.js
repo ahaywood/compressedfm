@@ -1,9 +1,13 @@
 import styled from "styled-components";
+import { Episode } from "./Episode";
 
-const EpisodeGrid = () => {
+const EpisodeGrid = ({ episodes }) => {
   return (
     <StyledEpisodeGrid>
-      Episode Grid
+      <h3>Episode Grid</h3>
+      {episodes && episodes.map(() => {
+        <Episode />
+      })}
     </StyledEpisodeGrid>
   )
 }
