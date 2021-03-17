@@ -1,21 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { Dribbble } from "./Dribbble";
 import { Facebook } from "./Facebook";
 import { GitHub } from "./GitHub";
 import { Instagram } from "./Instagram";
+import { LinkedIn } from "./LinkedIn";
+import { Pinterest } from "./Pinterest";
 import { Twitch } from "./Twitch";
 import { Twitter } from "./Twitter";
 import { YouTube } from "./YouTube";
 
 const Icon = (props) => {
   switch (props.name.toLowerCase()) {
+    case "dribbble":
+      return <Dribbble {...props} />;
     case "facebook":
       return <Facebook {...props} />;
     case "github":
       return <GitHub {...props} />;
     case "instagram":
       return <Instagram {...props} />;
+    case "linkedin":
+      return <LinkedIn {...props} />;
+    case "pinterest":
+      return <Pinterest {...props} />;
     case "twitch":
       return <Twitch {...props} />;
     case "twitter":

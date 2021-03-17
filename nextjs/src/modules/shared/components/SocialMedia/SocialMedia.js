@@ -4,23 +4,33 @@ import { Icon } from "../icon";
 
 const SocialMedia = ({
   className,
+  dribbble,
   facebook,
   instagram,
   github,
+  linkedin,
   twitch,
   twitter,
+  pinterest,
   youtube
 }) => {
   return (
     <StyledSocialMedia className={className}>
+      {/* Dribbble */}
+      {dribbble && (
+        <li>
+          <a href={dribbble} target="_blank"><Icon name="dribbble" /></a>
+        </li>
+      )}
+
       {/* Facebook */}
       {facebook && (
         <li>
           <a href={facebook} target="_blank"><Icon name="facebook" /></a>
-          facebook
         </li>
       )}
 
+      {/* Instagram */}
       {instagram && (
         <li>
           <a href={instagram} target="_blank"><Icon name="instagram" /></a>
@@ -34,11 +44,24 @@ const SocialMedia = ({
         </li>
       )}
 
+      {/* LinkedIn */}
+      {linkedin && (
+        <li>
+          <a href={linkedin} target="_blank"><Icon name="linkedin" /></a>
+        </li>
+      )}
+
+      {/* Pinterest */}
+      {pinterest && (
+        <li>
+          <a href={pinterest} target="_blank"><Icon name="pinterest" /></a>
+        </li>
+      )}
+
       {/* Twitch */}
       { twitch && (
         <li>
           <a href={twitch} target="_blank"><Icon name="twitch" /></a>
-          twitch
         </li>
       )}
 
@@ -53,7 +76,6 @@ const SocialMedia = ({
       { youtube && (
         <li>
           <a href={youtube} target="_blank"><Icon name="youtube" /></a>
-          youtube
         </li>
       )}
 
