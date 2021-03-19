@@ -1,14 +1,19 @@
 const Theme = {
   // colors
   yellow: "#FAFF00",
-  black: "#000",
-  white: "#FFF",
   mediumOrchard: "#bf4efa",
   lavendarIndigo: "#9452ff",
+
+  // neutrals (lightest to darkest)
+  white: "#FFF",
   lightGray: "#d4d4d4",
-  darkJungleGreen: "#1c1c1c",
+  gray: '#808080',
+  shipGray: '#505050',
   charcoal: "#404040",
+  montana: "#393939",
   bastille: "#2e2e2e",
+  darkJungleGreen: "#1c1c1c",
+  black: "#000",
 
   // fonts
   sansSerif: "Greycliff",
