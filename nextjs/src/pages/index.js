@@ -1,14 +1,27 @@
-import Head from 'next/head'
-import { Hamburger } from "modules/shared/components/Header/components/Hamburger";
+import client from "utils/client";
+import groq from "groq";
 import { HomePage } from "modules/home";
-import { Footer } from "modules/shared/components/Footer";
+import { HomeLayout } from "modules/shared/layouts/HomeLayout";
 
-export default function Home() {
+export default function Home(props) {
+  const content = Object.values(props);
   return (
-    <div>
-      <Hamburger className="hamburger" />
-      <HomePage />
-      <Footer />
-    </div>
+    <HomeLayout>
+      <HomePage episodes={content} />
+    </HomeLayout>
   )
+}
+
+const query = groq`*[_type == "episode"] | order(episodeNumber desc) {
+  _id,
+  title,
+  episodeNumber,
+  slug,
+  publishedAt,
+  briefDescription,
+  audioPath
+}[0...4]`;
+
+Home.getInitialProps = async function (context) {
+  return await client.fetch(query);
 }

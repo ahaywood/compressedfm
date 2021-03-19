@@ -1,52 +1,75 @@
 import { useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
-import { MixinBodyCopy } from "styles/Typography";
-import { Icon } from "modules/shared/components/icon";
+
+// utilities
 import { EpisodeZeros } from "utils/EpisodeZeros";
+import { formatShortDate } from "utils/dateHelpers";
+
+// components
+import { Icon } from "modules/shared/components/Icon";
+import { MoreLink } from "modules/shared/components/MoreLink";
+import { FeaturedAudioPlayer } from "modules/shared/components/AudioPlayer/FeaturedAudioPlayer/FeaturedAudioPlayer";
+
+// styles
+import { MixinBodyCopy } from "styles/Typography";
+import { Breakpoints } from "styles/Breakpoints";
 
 
-const FeaturedEpisode = ({ audioUrl, date, episodeNumber, hostAvatars, moreLink, title, summary }) => {
+const FeaturedEpisode = ({ episode: { audioPath, publishedAt, episodeNumber, guest, slug, title, briefDescription } }) => {
   return (
     <StyledFeaturedEpisode>
       <div className="episode-number-date__wrapper">
         <span className="episode">Episode</span>
         <span className="episode-number">{EpisodeZeros(episodeNumber)}<EpisodeZeros number={episodeNumber} />{episodeNumber}</span>
-        <span className="episode-publish-date">02.13.21</span>
+        <span className="episode-publish-date">{formatShortDate(publishedAt)}</span>
       </div>
-      <div>
+      <div className="podcast-cover">
         {/* cover art */}
         <Image src="/images/podcast-cover.jpg" width={378} height={378} layout="intrinsic" />
       </div>
       <div>
-        <h3>TypeScript Fundamentals</h3>
-        <p>In this episode of Syntax, Scott and Wes talk about TypeScript fundamentals — what it is, how you use it, why people love it so much, and more.</p>
-        <Link href="/login">
-          <a className="more">
-            More
-            <Icon name="arrow" />
-          </a>
-        </Link>
+        <h3><Link href={`/episode/${slug.current}`}><a>{title}</a></Link></h3>
+        <p>{briefDescription}</p>
+        <MoreLink href={`/episode/${slug.current}`} />
         <ul className="tiny-avatars">
-          <li><Image src="/images/placeholder-chris.png" height={60} width={60} alt="Chris Coyier" layout="intrinsic" /></li>
           <li><Image src="/images/james.png" height={60} width={60} alt="James Q Quick" layout="intrinsic" /></li>
           <li><Image src="/images/amy.png" height={60} width={60} alt="Amy Dutton" layout="intrinsic" /></li>
         </ul>
+      </div>
+      <div className="audio-player">
+        <FeaturedAudioPlayer />
       </div>
     </StyledFeaturedEpisode>
   )
 }
 
 const StyledFeaturedEpisode = styled.section`
+  display: grid;
+  grid-template-columns: 1fr;
   margin: 0 auto;
   max-width: ${props => props.theme.pageWidth};
   position: relative;
+
+  @media (${Breakpoints.portrait}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .episode-number-date__wrapper {
     align-items: center;
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
+
+    @media (${Breakpoints.portrait}) {
+      grid-column: span 2;
+    }
+  }
+
+  .podcast-cover {
+    text-align: right;
+    padding-right: 55px;
   }
 
   .episode,
@@ -66,42 +89,28 @@ const StyledFeaturedEpisode = styled.section`
     margin: 0 10px;
   }
 
-  .zeros {
-    color: transparent;
-    -webkit-text-stroke: 1px ${props => props.theme.yellow};
-  }
-
   /* episode title */
   h3 {
-    color: ${props => props.theme.white};
     font-family: ${props => props.theme.sansSerif};
     font-size: 8.5rem;
     font-weight: ${props => props.theme.fontBlack};
     margin: 0 0 36px 0;
     padding: 0;
+
+    a {
+      color: ${props => props.theme.white};
+      text-decoration: none;
+
+      &:hover {
+        color: ${props => props.theme.lavendarIndigo};
+        text-decoration: none;
+      }
+    }
   }
 
   /* description */
   p {
     ${MixinBodyCopy};
-  }
-
-  a.more {
-    color: ${props => props.theme.yellow};
-    font-family: ${props => props.theme.mono};
-    font-size: 1.8rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    text-decoration: none;
-
-    svg {
-      position: relative;
-      top: 10px;
-    }
-
-    &:hover svg {
-      right:
-    }
   }
 
   .tiny-avatars {
@@ -110,10 +119,17 @@ const StyledFeaturedEpisode = styled.section`
     list-style-type: none;
     margin: 0;
     padding: 0;
+    pointer-events: none;
+    position: relative;
+    top: -25px;
 
     li {
       margin-left: -10px;
     }
+  }
+
+  .audio-player {
+    grid-column: span 2;
   }
 `;
 

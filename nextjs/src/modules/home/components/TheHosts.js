@@ -2,6 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from "styles/Typography"
 import { SocialMedia } from "modules/shared/components/SocialMedia";
+import { Breakpoints } from "styles/Breakpoints";
 
 const TheHosts = () => {
   return (
@@ -72,19 +73,29 @@ const TheHosts = () => {
 
 const StyledTheHosts = styled.section`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   grid-column-gap: 0;
-  margin: 0 auto 60px;
+  margin: 60px auto;
   max-width: ${props => props.theme.pageWidth};
+  padding: 0 ${props => props.theme.mobilePadding};
   width: 100%;
 
+  @media (${Breakpoints.portrait}) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+  }
+
   .james {
-    border-right: 1px solid ${props => props.theme.white};
-    padding-right: 85px;
+    @media (${Breakpoints.portrait}) {
+      border-right: 1px solid ${props => props.theme.white};
+      padding-right: 85px;
+    }
   }
 
   .amy {
-    padding-left: 85px;
+    @media (${Breakpoints.portrait}) {
+      padding-left: 85px;
+    }
   }
 
   .james,
@@ -95,10 +106,13 @@ const StyledTheHosts = styled.section`
   }
 
   .section-heading__wrapper {
-    grid-column: span 2;
     margin-bottom: 60px;
     text-align: center;
     width: 100%;
+
+    @media (${Breakpoints.portrait}) {
+      grid-column: span 2;
+    }
   }
 
   .meta {
@@ -134,9 +148,12 @@ const StyledTheHosts = styled.section`
   /* job title */
   h3 {
     ${MixinSectionHeading}
-    padding: 7px 40px;
+  }
+
+  .title {
     font-style: normal;
     margin-left: -40px;
+    padding: 7px 40px;
   }
 
   .large-body-copy {

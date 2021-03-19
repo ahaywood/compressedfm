@@ -1,12 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const Hamburger = ({ className, handleClick }) => {
-  const [toggled, useToggled] = useState(false);
+import { Zindex } from "styles/Zindex";
+
+const Hamburger = ({ className, onClick, navShowing }) => {
+  const [toggled, useToggled] = useState(navShowing);
 
   const toggle = () => {
     useToggled(!toggled);
-    handleClick;
+    onClick();
   }
 
   return (
@@ -23,9 +25,15 @@ const Hamburger = ({ className, handleClick }) => {
 const StyledHamburger = styled.button`
   background: transparent;
   border: none;
+  cursor: pointer;
   position: absolute;
   height: 70px;
   width: 70px;
+  z-index: ${Zindex.hamburger};
+
+  &:focus {
+    outline: none;
+  }
 
   .line {
     fill: none;
@@ -33,6 +41,10 @@ const StyledHamburger = styled.button`
     stroke-linecap: round;
     stroke-miterlimit: 10;
     stroke-width: 2px;
+  }
+
+  &:hover .line {
+    stroke: ${props => props.theme.yellow};
   }
 
   path {
@@ -47,6 +59,10 @@ const StyledHamburger = styled.button`
 
   .middle {
     transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .x .line {
+    stroke: ${props => props.theme.yellow};
   }
 
   .x .middle {

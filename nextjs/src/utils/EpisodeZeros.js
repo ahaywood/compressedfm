@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 const EpisodeZeros = (number) => {
   let zeros = '';
 
@@ -6,7 +8,12 @@ const EpisodeZeros = (number) => {
   else if (number < 100)
     zeros = "0";
 
-  return <span className="zeros">{zeros}</span>
+  return <StyledZeros className="zeros">{zeros}</StyledZeros>
 }
+
+const StyledZeros = styled.span`
+  color: transparent;
+  -webkit-text-stroke: 1px ${props => props.theme.yellow};
+`;
 
 export { EpisodeZeros }

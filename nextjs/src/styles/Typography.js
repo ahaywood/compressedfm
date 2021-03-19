@@ -8,8 +8,6 @@ const MixinBodyCopy = css`
   margin: 0 0 2.0rem 0;
 `;
 
-export { MixinBodyCopy };
-
 const MixinLargeBodyCopy = css`
   color: ${props => props.theme.white};
   font-family: ${props => props.theme.sansSerif};
@@ -17,8 +15,6 @@ const MixinLargeBodyCopy = css`
   font-weight: ${props => props.theme.fontBold};
   line-height: 1.2;
 `;
-
-export { MixinLargeBodyCopy };
 
 const MixinSectionHeading = css`
   border: 1px solid ${props => props.theme.white};
@@ -35,4 +31,8 @@ const MixinSectionHeading = css`
   text-transform: uppercase;
 `;
 
-export { MixinSectionHeading };
+export {
+  MixinBodyCopy,
+  MixinLargeBodyCopy,
+  MixinSectionHeading
+};

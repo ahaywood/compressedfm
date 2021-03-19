@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import Image from "next/image";
+
+// utilities
 import { Constants } from "utils/constants";
+
+// styles
+import { Breakpoints } from "styles/Breakpoints";
+
 
 const Podcatchers = ({ className }) => {
   return (
@@ -69,7 +75,8 @@ const StyledPodcatcher = styled.section`
 
   ul {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     list-style-type: none;
     margin: 0 auto;
     padding: 0;
@@ -77,6 +84,12 @@ const StyledPodcatcher = styled.section`
     max-width: 1200px;
 
     li {
+      justify-content: space-between;
+      padding: 0 20px 20px;
+    }
+
+    @media (${Breakpoints.portrait}) {
+      flex-wrap: nowrap;
     }
   }
 `;

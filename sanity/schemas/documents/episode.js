@@ -1,6 +1,6 @@
 export default {
   name: 'episode',
-  title: 'Episode',
+  title: 'Episodes',
   type: 'document',
   orderings: [
     {
