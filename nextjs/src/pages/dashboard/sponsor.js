@@ -1,12 +1,11 @@
-import { useUser } from '@auth0/nextjs-auth0';
 import Link from "next/link";
+import { InteriorLayout } from "modules/shared/layouts/InteriorLayout";
+import { SponsorDashboardPage } from 'modules/sponsorDashboard';
 
 export default function sponsor() {
-  const { user, error, isLoading } = useUser();
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-  if (!user) return <Link href="/api/auth/login"><a>Login</a></Link>;
-  return <div>Hello {user.nickname}</div>
-
+  return (
+    <InteriorLayout>
+      <SponsorDashboardPage />
+    </InteriorLayout>
+  )
 }
