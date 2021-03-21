@@ -9,7 +9,7 @@ import { calculateTime } from "utils/timeHelpers";
 const FeaturedAudioPlayer = () => {
   // state
   const [isPlaying, setIsPlaying] = useState(true);
-  const [duration, setDuration] = useState();
+  const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
   // references
