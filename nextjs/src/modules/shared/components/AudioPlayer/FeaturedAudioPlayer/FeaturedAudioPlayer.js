@@ -212,7 +212,6 @@ const StyledFeaturedAudioPlayer = styled.div`
     flex: 1;
     margin-right: 15px;
     position: relative;
-    top: 5px;
   }
 
   input[type="range"] {
