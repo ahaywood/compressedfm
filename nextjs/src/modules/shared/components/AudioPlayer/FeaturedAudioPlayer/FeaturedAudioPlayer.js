@@ -123,7 +123,7 @@ const FeaturedAudioPlayer = () => {
         <div className="current-time">{calculateTime(currentTime)}</div>
         <div className="progress-bar">
           <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onInput={updateCurrentTime} onChange={changeAudioToKnobby} />
-          <div className="bookmark"></div>
+          {/* <div className="bookmark"></div> */}
         </div>
         <div className="duration">{calculateTime(duration)}</div>
       </div>
