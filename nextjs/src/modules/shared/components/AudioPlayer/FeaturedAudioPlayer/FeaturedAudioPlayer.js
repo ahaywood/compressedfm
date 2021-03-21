@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { Icon } from "modules/shared/components/Icon";
 import { calculateTime } from "utils/timeHelpers";
 
 /** -------------------------------------------------
@@ -10,16 +11,12 @@ const FeaturedAudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState();
   const [currentTime, setCurrentTime] = useState(0);
-  const [clickedTime, setClickedTime] = useState();
 
-  // set up reference for the audio component
-  const audioPlayer = useRef();
+  // references
+  const audioPlayer = useRef();   // set up reference for the audio component
+  const progressBar = useRef();   // reference for the progress bar
+  const animationRef = useRef();  // reference the animation
 
-  // reference for the progress bar
-  const progressBar = useRef();
-
-  // reference the animation
-  const animationRef = useRef();
 
   // GET THE DURATION - once the meta data has been loaded
   // loadedmetadata is provided by the browser
@@ -27,15 +24,7 @@ const FeaturedAudioPlayer = () => {
     const seconds = Math.floor(audioPlayer.current.duration);
     setDuration(seconds);
     progressBar.current.max = seconds;
-    //displayBufferedAmount();
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
-
-  // MOVE THE KNOBBY ALONG WHEN PLAYING
-  useEffect(() => {
-    const newTime = Math.floor(audioPlayer.current.currentTime);
-    setCurrentTime(newTime);                      // update the time display
-    progressBar.current.value = newTime;         // move the playhead
-  }, [audioPlayer?.current?.currentTime]);
 
   // toggle between play and pause
   const togglePlaying = () => {
@@ -44,30 +33,41 @@ const FeaturedAudioPlayer = () => {
       audioPlayer.current.play();
       animationRef.current = requestAnimationFrame(whilePlaying);
     } else {
-      audioPlayer.current.pause();
-      cancelAnimationFrame(animationRef.current);
+      pause();
     }
+  }
+
+  const pause = () => {
+    audioPlayer.current.pause();
+    cancelAnimationFrame(animationRef.current);
   }
 
   const whilePlaying = () => {
     progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
     progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`);
     updateCurrentTime();
+
+    // when you reach the end of the song
+    if (progressBar.current.value == duration) {
+      restart();
+      return;
+    }
+
     animationRef.current = requestAnimationFrame(whilePlaying);
   }
 
-  // display the buffered amount
-  // const displayBufferedAmount = () => {
-  //   const bufferedAmount = Math.floor(audioPlayer.current.buffered.end(audioPlayer.current.buffered.length - 1));
-  //   progressBar.current.style.setProperty('--buffered-width', `${(bufferedAmount / progressBar.current.max) * 100}%`)
-  // }
+  const restart = () => {
+    // progressBar.current.value = 0;
+    // updateCurrentTime();
+    pause();
+  }
 
-  // when the playhead is moved, update the current time
+  // when the playhead is moved, update the current time (text)
   const updateCurrentTime = () => {
     setCurrentTime(progressBar.current.value);
   }
 
-  // the knobby when you click on the progress bar
+  // the knobby moves when you click on the progress bar
   // update the audio player to the new point
   const changeAudioToKnobby = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
@@ -104,7 +104,10 @@ const FeaturedAudioPlayer = () => {
       />
 
       <div className="controls">
-        <button onClick={backThirty}>{"<- 30"}</button>
+        <button onClick={backThirty} className="forwardBackward">
+          <Icon name="arrow" className="back" />
+          30
+        </button>
         <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
           {isPlaying ? (<svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
             <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
@@ -113,12 +116,17 @@ const FeaturedAudioPlayer = () => {
             <rect x="15" width="9" height="29" />
           </svg>)}
         </button>
-        <button onClick={forwardThirty}>{"30 ->"}</button>
-        <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onInput={updateCurrentTime} onChange={changeAudioToKnobby} />
+        <button onClick={forwardThirty} className="forwardBackward">
+          30
+          <Icon name="arrow" />
+        </button>
+        <div className="current-time">{calculateTime(currentTime)}</div>
+        <div className="progress-bar">
+          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onInput={updateCurrentTime} onChange={changeAudioToKnobby} />
+          <div className="bookmark"></div>
+        </div>
+        <div className="duration">{calculateTime(duration)}</div>
       </div>
-
-      <div className="current-time">{calculateTime(currentTime)}</div>
-      <div className="duration">{calculateTime(duration)}</div>
     </StyledFeaturedAudioPlayer>
   )
 }
@@ -127,6 +135,40 @@ const FeaturedAudioPlayer = () => {
 * STYLES
 ---------------------------------------------------- */
 const StyledFeaturedAudioPlayer = styled.div`
+  .controls {
+    align-items: center;
+    display: flex;
+  }
+
+  button.forwardBackward {
+    align-items: center;
+    background: none;
+    border: none;
+    color: ${props => props.theme.yellow};
+    cursor: pointer;
+    display: flex;
+    font-family: ${props => props.theme.mono};
+    font-size: 1.8rem;
+    width: 75px;
+
+    svg {
+      position: relative;
+      transition: transform 0.25s ease-in-out;
+    }
+
+    &:hover svg {
+      transform: translateX(5px);
+    }
+
+    .back {
+      transform: rotate(180deg);
+    }
+
+    &:hover .back {
+        transform: rotate(180deg) translateX(5px);
+      }
+  }
+
   .playPause {
     align-items: center;
     background: ${props => props.theme.charcoal};
@@ -137,6 +179,7 @@ const StyledFeaturedAudioPlayer = styled.div`
     display: flex;
     height: 70px;
     justify-content: center;
+    margin: 0 20px;
     outline: none;
     width: 70px;
 
@@ -155,7 +198,23 @@ const StyledFeaturedAudioPlayer = styled.div`
     }
   }
 
+  .current-time,
+  .duration {
+    color: ${props => props.theme.white};
+    font-family: ${props => props.theme.mono};
+    font-size: 1.8rem;
+    width: 50px;
+  }
+
   /* --------- BAR STYLES ---------------- */
+  /* wraps range and any bookmarks and chapters */
+  .progress-bar {
+    flex: 1;
+    margin-right: 15px;
+    position: relative;
+    top: 5px;
+  }
+
   input[type="range"] {
     --buffered-width: 0;
     --seek-before-width: 0;
@@ -199,6 +258,8 @@ const StyledFeaturedAudioPlayer = styled.div`
       position: absolute;
       top: 0;
       width: var(--seek-before-width);
+      z-index: 2;
+      mix-blend-mode: screen;
     }
   }
 
@@ -243,6 +304,8 @@ const StyledFeaturedAudioPlayer = styled.div`
     cursor: pointer;
     margin: -2px 0 0 0;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
+    z-index: 3;
+    position: relative;
   }
 
   /* knobby while dragging - safari */
@@ -260,10 +323,24 @@ const StyledFeaturedAudioPlayer = styled.div`
     border-radius: 50%;
     background-color: ${props => props.theme.white};
     cursor: pointer;
+    z-index: 3;
+    position: relative;
   }
   input[type="range"]:active::-moz-range-thumb {
     transform: scale(1.2);
     background: ${props => props.theme.yellow};
+  }
+
+  .bookmark {
+    background: ${props => props.theme.yellow};
+    display: block;
+    height: 11px;
+    left: 300px;
+    pointer-events: none;
+    position: relative;
+    top: -13px;
+    width: 100px;
+    z-index: 1;
   }
 `;
 
