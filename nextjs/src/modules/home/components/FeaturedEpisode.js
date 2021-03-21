@@ -10,7 +10,7 @@ import { formatShortDate } from "utils/dateHelpers";
 // components
 import { Icon } from "modules/shared/components/Icon";
 import { MoreLink } from "modules/shared/components/MoreLink";
-import { FeaturedAudioPlayer } from "modules/shared/components/AudioPlayer/FeaturedAudioPlayer/FeaturedAudioPlayer";
+import { FeaturedAudioPlayer } from "modules/shared/components/AudioPlayer/FeaturedAudioPlayer";
 
 // styles
 import { MixinBodyCopy } from "styles/Typography";
