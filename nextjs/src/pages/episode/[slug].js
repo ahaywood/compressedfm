@@ -13,12 +13,47 @@ export default function Episode(props) {
 
 const query = groq`*[_type == "episode" && slug.current == $slug] {
   _id,
-  title,
-  episodeNumber,
-  slug,
-  publishedAt,
+  audioPath,
   briefDescription,
-  audioPath
+  categories[]->,
+  episodeCover,
+  episodeNumber,
+  guest[]->{
+    _id,
+    firstName,
+    lastName,
+    title,
+    jobTitle,
+    "avatar": avatar.asset->url,
+    socialMedia{
+      ...
+    },
+    largeBody,
+    bio
+  },
+  listLink[],
+  publishedAt,
+  slug,
+  sponsor[]->{
+    _id,
+    title,
+    "logo": logo.asset->url,
+    offer,
+    offerLink,
+    about,
+    founding,
+  },
+  timeJump,
+  title,
+  transcript,
+  relatedEpisodes[]->{
+    _id,
+    briefDescription,
+    title,
+    publishedAt,
+    episodeNumber,
+    slug
+  }
 }[0]`;
 
 Episode.getInitialProps = async function (context) {

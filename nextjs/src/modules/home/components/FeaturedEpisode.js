@@ -93,6 +93,7 @@ const StyledFeaturedEpisode = styled.section`
     font-family: ${props => props.theme.sansSerif};
     font-size: 8.5rem;
     font-weight: ${props => props.theme.fontBlack};
+    line-height: 0.95;
     margin: 0 0 36px 0;
     padding: 0;
 

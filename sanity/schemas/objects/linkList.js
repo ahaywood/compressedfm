@@ -12,6 +12,11 @@ export default {
       name: 'linkUrl',
       description: 'Don\'t forget the http://',
       type: 'string'
+    },
+    {
+      title: 'New Tab?',
+      name: 'newTab',
+      type: 'boolean'
     }
   ]
 }

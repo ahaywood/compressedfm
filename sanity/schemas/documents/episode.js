@@ -82,6 +82,12 @@ export default {
       description: 'URL for Audio File in Transistor.fm'
     },
     {
+      name: 'waveform',
+      title: 'Waveform',
+      type: 'image',
+      description: 'Recommended Dimensions'
+    },
+    {
       name: 'categories',
       title: 'Categories',
       type: 'array',
@@ -103,6 +109,20 @@ export default {
       name: 'transcript',
       title: 'Transcript',
       type: 'blockContent',
+    },
+    {
+      name: 'relatedEpisodes',
+      title: 'Related Episodes',
+      type: 'array',
+      description: 'Select 3 Episodes',
+      of: [{ type: 'reference', to: { type: 'episode' } }],
+      validation: Rule => Rule.max(3).unique().custom((episode, context) => {
+        const id = context.document._id; // current episode id
+        if (episode.find(item => id.includes(item._ref))) {
+          return "Can't select the current episode as a related episode."
+        }
+        return true;
+      })
     },
     {
       name: 'episodeStats',

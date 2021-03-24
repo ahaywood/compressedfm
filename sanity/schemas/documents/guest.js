@@ -9,6 +9,16 @@ export default {
       type: 'string',
     },
     {
+      title: 'First Name',
+      name: 'firstName',
+      type: 'string',
+    },
+    {
+      title: 'Last Name',
+      name: 'lastName',
+      type: 'string',
+    },
+    {
       title: 'Guest Email',
       name: 'guestEmail',
       description: 'Used for Guest Login',
@@ -33,6 +43,13 @@ export default {
         collapsed: true,
         columns: 2,
       }
+    },
+    {
+      title: 'Large Body',
+      name: 'largeBody',
+      type: 'text',
+      description: 'Bio Callout at the top',
+      rows: 3,
     },
     {
       title: 'Bio',

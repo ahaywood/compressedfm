@@ -11,7 +11,7 @@ import { Sponsors } from "./components/Sponsors"
 import { Podcatchers } from "modules/shared/components/Podcatchers";
 import { VerticalDivider } from "modules/shared/components/VerticalDivider";
 import { EpisodeGrid } from "modules/shared/components/EpisodeGrid";
-import Newsletter from "pages/newsletter";
+import { Newsletter } from "modules/shared/components/Newsletter";
 
 /** -------------------------------------------------
 * COMPONENT
@@ -22,40 +22,51 @@ const IndividualEpisodePage = ({ episode: {
   categories,
   episodeCover,
   episodeNumber,
-  guests,
-  linkList,
+  guest,
+  listLink,
   publishedAt,
-  sponsors,
+  sponsor,
   timeJump,
   title,
-  transcript
+  transcript,
+  relatedEpisodes
 } }) => {
   return (
     <StyledIndividualEpisodePage>
-      <EpisodeSummary title briefDescription episodeNumber />
+      <EpisodeSummary
+        className="episode-summary"
+        title={title}
+        briefDescription={briefDescription}
+        episodeNumber={episodeNumber}
+        publishedAt={publishedAt}
+      />
+      <VerticalDivider />
 
-      <div>
+      <div className="content">
         <main>
-          <Guest />
+          {guest && <Guest guest={guest} className="guests" />}
 
-          <div>
-            <JumpLinks />
-            <Links />
+          <div className="time-links">
+            <JumpLinks timeJump={timeJump} className="time" />
+            <Links listLink={listLink} className="links" />
           </div>
 
-          <FullTranscript />
+          <FullTranscript className="transcript" />
         </main>
 
         <aside className="sponsor-list">
-          <Sponsors />
+          {sponsor && (
+            <Sponsors className="sponsors" sponsor={sponsor} />
+          )}
         </aside>
+
       </div>
       <VerticalDivider />
 
-      <Podcatchers />
+      <Podcatchers className="podcatchers" />
       <VerticalDivider />
 
-      <EpisodeGrid />
+      <EpisodeGrid header="Related Episodes" episodes={relatedEpisodes} />
       <VerticalDivider />
 
       <Newsletter />
@@ -64,42 +75,85 @@ const IndividualEpisodePage = ({ episode: {
   )
 }
 
-// IndividualEpisodePage.propTypes = {
-//   episode: PropTypes.shape({
-//     audioPath,
-//   briefDescription,
-//   categories,
-//   episodeCover,
-//   guests,
-//   linkList,
-//   publishedAt,
-//   sponsors,
-//   timeJump,
-//   title,
-//   transcript
-//   })
-// };
+IndividualEpisodePage.propTypes = {
+  episode: PropTypes.shape({
+    audioPath: PropTypes.string,
+    briefDescription: PropTypes.string,
+    categories: PropTypes.string,
+    episodeCover: PropTypes.string,
+    episodeNumber: PropTypes.string,
+    guest: PropTypes.array,
+    listLink: PropTypes.array,
+    publishedAt: PropTypes.string,
+    sponsor: PropTypes.array,
+    timeJump: PropTypes.array,
+    title: PropTypes.string,
+    // transcript: PropTypes.string,
+    relatedEpisodes: PropTypes.array
+  })
+};
 
-// IndividualEpisodePage.defaultProps = {
-//   episode: {
-//     audioPath,
-//     briefDescription,
-//     categories,
-//     episodeCover,
-//     guests,
-//     linkList,
-//     publishedAt,
-//     sponsors,
-//     timeJump,
-//     title,
-//     transcript
-//   }
-// };
+IndividualEpisodePage.defaultProps = {
+  episode: {
+    audioPath: '',
+    briefDescription: '',
+    categories: '',
+    episodeCover: '',
+    episodeNumber: '',
+    guest: [],
+    listLink: [],
+    publishedAt: '',
+    sponsor: [],
+    timeJump: [],
+    title: '',
+    // transcript: '',
+    relatedEpisodes: []
+  }
+};
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledIndividualEpisodePage = styled.section`
+  .episode-summary {
+    margin: 0 auto;
+    max-width: ${props => props.theme.pageWidth};
+    position: relative;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 20px;
+    margin: 0 auto;
+    max-width: ${props => props.theme.pageWidth};
+    position: relative;
+  }
+
+  .guests {
+    margin-bottom: 200px;
+  }
+
+  .time-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    margin-bottom: 200px;
+  }
+
+  .sponsors {
+    position: sticky;
+    top: 10px;
+    padding-bottom: 60px;
+  }
+
+  .transcript {
+    margin-bottom: 200px;
+  }
+
+  .podcatchers {
+    padding: 65px 0;
+  }
 
 `;
 

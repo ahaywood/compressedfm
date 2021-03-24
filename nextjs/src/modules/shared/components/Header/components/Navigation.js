@@ -37,6 +37,9 @@ const Navigation = ({ isShowing }) => {
           <li className="episodes">
             <Link href="/episodes"><a>Episodes</a></Link>
           </li>
+          <li className="sponsors">
+            <Link href="/sponsors"><a>Sponsors</a></Link>
+          </li>
           <li className="newsletter">
             <Link href="/newsletter"><a>Newsletter</a></Link>
           </li>
@@ -51,8 +54,8 @@ const Navigation = ({ isShowing }) => {
           <li className="press-kit">
             <Link href="/press-kit"><a>Press Kit</a></Link>
           </li>
-          <li className="sponsorships">
-            <Link href="/sponsorships"><a>Sponsorships</a></Link>
+          <li className="sponsoring">
+            <Link href="/sponsoring"><a>Sponsoring</a></Link>
           </li>
           <li className="login">
             {user ? <a href="/api/auth/logout">Logout</a> : <a href="/api/auth/login">Login</a>}
@@ -161,6 +164,7 @@ const StyledNavigation = styled.div`
       &.home li.home a,
       &.about li.about a,
       &.episodes li.episodes a,
+      &.sponsors li.sponsors a,
       &.newsletter li.newsletter a,
       &.contact li.contact a {
         color: ${props => props.theme.yellow};
@@ -185,7 +189,7 @@ const StyledNavigation = styled.div`
         font-family: ${props => props.theme.sansSerif};
         font-size: 2.4rem;
         font-weight: ${props => props.theme.fontMedium};
-        line-height: 8.2rem;
+        line-height: 2;
       }
 
       a {
@@ -199,7 +203,7 @@ const StyledNavigation = styled.div`
 
       /* set styles for the current page */
       &.press-kit li.press-kit a,
-      &.sponsorships li.sponsorships a,
+      &.sponsoring li.sponsoring a,
       &.login li.login a {
         color: ${props => props.theme.yellow};
       }

@@ -3,9 +3,9 @@ import Link from "next/link";
 import styled from "styled-components";
 import { Icon } from "modules/shared/components/Icon";
 
-const MoreLink = ({ href, label }) => {
+const MoreLink = ({ className, href, label }) => {
   return (
-    <StyledMoreLink>
+    <StyledMoreLink className={className}>
       <Link href={href}>
         <a>
           {label}
@@ -43,11 +43,13 @@ const StyledMoreLink = styled.div`
 `;
 
 MoreLink.propTypes = {
+  className: PropTypes.string,
   href: PropTypes.string.isRequired,
   label: PropTypes.string
 };
 
 MoreLink.defaultProps = {
+  className: '',
   label: "More"
 }
 

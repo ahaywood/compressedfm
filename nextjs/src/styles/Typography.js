@@ -1,5 +1,13 @@
 import styled, { css } from "styled-components";
 
+const MixinSmallBodyCopy = css`
+  color: ${props => props.theme.white};
+  font-family: ${props => props.theme.sansSerif};
+  font-size: 1.6rem;
+  line-height: 2;
+  margin: 0 0 2.0rem 0;
+`;
+
 const MixinBodyCopy = css`
   color: ${props => props.theme.white};
   font-family: ${props => props.theme.sansSerif};
@@ -31,8 +39,20 @@ const MixinSectionHeading = css`
   text-transform: uppercase;
 `;
 
+const MixinHeading = css`
+  border-bottom: 1px solid ${props => props.theme.white};
+  font-family: ${props => props.theme.mono};
+  font-size: 1.4rem;
+  letter-spacing: 0.4rem;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  text-transform: uppercase;
+`;
+
 export {
   MixinBodyCopy,
+  MixinHeading,
   MixinLargeBodyCopy,
-  MixinSectionHeading
+  MixinSectionHeading,
+  MixinSmallBodyCopy
 };

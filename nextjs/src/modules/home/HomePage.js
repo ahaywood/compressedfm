@@ -25,14 +25,22 @@ const HomePage = ({ episodes }) => {
       <Podcatchers className="podcatchers" />
       <VerticalDivider />
 
-      <FeaturedEpisode episode={featuredEpisode} />
-      <VerticalDivider />
+      {featuredEpisode && (
+        <>
+          <FeaturedEpisode episode={featuredEpisode} />
+          <VerticalDivider />
+        </>
+      )}
 
       <TheHosts />
       <VerticalDivider />
 
-      <EpisodeGrid header="Recent Episodes" episodes={episodes} />
-      <VerticalDivider />
+      {episodes && (
+        <>
+          <EpisodeGrid header="Recent Episodes" episodes={episodes} />
+          <VerticalDivider />
+        </>
+      )}
 
       <Newsletter />
     </StyledHomePage>
