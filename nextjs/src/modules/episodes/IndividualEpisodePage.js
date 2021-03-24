@@ -44,16 +44,22 @@ const IndividualEpisodePage = ({ episode: {
 
       <div className="content">
         <main>
+          {/* GUEST */}
           {guest && <Guest guest={guest} className="guests" />}
 
           <div className="time-links">
+            {/* TIME JUMP LINKS */}
             <JumpLinks timeJump={timeJump} className="time" />
+
+            {/* SHOW LINKS */}
             <Links listLink={listLink} className="links" />
           </div>
 
+          {/* TRANSCRIPT */}
           <FullTranscript className="transcript" />
         </main>
 
+        {/* SPONSORS */}
         <aside className="sponsor-list">
           {sponsor && (
             <Sponsors className="sponsors" sponsor={sponsor} />
@@ -63,18 +69,28 @@ const IndividualEpisodePage = ({ episode: {
       </div>
       <VerticalDivider />
 
+      {/* PODCATCHERS */}
       <Podcatchers className="podcatchers" />
       <VerticalDivider />
 
-      <EpisodeGrid header="Related Episodes" episodes={relatedEpisodes} />
-      <VerticalDivider />
+      {/* EPISODE GRID */}
+      {relatedEpisodes && (
+        <>
+          <EpisodeGrid header="Related Episodes" episodes={relatedEpisodes} />
+          <VerticalDivider />
+        </>
+      )}
 
+      {/* NEWSLETTER */}
       <Newsletter />
 
     </StyledIndividualEpisodePage>
   )
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 IndividualEpisodePage.propTypes = {
   episode: PropTypes.shape({
     audioPath: PropTypes.string,

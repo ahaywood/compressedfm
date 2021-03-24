@@ -16,7 +16,7 @@ const EpisodeGrid = ({ header, episodes }) => {
     <StyledEpisodeGrid
       className={header ? 'w-section-header' : 'no-section-header'}
     >
-      { header && (
+      { (eheader) && (
         <div className="section-heading">
           <h3>{header}</h3>
         </div>

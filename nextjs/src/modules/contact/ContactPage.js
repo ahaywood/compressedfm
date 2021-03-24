@@ -41,8 +41,8 @@ const ContactPage = () => {
         </div>
         <div className="full">
           <select name="subject" id="subject">
-            <option value="Just saying Hi">Just saying Hi</option>
             <option value="Grab Bag Question">Grab Bag Question</option>
+            <option value="Just saying Hi">Just saying Hi</option>
           </select>
           <label htmlFor="Subject">Subject</label>
         </div>

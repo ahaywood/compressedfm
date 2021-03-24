@@ -16,7 +16,9 @@ import { formatLongDate } from "utils/dateHelpers"
 import { Breakpoints } from "styles/Breakpoints";
 import { MixinBodyCopy } from "styles/Typography";
 
-
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const Episode = ({ className, episode: { publishedAt, briefDescription, episodeNumber, slug, title } }) => {
   return (
     <StyledEpisode className={className}>
@@ -35,6 +37,9 @@ const Episode = ({ className, episode: { publishedAt, briefDescription, episodeN
   )
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledEpisode = styled.article`
   margin: 0 0 75px 0;
   padding: 20px ${props => props.theme.mobilePadding} 60px;

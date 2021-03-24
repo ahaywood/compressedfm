@@ -3,6 +3,7 @@ import { MoreLink } from "modules/shared/components/MoreLink";
 
 // utilities
 import { EpisodeZeros } from "utils/EpisodeZeros";
+import { formatLongDate } from "utils/dateHelpers";
 
 /** -------------------------------------------------
 * COMPONENT
@@ -11,8 +12,8 @@ const EpisodeSummary = ({ briefDescription, className, title, episodeNumber, pub
   return (
     <StyledEpisodeSummary className={className}>
       <div className="title">
-        <h3>March 21, 2021</h3>
-        <h1>Starting a New Design Project</h1>
+        <h3>{formatLongDate(publishedAt)}</h3>
+        <h1>{title}</h1>
       </div>
       <div className="description">
         <div className="episode-number">
@@ -20,7 +21,7 @@ const EpisodeSummary = ({ briefDescription, className, title, episodeNumber, pub
           {episodeNumber}
         </div>
         <p className="large-body-copy">
-          This week, we talk about starting new design projects. This is not just about pushing pixels, but also includes the discovery process: competitor analysis, content audit, user journey, and more.
+          {briefDescription}
         </p>
       </div>
 
