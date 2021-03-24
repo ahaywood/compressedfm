@@ -12,7 +12,7 @@ export default function Home(props) {
   )
 }
 
-const query = groq`*[_type == "episode"] | order(episodeNumber desc) {
+const query = groq`*[_type == "episode" && published == true] | order(episodeNumber desc) {
   _id,
   title,
   episodeNumber,
