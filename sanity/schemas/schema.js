@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // document schemas
 import category from './documents/category'
 import episode from './documents/episode'
+import faq from './documents/faq'
 import guest from './documents/guest'
 import legal from './documents/legal'
 import siteSettings from './documents/siteSettings'
@@ -36,6 +37,7 @@ export default createSchema({
     legal,
     siteSettings,
     sponsor,
+    faq,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
