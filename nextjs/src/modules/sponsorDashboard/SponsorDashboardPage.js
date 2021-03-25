@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { SponsorAudioPlayer } from "modules/shared/components/AudioPlayer/SponsorAudioPlayer";
+import { FeaturedAudioPlayer } from "modules/shared/components/AudioPlayer/FeaturedAudioPlayer";
 
 const SponsorDashboardPage = () => {
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(1);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState();
 
   const handleMultipleAudioPlayers = (id) => {
     setCurrentlyPlaying(id);
@@ -11,9 +12,9 @@ const SponsorDashboardPage = () => {
 
   return (
     <StyledSponsorDashboardPage>
-      <SponsorAudioPlayer id="1" currentlyPlaying handleMultipleAudioPlayers={handleMultipleAudioPlayers} />
-      <SponsorAudioPlayer id="2" currentlyPlaying handleMultipleAudioPlayers={handleMultipleAudioPlayers} />
-      <SponsorAudioPlayer id="3" currentlyPlaying handleMultipleAudioPlayers={handleMultipleAudioPlayers} />
+      <SponsorAudioPlayer id="1" currentlyPlaying={currentlyPlaying} handleMultipleAudioPlayers={handleMultipleAudioPlayers} />
+      <SponsorAudioPlayer id="2" currentlyPlaying={currentlyPlaying} handleMultipleAudioPlayers={handleMultipleAudioPlayers} />
+      <SponsorAudioPlayer id="3" currentlyPlaying={currentlyPlaying} handleMultipleAudioPlayers={handleMultipleAudioPlayers} />
     </StyledSponsorDashboardPage>
   )
 }

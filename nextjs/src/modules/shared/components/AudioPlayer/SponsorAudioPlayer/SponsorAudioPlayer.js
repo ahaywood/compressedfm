@@ -7,18 +7,13 @@ import { calculateTime } from "utils/timeHelpers";
 ---------------------------------------------------- */
 const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }) => {
   // state
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState();
   const [currentTime, setCurrentTime] = useState(0);
 
-  // set up reference for the audio component
-  const audioPlayer = useRef();
-
-  // reference for the progress bar
-  const progressBar = useRef();
-
-  // reference the animation
-  const animationRef = useRef();
+  const audioPlayer = useRef();   // set up reference for the audio component
+  const progressBar = useRef();   // reference for the progress bar
+  const animationRef = useRef();  // reference the animation
 
   // GET THE DURATION - once the meta data has been loaded
   // loadedmetadata is provided by the browser
@@ -30,22 +25,22 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
 
   // when another audio player starts playing
   useEffect(() => {
-    console.log({ currentlyPlaying });
     if (currentlyPlaying != id) {
-      console.log(`turn off ${id}`)
-      setIsPlaying(false);
+      setIsPlaying(true);
       pauseAudio();
     }
   }, [currentlyPlaying])
 
   // toggle between play and pause
   const togglePlaying = () => {
-    setIsPlaying(!isPlaying);
+    setIsPlaying(prevVal => !prevVal);
+    // play
     if (isPlaying) {
       audioPlayer.current.play();
       animationRef.current = requestAnimationFrame(whilePlaying);
       handleMultipleAudioPlayers(id);
-    } else {
+    } // pause
+    else {
       pauseAudio();
     }
   }
@@ -81,20 +76,6 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
     }
   }
 
-  // jump back 30 seconds
-  const backThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) - 30
-    updateCurrentTime();
-    changeAudioToKnobby();
-  }
-
-  // jump forward 30 seconds
-  const forwardThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) + 30
-    updateCurrentTime();
-    changeAudioToKnobby();
-  }
-
   return (
     <StyledFeaturedAudioPlayer>
       <audio
@@ -104,7 +85,6 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
       />
 
       <div className="controls">
-        <button onClick={backThirty}>{"<- 30"}</button>
         <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
           {isPlaying ? (<svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
             <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
@@ -113,7 +93,6 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
             <rect x="15" width="9" height="29" />
           </svg>)}
         </button>
-        <button onClick={forwardThirty}>{"30 ->"}</button>
         <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onInput={updateCurrentTime} onChange={changeAudioToKnobby} />
         <div className="bookmark"></div>
       </div>
