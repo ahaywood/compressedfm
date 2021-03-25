@@ -126,7 +126,7 @@ const StyledNavigation = styled.div`
   transition: bottom 0.5s ease-in-out;
   right: 0;
   width: 100vw;
-  z-index: 9999;
+  z-index: 100;
 
   &.showing {
     bottom: 0;

@@ -1,11 +1,24 @@
+import Head from "next/head";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { UserProvider } from '@auth0/nextjs-auth0';
 import Theme from "../styles/Theme";
+import Router from "next/router";
+import NProgress from "nprogress";
+
+// Bind nProgress Bar
+Router.events.on('routeChangeStart', () => { NProgress.start() })
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
+
   return (
     <UserProvider>
       <ThemeProvider theme={Theme}>
+        <Head>
+          <title>Compressed.fm</title>
+          <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
+        </Head>
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
