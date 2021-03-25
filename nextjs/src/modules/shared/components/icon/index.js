@@ -7,7 +7,9 @@ import { Facebook } from "./Facebook";
 import { GitHub } from "./GitHub";
 import { Instagram } from "./Instagram";
 import { LinkedIn } from "./LinkedIn";
+import { Minus } from "./Minus";
 import { Pinterest } from "./Pinterest";
+import { Plus } from "./Plus";
 import { Twitch } from "./Twitch";
 import { Twitter } from "./Twitter";
 import { YouTube } from "./YouTube";
@@ -26,8 +28,12 @@ const Icon = (props) => {
       return <Instagram {...props} />;
     case "linkedin":
       return <LinkedIn {...props} />;
+    case "minus":
+      return <Minus {...props} />;
     case "pinterest":
       return <Pinterest {...props} />;
+    case "plus":
+      return <Plus {...props} />;
     case "twitch":
       return <Twitch {...props} />;
     case "twitter":
