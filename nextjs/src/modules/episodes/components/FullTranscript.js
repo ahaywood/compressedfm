@@ -1,6 +1,11 @@
 import styled from "styled-components";
+
+// styles
 import { MixinBodyCopy, MixinHeading } from "styles/Typography";
 
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const FullTranscript = ({ className }) => {
   return (
     <StyledFullTranscript className={className}>
@@ -9,6 +14,9 @@ const FullTranscript = ({ className }) => {
   )
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledFullTranscript = styled.section`
   h4 {
     ${MixinHeading};
