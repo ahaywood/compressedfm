@@ -1,7 +1,9 @@
+import { BsPersonBoundingBox as icon } from "react-icons/bs"
 export default {
   name: 'guest',
   title: 'Guests',
   type: 'document',
+  icon,
   fields: [
     {
       title: 'Title',

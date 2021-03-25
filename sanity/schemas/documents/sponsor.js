@@ -1,7 +1,9 @@
+import { FaMoneyBillAlt as icon } from "react-icons/fa"
 export default {
   name: 'sponsor',
   title: 'Sponsors',
   type: 'document',
+  icon,
   fields: [
     {
       name: 'title',

@@ -1,7 +1,9 @@
+import { RiScales3Fill as icon } from "react-icons/ri"
 export default {
   name: 'legal',
   title: 'Legal',
   type: 'document',
+  icon,
   fields: [
     {
       name: 'title',

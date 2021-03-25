@@ -1,7 +1,10 @@
+import { FaMicrophoneAlt as icon } from "react-icons/fa";
+
 export default {
   name: 'episode',
   title: 'Episodes',
   type: 'document',
+  icon,
   orderings: [
     {
       title: 'Ep No, New',
@@ -118,11 +121,23 @@ export default {
       of: [{ type: 'reference', to: { type: 'episode' } }],
       validation: Rule => Rule.max(3).unique().custom((episode, context) => {
         const id = context.document._id; // current episode id
-        if (episode.find(item => id.includes(item._ref))) {
+        if (episode && episode.find(item => id.includes(item._ref))) {
           return "Can't select the current episode as a related episode."
         }
         return true;
       })
+    },
+    {
+      name: 'gettingStarted',
+      title: 'Getting Started Episode',
+      description: "Feature as one of the Getting Started Episodes",
+      type: 'boolean'
+    },
+    {
+      name: 'popularEpisode',
+      title: 'Popular Episode',
+      description: "Feature as one of the Most Popular Episodes",
+      type: 'boolean'
     },
     {
       name: 'episodeStats',
