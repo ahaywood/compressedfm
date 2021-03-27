@@ -6,13 +6,17 @@ import { FeaturedAudioPlayer } from "modules/shared/components/AudioPlayer/Featu
 import { Icon } from "modules/shared/components/Icon";
 import { VerticalDivider } from "modules/shared/components/VerticalDivider";
 import { MixinHeading } from "styles/Typography"
+import { useUser } from '@auth0/nextjs-auth0';
 
-const SponsorDashboardPage = () => {
+const SponsorDashboardPage = ({ sponsor }) => {
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
+  const { user } = useUser();
 
   const handleMultipleAudioPlayers = (id) => {
     setCurrentlyPlaying(id);
   }
+
+  console.log(sponsor)
 
   return (
     <StyledSponsorDashboardPage>
