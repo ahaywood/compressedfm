@@ -24,10 +24,6 @@ const EpisodeSummary = ({ briefDescription, className, title, episodeNumber, pub
           {briefDescription}
         </p>
       </div>
-
-      <div className="audio-player">
-        <iframe height="200px" width="700px" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/88284991-93d9-436a-845d-4133c01cde8a?dark=true"></iframe>
-      </div>
     </StyledEpisodeSummary>
   )
 }
@@ -81,13 +77,6 @@ const StyledEpisodeSummary = styled.section`
     margin: 0;
     padding: 75px 0 0  0;
   }
-
-  .audio-player {
-    grid-column: span 2;
-    margin: 60px 0;
-    text-align: center;
-  }
-
 `;
 
 export { EpisodeSummary }

@@ -81,20 +81,6 @@ const WaveformPlayer = () => {
     }
   }
 
-  // jump back 30 seconds
-  const backThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) - 30
-    updateCurrentTime();
-    changeAudioToKnobby();
-  }
-
-  // jump forward 30 seconds
-  const forwardThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) + 30
-    updateCurrentTime();
-    changeAudioToKnobby();
-  }
-
   return (
     <StyledFeaturedAudioPlayer>
       <audio
@@ -103,11 +89,15 @@ const WaveformPlayer = () => {
         preload="metadata"
       />
 
+      <div className="album-cover">
+        <img src="/images/placeholder__cover.png" alt="Episode Cover" />
+      </div>
+
+      <div className="meta-data">
+
+      </div>
+
       <div className="controls">
-        <button onClick={backThirty} className="forwardBackward">
-          <Icon name="arrow" className="back" />
-          30
-        </button>
         <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
           {isPlaying ? (<svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
             <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
@@ -115,10 +105,6 @@ const WaveformPlayer = () => {
             <rect width="9" height="29" />
             <rect x="15" width="9" height="29" />
           </svg>)}
-        </button>
-        <button onClick={forwardThirty} className="forwardBackward">
-          30
-          <Icon name="arrow" />
         </button>
         <div className="current-time">{calculateTime(currentTime)}</div>
         <div className="progress-bar">
@@ -134,46 +120,47 @@ const WaveformPlayer = () => {
 * STYLES
 ---------------------------------------------------- */
 const StyledFeaturedAudioPlayer = styled.div`
-  .controls {
-    align-items: center;
-    display: flex;
+  background: linear-gradient(${props => props.theme.black} 0%,
+    ${props => props.theme.black} 50%,
+    ${props => props.theme.bastille} 50%,
+    ${props => props.theme.bastille} 100% );
+  border: 1px solid ${props => props.theme.bastille};
+  display: grid;
+  grid-template-areas:
+    "cover meta"
+    "cover controls";
+  grid-template-columns: 160px 1fr;
+  padding: 20px;
+  max-width: 660px;
+  margin: 0 auto;
+  position: relative;
+
+  .album-cover {
+    grid-area: cover;
+
+    img {
+      width: 100%;
+    }
   }
 
-  button.forwardBackward {
+  .meta {
+    grid-area: meta;
+  }
+
+  .controls {
     align-items: center;
-    background: none;
-    border: none;
-    color: ${props => props.theme.yellow};
-    cursor: pointer;
+    align-self: flex-end;
+    grid-area: controls;
     display: flex;
-    font-family: ${props => props.theme.mono};
-    font-size: 1.8rem;
-    width: 75px;
-
-    svg {
-      position: relative;
-      transition: transform 0.25s ease-in-out;
-    }
-
-    &:hover svg {
-      transform: translateX(5px);
-    }
-
-    .back {
-      transform: rotate(180deg);
-    }
-
-    &:hover .back {
-        transform: rotate(180deg) translateX(5px);
-      }
+    position: relative;
   }
 
   .playPause {
     align-items: center;
-    background: ${props => props.theme.charcoal};
+    background: ${props => props.theme.lightGray};
     border: none;
     border-radius: 50%;
-    color: ${props => props.theme.white};
+    color: ${props => props.theme.black};
     cursor: pointer;
     display: flex;
     height: 70px;
@@ -199,10 +186,23 @@ const StyledFeaturedAudioPlayer = styled.div`
 
   .current-time,
   .duration {
+    background: ${props => props.theme.black};
     color: ${props => props.theme.white};
     font-family: ${props => props.theme.mono};
-    font-size: 1.8rem;
-    width: 50px;
+    font-size: 1.2rem;
+    padding: 3px 0;
+    position: absolute;
+    width: 45px;
+  }
+
+  .current-time {
+    top: 50px;
+    left: 100px;
+  }
+
+  .duration {
+    top: 50px;
+    right: 0;
   }
 
   /* --------- BAR STYLES ---------------- */
@@ -222,55 +222,46 @@ const StyledFeaturedAudioPlayer = styled.div`
     --buffered-color: ${props => props.theme.shipGray};
 
     appearance: none;
-    background: var(--bar-bg);
+    /* background: var(--bar-bg); */
+    background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
     border-radius: 10px;
     position: relative;
-    width: 100%;
-    height: 11px;
+    width: 375px;
+    height: 40px;
     outline: none;
+    position: relative;
+    top: -10px;
+    z-index: 1;
 
     /* progress bar - safari */
-    &::-webkit-slider-runnable-track {
-      background: linear-gradient(to right,
-        var(--buffered-color) 0%,
-        var(--buffered-color) var(--buffered-width),
-        transparent var(--buffered-width),
-        transparent 100%,
-      );
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
+    /* &::-webkit-slider-runnable-track {
+      background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_white,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
       cursor: pointer;
-      height: 11px;
-      width: 100%;
-    }
+      height: 40px;
+      /* width: var(--seek-before-width); */
+      /* width: 30px; */
+    /* }  */
 
     /* progress bar - chrome */
     &::before {
-      background-color: var(--seek-before-color);
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
+      background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:white,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
       content: "";
       cursor: pointer;
-      height: 11px;
+      height: 40px;
       left: 0;
       position: absolute;
       top: 0;
       width: var(--seek-before-width);
       z-index: 2;
-      mix-blend-mode: screen;
+      z-index: 2;
     }
-  }
 
   /* progress bar - firefox */
   input[type="range"]::-moz-range-track {
     width: 100%;
-    height: 11px;
+    height: 40px;
     cursor: pointer;
-    background: linear-gradient(to right,
-      var(--buffered-color) var(--buffered-width),
-      var(--bar-bg) var(--buffered-width)
-    );
-    border-radius: 10px;
+    background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
   }
 
   input[type="range"]::-moz-focus-outer {
@@ -295,15 +286,15 @@ const StyledFeaturedAudioPlayer = styled.div`
     -webkit-appearance: none;
     box-sizing: content-box;
     border: none;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    background-color: ${props => props.theme.white};;
+    height: 40px;
+    width: 1px;
+    background-color: ${props => props.theme.black};
     cursor: pointer;
     margin: -2px 0 0 0;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
     z-index: 3;
     position: relative;
+    top: -13px;
   }
 
   /* knobby while dragging - safari */
@@ -316,10 +307,9 @@ const StyledFeaturedAudioPlayer = styled.div`
   input[type="range"]::-moz-range-thumb {
     box-sizing: content-box;
     border: transparent;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    background-color: ${props => props.theme.white};
+    height: 40px;
+    width: 2px;
+    background-color: ${props => props.theme.black};
     cursor: pointer;
     z-index: 3;
     position: relative;
@@ -327,6 +317,7 @@ const StyledFeaturedAudioPlayer = styled.div`
   input[type="range"]:active::-moz-range-thumb {
     transform: scale(1.2);
     background: ${props => props.theme.yellow};
+  }
   }
 `;
 

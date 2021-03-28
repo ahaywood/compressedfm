@@ -12,6 +12,7 @@ import { Podcatchers } from "modules/shared/components/Podcatchers";
 import { VerticalDivider } from "modules/shared/components/VerticalDivider";
 import { EpisodeGrid } from "modules/shared/components/EpisodeGrid";
 import { Newsletter } from "modules/shared/components/Newsletter";
+import { WaveformPlayer } from "modules/shared/components/AudioPlayer/WaveformPlayer";
 
 /** -------------------------------------------------
 * COMPONENT
@@ -40,6 +41,10 @@ const IndividualEpisodePage = ({ episode: {
         episodeNumber={episodeNumber}
         publishedAt={publishedAt}
       />
+      <div className="audio-player">
+        <WaveformPlayer />
+        <iframe height="200px" width="700px" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/88284991-93d9-436a-845d-4133c01cde8a?dark=true"></iframe>
+      </div>
       <VerticalDivider />
 
       <div className="content">
@@ -135,6 +140,11 @@ const StyledIndividualEpisodePage = styled.section`
     margin: 0 auto;
     max-width: ${props => props.theme.pageWidth};
     position: relative;
+  }
+
+  .audio-player {
+    margin: 60px 0;
+    text-align: center;
   }
 
   .content {
