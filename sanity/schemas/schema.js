@@ -10,6 +10,7 @@ import episode from './documents/episode'
 import faq from './documents/faq'
 import guest from './documents/guest'
 import legal from './documents/legal'
+import newsletter from './documents/newsletter'
 import siteSettings from './documents/siteSettings'
 import sponsor from './documents/sponsor'
 
@@ -18,6 +19,7 @@ import blockContent from './objects/blockContent'
 import contractInvoice from './objects/contractInvoice'
 import episodeStats from './objects/episodeStats'
 import linkList from './objects/linkList'
+import meta from './objects/meta'
 import socialMedia from './objects/socialMedia'
 import stat from './objects/stat'
 import timeJump from './objects/timeJump'
@@ -35,6 +37,7 @@ export default createSchema({
     category,
     guest,
     legal,
+    newsletter,
     siteSettings,
     sponsor,
     faq,
@@ -44,6 +47,7 @@ export default createSchema({
     contractInvoice,
     episodeStats,
     linkList,
+    meta,
     stat,
     socialMedia,
     timeJump
