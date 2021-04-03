@@ -24,6 +24,7 @@ const MixinLargeBodyCopy = css`
   line-height: 1.2;
 `;
 
+//  section header with a box around it
 const MixinSectionHeading = css`
   border: 1px solid ${props => props.theme.white};
   color: ${props => props.theme.white};
@@ -49,10 +50,21 @@ const MixinHeading = css`
   text-transform: uppercase;
 `;
 
+const MixinPageTitle = css`
+  font-family: ${props => props.theme.sansSerif};
+    font-weight: ${props => props.theme.fontBlack};
+    font-size: 8.5rem;
+    line-height: 1;
+    max-width: 80%;
+    margin: 0 auto 70px;
+    text-align: center;
+`;
+
 export {
   MixinBodyCopy,
   MixinHeading,
   MixinLargeBodyCopy,
   MixinSectionHeading,
-  MixinSmallBodyCopy
+  MixinSmallBodyCopy,
+  MixinPageTitle
 };
