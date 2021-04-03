@@ -21,7 +21,20 @@ const query = groq`*[_type == "newsletter" && slug.current == $slug] | order(dat
     _type == "image" => {
       "imageUrl": @.asset->url
     }
-  }
+  },
+  pagination{
+    next->{
+      subject,
+      dateSent,
+      slug
+    },
+    previous->{
+      subject,
+      dateSent,
+      slug
+    }
+  },
+  meta
 }[0]`;
 
 IndividualNewsletter.getInitialProps = async function (context) {

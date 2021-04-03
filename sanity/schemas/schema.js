@@ -25,6 +25,7 @@ import contractInvoice from './objects/contractInvoice'
 import episodeStats from './objects/episodeStats'
 import linkList from './objects/linkList'
 import meta from './objects/meta'
+import newsletterPagination from './objects/newsletterPagination'
 import socialMedia from './objects/socialMedia'
 import stat from './objects/stat'
 import timeJump from './objects/timeJump'
@@ -53,6 +54,7 @@ export default createSchema({
     episodeStats,
     linkList,
     meta,
+    newsletterPagination,
     stat,
     socialMedia,
     timeJump,
