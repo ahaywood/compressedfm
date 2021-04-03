@@ -54,6 +54,11 @@ export default {
       type: 'boolean',
     },
     {
+      name: 'meta',
+      title: 'Meta',
+      type: 'meta'
+    },
+    {
       name: 'guest',
       title: 'Guest',
       type: 'array',

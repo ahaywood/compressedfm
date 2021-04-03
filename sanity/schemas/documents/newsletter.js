@@ -31,6 +31,15 @@ export default {
       }
     },
     {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'dateSent',
+        maxLength: 96,
+      },
+    },
+    {
       name: 'subject',
       title: 'Subject',
       type: 'string'
@@ -38,8 +47,7 @@ export default {
     {
       name: 'content',
       title: 'Content',
-      type: 'array',
-      of: [{ type: 'block' }]
+      type: 'blockContent',
     },
     {
       name: 'published',

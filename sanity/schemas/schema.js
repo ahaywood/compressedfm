@@ -4,6 +4,10 @@ import createSchema from 'part:@sanity/base/schema-creator'
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
+// block content
+import fullWidthImage from "./blockContent/fullWidthImage";
+import divider from "./blockContent/divider";
+
 // document schemas
 import category from './documents/category'
 import episode from './documents/episode'
@@ -50,6 +54,9 @@ export default createSchema({
     meta,
     stat,
     socialMedia,
-    timeJump
+    timeJump,
+    // block content
+    divider,
+    fullWidthImage
   ]),
 })
