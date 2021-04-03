@@ -6,6 +6,7 @@ import { Newsletter } from "modules/shared/components/Newsletter";
 import { Podcatchers } from "modules/shared/components/Podcatchers";
 import { FeaturedEpisode } from "modules/home/components/FeaturedEpisode";
 import { VerticalDivider } from "modules/shared/components/VerticalDivider";
+import { HorizontalDivider } from "modules/shared/components/HorizontalDivider";
 
 
 /** -------------------------------------------------
@@ -18,15 +19,16 @@ const EpisodePage = ({ episodes }) => {
 
   return (
     <StyledEpisodePage>
-      <Podcatchers />
       {featuredEpisode && (
         <>
           <FeaturedEpisode episode={featuredEpisode} />
           <VerticalDivider />
         </>
       )}
-      <FeaturedEpisode episode={featuredEpisode} />
       <EpisodeGrid episodes={episodes} />
+      <VerticalDivider />
+      <Podcatchers className="podcatchers" />
+      <VerticalDivider />
       <Newsletter />
     </StyledEpisodePage>
   )
@@ -36,7 +38,9 @@ const EpisodePage = ({ episodes }) => {
 * STYLES
 ---------------------------------------------------- */
 const StyledEpisodePage = styled.section`
-
+  .podcatchers {
+    margin: 50px 0;
+  }
 `;
 
 export { EpisodePage }
