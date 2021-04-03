@@ -49,7 +49,7 @@ const IndividualEpisodePage = ({ episode: {
       <div className="content">
         <main>
           {/* GUEST */}
-          {guest && <Guest guest={guest} className="guests" />}
+          {(guest && guest.length > 0) && <Guest guest={guest} className="guests" />}
 
           <div className="time-links">
             {/* TIME JUMP LINKS */}
