@@ -2,6 +2,9 @@ import Link from "next/link";
 import styled from "styled-components";
 import { slugify } from "utils/slugify";
 
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const Tag = ({ name }) => {
   return (
     <StyledTag>
@@ -13,6 +16,9 @@ const Tag = ({ name }) => {
 
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledTag = styled.div`
   font-size: 1.8rem;
   font-weight: ${props => props.theme.fontBlack};
