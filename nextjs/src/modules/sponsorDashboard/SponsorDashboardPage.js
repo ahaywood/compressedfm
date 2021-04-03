@@ -16,8 +16,6 @@ const SponsorDashboardPage = ({ sponsor }) => {
     setCurrentlyPlaying(id);
   }
 
-  console.log(sponsor)
-
   return (
     <StyledSponsorDashboardPage>
       <h1>Thanks for Sponsoring!</h1>
