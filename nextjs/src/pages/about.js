@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import Head from 'next/head'
 import client from "utils/client";
 import groq from "groq";
 import { InteriorLayout } from "modules/shared/layouts/InteriorLayout";
 import { AboutPage } from "modules/about";
+import { Meta } from "modules/shared/components/Meta";
 
 export default function About() {
   const [faqs, setFaqs] = useState();
@@ -45,6 +47,20 @@ export default function About() {
 
   return (
     <InteriorLayout>
+      <Head>
+        <Meta
+          seoTitle="About Compressed.fm"
+          seoDescription=""
+          ogTitle="About Compressed.fm"
+          ogDescription=""
+          ogImage=""
+          twitterTitle=""
+          twitterDescription=""
+          twitterImage=""
+          twitterImageAlt=""
+          url="https://compressed.fm/about"
+        />
+      </Head>
       <AboutPage faqs={faqs} gettingStarted={gettingStarted} mostPopular={mostPopular} />
     </InteriorLayout>
   )

@@ -6,11 +6,12 @@ import { calculateTime } from "utils/timeHelpers";
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const WaveformPlayer = () => {
+const WaveformPlayer = ({ episodeNumber, episodeTitle, audioFile }) => {
   // state
   const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [speed, setSpeed] = useState(1);
 
   // references
   const audioPlayer = useRef();   // set up reference for the audio component
@@ -81,6 +82,46 @@ const WaveformPlayer = () => {
     }
   }
 
+  // jump back 30 seconds
+  const backThirty = () => {
+    progressBar.current.value = Number(progressBar.current.value) - 30
+    updateCurrentTime();
+    changeAudioToKnobby();
+  }
+
+  // jump forward 30 seconds
+  const forwardThirty = () => {
+    progressBar.current.value = Number(progressBar.current.value) + 30
+    updateCurrentTime();
+    changeAudioToKnobby();
+  }
+
+  const changePlaybackSpeed = () => {
+    switch (speed) {
+      case 1:
+        audioPlayer.current.playbackRate = 1.2;
+        setSpeed(1.2);
+        break;
+      case 1.2:
+        audioPlayer.current.playbackRate = 1.5;
+        setSpeed(1.5);
+        break;
+      case 1.5:
+        audioPlayer.current.playbackRate = 1.7;
+        setSpeed(1.7);
+        break;
+      case 1.7:
+        audioPlayer.current.playbackRate = 2;
+        setSpeed(2);
+        break;
+      case 2:
+      default:
+        audioPlayer.current.playbackRate = 1;
+        setSpeed(1);
+        break;
+    }
+  }
+
   return (
     <StyledFeaturedAudioPlayer>
       <audio
@@ -93,8 +134,9 @@ const WaveformPlayer = () => {
         <img src="/images/placeholder__cover.png" alt="Episode Cover" />
       </div>
 
-      <div className="meta-data">
-
+      <div className="meta">
+        <h4>COMPRESSED.fm || Episode 3</h4>
+        <h2>The Tech Stack behind Compressed.fm</h2>
       </div>
 
       <div className="controls">
@@ -111,6 +153,15 @@ const WaveformPlayer = () => {
           <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onInput={updateCurrentTime} onChange={changeAudioToKnobby} />
         </div>
         <div className="duration">{duration && calculateTime(duration)}</div>
+        {/* <button onClick={backThirty} className="forwardBackward">
+          <Icon name="arrow" className="back" />
+          30
+        </button>
+        <button onClick={forwardThirty} className="forwardBackward">
+          30
+          <Icon name="arrow" />
+        </button> */}
+        <button className="playbackSpeed" onClick={changePlaybackSpeed}>{speed}X</button>
       </div>
     </StyledFeaturedAudioPlayer>
   )
@@ -130,6 +181,7 @@ const StyledFeaturedAudioPlayer = styled.div`
     "cover meta"
     "cover controls";
   grid-template-columns: 160px 1fr;
+  grid-column-gap: 20px;
   padding: 20px;
   max-width: 660px;
   margin: 0 auto;
@@ -145,6 +197,27 @@ const StyledFeaturedAudioPlayer = styled.div`
 
   .meta {
     grid-area: meta;
+    text-align: left;
+
+    /* episode title */
+    h2 {
+      font-family: ${props => props.theme.sansSerif};
+      font-size: 2rem;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* episode number */
+    h4 {
+      color: ${props => props.theme.gray};
+      font-family: ${props => props.theme.mono};
+      font-size: 1.4rem;
+      font-weight: normal;
+      line-height: 1;
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
   }
 
   .controls {
@@ -153,6 +226,54 @@ const StyledFeaturedAudioPlayer = styled.div`
     grid-area: controls;
     display: flex;
     position: relative;
+  }
+
+  .playbackSpeed {
+    background: none;
+    border: 1px solid ${props => props.theme.white};
+    color: ${props => props.theme.white};
+    cursor: pointer;
+    font-family: ${props => props.theme.mono};
+    font-size: 1.2rem;
+    position: absolute;
+    left: 90px;
+    top: 55px;
+
+    &:hover {
+      background: ${props => props.theme.yellow};
+      border-color: ${props => props.theme.yellow};
+      color: ${props => props.theme.black};
+    }
+  }
+
+  button.forwardBackward {
+    align-items: center;
+    background: none;
+    border: none;
+    color: ${props => props.theme.yellow};
+    cursor: pointer;
+    display: flex;
+    font-family: ${props => props.theme.mono};
+    font-size: 1.4rem;
+    position: absolute;
+    width: 75px;
+
+    svg {
+      position: relative;
+      transition: transform 0.25s ease-in-out;
+    }
+
+    &:hover svg {
+      transform: translateX(5px);
+    }
+
+    .back {
+      transform: rotate(180deg);
+    }
+
+    &:hover .back {
+        transform: rotate(180deg) translateX(5px);
+      }
   }
 
   .playPause {
@@ -165,7 +286,7 @@ const StyledFeaturedAudioPlayer = styled.div`
     display: flex;
     height: 70px;
     justify-content: center;
-    margin: 0 20px;
+    margin: 0 20px 0 0;
     outline: none;
     width: 70px;
 
@@ -193,16 +314,17 @@ const StyledFeaturedAudioPlayer = styled.div`
     padding: 3px 0;
     position: absolute;
     width: 45px;
+    z-index: 2;
   }
 
   .current-time {
-    top: 50px;
+    top: 15px;
     left: 100px;
   }
 
   .duration {
-    top: 50px;
-    right: 0;
+    top: 15px;
+    right: 20px;
   }
 
   /* --------- BAR STYLES ---------------- */

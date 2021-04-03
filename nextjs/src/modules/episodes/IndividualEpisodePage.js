@@ -43,7 +43,6 @@ const IndividualEpisodePage = ({ episode: {
       />
       <div className="audio-player">
         <WaveformPlayer />
-        <iframe height="200px" width="700px" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/88284991-93d9-436a-845d-4133c01cde8a?dark=true"></iframe>
       </div>
       <VerticalDivider />
 
