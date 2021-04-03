@@ -87,7 +87,7 @@ export default {
       name: 'audioPath',
       title: 'Audio Path',
       type: 'string',
-      description: 'URL for Audio File in Transistor.fm'
+      description: 'URL for Audio File in Simplecast'
     },
     {
       name: 'waveform',
