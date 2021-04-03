@@ -12,7 +12,7 @@ export default function Episodes(props) {
   )
 }
 
-const query = groq`*[_type == "episode"] | order(episodeNumber desc) {
+const query = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
   _id,
   title,
   episodeNumber,
