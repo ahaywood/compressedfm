@@ -1,18 +1,37 @@
+import Link from 'next/link';
+import Head from 'next/head';
 import styled from "styled-components";
 const BlockContent = require('@sanity/block-content-to-react')
 import { serializers } from "modules/shared/blockContent/Serializers";
 import { Newsletter } from "modules/shared/components/Newsletter";
 import { VerticalDivider } from "modules/shared/components/VerticalDivider";
-import { MixinBodyCopy } from "styles/Typography";
+import { MixinBodyCopy, MixinPageTitle } from "styles/Typography";
+import { Meta } from 'modules/shared/components/Meta';
 
 const IndividualNewsletterPage = (props) => {
-  const { dateSent, subject, content } = props;
+  const { dateSent, subject, content, meta } = props;
   return (
     <StyledIndividualNewsletterPage>
+      <Head>
+        <title>{subject} || Compressed.fm</title>
+        <Meta meta={meta} />
+      </Head>
+
       <h1 className="page-title">{subject}</h1>
       <main>
         <BlockContent blocks={content} serializers={serializers} />
       </main>
+
+      {/* pagination */}
+      <div className="pagination">
+        <div className="previous">
+
+        </div>
+
+        <div className="next">
+
+        </div>
+      </div>
 
       <VerticalDivider />
 
@@ -25,13 +44,7 @@ const IndividualNewsletterPage = (props) => {
 const StyledIndividualNewsletterPage = styled.div`
 
   h1.page-title {
-    font-family: ${props => props.theme.sansSerif};
-    font-weight: ${props => props.theme.fontBlack};
-    font-size: 8.5rem;
-    line-height: 1;
-    max-width: 80%;
-    margin: 0 auto 70px;
-    text-align: center;
+    ${MixinPageTitle}
   }
 
   main {

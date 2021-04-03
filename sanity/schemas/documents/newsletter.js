@@ -1,4 +1,5 @@
 import { FaRegNewspaper as icon } from "react-icons/fa";
+import newsletterPagination from "../objects/newsletterPagination";
 
 export default {
   name: 'newsletter',
@@ -45,6 +46,11 @@ export default {
       type: 'string'
     },
     {
+      name: 'meta',
+      title: 'Meta',
+      type: 'meta'
+    },
+    {
       name: 'content',
       title: 'Content',
       type: 'blockContent',
@@ -53,6 +59,15 @@ export default {
       name: 'published',
       title: 'Published',
       type: 'boolean'
+    },
+    {
+      name: 'pagination',
+      title: 'Pagination',
+      type: 'newsletterPagination',
+      options: {
+        collapsible: true,
+        collapsed: false
+      }
     }
   ],
   preview: {

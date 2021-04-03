@@ -16,7 +16,7 @@ const StyledHr = styled.hr`
   margin: 60px 0;
 
   &.short {
-    background-repeat: none;
+    background-repeat: no-repeat;
   }
 `;
 
