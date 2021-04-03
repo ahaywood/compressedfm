@@ -29,7 +29,8 @@ const Theme = {
   // margin, padding, spacing
   pageWidth: "1300px",
   mobilePadding: "25px",
-  formWidth: "580px"
+  formWidth: "580px",
+  betweenTextBlocks: "35px"
 }
 
 export default Theme;

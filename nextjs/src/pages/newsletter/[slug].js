@@ -1,14 +1,12 @@
 import client from "utils/client";
 import groq from "groq";
 import { InteriorLayout } from "modules/shared/layouts/InteriorLayout";
-import { NewsletterPage } from "modules/newsletter";
-
+import { IndividualNewsletterPage } from "modules/newsletter/IndividualNewsletterPage"
 
 export default function IndividualNewsletter(props) {
-  const content = Object.values(props);
   return (
     <InteriorLayout>
-      Individual Newsletter
+      <IndividualNewsletterPage {...props} />
     </InteriorLayout>
   )
 }
@@ -17,7 +15,13 @@ const query = groq`*[_type == "newsletter" && slug.current == $slug] | order(dat
   _id,
   subject,
   dateSent,
-  slug
+  slug,
+  content[]{
+    ...,
+    _type == "image" => {
+      "imageUrl": @.asset->url
+    }
+  }
 }[0]`;
 
 IndividualNewsletter.getInitialProps = async function (context) {

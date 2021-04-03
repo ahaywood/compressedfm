@@ -1,4 +1,10 @@
+import React from "react";
 import { ImFontSize } from "react-icons/im";
+import { CgFormatText } from "react-icons/cg";
+
+const largeBodyCopyRender = (props) => (
+  <p style={{ fontSize: "22px" }}>{props.children}</p>
+);
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -74,13 +80,33 @@ export default {
     {
       type: 'image',
       options: { hotspot: true },
+      fields: [
+        {
+          name: 'caption',
+          title: 'Caption',
+          type: 'string',
+          options: {
+            isHighlighted: true
+          }
+        },
+        // Editing these field will be hidden behind an "Edit"-button
+        {
+          name: 'alt',
+          title: 'Alt',
+          type: 'string'
+        },
+        {
+          name: 'attribution',
+          title: 'Attribution',
+          type: 'string',
+        }
+      ]
     },
     {
       type: "divider"
+    },
+    {
+      type: 'preformatted'
     }
   ],
 }
-
-const largeBodyCopyRender = (props) => (
-  <span style={{ fontSize: "30px" }}>{props.children}</span>
-);

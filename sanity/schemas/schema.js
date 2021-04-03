@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // block content
 import fullWidthImage from "./blockContent/fullWidthImage";
 import divider from "./blockContent/divider";
+import preformatted from "./blockContent/preformatted";
 
 // document schemas
 import category from './documents/category'
@@ -57,6 +58,7 @@ export default createSchema({
     timeJump,
     // block content
     divider,
-    fullWidthImage
+    fullWidthImage,
+    preformatted
   ]),
 })
