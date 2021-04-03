@@ -16,8 +16,7 @@ export default {
       type: 'slug',
       options: {
         source: 'title',
-        maxLength: 96,
-        slugify: input => input.toString()
+        maxLength: 100,
       },
     },
     {
