@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import styled from "styled-components";
-const BlockContent = require('@sanity/block-content-to-react')
+import BlockContent from '@sanity/block-content-to-react'
 import { serializers } from "modules/shared/blockContent/Serializers";
 import { Newsletter } from "modules/shared/components/Newsletter";
 import { VerticalDivider } from "modules/shared/components/VerticalDivider";
