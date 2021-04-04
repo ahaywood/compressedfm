@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { SponsorAudioPlayer } from "modules/shared/components/AudioPlayer/SponsorAudioPlayer";
 import { FeaturedAudioPlayer } from "modules/shared/components/AudioPlayer/FeaturedAudioPlayer";
-import { Icon } from "modules/shared/components/Icon";
+// import { Icon } from "modules/shared/components/Icon";
 import { VerticalDivider } from "modules/shared/components/VerticalDivider";
 import { MixinHeading } from "styles/Typography"
 import { useUser } from '@auth0/nextjs-auth0';
@@ -53,7 +53,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
         <div className="contract-quantity">3</div>
         <div className="contract-description">Bundle</div>
         <div className="contract-arrow">
-          <Icon name="arrow" />
+          {/* <Icon name="arrow" /> */}
         </div>
 
         {/* invoice */}
@@ -61,7 +61,9 @@ const SponsorDashboardPage = ({ sponsor }) => {
         <div className="invoice-number">#0093</div>
         <div className="invoice-description">3 EPISODES: 60 seconds</div>
         <div className="invoice amount">$150</div>
-        <div className="invoice-arrow"><Icon name="arrow" /></div>
+        <div className="invoice-arrow">
+          {/* <Icon name="arrow" /> */}
+        </div>
 
 
 
@@ -71,7 +73,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
         <div className="contract-quantity">3</div>
         <div className="contract-description">Bundle</div>
         <div className="contract-arrow">
-          <Icon name="arrow" />
+          {/* <Icon name="arrow" /> */}
         </div>
 
         {/* invoice */}
@@ -79,7 +81,9 @@ const SponsorDashboardPage = ({ sponsor }) => {
         <div className="invoice-number">#0093</div>
         <div className="invoice-description">3 EPISODES: 60 seconds</div>
         <div className="invoice amount">$150</div>
-        <div className="invoice-arrow"><Icon name="arrow" /></div>
+        <div className="invoice-arrow">
+          {/* <Icon name="arrow" /> */}
+        </div>
       </div>
 
       <VerticalDivider />
