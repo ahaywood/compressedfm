@@ -1,10 +1,10 @@
 import { InteriorLayout } from "modules/shared/layouts/InteriorLayout";
-// import { SponsorApplicationPage } from "modules/sponsorApplication";
+import { GuestApplicationPage } from "modules/guestApplication";
 
 export default function SponsorApplication() {
   return (
     <InteriorLayout>
-      Guest Application
+      <GuestApplicationPage />
     </InteriorLayout>
   )
 }
