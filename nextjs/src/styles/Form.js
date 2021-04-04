@@ -1,5 +1,33 @@
 import styled, { css } from "styled-components";
 
+const MixinForm = css`
+  form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 24px;
+    grid-row-gap: 32px;
+    margin: 60px auto;
+    max-width: ${props => props.theme.formWidth};
+  }
+
+  .half,
+  .full {
+    position: relative;
+  }
+
+  .full {
+    grid-column: span 2;
+  }
+
+  .action-buttons {
+    text-align: right;
+
+    button {
+      margin-left: auto;
+    }
+  }
+`;
+
 const MixinTextField = css`
   background: transparent;
   border: 1px solid ${props => props.theme.white};
@@ -120,6 +148,7 @@ const MixinButtonWithArrow = css`
 
 export {
   MixinButtonWithArrow,
+  MixinForm,
   MixinLabel,
   MixinSelect,
   MixinTextarea,
