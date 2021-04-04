@@ -45,7 +45,7 @@ const query = groq`*[_type == "episode" && slug.current == $slug] {
   },
   timeJump,
   title,
-  transcript,
+  episodeTranscript,
   relatedEpisodes[]->{
     _id,
     briefDescription,

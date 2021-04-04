@@ -23,15 +23,24 @@ const IndividualEpisodePage = ({ episode: {
   categories,
   episodeCover,
   episodeNumber,
+  episodeTranscript,
   guest,
   listLink,
   publishedAt,
   sponsor,
   timeJump,
   title,
-  transcript,
   relatedEpisodes
 } }) => {
+
+  /**
+   * Jump to a specific time on the Waveform Player
+   * @param {number} time in seconds
+   */
+  const jumpToTimeStamp = (time) => {
+    alert(`clicked on a time stamp ${time}`);
+  }
+
   return (
     <StyledIndividualEpisodePage>
       <EpisodeSummary
@@ -60,7 +69,7 @@ const IndividualEpisodePage = ({ episode: {
           </div>
 
           {/* TRANSCRIPT */}
-          <FullTranscript className="transcript" />
+          <FullTranscript className="transcript" handleClick={jumpToTimeStamp} transcript={episodeTranscript.transcript} />
         </main>
 
         {/* SPONSORS */}

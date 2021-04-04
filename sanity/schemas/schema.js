@@ -23,12 +23,14 @@ import sponsor from './documents/sponsor'
 import blockContent from './objects/blockContent'
 import contractInvoice from './objects/contractInvoice'
 import episodeStats from './objects/episodeStats'
+import episodeTranscript from './objects/episodeTranscript'
 import linkList from './objects/linkList'
 import meta from './objects/meta'
 import newsletterPagination from './objects/newsletterPagination'
 import socialMedia from './objects/socialMedia'
 import stat from './objects/stat'
 import timeJump from './objects/timeJump'
+import transcript from './objects/transcript'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -37,6 +39,8 @@ export default createSchema({
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
+
+    // DOOCUMENTS
     // The following are document types which will appear
     // in the studio.
     episode,
@@ -47,18 +51,23 @@ export default createSchema({
     siteSettings,
     sponsor,
     faq,
+
+    // OBJECTS
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
     contractInvoice,
     episodeStats,
+    episodeTranscript,
     linkList,
     meta,
     newsletterPagination,
     stat,
     socialMedia,
     timeJump,
-    // block content
+    transcript,
+
+    // BLOCK CONTENT
     divider,
     fullWidthImage,
     preformatted

@@ -1,3 +1,4 @@
+import React from "react";
 import { FaMicrophoneAlt as icon } from "react-icons/fa";
 
 export default {
@@ -114,11 +115,6 @@ export default {
       of: [{ type: 'timeJump' }]
     },
     {
-      name: 'transcript',
-      title: 'Transcript',
-      type: 'blockContent',
-    },
-    {
       name: 'relatedEpisodes',
       title: 'Related Episodes',
       type: 'array',
@@ -148,7 +144,18 @@ export default {
       name: 'episodeStats',
       title: 'Episode Stats',
       type: 'episodeStats'
-    }
+    },
+    {
+      name: 'episodeTranscript',
+      title: 'Episode Transcript',
+      type: 'episodeTranscript',
+    },
+    {
+      name: 'transcriptDownload',
+      title: 'Download Transcript',
+      description: 'PDF',
+      type: 'file',
+    },
   ],
 
   preview: {
