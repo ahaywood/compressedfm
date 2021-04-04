@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import styled from "styled-components";
+import kwesforms from 'kwesforms';
 import { useForm } from "react-hook-form";
 
 // components
@@ -6,6 +8,7 @@ import { Button } from "modules/shared/form/Button";
 
 // styles
 import {
+  MixinForm,
   MixinLabel,
   MixinTextField,
   MixinTextarea,
@@ -20,24 +23,28 @@ const ContactPage = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => alert(JSON.stringify(data));
 
+  useEffect(() => {
+    kwesforms.init();
+  }, []);
+
   return (
     <StyledContactPage>
       <div className="page-title__wrapper">
         <h1>Contact Us</h1>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} method="post" className="kwes-form" action="https://kwes.io/api/foreign/forms/XZx7xaYdws6HQLePBoFC">
         <div className="half">
-          <input type="text" name="firstName" id="firstName" ref={register} placeholder=" " />
+          <input type="text" name="firstName" id="firstName" ref={register} placeholder=" " rules="required" />
           <label htmlFor="firstName">First Name</label>
         </div>
         <div className="half">
-          <input type="text" name="lastName" id="lastName" ref={register} placeholder=" " />
+          <input type="text" name="lastName" id="lastName" ref={register} placeholder=" " rules="required" />
           <label htmlFor="lastName">Last Name</label>
         </div>
         <div className="full">
-          <input type="email" ref={register} placeholder=" " />
-          <label htmlFor="email">Email Address</label>
+          <input type="email" ref={register} placeholder=" " rules="required" />
+          <label htmlFor="email">Email Address*</label>
         </div>
         <div className="full">
           <select name="subject" id="subject">
@@ -47,7 +54,7 @@ const ContactPage = () => {
           <label htmlFor="Subject">Subject</label>
         </div>
         <div className="full">
-          <textarea name="message" id="message" ref={register} placeholder=" " />
+          <textarea name="message" id="message" ref={register} placeholder=" " rules="required" />
           <label htmlFor="message">Message</label>
         </div>
         <div className="full action-buttons">
@@ -81,31 +88,7 @@ const StyledContactPage = styled.section`
     text-transform: uppercase;
   }
 
-  form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 24px;
-    grid-row-gap: 32px;
-    margin: 60px auto;
-    max-width: ${props => props.theme.formWidth};
-  }
-
-  .half,
-  .full {
-    position: relative;
-  }
-
-  .full {
-    grid-column: span 2;
-  }
-
-  .action-buttons {
-    text-align: right;
-
-    button {
-      margin-left: auto;
-    }
-  }
+  ${MixinForm}
 
   label {
     ${MixinLabel};
