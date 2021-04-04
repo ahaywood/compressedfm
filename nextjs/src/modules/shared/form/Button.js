@@ -8,7 +8,7 @@ import { Icon } from "modules/shared/components/Icon";
 ---------------------------------------------------- */
 const Button = () => {
   return (
-    <StyledButton>
+    <StyledButton type="submit">
       Submit
       <Icon name="arrow" />
     </StyledButton>
