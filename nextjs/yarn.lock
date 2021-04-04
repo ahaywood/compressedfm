@@ -1583,6 +1583,11 @@ keyv@^4.0.0:
   dependencies:
     json-buffer "3.0.1"
 
+kwesforms@^2.0.18:
+  version "2.0.18"
+  resolved "https://registry.yarnpkg.com/kwesforms/-/kwesforms-2.0.18.tgz#fde36f84498f9f7d8043941fd432e583b9c0e302"
+  integrity sha512-izJaM/UD7YO4tAqbNld8zfAD4a7NWElOahI+awwYRVmO2DenA0PfDyMJYyk5PSgrz+gjDCEIJQB/1N4hxNE8sw==
+
 line-column@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/line-column/-/line-column-1.0.2.tgz#d25af2936b6f4849172b312e4792d1d987bc34a2"
