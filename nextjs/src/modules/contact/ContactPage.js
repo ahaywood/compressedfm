@@ -43,7 +43,7 @@ const ContactPage = () => {
           <label htmlFor="lastName">Last Name</label>
         </div>
         <div className="full">
-          <input type="email" ref={register} placeholder=" " rules="required" />
+          <input type="email" name="email" ref={register} placeholder=" " rules="required" />
           <label htmlFor="email">Email Address*</label>
         </div>
         <div className="full">
