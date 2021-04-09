@@ -1,33 +1,39 @@
-import Head from "next/head";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import Head from 'next/head';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { UserProvider } from '@auth0/nextjs-auth0';
-import Theme from "../styles/Theme";
-import Router from "next/router";
-import NProgress from "nprogress";
+import Theme from '../styles/Theme';
+import Router from 'next/router';
+import NProgress from 'nprogress';
 
 // Bind nProgress Bar
-Router.events.on('routeChangeStart', () => { NProgress.start() })
-Router.events.on('routeChangeComplete', () => NProgress.done())
-Router.events.on('routeChangeError', () => NProgress.done())
+Router.events.on('routeChangeStart', () => {
+    NProgress.start();
+});
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
+    const { user } = pageProps;
 
-  return (
-    <UserProvider>
-      <ThemeProvider theme={Theme}>
-        <Head>
-          <title>Compressed.fm</title>
-          <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
-        </Head>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </UserProvider>
-  )
+    return (
+        <UserProvider user={user}>
+            <ThemeProvider theme={Theme}>
+                <Head>
+                    <title>Compressed.fm</title>
+                    <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="/css/nprogress.css"
+                    />
+                </Head>
+                <GlobalStyle />
+                <Component {...pageProps} />
+            </ThemeProvider>
+        </UserProvider>
+    );
 }
 
-export default MyApp
-
+export default MyApp;
 
 const GlobalStyle = createGlobalStyle`
   /* DankMono */
@@ -105,8 +111,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, html > body, body {
-    background: ${props => props.theme.black};
-    color: ${props => props.theme.white};
+    background: ${(props) => props.theme.black};
+    color: ${(props) => props.theme.white};
     font-family: ${(props) => props.theme.sansSerif};
     margin: 0;
     padding: 0;
