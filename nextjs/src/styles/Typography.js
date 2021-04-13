@@ -52,17 +52,38 @@ const MixinHeading = css`
 
 const MixinPageTitle = css`
   font-family: ${props => props.theme.sansSerif};
-    font-weight: ${props => props.theme.fontBlack};
-    font-size: 8.5rem;
-    line-height: 1;
-    max-width: 80%;
-    margin: 0 auto 70px;
+  font-weight: ${props => props.theme.fontBlack};
+  font-size: 8.5rem;
+  line-height: 1;
+  max-width: 80%;
+  margin: 0 auto 70px;
+  text-align: center;
+`;
+
+const MixinHeadingWithHorizontalLines = css`
+  .page-title__wrapper {
     text-align: center;
+  }
+
+  h1 {
+    background: url('/images/horizontal-divider.svg') left center no-repeat,
+      url('/images/horizontal-divider.svg') right center no-repeat;
+    color: white;
+    display: inline-block;
+    font-family: ${props => props.theme.mono};
+    font-size: 2.4rem;
+    font-style: italic;
+    letter-spacing: 0.2rem;
+    margin: 0 auto;
+    padding: 0 125px;
+    text-transform: uppercase;
+  }
 `;
 
 export {
   MixinBodyCopy,
   MixinHeading,
+  MixinHeadingWithHorizontalLines,
   MixinLargeBodyCopy,
   MixinSectionHeading,
   MixinSmallBodyCopy,
