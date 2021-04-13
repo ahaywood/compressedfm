@@ -1,3 +1,6 @@
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import * as Fathom from 'fathom-client'
 import Head from "next/head";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { UserProvider } from '@auth0/nextjs-auth0';
@@ -11,6 +14,26 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+
+  // FATHOM ANALYTICS
+  useEffect(() => {
+    // Initialize Fathom when the app loads
+    Fathom.load('TRUYKXEJ', {
+      includedDomains: ['compressed.fm'],
+    })
+
+    function onRouteChangeComplete() {
+      Fathom.trackPageview()
+    }
+    // Record a pageview when route changes
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
+
+    // Unassign event listener
+    return () => {
+      router.events.off('routeChangeComplete', onRouteChangeComplete)
+    }
+  }, [])
 
   return (
     <UserProvider>
