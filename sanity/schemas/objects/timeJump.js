@@ -17,8 +17,8 @@ export default {
     {
       title: 'Time',
       name: 'time',
-      type: 'string',
-      description: 'mm:ss'
+      type: 'number',
+      description: 'in seconds'
     },
     {
       title: 'Description',
