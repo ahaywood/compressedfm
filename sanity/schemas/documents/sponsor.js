@@ -16,6 +16,16 @@ export default {
       type: 'image',
     },
     {
+      name: 'published',
+      title: 'Published?',
+      type: 'boolean'
+    },
+    {
+      name: 'publishedAt',
+      title: 'Published At',
+      type: 'date'
+    },
+    {
       name: 'offer',
       title: 'Offer',
       type: 'string',
