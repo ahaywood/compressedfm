@@ -28,7 +28,7 @@ const BtmNav = () => {
   return (
     <StyledBtmNav>
       <ul className={currentPage ? currentPage : 'home'}>
-        <li className="press-kit">
+        {/* <li className="press-kit">
           <Link href="/press-kit"><a>Press Kit</a></Link>
         </li>
 
@@ -52,7 +52,7 @@ const BtmNav = () => {
 
         <li className="login">
           {user ? <a href="/api/auth/logout">Logout</a> : <a href="/api/auth/login">Login</a>}
-        </li>
+        </li> */}
       </ul>
     </StyledBtmNav>
   )
