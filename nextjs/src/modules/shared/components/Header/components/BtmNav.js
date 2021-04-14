@@ -37,50 +37,44 @@ const BtmNav = () => {
         getUserStatus();
     }, [user]);
 
+
     return (
         <StyledBtmNav>
             <ul className={currentPage ? currentPage : 'home'}>
-                <li className="press-kit">
-                    <Link href="/press-kit">
-                        <a>Press Kit</a>
-                    </Link>
-                </li>
-
-                {!isSponsor && (
-                    <li className="sponsoring">
-                        <Link href="/sponsoring">
-                            <a>Sponsoring</a>
-                        </Link>
+                {/* <li className="press-kit">
+                    <Link href="/press-kit"><a>Press Kit</a></Link>
                     </li>
-                )}
+                            {!isSponsor && (
+                                <li className="sponsoring">
+                                    <Link href="/sponsoring">
+                                        <a>Sponsoring</a>
+                                    </Link>
+                                </li>
+                            )}
 
-                {isSponsor && (
-                    <li className="sponsor-dashboard">
-                        <Link href="/dashboard/sponsor">
-                            <a>Sponsor Dashboard</a>
-                        </Link>
-                    </li>
-                )}
+                            {isSponsor && (
+                                <li className="sponsor-dashboard">
+                                    <Link href="/dashboard/sponsor">
+                                        <a>Sponsor Dashboard</a>
+                                    </Link>
+                                </li>
+                            )}
 
-                {isGuest && (
-                    <li className="guest-dashboard">
-                        <Link href="/dashboard/guest">
-                            <a>Guest Dashboard</a>
-                        </Link>
-                    </li>
-                )}
+                            {isGuest && (
+                                <li className="guest-dashboard">
+                                    <Link href="/dashboard/guest">
+                                        <a>Guest Dashboard</a>
+                                    </Link>
+                                </li>
+                            )}
 
-                <li className="login">
-                    {user ? (
-                        <a href="/api/auth/logout">Logout</a>
-                    ) : (
-                        <a href="/api/auth/login">Login</a>
-                    )}
-                </li>
+                    <li className="login">
+                    {user ? <a href="/api/auth/logout">Logout</a> : <a href="/api/auth/login">Login</a>}
+                    </li> */}
             </ul>
         </StyledBtmNav>
-    );
-};
+    )
+}
 
 export { BtmNav };
 

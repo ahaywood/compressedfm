@@ -9,6 +9,7 @@ const Guest = ({ className, guest }) => {
     <div className={className}>
       {guest && guest.map(item => {
         const {
+          _id,
           avatar,
           firstName,
           lastName,
@@ -26,7 +27,7 @@ const Guest = ({ className, guest }) => {
           }
         } = item;
         return (
-          <StyledPersonBio>
+          <StyledPersonBio key={_id}>
             <div>
               <div className="meta">
                 <div className="avatar">

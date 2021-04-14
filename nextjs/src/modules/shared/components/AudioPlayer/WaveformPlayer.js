@@ -6,7 +6,7 @@ import { calculateTime } from "utils/timeHelpers";
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const WaveformPlayer = ({ episodeNumber, episodeTitle, audioFile }) => {
+const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
   // state
   const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState(0);
@@ -17,6 +17,11 @@ const WaveformPlayer = ({ episodeNumber, episodeTitle, audioFile }) => {
   const audioPlayer = useRef();   // set up reference for the audio component
   const progressBar = useRef();   // reference for the progress bar
   const animationRef = useRef();  // reference the animation
+
+  useEffect(() => {
+    timeTravel(skipTo);
+    play();
+  }, [skipTo])
 
 
   // GET THE DURATION - once the meta data has been loaded
@@ -29,13 +34,19 @@ const WaveformPlayer = ({ episodeNumber, episodeTitle, audioFile }) => {
 
   // toggle between play and pause
   const togglePlaying = () => {
-    setIsPlaying(!isPlaying);
-    if (isPlaying) {
-      audioPlayer.current.play();
-      animationRef.current = requestAnimationFrame(whilePlaying);
-    } else {
+    const prevState = isPlaying;
+    setIsPlaying(!prevState);
+    if (!prevState) {
       pause();
+    } else {
+      play();
     }
+  }
+
+  const play = () => {
+    audioPlayer.current.play();
+    animationRef.current = requestAnimationFrame(whilePlaying);
+    console.log('play');
   }
 
   const pause = () => {
@@ -68,7 +79,7 @@ const WaveformPlayer = ({ episodeNumber, episodeTitle, audioFile }) => {
     setCurrentTime(progressBar.current.value);
   }
 
-  // the knobby moves when you click on the progress bar
+  // the playhead moves when you click on the progress bar
   // update the audio player to the new point
   const changeAudioToKnobby = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
@@ -84,18 +95,22 @@ const WaveformPlayer = ({ episodeNumber, episodeTitle, audioFile }) => {
 
   // jump back 30 seconds
   const backThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) - 30
-    updateCurrentTime();
-    changeAudioToKnobby();
+    timeTravel(Number(progressBar.current.value) - 30);
   }
 
   // jump forward 30 seconds
   const forwardThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) + 30
+    timeTravel(Number(progressBar.current.value) + 30);
+  }
+
+  // moves to a different point on the track
+  const timeTravel = (newTime) => {
+    progressBar.current.value = newTime;
     updateCurrentTime();
     changeAudioToKnobby();
   }
 
+  // change the playback speed
   const changePlaybackSpeed = () => {
     switch (speed) {
       case 1:
@@ -124,21 +139,25 @@ const WaveformPlayer = ({ episodeNumber, episodeTitle, audioFile }) => {
 
   return (
     <StyledFeaturedAudioPlayer>
+      {/* audio element */}
       <audio
         ref={audioPlayer}
-        src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/88284991-93d9-436a-845d-4133c01cde8a/audio/2040cdce-b212-4958-906d-1706fa39f6ac/default_tc.mp3"
+        src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/af52a99b-88c0-4638-b120-d46e142d06d3/audio/500344fb-2e2b-48af-be86-af6ac341a6da/default_tc.mp3"
         preload="metadata"
       />
 
+      {/* album cover */}
       <div className="album-cover">
         <img src="/images/placeholder__cover.png" alt="Episode Cover" />
       </div>
 
+      {/* episode meta data */}
       <div className="meta">
         <h4>COMPRESSED.fm || Episode 3</h4>
         <h2>The Tech Stack behind Compressed.fm</h2>
       </div>
 
+      {/* play / pause */}
       <div className="controls">
         <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
           {isPlaying ? (<svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
@@ -148,19 +167,31 @@ const WaveformPlayer = ({ episodeNumber, episodeTitle, audioFile }) => {
             <rect x="15" width="9" height="29" />
           </svg>)}
         </button>
+
+        {/* current time */}
         <div className="current-time">{calculateTime(currentTime)}</div>
+
+        {/* progress bar */}
         <div className="progress-bar">
-          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onInput={updateCurrentTime} onChange={changeAudioToKnobby} />
+          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onChange={changeAudioToKnobby} />
         </div>
+
+        {/* duration */}
         <div className="duration">{duration && calculateTime(duration)}</div>
-        {/* <button onClick={backThirty} className="forwardBackward">
+
+        {/* back thirty */}
+        <button onClick={backThirty} className="forwardBackward backward">
           <Icon name="arrow" className="back" />
           30
         </button>
-        <button onClick={forwardThirty} className="forwardBackward">
+
+        {/* forward thirty */}
+        <button onClick={forwardThirty} className="forwardBackward forward">
           30
           <Icon name="arrow" />
-        </button> */}
+        </button>
+
+        {/* change playback speed */}
         <button className="playbackSpeed" onClick={changePlaybackSpeed}>{speed}X</button>
       </div>
     </StyledFeaturedAudioPlayer>
@@ -267,13 +298,27 @@ const StyledFeaturedAudioPlayer = styled.div`
       transform: translateX(5px);
     }
 
+    /* back 30 button */
+    &.backward {
+      left: 120px;
+      top: 47px;
+    }
+
+    /* rotates the arrow to point left */
     .back {
       transform: rotate(180deg);
     }
 
     &:hover .back {
-        transform: rotate(180deg) translateX(5px);
-      }
+      transform: rotate(180deg) translateX(5px);
+    }
+
+    /* forward 30 button */
+    &.forward {
+      right: 0;
+      top: 47px;
+    }
+
   }
 
   .playPause {
@@ -398,10 +443,6 @@ const StyledFeaturedAudioPlayer = styled.div`
     height: 11px;
   }
 
-  input[type="range"]::-moz-focus-outer {
-    border: 0;
-  }
-
   /* knobby - safari */
   input[type="range"]::-webkit-slider-thumb {
     position: relative;
@@ -410,7 +451,7 @@ const StyledFeaturedAudioPlayer = styled.div`
     border: none;
     height: 40px;
     width: 1px;
-    background-color: ${props => props.theme.black};
+    background-color: ${props => props.theme.yellow};
     cursor: pointer;
     margin: -2px 0 0 0;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
@@ -431,7 +472,7 @@ const StyledFeaturedAudioPlayer = styled.div`
     border: transparent;
     height: 40px;
     width: 2px;
-    background-color: ${props => props.theme.black};
+    background-color: ${props => props.theme.yellow};
     cursor: pointer;
     z-index: 3;
     position: relative;

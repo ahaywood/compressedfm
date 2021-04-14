@@ -29,7 +29,7 @@ export default function Search(props) {
 /** -------------------------------------------------
 * QUERY
 ---------------------------------------------------- */
-const query = groq`*[_type == "episode" && published == true && publishedAt < now() && (title match $keywords || briefDescription match $keywords || transcript match $keywords)]  {
+const query = groq`*[_type == "episode" && published == true && publishedAt < now() && ([title, briefDescription, transcript] match [$keywords])]  {
   _id,
   title,
   episodeNumber,

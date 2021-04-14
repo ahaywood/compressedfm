@@ -8,7 +8,7 @@ const Links = ({ listLink }) => {
       <h4>Links</h4>
       <ul>
         {listLink && listLink.map(item => (
-          <li>
+          <li key={item._key}>
             <a href={item.linkUrl} _target={item.newTab ? 'blank' : 'self'}>
               <Icon name="arrow" />
               {item.linkLabel}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -32,13 +33,12 @@ const IndividualEpisodePage = ({ episode: {
   title,
   relatedEpisodes
 } }) => {
+  // state
+  const [skipTo, setSkipTo] = useState(0);
 
-  /**
-   * Jump to a specific time on the Waveform Player
-   * @param {number} time in seconds
-   */
-  const jumpToTimeStamp = (time) => {
-    alert(`clicked on a time stamp ${time}`);
+  // jump to a specific time on the waveform player
+  const skipToTimestamp = (time) => {
+    setSkipTo(time);
   }
 
   return (
@@ -51,7 +51,7 @@ const IndividualEpisodePage = ({ episode: {
         publishedAt={publishedAt}
       />
       <div className="audio-player">
-        <WaveformPlayer />
+        <WaveformPlayer skipTo={skipTo} />
       </div>
       <VerticalDivider />
 
@@ -62,14 +62,14 @@ const IndividualEpisodePage = ({ episode: {
 
           <div className="time-links">
             {/* TIME JUMP LINKS */}
-            <JumpLinks timeJump={timeJump} className="time" />
+            {timeJump && <JumpLinks timeJump={timeJump} className="time" handleClick={skipToTimestamp} />}
 
             {/* SHOW LINKS */}
-            <Links listLink={listLink} className="links" />
+            {listLink && <Links listLink={listLink} className="links" />}
           </div>
 
           {/* TRANSCRIPT */}
-          <FullTranscript className="transcript" handleClick={jumpToTimeStamp} transcript={episodeTranscript.transcript} />
+          {episodeTranscript?.transcript && <FullTranscript className="transcript" handleClick={jumpToTimeStamp} transcript={episodeTranscript.transcript} />}
         </main>
 
         {/* SPONSORS */}
@@ -108,9 +108,9 @@ IndividualEpisodePage.propTypes = {
   episode: PropTypes.shape({
     audioPath: PropTypes.string,
     briefDescription: PropTypes.string,
-    categories: PropTypes.string,
+    categories: PropTypes.array,
     episodeCover: PropTypes.string,
-    episodeNumber: PropTypes.string,
+    episodeNumber: PropTypes.number,
     guest: PropTypes.array,
     listLink: PropTypes.array,
     publishedAt: PropTypes.string,

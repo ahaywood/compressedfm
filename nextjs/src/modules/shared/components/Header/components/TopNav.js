@@ -17,9 +17,9 @@ const TopNav = () => {
         <li className="home">
           <Link href="/"><a>Home</a></Link>
         </li>
-        <li className="about">
+        {/* <li className="about">
           <Link href="/about"><a>About</a></Link>
-        </li>
+        </li> */}
         <li className="episodes">
           <Link href="/episodes"><a>Episodes</a></Link>
         </li>

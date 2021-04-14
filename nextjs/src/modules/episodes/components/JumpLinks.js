@@ -1,18 +1,27 @@
 import styled from "styled-components";
+import { calculateTime } from "utils/timeHelpers";
+
+// styles
 import { MixinBodyCopy, MixinHeading } from "styles/Typography";
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const JumpLinks = ({ timeJump }) => {
+const JumpLinks = ({ timeJump, handleClick }) => {
+
+  const onClick = (e, time) => {
+    e.preventDefault();
+    handleClick(time);
+  }
+
   return (
     <StyledJumpLinks>
       <h4>Jump Links</h4>
       <ul>
         {timeJump && timeJump.map(one => (
-          <li>
-            <a href="#">
-              <div className="time-code">{one.time}</div>
+          <li key={one._key}>
+            <a href="#" onClick={e => onClick(e, one.time)}>
+              <div className="time-code">{calculateTime(one.time)}</div>
               <div className="description">{one.description}</div>
             </a>
           </li>
