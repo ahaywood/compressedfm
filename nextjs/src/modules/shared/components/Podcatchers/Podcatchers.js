@@ -21,11 +21,13 @@ const Podcatchers = ({ className }) => {
         </li>
 
         {/* GOOGLE PODCASTS */}
-        <li>
-          <a href={Constants.GOOGLE_URL} target="_blank">
-            <Image src="/images/google-podcasts@2x.png" alt="Google Podcasts" width={187} height={38} />
-          </a>
-        </li>
+        {Constants.GOOGLE_URL != '' && (
+          <li>
+            <a href={Constants.GOOGLE_URL} target="_blank">
+              <Image src="/images/google-podcasts@2x.png" alt="Google Podcasts" width={187} height={38} />
+            </a>
+          </li>
+        )}
 
         {/* SPOTIFY */}
         <li>
