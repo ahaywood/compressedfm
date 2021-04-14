@@ -6,7 +6,7 @@ import { Constants } from "utils/constants";
 import { EpisodeZeros } from "utils/EpisodeZeros";
 
 // components
-import { Icon } from "../Icon";
+import { Icon } from "modules/shared/components/Icon";
 import { MoreLink } from "../MoreLink";
 
 // utilities
