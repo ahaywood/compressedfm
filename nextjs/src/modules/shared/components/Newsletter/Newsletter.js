@@ -1,12 +1,24 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import kwesforms from 'kwesforms';
+
+// component
 import { Icon } from "modules/shared/components/Icon";
+
+// styles
 import { MixinBodyCopy } from "styles/Typography";
 import { MixinTextField, MixinLabel, MixinButtonWithArrow } from "styles/Form";
 
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const Newsletter = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(JSON.stringify(data));
+  const onSubmit = (data) => { }
+
+  useEffect(() => {
+    kwesforms.init();
+  }, []);
 
   return (
     <StyledNewsletter>
@@ -15,8 +27,8 @@ const Newsletter = () => {
         Want to stay up to date on our podcast? Get a behind-the-scenes look{" "}
         and know when new episodes drop.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="email" name="email" id="email" ref={register} placeholder=" " />
+      <form onSubmit={handleSubmit(onSubmit)} className="kwes-form" action="https://kwes.io/api/foreign/forms/VBsOqTJ8MTds1LU9utSf">
+        <input type="email" name="email" id="email" ref={register} placeholder=" " rules="required" />
         <label htmlFor="email">Email Address</label>
         <button className="submit" type="submit" role="submit" onClick={onSubmit}>
           <Icon name="arrow" height="64" width="64" />
@@ -26,6 +38,9 @@ const Newsletter = () => {
   )
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledNewsletter = styled.div`
   position: relative;
   margin: 60px auto;
