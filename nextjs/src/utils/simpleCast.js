@@ -25,7 +25,6 @@ export const getStatsForEpisodes = async (episodeIds) => {
     const listens = await Promise.all(
         episodeIds.map((id) => getStatsForEpisode(id, STAT_TYPES.LISTENS))
     );
-    console.log(listens);
     const stats = [];
     for (let i = 0; i < downloads.length; i++) {
         const episodeStats = {

@@ -1,6 +1,6 @@
 import { useUser, withPageAuthRequired, getSession } from '@auth0/nextjs-auth0';
 import Link from 'next/link';
-import Custom403 from 'pages/403';
+import CustomError from 'pages/customError';
 import client from 'utils/client';
 import { guestQuery } from 'utils/queries';
 
@@ -8,7 +8,12 @@ export default function guest({ guest }) {
     const { user, error, isLoading } = useUser();
 
     if (!guest) {
-        return <Custom403 />;
+        return (
+            <CustomError
+                status={403}
+                text="You don't have access to this page"
+            />
+        );
     }
 
     if (isLoading) return <div>Loading...</div>;

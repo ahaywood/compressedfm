@@ -11,7 +11,7 @@ import { useUser } from '@auth0/nextjs-auth0';
 const SponsorDashboardPage = ({ sponsor }) => {
     const [currentlyPlaying, setCurrentlyPlaying] = useState();
     const { user } = useUser();
-
+    console.log(sponsor);
     const handleMultipleAudioPlayers = (id) => {
         setCurrentlyPlaying(id);
     };

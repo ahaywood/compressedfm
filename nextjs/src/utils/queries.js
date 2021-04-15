@@ -1,6 +1,6 @@
 import groq from 'groq';
 
-export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match $email] {
+export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match $email && published==true]{
   title,
   logo,
   offer,
@@ -16,7 +16,7 @@ export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match 
   }
 }[0]`;
 
-export const guestQuery = groq`*[_type == "guest" && guestEmail == $email] {
+export const guestQuery = groq`*[_type == "guest" && guestEmail == $email && published==true] {
   firstName,
   lastName,
   guestEmail,
