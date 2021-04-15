@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { withDocument } from 'part:@sanity/form-builder'
 
 import FormField from 'part:@sanity/components/formfields/default'
-import { Box, TextInput, Flex } from '@sanity/ui'
+import { Box, TextInput, Flex, Label } from '@sanity/ui'
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event'
 
 function createPatchFrom(value) {
-  PatchEvent.from(value === '' ? unset() : set(Number(value)))
+  PatchEvent.from(value === '' ? unset() : set(value))
 }
 
 // split out seconds into hours, minutes, and seconds
@@ -46,6 +46,7 @@ const TimeInput = ({ type, value, onChange, inputComponent }) => {
       <FormField label={type.title} description={type.description} />
       <Flex>
         <Box>
+          <Label size={0}>Hours</Label>
           <TextInput
             type="text"
             // ref={ref}
@@ -57,6 +58,7 @@ const TimeInput = ({ type, value, onChange, inputComponent }) => {
         </Box>
         <Box>:</Box>
         <Box>
+          <Label size={0}>Minutes</Label>
           <TextInput
             type="text"
             // ref={ref}
@@ -68,6 +70,7 @@ const TimeInput = ({ type, value, onChange, inputComponent }) => {
         </Box>
         <Box>:</Box>
         <Box>
+          <Label size={0}>Seconds</Label>
           <TextInput
             type="text"
             // ref={ref}
@@ -78,6 +81,12 @@ const TimeInput = ({ type, value, onChange, inputComponent }) => {
           />
         </Box>
       </Flex>
+      <input
+        type="hidden"
+        value=""
+        ref={ref}
+        onChange={event => { onChange(PatchEvent.from(set(event.target.value))) }}
+      />
     </div>
   )
 }
