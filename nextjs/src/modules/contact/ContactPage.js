@@ -37,11 +37,11 @@ const ContactPage = () => {
       <form onSubmit={handleSubmit(onSubmit)} method="post" className="kwes-form" action="https://kwes.io/api/foreign/forms/XZx7xaYdws6HQLePBoFC">
         <div className="half">
           <input type="text" name="firstName" id="firstName" ref={register} placeholder=" " rules="required" />
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">First Name*</label>
         </div>
         <div className="half">
           <input type="text" name="lastName" id="lastName" ref={register} placeholder=" " rules="required" />
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">Last Name*</label>
         </div>
         <div className="full">
           <input type="email" name="email" ref={register} placeholder=" " rules="required" />
@@ -51,12 +51,13 @@ const ContactPage = () => {
           <select name="subject" id="subject">
             <option value="Grab Bag Question">Grab Bag Question</option>
             <option value="Just saying Hi">Just saying Hi</option>
+            <option value="Sponsorships">Sponsorships</option>
           </select>
-          <label htmlFor="Subject">Subject</label>
+          <label htmlFor="Subject">Subject*</label>
         </div>
         <div className="full">
           <textarea name="message" id="message" ref={register} placeholder=" " rules="required" />
-          <label htmlFor="message">Message</label>
+          <label htmlFor="message">Message*</label>
         </div>
         <div className="full action-buttons">
           <Button />
