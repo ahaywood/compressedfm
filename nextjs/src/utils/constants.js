@@ -5,7 +5,7 @@ const Constants = Object.freeze({
   ITUNES_URL: 'https://podcasts.apple.com/us/podcast/compressedfm/id1562477264',
   POCKET_CASTS_URL: 'https://pca.st/bce39jz8',
   SPOTIFY_URL: 'https://open.spotify.com/show/7Er1m8VEzRNu59ZhaS18WY',
-  STITCHER_URL: 'https://www.stitcher.com/s?fid=624509 ',
+  STITCHER_URL: 'https://www.stitcher.com/s?fid=624509',
 
   // social
   COMPRESSEDFM_GITHUB_URL: 'http://github.com/compressedfm',
