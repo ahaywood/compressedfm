@@ -75,6 +75,16 @@ const StyledContactPage = styled.section`
 
   ${MixinForm}
 
+  .kw-alert
+  .kw-alert-error {
+    column-span: 2;
+  }
+
+  .kw-field-error-message {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+  }
+
   label {
     ${MixinLabel};
   }
