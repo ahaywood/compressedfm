@@ -23,5 +23,9 @@
     "dev": "next dev",
     "start": "next start"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "eslint-config-wesbos": "^1.0.1",
+    "install-peerdeps": "^3.0.3"
+  }
 }
