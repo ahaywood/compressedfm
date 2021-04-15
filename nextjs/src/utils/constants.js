@@ -1,11 +1,11 @@
 const Constants = Object.freeze({
   // podcat catchers
-  CASTBOX_URL: 'http://castbox.com',
-  GOOGLE_URL: 'http://google.com',
-  ITUNES_URL: 'http://itunes.com',
-  POCKET_CASTS_URL: 'http://pocketcasts.com',
-  SPOTIFY_URL: 'http://spotify.com',
-  STITCHER_URL: 'http://stitcher.com',
+  CASTBOX_URL: 'https://castbox.fm/login?jump_uri=%2Fmy%2Fclaim%3Fclaim_token%3D607728efd2336139e869df90%26target_id%3D4038683%26markpass%3D1',
+  GOOGLE_URL: '',
+  ITUNES_URL: 'https://podcasts.apple.com/us/podcast/compressedfm/id1562477264',
+  POCKET_CASTS_URL: 'https://pca.st/bce39jz8',
+  SPOTIFY_URL: 'https://open.spotify.com/show/7Er1m8VEzRNu59ZhaS18WY',
+  STITCHER_URL: 'https://www.stitcher.com/s?fid=624509 ',
 
   // social
   COMPRESSEDFM_GITHUB_URL: 'http://github.com/compressedfm',

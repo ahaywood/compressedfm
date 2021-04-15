@@ -91,6 +91,12 @@ export default {
       description: 'URL for Audio File in Simplecast'
     },
     {
+      name: 'simplecastId',
+      title: 'Simplecast ID',
+      type: 'string',
+      description: 'Unique ID used for grabbing stats'
+    },
+    {
       name: 'waveform',
       title: 'Waveform',
       type: 'image',
