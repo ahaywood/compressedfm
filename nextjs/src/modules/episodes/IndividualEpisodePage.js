@@ -69,7 +69,7 @@ const IndividualEpisodePage = ({ episode: {
           </div>
 
           {/* TRANSCRIPT */}
-          {episodeTranscript?.transcript && <FullTranscript className="transcript" handleClick={jumpToTimeStamp} transcript={episodeTranscript.transcript} />}
+          {episodeTranscript?.transcript && <FullTranscript className="transcript" handleClick={skipToTimestamp} transcript={episodeTranscript.transcript} />}
         </main>
 
         {/* SPONSORS */}
