@@ -6,7 +6,7 @@ import { useUser, getSession } from '@auth0/nextjs-auth0';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import Custom403 from '../403';
 import { sponsorQuery } from 'utils/queries';
-import { getStatsForEpisodes } from 'utils/simpleCast';
+import { getStatsForEpisode, getStatsForEpisodes } from 'utils/simpleCast';
 
 export default function sponsor({ sponsor }) {
     if (!sponsor) return <Custom403 />;
@@ -23,10 +23,17 @@ export const getServerSideProps = withPageAuthRequired({
         const { user } = getSession(req, res);
         const { email } = user;
         const sponsor = await client.fetch(sponsorQuery, { email });
-        const stats = await getStatsForEpisodes([
-            'd40a26eb-6f44-4e30-a161-850bd2841abb',
-        ]);
-        console.log(stats);
+        try {
+            console.log(sponsor.episodes);
+            const episodeURLs = sponsor.episodes.map(
+                (episode) => episode.audioPath
+            );
+            console.log(episodeURLs);
+            const stats = await getStatsForEpisodes(episodeURLs);
+            console.log(stats);
+        } catch (err) {
+            console.error(err);
+        }
         return { props: { sponsor, user } };
     },
 });
