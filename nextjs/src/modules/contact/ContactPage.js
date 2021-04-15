@@ -22,7 +22,7 @@ import { MixinHeadingWithHorizontalLines } from "styles/Typography";
 ---------------------------------------------------- */
 const ContactPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(JSON.stringify(data));
+  const onSubmit = (data) => { }
 
   useEffect(() => {
     kwesforms.init();
