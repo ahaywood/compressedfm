@@ -7,18 +7,22 @@ import { Constants } from "utils/constants";
 // styles
 import { Breakpoints } from "styles/Breakpoints";
 
-
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const Podcatchers = ({ className }) => {
   return (
     <StyledPodcatcher className={className}>
       <h3>SUBSCRIBE ON YOUR PODCATCHER OF CHOICE</h3>
       <ul>
         {/* ITUNES */}
-        <li>
-          <a href="{Constants.ITUNES_URL}" target="_blank">
-            <Image src="/images/itunes@2x.png" alt="iTunes" width={146} height={46} />
-          </a>
-        </li>
+        {Constants.ITUNES_URL != '' && (
+          <li>
+            <a href={Constants.ITUNES_URL} target="_blank">
+              <Image src="/images/itunes@2x.png" alt="iTunes" width={146} height={46} />
+            </a>
+          </li>
+        )}
 
         {/* GOOGLE PODCASTS */}
         {Constants.GOOGLE_URL != '' && (
@@ -30,38 +34,49 @@ const Podcatchers = ({ className }) => {
         )}
 
         {/* SPOTIFY */}
-        <li>
-          <a href={Constants.SPOTIFY_URL} target="_blank">
-            <Image src="/images/spotify@2x.png" alt="Spotify" width={135} height={47} />
-          </a>
-        </li>
+        {Constants.SPOTIFY_URL != '' && (
+          <li>
+            <a href={Constants.SPOTIFY_URL} target="_blank">
+              <Image src="/images/spotify@2x.png" alt="Spotify" width={135} height={47} />
+            </a>
+          </li>
+        )}
 
         {/* STITCHER */}
-        <li>
-          <a href={Constants.STITCHER_URL} target="_blank">
-            <Image src="/images/stitcher@2x.png" alt="Sitcher" width={95} height={50} />
-          </a>
-        </li>
+        {Constants.STITCHER_URL != '' && (
+          <li>
+            <a href={Constants.STITCHER_URL} target="_blank">
+              <Image src="/images/stitcher@2x.png" alt="Sitcher" width={95} height={50} />
+            </a>
+          </li>
+        )}
 
         {/* CASTBOX */}
-        <li>
-          <a href={Constants.CASTBOX_URL} target="_blank">
-            <Image src="/images/castbox@2x.png" alt="Listen on Castbox" width={158} height={56} />
-          </a>
-        </li>
+        {Constants.CASTBOX_URL != '' && (
+          <li>
+            <a href={Constants.CASTBOX_URL} target="_blank">
+              <Image src="/images/castbox@2x.png" alt="Listen on Castbox" width={158} height={56} />
+            </a>
+          </li>
+        )}
 
         {/* POCKET CASTS */}
-        <li>
-          <a href={Constants.POCKET_CASTS_URL} target="_blank">
-            <Image src="/images/pocket-casts@2x.png" alt="Listen on Pocket Casts" width={180} height={44} />
-          </a>
-        </li>
+        {Constants.POCKET_CASTS_URL != '' && (
+          <li>
+            <a href={Constants.POCKET_CASTS_URL} target="_blank">
+              <Image src="/images/pocket-casts@2x.png" alt="Listen on Pocket Casts" width={180} height={44} />
+            </a>
+          </li>
+        )}
 
       </ul>
     </StyledPodcatcher>
   )
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledPodcatcher = styled.section`
   text-align: center;
 
