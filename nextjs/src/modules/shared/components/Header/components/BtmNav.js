@@ -30,7 +30,6 @@ const BtmNav = () => {
                 const guest = await client.fetch(guestQuery, {
                     email: user.email,
                 });
-                console.log(!!sponsor, !!guest);
                 setIsSponsor(!!sponsor);
                 setIsGuest(!!guest);
             }

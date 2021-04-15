@@ -11,7 +11,8 @@ export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match 
   contractsInvoices[],
   "episodes": *[_type=='episode' && references(^._id)]{ 
     title,
-    audioPath
+    audioPath,
+    simplecastId
   }
 }[0]`;
 
@@ -21,6 +22,7 @@ export const guestQuery = groq`*[_type == "guest" && guestEmail == $email] {
   guestEmail,
   "episodes": *[_type=='episode' && references(^._id)]{ 
     title,
-    audioPath
+    audioPath,
+    simplecastId
   }
 }[0]`;
