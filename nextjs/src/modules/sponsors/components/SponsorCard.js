@@ -5,6 +5,8 @@ import { MoreLink } from "modules/shared/components/MoreLink";
 
 // styles
 import { MixinBodyCopy } from "styles/Typography";
+import { Breakpoints } from "styles/Breakpoints";
+
 
 /** -------------------------------------------------
 * COMPONENT
@@ -12,8 +14,10 @@ import { MixinBodyCopy } from "styles/Typography";
 const SponsorCard = ({ sponsor }) => {
   return (
     <StyledSponsorCard>
-      <img src={sponsor.logo} alt={sponsor.title} className="logo" />
-      {sponsor?.offerLink && sponsor?.offerLabel && (
+      <div className="logo-wrapper">
+        <img src={sponsor.logo} alt={sponsor.title} className="logo" />
+      </div>
+      {sponsor?.offerLink && sponsor?.offer && (
         <MoreLink href={sponsor.offerLink} label={sponsor.offer} />
       )}
       <p>
@@ -27,8 +31,23 @@ const SponsorCard = ({ sponsor }) => {
 * STYLES
 ---------------------------------------------------- */
 const StyledSponsorCard = styled.section`
+  padding: 0 ${props => props.theme.mobilePadding};
+
+  @media (${Breakpoints.portrait}) {
+    padding: 0;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    height: 75px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
   .logo {
-    margin-bottom: 30px;
+    margin: auto auto 0 0;
+    max-width: 150px;
   }
 
   p {

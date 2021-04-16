@@ -34,11 +34,15 @@ const StyledSponsorGrid = styled.section`
 
   .sponsor-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    margin: 40px auto 70px;
     max-width: ${props => props.theme.pageWidth};
-    margin: 90px auto 70px;
     position: relative;
     column-gap: 80px;
+
+    @media (${Breakpoints.portrait}) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 `;
 

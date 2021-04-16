@@ -2,6 +2,8 @@ import { useState } from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Breakpoints } from "styles/Breakpoints";
+
 
 import { EpisodeSummary } from "./components/EpisodeSummary"
 import { FullTranscript } from "./components/FullTranscript"
@@ -161,7 +163,12 @@ const StyledIndividualEpisodePage = styled.section`
     grid-column-gap: 20px;
     margin: 0 auto;
     max-width: ${props => props.theme.pageWidth};
+    padding: 0 ${props => props.theme.mobilePadding};
     position: relative;
+
+    @media (${Breakpoints.regular}) {
+      padding: 0;
+    }
   }
 
   .guests {

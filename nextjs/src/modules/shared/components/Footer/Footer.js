@@ -20,7 +20,8 @@ const Footer = () => {
         twitter={Constants.COMPRESSEDFM_TWITTER_URL}
       />
       <div className="copyright">
-        Copyright &copy;{getCurrentYear()}. COMPRESSED.fm. All Rights Reserved.
+        <span className="line">Copyright &copy;{getCurrentYear()}. COMPRESSED.fm.</span>{" "}
+        <span className="line">All Rights Reserved.</span>
       </div>
     </StyledFooter>
   )
@@ -59,7 +60,11 @@ const StyledFooter = styled.footer`
     max-width: 1245px;
     padding: 40px 0 65px;
     position: relative;
+
+    .line {
+      white-space: nowrap;
     }
+  }
 `;
 
 export { Footer }

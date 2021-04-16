@@ -53,6 +53,9 @@ const StyledTheHosts = styled.section`
 
   @media (${Breakpoints.portrait}) {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (${Breakpoints.regular}) {
     padding: 0;
   }
 

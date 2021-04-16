@@ -40,6 +40,10 @@ const StyledEpisodeGrid = styled.section`
   max-width: ${props => props.theme.pageWidth};
 
   @media (${Breakpoints.portrait}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (${Breakpoints.regular}) {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -62,9 +66,24 @@ const StyledEpisodeGrid = styled.section`
     remove the dotted line for items on the end
     - The section header throws off the counting
   */
-  &.w-section-header > .episode-card:nth-child(3n + 1),
-  &.no-section-header > .episode-card:nth-child(3n) {
-    background: none;
+  // when we're 2-up
+  &.w-section-header > .episode-card:nth-child(2n + 1),
+  &.no-section-header > .episode-card:nth-child(2n) {
+    @media (${Breakpoints.portrait}) {
+      background: none;
+    }
+
+    @media (${Breakpoints.medium}) {
+      background: url('/images/vertical-divider.svg') right top repeat-y;
+    }
+  }
+
+  // when we're 3-up
+  @media (${Breakpoints.regular}) {
+    &.w-section-header > .episode-card:nth-child(3n + 1),
+    &.no-section-header > .episode-card:nth-child(3n) {
+      background: none;
+    }
   }
 
 }`;

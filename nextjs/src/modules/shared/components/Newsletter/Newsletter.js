@@ -9,6 +9,7 @@ import { Icon } from "modules/shared/components/Icon";
 // styles
 import { MixinBodyCopy } from "styles/Typography";
 import { MixinTextField, MixinLabel, MixinButtonWithArrow } from "styles/Form";
+import { Breakpoints } from "styles/Breakpoints";
 
 /** -------------------------------------------------
 * COMPONENT
@@ -43,9 +44,14 @@ const Newsletter = () => {
 * STYLES
 ---------------------------------------------------- */
 const StyledNewsletter = styled.div`
+  padding: ${props => props.theme.mobilePadding};
   position: relative;
-  margin: 60px auto;
-  width: ${props => props.theme.formWidth};
+
+  @media (${Breakpoints.portrait}) {
+    margin: 60px auto;
+    padding: 0;
+    width: ${props => props.theme.formWidth};
+  }
 
   h2 {
     color: ${props => props.theme.white};

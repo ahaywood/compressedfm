@@ -16,7 +16,10 @@ import { MixinBodyCopy } from "styles/Typography";
 import { Breakpoints } from "styles/Breakpoints";
 
 
-const FeaturedEpisode = ({ episode: { audioPath, publishedAt, episodeNumber, guest, slug, title, briefDescription } }) => {
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
+const FeaturedEpisode = ({ episode: { audioPath, publishedAt, episodeNumber, guest, slug, title, briefDescription, episodeCover } }) => {
   return (
     <StyledFeaturedEpisode>
       <div className="episode-number-date__wrapper">
@@ -44,15 +47,23 @@ const FeaturedEpisode = ({ episode: { audioPath, publishedAt, episodeNumber, gue
   )
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledFeaturedEpisode = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   margin: 0 auto;
   max-width: ${props => props.theme.pageWidth};
+  padding: 0 ${props => props.theme.mobilePadding};
   position: relative;
 
   @media (${Breakpoints.portrait}) {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (${Breakpoints.regular}) {
+    padding: 0;
   }
 
   .episode-number-date__wrapper {
@@ -83,19 +94,27 @@ const StyledFeaturedEpisode = styled.section`
   .episode-number {
     color: ${props => props.theme.yellow};
     font-family: ${props => props.theme.sansSerif};
-    font-size: 13.2rem;
+    font-size: 8rem;
     font-weight: ${props => props.theme.fontBlack};
     margin: 0 10px;
+
+    @media (${Breakpoints.regular}) {
+      font-size: 13.2rem;
+    }
   }
 
   /* episode title */
   h3 {
     font-family: ${props => props.theme.sansSerif};
-    font-size: 8.5rem;
+    font-size: 6rem;
     font-weight: ${props => props.theme.fontBlack};
     line-height: 0.95;
     margin: 0 0 36px 0;
     padding: 0;
+
+    @media (${Breakpoints.portrait}) {
+      font-size: 8.5rem;
+    }
 
     a {
       color: ${props => props.theme.white};

@@ -78,7 +78,12 @@ const Podcatchers = ({ className }) => {
 * STYLES
 ---------------------------------------------------- */
 const StyledPodcatcher = styled.section`
+  padding: 0 ${props => props.theme.mobilePadding};
   text-align: center;
+
+  @media (${Breakpoints.medium}) {
+    padding: 0;
+  }
 
   h3 {
     font-family: ${props => props.theme.mono};

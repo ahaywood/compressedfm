@@ -62,7 +62,11 @@ Navigation.defaultProps = {
 * STYLES
 ---------------------------------------------------- */
 const StyledNavigation = styled.div`
-  --container-padding: 110px;
+  --container-padding: 48px ${props => props.theme.mobilePadding};
+
+  @media (${Breakpoints.portrait}) {
+    --container-padding: 110px;
+  }
 
   background:${props => props.theme.bastille};
   display: grid;
@@ -103,10 +107,15 @@ const StyledNavigation = styled.div`
   }
 
   .search {
-    background: ${props => props.theme.charcoal};;
+    background: ${props => props.theme.charcoal};
+    display: none;
     grid-area: search;
     padding: var(--container-padding);;
     text-align: left;
+
+    @media (${Breakpoints.medium}) {
+      display: block;
+    }
   }
 
   h3 {

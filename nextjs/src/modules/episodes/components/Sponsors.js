@@ -10,7 +10,7 @@ const Sponsors = ({ className, sponsor }) => {
       <ul>
         {sponsor.map(item => (
           <li key={item._id}>
-            <img src={item.logo} alt={item.title} />
+            <img src={item.logo} alt={item.title} className="logo" />
             {sponsor.title}
             {item.offerLink && item.offer && (
               <MoreLink href={item.offerLink} label={item.offer} className="promo-link" />
@@ -24,6 +24,11 @@ const Sponsors = ({ className, sponsor }) => {
 }
 
 const StyledSponsors = styled.div`
+  .logo {
+    margin: auto auto 0 0;
+    max-width: 150px;
+  }
+
   h4 {
     ${MixinHeading}
   }

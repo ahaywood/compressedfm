@@ -16,6 +16,7 @@ const query = groq`*[_type == "episode" && published == true] | order(episodeNum
   _id,
   title,
   episodeNumber,
+  episodeCover,
   slug,
   publishedAt,
   briefDescription,
