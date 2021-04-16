@@ -10,6 +10,7 @@ import { SocialMedia } from "../SocialMedia"
 import { VerticalDivider } from "../VerticalDivider"
 
 // utils
+import { Breakpoints } from "styles/Breakpoints";
 import { Constants } from "utils/constants";
 
 /** -------------------------------------------------
@@ -74,7 +75,12 @@ const Footer = ({ props }) => {
 * STYLES
 ---------------------------------------------------- */
 const StyledFooter = styled.footer`
+  padding: 0 ${props => props.theme.mobilePadding};
   text-align: center;
+
+  @media (${Breakpoints.portrait}) {
+    padding: 0;
+  }
 
   .vertical-divider {
     margin-bottom: 90px;
@@ -109,17 +115,34 @@ const StyledFooter = styled.footer`
       justify-content: center;
       list-style: none;
       text-transform: uppercase;
+      padding: 0;
+      margin: 0 0 20px;
+      flex-direction: column;
 
-      li {
+      // add stars between links
+      @media (${Breakpoints.small}) {
+        flex-direction: row;
 
-        &:first-child:before {
-          content: '*';
-          margin: 0 10px 0 0;
+        li {
+
+          &:first-child:before {
+            content: '*';
+            margin: 0 10px 0 0;
+          }
+
+          &:after {
+            content: '*';
+            margin: 0 10px;
+          }
         }
+      }
 
-        &:after {
-          content: '*';
-          margin: 0 10px;
+      // add vertical spacing for mobile
+      li {
+        margin-bottom: 10px;
+
+        @media (${Breakpoints.small}) {
+          margin: 0;
         }
       }
 
