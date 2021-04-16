@@ -16,6 +16,10 @@
     "react-hook-form": "^6.15.4",
     "styled-components": "^5.2.1"
   },
+  "devDependencies": {
+    "eslint-config-wesbos": "^1.0.1",
+    "install-peerdeps": "^3.0.3"
+  },
   "name": "nextjs",
   "private": true,
   "scripts": {
@@ -23,9 +27,5 @@
     "dev": "next dev",
     "start": "next start"
   },
-  "version": "0.1.0",
-  "devDependencies": {
-    "eslint-config-wesbos": "^1.0.1",
-    "install-peerdeps": "^3.0.3"
-  }
+  "version": "0.1.0"
 }
