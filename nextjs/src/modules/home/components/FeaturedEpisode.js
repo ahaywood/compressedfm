@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -19,7 +19,7 @@ import { Breakpoints } from 'styles/Breakpoints';
 * COMPONENT
 ---------------------------------------------------- */
 const FeaturedEpisode = ({
-  episode: { audioPath, publishedAt, episodeNumber, guest, slug, title, briefDescription, episodeCover },
+  episode: { audioPath, publishedAt, episodeNumber, guest, slug, title, briefDescription, cover },
 }) => (
   <StyledFeaturedEpisode>
     <div className="episode-number-date__wrapper">
@@ -33,9 +33,9 @@ const FeaturedEpisode = ({
     </div>
     <div className="podcast-cover">
       {/* cover art */}
-      <Image src="/images/podcast-cover.jpg" width={378} height={378} layout="intrinsic" />
+      <img src={cover || '/images/podcast-cover.jpg'} alt={title} />
     </div>
-    <div>
+    <div className="episode-content">
       <h3>
         <Link href={`/episode/${slug.current}`}>
           <a>{title}</a>
@@ -53,10 +53,23 @@ const FeaturedEpisode = ({
       </ul>
     </div>
     <div className="audio-player">
-      <FeaturedAudioPlayer />
+      <FeaturedAudioPlayer track={audioPath} />
     </div>
   </StyledFeaturedEpisode>
 );
+
+FeaturedEpisode.propTypes = {
+  episode: PropTypes.shape({
+    audioPath: PropTypes.string,
+    publishedAt: PropTypes.string,
+    episodeNumber: PropTypes.number,
+    guest: PropTypes.any,
+    slug: PropTypes.object,
+    title: PropTypes.string,
+    briefDescription: PropTypes.string,
+    cover: PropTypes.string,
+  }),
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -64,12 +77,25 @@ const FeaturedEpisode = ({
 const StyledFeaturedEpisode = styled.section`
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-areas:
+    'episodeNumberDate'
+    'cover'
+    'episodeContent'
+    'player';
   margin: 0 auto;
   max-width: ${(props) => props.theme.pageWidth};
   padding: 0 ${(props) => props.theme.mobilePadding};
   position: relative;
 
   @media (${Breakpoints.portrait}) {
+    grid-template-columns: 300px 1fr;
+    grid-template-areas:
+      'episodeNumberDate episodeNumberDate'
+      'cover episodeContent'
+      'player player';
+  }
+
+  @media (${Breakpoints.medium}) {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -80,17 +106,31 @@ const StyledFeaturedEpisode = styled.section`
   .episode-number-date__wrapper {
     align-items: center;
     display: flex;
+    grid-area: episodeNumberDate;
     justify-content: center;
     margin-bottom: 30px;
+  }
+
+  /* cover */
+  .podcast-cover {
+    display: none;
+    grid-area: cover;
+    text-align: right;
+    padding-right: 55px;
 
     @media (${Breakpoints.portrait}) {
-      grid-column: span 2;
+      display: block;
+    }
+
+    img {
+      border: 1px solid ${(props) => props.theme.bastille};
+      max-width: 400px;
+      width: 100%;
     }
   }
 
-  .podcast-cover {
-    text-align: right;
-    padding-right: 55px;
+  .episode-content {
+    grid-area: episodeContent;
   }
 
   .episode,
@@ -159,7 +199,7 @@ const StyledFeaturedEpisode = styled.section`
   }
 
   .audio-player {
-    grid-column: span 2;
+    grid-area: player;
   }
 `;
 

@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+/* eslint-disable jsx-a11y/media-has-caption */
+import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Icon } from 'modules/shared/components/Icon';
 import { calculateTime } from 'utils/timeHelpers';
@@ -6,7 +8,7 @@ import { calculateTime } from 'utils/timeHelpers';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const FeaturedAudioPlayer = () => {
+const FeaturedAudioPlayer = ({ track }) => {
   // state
   const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState(0);
@@ -25,6 +27,36 @@ const FeaturedAudioPlayer = () => {
     progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
+  // when the playhead is moved, update the current time (text)
+  const updateCurrentTime = () => {
+    setCurrentTime(progressBar.current.value);
+  };
+
+  const pause = () => {
+    audioPlayer.current.pause();
+    cancelAnimationFrame(animationRef.current);
+  };
+
+  const restart = () => {
+    // progressBar.current.value = 0;
+    // updateCurrentTime();
+    pause();
+  };
+
+  const whilePlaying = () => {
+    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
+    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
+    updateCurrentTime();
+
+    // when you reach the end of the song
+    if (progressBar.current.value === duration) {
+      restart();
+      return;
+    }
+
+    animationRef.current = requestAnimationFrame(whilePlaying);
+  };
+
   // toggle between play and pause
   const togglePlaying = () => {
     setIsPlaying(!isPlaying);
@@ -36,36 +68,6 @@ const FeaturedAudioPlayer = () => {
     }
   };
 
-  const pause = () => {
-    audioPlayer.current.pause();
-    cancelAnimationFrame(animationRef.current);
-  };
-
-  const whilePlaying = () => {
-    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
-    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
-    updateCurrentTime();
-
-    // when you reach the end of the song
-    if (progressBar.current.value == duration) {
-      restart();
-      return;
-    }
-
-    animationRef.current = requestAnimationFrame(whilePlaying);
-  };
-
-  const restart = () => {
-    // progressBar.current.value = 0;
-    // updateCurrentTime();
-    pause();
-  };
-
-  // when the playhead is moved, update the current time (text)
-  const updateCurrentTime = () => {
-    setCurrentTime(progressBar.current.value);
-  };
-
   // the knobby moves when you click on the progress bar
   // update the audio player to the new point
   const changeAudioToKnobby = () => {
@@ -75,7 +77,7 @@ const FeaturedAudioPlayer = () => {
 
   // toggle play / pause when you tap the space bar
   const tapSpaceBar = (e) => {
-    if (e.keyCode == 32) {
+    if (e.keyCode === 32) {
       togglePlaying();
     }
   };
@@ -96,18 +98,14 @@ const FeaturedAudioPlayer = () => {
 
   return (
     <StyledFeaturedAudioPlayer>
-      <audio
-        ref={audioPlayer}
-        src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/88284991-93d9-436a-845d-4133c01cde8a/audio/2040cdce-b212-4958-906d-1706fa39f6ac/default_tc.mp3"
-        preload="metadata"
-      />
+      <audio ref={audioPlayer} src={track} preload="metadata" />
 
       <div className="controls">
-        <button onClick={backThirty} className="forwardBackward">
+        <button type="button" onClick={backThirty} className="forwardBackward">
           <Icon name="arrow" className="back" />
           30
         </button>
-        <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
+        <button type="button" className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
           {isPlaying ? (
             <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
               <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
@@ -119,7 +117,7 @@ const FeaturedAudioPlayer = () => {
             </svg>
           )}
         </button>
-        <button onClick={forwardThirty} className="forwardBackward">
+        <button type="button" onClick={forwardThirty} className="forwardBackward">
           30
           <Icon name="arrow" />
         </button>
@@ -140,6 +138,10 @@ const FeaturedAudioPlayer = () => {
       </div>
     </StyledFeaturedAudioPlayer>
   );
+};
+
+FeaturedAudioPlayer.propTypes = {
+  track: PropTypes.string.isRequired,
 };
 
 /** -------------------------------------------------
