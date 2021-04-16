@@ -3,13 +3,14 @@
     "wesbos"
   ],
   "rules": {
+    "import/no-unresolved": "off",
     "prettier/prettier": [
       "error",
       {
         "trailingComma": "es5",
         "singleQuote": true,
         "printWidth": 120,
-        "tabWidth": 4,
+        "tabWidth": 2,
       }
     ]
   }
