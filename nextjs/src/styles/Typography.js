@@ -77,6 +77,7 @@ const MixinHeadingWithHorizontalLines = css`
     margin: 0 auto;
     padding: 0 125px;
     text-transform: uppercase;
+    padding: 0 125px;
   }
 `;
 
