@@ -1,19 +1,17 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // components
-import { EpisodeGrid } from "modules/shared/components/EpisodeGrid";
-import { Newsletter } from "modules/shared/components/Newsletter";
-import { Podcatchers } from "modules/shared/components/Podcatchers";
-import { FeaturedEpisode } from "modules/home/components/FeaturedEpisode";
-import { VerticalDivider } from "modules/shared/components/VerticalDivider";
-import { HorizontalDivider } from "modules/shared/components/HorizontalDivider";
-
+import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
+import { Newsletter } from 'modules/shared/components/Newsletter';
+import { Podcatchers } from 'modules/shared/components/Podcatchers';
+import { FeaturedEpisode } from 'modules/home/components/FeaturedEpisode';
+import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
+import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
 const EpisodePage = ({ episodes }) => {
-
   // get the first element in the array to feature
   const featuredEpisode = episodes.shift();
 
@@ -31,8 +29,8 @@ const EpisodePage = ({ episodes }) => {
       <VerticalDivider />
       <Newsletter />
     </StyledEpisodePage>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -43,4 +41,4 @@ const StyledEpisodePage = styled.section`
   }
 `;
 
-export { EpisodePage }
+export { EpisodePage };

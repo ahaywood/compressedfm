@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { MixinBodyCopy, MixinHeading } from "styles/Typography";
-import { Icon } from "modules/shared/components/Icon";
+import styled from 'styled-components';
+import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
+import { Icon } from 'modules/shared/components/Icon';
 
-const Links = ({ listLink }) => {
-  return (
-    <StyledLinks>
-      <h4>Links</h4>
-      <ul>
-        {listLink && listLink.map(item => (
+const Links = ({ listLink }) => (
+  <StyledLinks>
+    <h4>Links</h4>
+    <ul>
+      {listLink &&
+        listLink.map((item) => (
           <li key={item._key}>
             <a href={item.linkUrl} _target={item.newTab ? 'blank' : 'self'}>
               <Icon name="arrow" />
@@ -15,10 +15,9 @@ const Links = ({ listLink }) => {
             </a>
           </li>
         ))}
-      </ul>
-    </StyledLinks >
-  )
-}
+    </ul>
+  </StyledLinks>
+);
 
 const StyledLinks = styled.section`
   h4 {
@@ -40,25 +39,25 @@ const StyledLinks = styled.section`
   }
 
   a {
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
     text-decoration: none;
     position: relative;
 
     &:hover {
-      color: ${props => props.theme.lavendarIndigo};
+      color: ${(props) => props.theme.lavenderIndigo};
     }
   }
 
   svg {
-    fill: ${props => props.theme.yellow};
+    fill: ${(props) => props.theme.yellow};
     position: absolute;
     left: -40px;
     top: -5px;
   }
 
   a:hover svg {
-    fill: ${props => props.theme.lavendarIndigo};
+    fill: ${(props) => props.theme.lavenderIndigo};
   }
 `;
 
-export { Links }
+export { Links };

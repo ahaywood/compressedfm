@@ -1,28 +1,21 @@
-import { useEffect } from "react";
-import styled from "styled-components";
+import { useEffect } from 'react';
+import styled from 'styled-components';
 import kwesforms from 'kwesforms';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 
 // components
-import { Button } from "modules/shared/form/Button";
+import { Button } from 'modules/shared/form/Button';
 
 // styles
-import {
-  MixinForm,
-  MixinLabel,
-  MixinTextField,
-  MixinTextarea,
-  MixinSelect
-} from "styles/Form";
-import { MixinHeadingWithHorizontalLines } from "styles/Typography";
-
+import { MixinForm, MixinLabel, MixinTextField, MixinTextarea, MixinSelect } from 'styles/Form';
+import { MixinHeadingWithHorizontalLines } from 'styles/Typography';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
 const ContactPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => { }
+  const onSubmit = (data) => {};
 
   useEffect(() => {
     kwesforms.init();
@@ -34,7 +27,12 @@ const ContactPage = () => {
         <h1>Contact Us</h1>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} method="post" className="kwes-form" action="https://kwes.io/api/foreign/forms/XZx7xaYdws6HQLePBoFC">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        method="post"
+        className="kwes-form"
+        action="https://kwes.io/api/foreign/forms/XZx7xaYdws6HQLePBoFC"
+      >
         <div className="half">
           <input type="text" name="firstName" id="firstName" ref={register} placeholder=" " rules="required" />
           <label htmlFor="firstName">First Name*</label>
@@ -64,14 +62,13 @@ const ContactPage = () => {
         </div>
       </form>
     </StyledContactPage>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledContactPage = styled.section`
-
   ${MixinHeadingWithHorizontalLines}
 
   ${MixinForm}
@@ -90,8 +87,8 @@ const StyledContactPage = styled.section`
     ${MixinLabel};
   }
 
-  input[type=text],
-  input[type=email] {
+  input[type='text'],
+  input[type='email'] {
     ${MixinTextField}
   }
 
@@ -102,7 +99,6 @@ const StyledContactPage = styled.section`
   select {
     ${MixinSelect}
   }
-
 `;
 
-export { ContactPage }
+export { ContactPage };

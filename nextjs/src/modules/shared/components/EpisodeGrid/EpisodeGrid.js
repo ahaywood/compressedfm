@@ -1,34 +1,36 @@
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 // components
-import { Episode } from "./Episode";
 
 // styles
-import { MixinSectionHeading } from "styles/Typography";
-import { Breakpoints } from "styles/Breakpoints";
-
+import { MixinSectionHeading } from 'styles/Typography';
+import { Breakpoints } from 'styles/Breakpoints';
+import { Episode } from './Episode';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const EpisodeGrid = ({ header, episodes }) => {
-  return (
-    <StyledEpisodeGrid
-      className={header ? 'w-section-header' : 'no-section-header'}
-    >
-      { (header) && (
-        <div className="section-heading">
-          <h3>{header}</h3>
-        </div>
-      )}
-      {
-        episodes && episodes.map((item) => {
-          return <Episode className="episode-card" key={item._id} episode={item} />
-        })
-      }
-    </StyledEpisodeGrid >
-  )
-}
+const EpisodeGrid = ({ header, episodes }) => (
+  <StyledEpisodeGrid className={header ? 'w-section-header' : 'no-section-header'}>
+    {header && (
+      <div className="section-heading">
+        <h3>{header}</h3>
+      </div>
+    )}
+    {episodes && episodes.map((item) => <Episode className="episode-card" key={item._id} episode={item} />)}
+  </StyledEpisodeGrid>
+);
+
+EpisodeGrid.propTypes = {
+  header: PropTypes.string,
+  episodes: PropTypes.array,
+};
+
+EpisodeGrid.defaultProps = {
+  header: '',
+  episodes: [],
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -37,7 +39,7 @@ const StyledEpisodeGrid = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   margin: 60px auto;
-  max-width: ${props => props.theme.pageWidth};
+  max-width: ${(props) => props.theme.pageWidth};
 
   @media (${Breakpoints.portrait}) {
     grid-template-columns: repeat(2, 1fr);
@@ -60,7 +62,6 @@ const StyledEpisodeGrid = styled.section`
   h3 {
     ${MixinSectionHeading};
   }
-
 
   /*
     remove the dotted line for items on the end
@@ -85,7 +86,6 @@ const StyledEpisodeGrid = styled.section`
       background: none;
     }
   }
+`;
 
-}`;
-
-export { EpisodeGrid }
+export { EpisodeGrid };

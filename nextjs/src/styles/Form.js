@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import { css } from 'styled-components';
+import { Breakpoints } from 'styles/Breakpoints';
 
 const MixinForm = css`
   form {
@@ -7,7 +8,7 @@ const MixinForm = css`
     grid-column-gap: 24px;
     grid-row-gap: 32px;
     margin: 60px auto;
-    max-width: ${props => props.theme.formWidth};
+    max-width: ${(props) => props.theme.formWidth};
   }
 
   .half,
@@ -30,10 +31,10 @@ const MixinForm = css`
 
 const MixinTextField = css`
   background: transparent;
-  border: 1px solid ${props => props.theme.white};
+  border: 1px solid ${(props) => props.theme.white};
   box-sizing: border-box;
-  color: ${props => props.theme.white};
-  font-family: ${props => props.theme.sansSerif};
+  color: ${(props) => props.theme.white};
+  font-family: ${(props) => props.theme.sansSerif};
   font-size: 1.8rem;
   height: 55px;
   margin: 30px 0 0 0;
@@ -41,7 +42,7 @@ const MixinTextField = css`
   width: 100%;
 
   &:focus {
-    border-color: ${props => props.theme.yellow};
+    border-color: ${(props) => props.theme.yellow};
     outline: none;
   }
 
@@ -59,10 +60,10 @@ const MixinTextField = css`
 
 const MixinTextarea = css`
   background: transparent;
-  border: 1px solid ${props => props.theme.white};
+  border: 1px solid ${(props) => props.theme.white};
   box-sizing: border-box;
-  color: ${props => props.theme.white};
-  font-family: ${props => props.theme.sansSerif};
+  color: ${(props) => props.theme.white};
+  font-family: ${(props) => props.theme.sansSerif};
   font-size: 1.8rem;
   height: 175px;
   margin: 30px 0 0 0;
@@ -70,7 +71,7 @@ const MixinTextarea = css`
   width: 100%;
 
   &:focus {
-    border-color: ${props => props.theme.yellow};
+    border-color: ${(props) => props.theme.yellow};
     outline: none;
   }
 
@@ -89,10 +90,10 @@ const MixinTextarea = css`
 const MixinSelect = css`
   appearance: none;
   background: url('/images/select.svg') 98% center no-repeat;
-  border: 1px solid ${props => props.theme.white};
+  border: 1px solid ${(props) => props.theme.white};
   box-sizing: border-box;
-  color: ${props => props.theme.white};
-  font-family: ${props => props.theme.sansSerif};
+  color: ${(props) => props.theme.white};
+  font-family: ${(props) => props.theme.sansSerif};
   font-size: 1.8rem;
   height: 55px;
   margin: 30px 0 0 0;
@@ -100,7 +101,7 @@ const MixinSelect = css`
   width: 100%;
 
   &:focus {
-    border-color: ${props => props.theme.yellow};
+    border-color: ${(props) => props.theme.yellow};
     outline: none;
   }
 
@@ -113,11 +114,11 @@ const MixinSelect = css`
 `;
 
 const MixinLabel = css`
-  color: ${props => props.theme.yellow};
+  color: ${(props) => props.theme.yellow};
   cursor: text;
   display: block;
-  font-family: ${props => props.theme.mono};
-  font-size: 1.8rem;
+  font-family: ${(props) => props.theme.mono};
+  font-size: 1.6rem;
   letter-spacing: 0.4rem;
   margin-bottom: 10px;
   position: absolute;
@@ -125,13 +126,17 @@ const MixinLabel = css`
   transition: left 0.25s ease-in-out, top 0.25s ease-in-out;
   left: 0;
   top: 0;
+
+  @media (${Breakpoints.small}) {
+    font-size: 1.8rem;
+  }
 `;
 
 const MixinButtonWithArrow = css`
   button {
     background: none;
     border: none;
-    color: ${props => props.theme.yellow};
+    color: ${(props) => props.theme.yellow};
     cursor: pointer;
     position: absolute;
     right: 0;
@@ -140,17 +145,10 @@ const MixinButtonWithArrow = css`
     z-index: 5;
 
     &:hover {
-      color: ${props => props.theme.lavendarIndigo};
+      color: ${(props) => props.theme.lavenderIndigo};
       right: -10px;
     }
   }
 `;
 
-export {
-  MixinButtonWithArrow,
-  MixinForm,
-  MixinLabel,
-  MixinSelect,
-  MixinTextarea,
-  MixinTextField,
-};
+export { MixinButtonWithArrow, MixinForm, MixinLabel, MixinSelect, MixinTextarea, MixinTextField };

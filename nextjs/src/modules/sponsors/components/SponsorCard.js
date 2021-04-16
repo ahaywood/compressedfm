@@ -1,37 +1,41 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // components
-import { MoreLink } from "modules/shared/components/MoreLink";
+import { MoreLink } from 'modules/shared/components/MoreLink';
 
 // styles
-import { MixinBodyCopy } from "styles/Typography";
-import { Breakpoints } from "styles/Breakpoints";
-
+import { MixinBodyCopy } from 'styles/Typography';
+import { Breakpoints } from 'styles/Breakpoints';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const SponsorCard = ({ sponsor }) => {
-  return (
-    <StyledSponsorCard>
-      <div className="logo-wrapper">
-        <img src={sponsor.logo} alt={sponsor.title} className="logo" />
-      </div>
-      {sponsor?.offerLink && sponsor?.offer && (
-        <MoreLink href={sponsor.offerLink} label={sponsor.offer} />
-      )}
-      <p>
-        {sponsor.about}
-      </p>
-    </StyledSponsorCard>
-  )
-}
+const SponsorCard = ({ sponsor }) => (
+  <StyledSponsorCard>
+    <div className="logo-wrapper">
+      <img src={sponsor.logo} alt={sponsor.title} className="logo" />
+    </div>
+    {sponsor?.offerLink && sponsor?.offer && <MoreLink href={sponsor.offerLink} label={sponsor.offer} />}
+    <p>{sponsor.about}</p>
+  </StyledSponsorCard>
+);
+
+SponsorCard.propTypes = {
+  sponsor: PropTypes.shape({
+    logo: PropTypes.string,
+    title: PropTypes.string,
+    offerLink: PropTypes.string,
+    offer: PropTypes.string,
+    about: PropTypes.string,
+  }).isRequired,
+};
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledSponsorCard = styled.section`
-  padding: 0 ${props => props.theme.mobilePadding};
+  padding: 0 ${(props) => props.theme.mobilePadding};
 
   @media (${Breakpoints.portrait}) {
     padding: 0;
@@ -56,4 +60,4 @@ const StyledSponsorCard = styled.section`
   }
 `;
 
-export { SponsorCard }
+export { SponsorCard };

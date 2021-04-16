@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import Head from 'next/head'
-import client from "utils/client";
-import groq from "groq";
-import { InteriorLayout } from "modules/shared/layouts/InteriorLayout";
-import { AboutPage } from "modules/about";
-import { Meta } from "modules/shared/components/Meta";
+import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import client from 'utils/client';
+import groq from 'groq';
+import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
+import { AboutPage } from 'modules/about';
+import { Meta } from 'modules/shared/components/Meta';
 
 export default function About() {
   const [faqs, setFaqs] = useState();
@@ -42,7 +42,6 @@ export default function About() {
       briefDescription
     }[0...3]`;
     client.fetch(popularEpisodesQuery).then((res) => setMostPopular(res));
-
   }, []);
 
   return (
@@ -63,6 +62,5 @@ export default function About() {
       </Head>
       <AboutPage faqs={faqs} gettingStarted={gettingStarted} mostPopular={mostPopular} />
     </InteriorLayout>
-  )
+  );
 }
-

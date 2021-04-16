@@ -1,12 +1,12 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 // components
-import { Icon } from "modules/shared/components/Icon";
+import { Icon } from 'modules/shared/components/Icon';
 
 // styles
-import { MixinBodyCopy } from "styles/Typography";
+import { MixinBodyCopy } from 'styles/Typography';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -17,34 +17,30 @@ const Faq = ({ question, answer }) => {
   // toggle answer visibility
   const toggle = () => {
     setIsToggled(!isToggled);
-  }
+  };
 
   // handles the motion transition / duration / easing
   const transition = {
     duration: 0.75,
-    ease: [0.04, 0.62, 0.23, 0.98]
-  }
+    ease: [0.04, 0.62, 0.23, 0.98],
+  };
 
   // Framer Motion -- Answer Variants
   const AnswerVariants = {
-    open: { opacity: 1, height: "auto" },
-    closed: { opacity: 0, height: 0 }
-  }
+    open: { opacity: 1, height: 'auto' },
+    closed: { opacity: 0, height: 0 },
+  };
 
   // Framer Motion -- Icon Variants
   const iconVariants = {
-    open: { rotate: 45, originX: .5, originY: .5, y: 5, },
-    closed: { rotate: 0, originX: .5, originY: .5, y: 5, }
-  }
+    open: { rotate: 45, originX: 0.5, originY: 0.5, y: 5 },
+    closed: { rotate: 0, originX: 0.5, originY: 0.5, y: 5 },
+  };
 
   return (
     <StyledFaq className={isToggled ? 'open' : 'closed'}>
       <div className="icon">
-        <motion.div
-          transition={transition}
-          animate={isToggled ? "open" : "closed"}
-          variants={iconVariants}
-        >
+        <motion.div transition={transition} animate={isToggled ? 'open' : 'closed'} variants={iconVariants}>
           <a href="#" onClick={toggle}>
             <Icon name="plus" />
           </a>
@@ -57,15 +53,15 @@ const Faq = ({ question, answer }) => {
         <motion.div
           transition={transition}
           className="answer"
-          animate={isToggled ? "open" : "closed"}
+          animate={isToggled ? 'open' : 'closed'}
           variants={AnswerVariants}
         >
           <p>{answer}</p>
         </motion.div>
       </div>
     </StyledFaq>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -83,27 +79,27 @@ const StyledFaq = styled.div`
   }
 
   .icon a svg {
-    fill: ${props => props.theme.yellow};
+    fill: ${(props) => props.theme.yellow};
     position: relative;
   }
 
   .question {
-    font-family: ${props => props.theme.sansSerif};
-    font-weight: ${props => props.theme.fontBlack};
+    font-family: ${(props) => props.theme.sansSerif};
+    font-weight: ${(props) => props.theme.fontBlack};
     font-size: 3.6rem;
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
     text-decoration: none;
     position: relative;
 
     &:hover {
-      color: ${props => props.theme.yellow};
+      color: ${(props) => props.theme.yellow};
     }
   }
 
   &.open .icon a svg,
   &.open a.question {
-    color: ${props => props.theme.lavendarIndigo};
-    fill: ${props => props.theme.lavendarIndigo};
+    color: ${(props) => props.theme.lavenderIndigo};
+    fill: ${(props) => props.theme.lavenderIndigo};
   }
 
   .answer p {
@@ -114,4 +110,4 @@ const StyledFaq = styled.div`
   }
 `;
 
-export { Faq }
+export { Faq };

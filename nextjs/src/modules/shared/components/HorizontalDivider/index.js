@@ -1,2 +1,3 @@
-import { HorizontalDivider } from "./HorizontalDivider";
+import { HorizontalDivider } from './HorizontalDivider';
+
 export { HorizontalDivider };

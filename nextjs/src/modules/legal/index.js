@@ -1,2 +1,3 @@
-import { LegalPage } from "./LegalPage";
+import { LegalPage } from './LegalPage';
+
 export { LegalPage };

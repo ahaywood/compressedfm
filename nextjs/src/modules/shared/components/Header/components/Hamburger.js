@@ -1,15 +1,16 @@
-import { useState } from "react";
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import styled from 'styled-components';
 
-import { Zindex } from "styles/Zindex";
+import { Zindex } from 'styles/Zindex';
 
 const Hamburger = ({ className, onClick, navShowing }) => {
-  const [toggled, useToggled] = useState(navShowing);
+  const [toggled, setToggled] = useState(navShowing);
 
   const toggle = () => {
-    useToggled(!toggled);
+    setToggled((prevToggled) => !prevToggled);
     onClick();
-  }
+  };
 
   return (
     <StyledHamburger className={className} onClick={toggle}>
@@ -19,7 +20,19 @@ const Hamburger = ({ className, onClick, navShowing }) => {
         <path className="bottom line" d="M23.79,23,46.17,45.49s11,13.77,16,6.77-9.61-8.47-11.8-8.47l-31.71-.06" />
       </svg>
     </StyledHamburger>
-  )
+  );
+};
+
+Hamburger.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  navShowing: PropTypes.bool,
+};
+
+Hamburger.defaultProps = {
+  className: '',
+  onClick: () => { },
+  navShowing: false,
 };
 
 const StyledHamburger = styled.button`
@@ -44,7 +57,7 @@ const StyledHamburger = styled.button`
   }
 
   &:hover .line {
-    stroke: ${props => props.theme.yellow};
+    stroke: ${(props) => props.theme.yellow};
   }
 
   path {
@@ -62,7 +75,7 @@ const StyledHamburger = styled.button`
   }
 
   .x .line {
-    stroke: ${props => props.theme.yellow};
+    stroke: ${(props) => props.theme.yellow};
   }
 
   .x .middle {
@@ -75,4 +88,4 @@ const StyledHamburger = styled.button`
   }
 `;
 
-export { Hamburger }
+export { Hamburger };

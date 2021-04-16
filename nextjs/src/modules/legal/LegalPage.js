@@ -1,13 +1,13 @@
 import Head from 'next/head';
-import styled from "styled-components";
-import BlockContent from '@sanity/block-content-to-react'
+import styled from 'styled-components';
+import BlockContent from '@sanity/block-content-to-react';
 
 // components
-import { serializers } from "modules/shared/blockContent/Serializers";
+import { serializers } from 'modules/shared/blockContent/Serializers';
 import { Meta } from 'modules/shared/components/Meta';
 
 // styles
-import { MixinBodyCopy, MixinHeadingWithHorizontalLines } from "styles/Typography";
+import { MixinBodyCopy, MixinHeadingWithHorizontalLines } from 'styles/Typography';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -28,10 +28,9 @@ const LegalPage = ({ content }) => {
       <main>
         <BlockContent blocks={content.content} serializers={serializers} />
       </main>
-
     </StyledLegalPage>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -44,8 +43,8 @@ const StyledLegalPage = styled.section`
   }
 
   h4 {
-    color: ${props => props.theme.yellow};
-    font-family: ${props => props.theme.mono};
+    color: ${(props) => props.theme.yellow};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.6rem;
     padding-top: 30px;
   }
@@ -56,9 +55,9 @@ const StyledLegalPage = styled.section`
 
     p {
       ${MixinBodyCopy}
-      margin-bottom: ${props => props.theme.betweenTextBlocks};
+      margin-bottom: ${(props) => props.theme.betweenTextBlocks};
     }
   }
 `;
 
-export { LegalPage }
+export { LegalPage };

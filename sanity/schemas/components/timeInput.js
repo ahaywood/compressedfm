@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { withDocument } from 'part:@sanity/form-builder'
 
@@ -7,7 +7,7 @@ import { Box, TextInput, Flex, Label } from '@sanity/ui'
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event'
 
 function createPatchFrom(value) {
-  PatchEvent.from(value === '' ? unset() : set(value))
+  return PatchEvent.from(value === '' ? unset() : set(value))
 }
 
 // split out seconds into hours, minutes, and seconds
@@ -40,13 +40,15 @@ const outgoingValue = (hours, minutes, seconds) => {
 }
 
 const TimeInput = ({ type, value, onChange, inputComponent }) => {
+  const [inSeconds, setInSeconds] = useState();
   const { hours, minutes, seconds } = incomingValue(value);
+
   return (
     <div>
       <FormField label={type.title} description={type.description} />
       <Flex>
         <Box>
-          <Label size={0}>Hours</Label>
+          <Label size={0} style={{ marginBottom: "5px" }}>Hours</Label>
           <TextInput
             type="text"
             // ref={ref}
@@ -58,7 +60,7 @@ const TimeInput = ({ type, value, onChange, inputComponent }) => {
         </Box>
         <Box>:</Box>
         <Box>
-          <Label size={0}>Minutes</Label>
+          <Label size={0} style={{ marginBottom: "5px" }}>Minutes</Label>
           <TextInput
             type="text"
             // ref={ref}
@@ -70,7 +72,7 @@ const TimeInput = ({ type, value, onChange, inputComponent }) => {
         </Box>
         <Box>:</Box>
         <Box>
-          <Label size={0}>Seconds</Label>
+          <Label size={0} style={{ marginBottom: "5px" }}>Seconds</Label>
           <TextInput
             type="text"
             // ref={ref}
@@ -83,8 +85,8 @@ const TimeInput = ({ type, value, onChange, inputComponent }) => {
       </Flex>
       <input
         type="hidden"
-        value=""
-        ref={ref}
+        value={inSeconds}
+        ref={inputComponent}
         onChange={event => { onChange(PatchEvent.from(set(event.target.value))) }}
       />
     </div>

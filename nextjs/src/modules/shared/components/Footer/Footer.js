@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { format } from "date-fns";
-import styled from "styled-components";
-import client from "utils/client";
-import groq from "groq";
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { format } from 'date-fns';
+import styled from 'styled-components';
+import client from 'utils/client';
+import groq from 'groq';
 
 // components
-import { SocialMedia } from "../SocialMedia"
-import { VerticalDivider } from "../VerticalDivider"
+import { Breakpoints } from 'styles/Breakpoints';
+import { Constants } from 'utils/constants';
+import { SocialMedia } from '../SocialMedia';
+import { VerticalDivider } from '../VerticalDivider';
 
 // utils
-import { Breakpoints } from "styles/Breakpoints";
-import { Constants } from "utils/constants";
 
 /** -------------------------------------------------
 * QUERY
@@ -32,9 +32,7 @@ const Footer = ({ props }) => {
     client.fetch(query).then((res) => setFooterLinks(res));
   }, []);
 
-  const getCurrentYear = () => {
-    return format(new Date(), "yyyy");
-  }
+  const getCurrentYear = () => format(new Date(), 'yyyy');
 
   return (
     <StyledFooter>
@@ -50,12 +48,10 @@ const Footer = ({ props }) => {
         {footerLinks && (
           <div className="legal">
             <ul>
-              {footerLinks.map(link => (
+              {footerLinks.map((link) => (
                 <li>
                   <Link href={`/legal/${link.slug.current}`}>
-                    <a>
-                      {link.title}
-                    </a>
+                    <a>{link.title}</a>
                   </Link>
                 </li>
               ))}
@@ -63,19 +59,19 @@ const Footer = ({ props }) => {
           </div>
         )}
         <div className="copyright">
-          <span className="line">Copyright &copy;{getCurrentYear()}. COMPRESSED.fm.</span>{" "}
+          <span className="line">Copyright &copy;{getCurrentYear()}. COMPRESSED.fm.</span>{' '}
           <span className="line">All Rights Reserved.</span>
         </div>
       </div>
     </StyledFooter>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledFooter = styled.footer`
-  padding: 0 ${props => props.theme.mobilePadding};
+  padding: 0 ${(props) => props.theme.mobilePadding};
   text-align: center;
 
   @media (${Breakpoints.portrait}) {
@@ -88,10 +84,10 @@ const StyledFooter = styled.footer`
 
   .social-media {
     a {
-      color: ${props => props.theme.mediumOrchard};
+      color: ${(props) => props.theme.mediumOrchard};
 
       &:hover {
-        color: ${props => props.theme.yellow};
+        color: ${(props) => props.theme.yellow};
       }
     }
 
@@ -104,9 +100,9 @@ const StyledFooter = styled.footer`
   .links-wrapper {
     border-top: 1px solid #454545;
     padding: 40px 0 65px;
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
     font-size: 1.6rem;
-    font-family: ${props => props.theme.mono};
+    font-family: ${(props) => props.theme.mono};
   }
 
   .legal {
@@ -124,7 +120,6 @@ const StyledFooter = styled.footer`
         flex-direction: row;
 
         li {
-
           &:first-child:before {
             content: '*';
             margin: 0 10px 0 0;
@@ -147,10 +142,10 @@ const StyledFooter = styled.footer`
       }
 
       a {
-        color: ${props => props.theme.white};
+        color: ${(props) => props.theme.white};
 
         &:hover {
-          color: ${props => props.theme.yellow};
+          color: ${(props) => props.theme.yellow};
           text-decoration: none;
         }
       }
@@ -170,4 +165,4 @@ const StyledFooter = styled.footer`
   }
 `;
 
-export { Footer }
+export { Footer };

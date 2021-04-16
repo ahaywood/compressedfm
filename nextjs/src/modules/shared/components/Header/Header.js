@@ -1,17 +1,14 @@
-import { useState } from "react";
-import Link from "next/link";
-import styled from "styled-components";
-import Image from "next/image";
-
-// utilities
-import { Constants } from "utils/constants";
+import { useState } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import Image from 'next/image';
 
 // components
-import { Navigation } from "./components/Navigation";
-import { Hamburger } from "./components/Hamburger";
+import { Breakpoints } from 'styles/Breakpoints';
+import { Navigation } from './components/Navigation';
+import { Hamburger } from './components/Hamburger';
 
 // styles
-import { Breakpoints } from "styles/Breakpoints";
 
 /** -------------------------------------------------
 * COMPONENT
@@ -21,7 +18,7 @@ const Header = () => {
 
   const handleClick = () => {
     setNavShowing(!navShowing);
-  }
+  };
 
   return (
     <StyledHeader>
@@ -38,8 +35,8 @@ const Header = () => {
         </h1>
       </div>
     </StyledHeader>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -71,12 +68,12 @@ const StyledHeader = styled.header`
 
   /* A weekly podcast about... */
   h2 {
-    font-family: ${props => props.theme.sansSerif};
+    font-family: ${(props) => props.theme.sansSerif};
     font-size: 2.4rem;
-    font-weight: ${props => props.theme.fontBlack};
+    font-weight: ${(props) => props.theme.fontBlack};
     text-align: left;
     margin: 0 auto;
-    padding: 0 ${props => props.theme.mobilePadding} 120px ${props => props.theme.mobilePadding};
+    padding: 0 ${(props) => props.theme.mobilePadding} 120px ${(props) => props.theme.mobilePadding};
     position: relative;
     max-width: 100%;
 
@@ -86,7 +83,7 @@ const StyledHeader = styled.header`
     }
 
     a {
-      color: #AAA;
+      color: #aaa;
       text-decoration: none;
 
       @media (${Breakpoints.portrait}) {
@@ -94,10 +91,10 @@ const StyledHeader = styled.header`
       }
 
       &:hover {
-        color: ${props => props.theme.yellow};
+        color: ${(props) => props.theme.yellow};
       }
     }
   }
 `;
 
-export { Header }
+export { Header };

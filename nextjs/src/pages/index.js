@@ -1,7 +1,7 @@
-import client from "utils/client";
-import groq from "groq";
-import { HomePage } from "modules/home";
-import { HomeLayout } from "modules/shared/layouts/HomeLayout";
+import client from 'utils/client';
+import groq from 'groq';
+import { HomePage } from 'modules/home';
+import { HomeLayout } from 'modules/shared/layouts/HomeLayout';
 
 export default function Home(props) {
   const content = Object.values(props);
@@ -9,7 +9,7 @@ export default function Home(props) {
     <HomeLayout>
       <HomePage episodes={content} />
     </HomeLayout>
-  )
+  );
 }
 
 const query = groq`*[_type == "episode" && published == true] | order(episodeNumber desc) {
@@ -23,6 +23,6 @@ const query = groq`*[_type == "episode" && published == true] | order(episodeNum
   audioPath
 }[0...4]`;
 
-Home.getInitialProps = async function (context) {
+Home.getInitialProps = async function () {
   return await client.fetch(query);
-}
+};

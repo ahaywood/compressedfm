@@ -1,51 +1,62 @@
-import { useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import styled from "styled-components";
+import { useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import styled from 'styled-components';
 
 // utilities
-import { EpisodeZeros } from "utils/EpisodeZeros";
-import { formatShortDate } from "utils/dateHelpers";
+import { EpisodeZeros } from 'utils/EpisodeZeros';
+import { formatShortDate } from 'utils/dateHelpers';
 
 // components
-import { MoreLink } from "modules/shared/components/MoreLink";
-import { FeaturedAudioPlayer } from "modules/shared/components/AudioPlayer/FeaturedAudioPlayer";
+import { MoreLink } from 'modules/shared/components/MoreLink';
+import { FeaturedAudioPlayer } from 'modules/shared/components/AudioPlayer/FeaturedAudioPlayer';
 
 // styles
-import { MixinBodyCopy } from "styles/Typography";
-import { Breakpoints } from "styles/Breakpoints";
-
+import { MixinBodyCopy } from 'styles/Typography';
+import { Breakpoints } from 'styles/Breakpoints';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const FeaturedEpisode = ({ episode: { audioPath, publishedAt, episodeNumber, guest, slug, title, briefDescription, episodeCover } }) => {
-  return (
-    <StyledFeaturedEpisode>
-      <div className="episode-number-date__wrapper">
-        <span className="episode">Episode</span>
-        <span className="episode-number">{EpisodeZeros(episodeNumber)}<EpisodeZeros number={episodeNumber} />{episodeNumber}</span>
-        <span className="episode-publish-date">{formatShortDate(publishedAt)}</span>
-      </div>
-      <div className="podcast-cover">
-        {/* cover art */}
-        <Image src="/images/podcast-cover.jpg" width={378} height={378} layout="intrinsic" />
-      </div>
-      <div>
-        <h3><Link href={`/episode/${slug.current}`}><a>{title}</a></Link></h3>
-        <p>{briefDescription}</p>
-        <MoreLink href={`/episode/${slug.current}`} />
-        <ul className="tiny-avatars">
-          <li><Image src="/images/james.png" height={60} width={60} alt="James Q Quick" layout="intrinsic" /></li>
-          <li><Image src="/images/amy.png" height={60} width={60} alt="Amy Dutton" layout="intrinsic" /></li>
-        </ul>
-      </div>
-      <div className="audio-player">
-        <FeaturedAudioPlayer />
-      </div>
-    </StyledFeaturedEpisode>
-  )
-}
+const FeaturedEpisode = ({
+  episode: { audioPath, publishedAt, episodeNumber, guest, slug, title, briefDescription, episodeCover },
+}) => (
+  <StyledFeaturedEpisode>
+    <div className="episode-number-date__wrapper">
+      <span className="episode">Episode</span>
+      <span className="episode-number">
+        {EpisodeZeros(episodeNumber)}
+        <EpisodeZeros number={episodeNumber} />
+        {episodeNumber}
+      </span>
+      <span className="episode-publish-date">{formatShortDate(publishedAt)}</span>
+    </div>
+    <div className="podcast-cover">
+      {/* cover art */}
+      <Image src="/images/podcast-cover.jpg" width={378} height={378} layout="intrinsic" />
+    </div>
+    <div>
+      <h3>
+        <Link href={`/episode/${slug.current}`}>
+          <a>{title}</a>
+        </Link>
+      </h3>
+      <p>{briefDescription}</p>
+      <MoreLink href={`/episode/${slug.current}`} />
+      <ul className="tiny-avatars">
+        <li>
+          <Image src="/images/james.png" height={60} width={60} alt="James Q Quick" layout="intrinsic" />
+        </li>
+        <li>
+          <Image src="/images/amy.png" height={60} width={60} alt="Amy Dutton" layout="intrinsic" />
+        </li>
+      </ul>
+    </div>
+    <div className="audio-player">
+      <FeaturedAudioPlayer />
+    </div>
+  </StyledFeaturedEpisode>
+);
 
 /** -------------------------------------------------
 * STYLES
@@ -54,8 +65,8 @@ const StyledFeaturedEpisode = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   margin: 0 auto;
-  max-width: ${props => props.theme.pageWidth};
-  padding: 0 ${props => props.theme.mobilePadding};
+  max-width: ${(props) => props.theme.pageWidth};
+  padding: 0 ${(props) => props.theme.mobilePadding};
   position: relative;
 
   @media (${Breakpoints.portrait}) {
@@ -84,18 +95,18 @@ const StyledFeaturedEpisode = styled.section`
 
   .episode,
   .episode-publish-date {
-    color: ${props => props.theme.white};
-    font-family: ${props => props.theme.mono};
+    color: ${(props) => props.theme.white};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.8rem;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
   }
 
   .episode-number {
-    color: ${props => props.theme.yellow};
-    font-family: ${props => props.theme.sansSerif};
+    color: ${(props) => props.theme.yellow};
+    font-family: ${(props) => props.theme.sansSerif};
     font-size: 8rem;
-    font-weight: ${props => props.theme.fontBlack};
+    font-weight: ${(props) => props.theme.fontBlack};
     margin: 0 10px;
 
     @media (${Breakpoints.regular}) {
@@ -105,9 +116,9 @@ const StyledFeaturedEpisode = styled.section`
 
   /* episode title */
   h3 {
-    font-family: ${props => props.theme.sansSerif};
+    font-family: ${(props) => props.theme.sansSerif};
     font-size: 6rem;
-    font-weight: ${props => props.theme.fontBlack};
+    font-weight: ${(props) => props.theme.fontBlack};
     line-height: 0.95;
     margin: 0 0 36px 0;
     padding: 0;
@@ -117,11 +128,11 @@ const StyledFeaturedEpisode = styled.section`
     }
 
     a {
-      color: ${props => props.theme.white};
+      color: ${(props) => props.theme.white};
       text-decoration: none;
 
       &:hover {
-        color: ${props => props.theme.lavendarIndigo};
+        color: ${(props) => props.theme.lavenderIndigo};
         text-decoration: none;
       }
     }
@@ -152,4 +163,4 @@ const StyledFeaturedEpisode = styled.section`
   }
 `;
 
-export { FeaturedEpisode }
+export { FeaturedEpisode };

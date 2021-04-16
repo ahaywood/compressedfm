@@ -1,15 +1,11 @@
-import client from "utils/client";
-import groq from "groq";
-import { TagPage } from "modules/tag";
-import { InteriorLayout } from "modules/shared/layouts/InteriorLayout";
+import client from 'utils/client';
+import groq from 'groq';
+import { TagPage } from 'modules/tag';
+import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 
 export default function Tag(props) {
   const content = Object.values(props);
-  return (
-    <InteriorLayout>
-      {/* <TagPage episodes={content} /> */}
-    </InteriorLayout>
-  )
+  return <InteriorLayout>{/* <TagPage episodes={content} /> */}</InteriorLayout>;
 }
 
 const query = groq`*[_type == "category"] {
@@ -28,6 +24,6 @@ const query = groq`*[_type == "category"] {
 }`;
 
 Tag.getInitialProps = async function (context) {
-  const { slug = "" } = context.query;
+  const { slug = '' } = context.query;
   return await client.fetch(query, { slug });
-}
+};

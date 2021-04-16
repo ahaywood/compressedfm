@@ -1,20 +1,19 @@
-import { VerticalDivider } from "modules/shared/components/VerticalDivider"
-import { HorizontalDivider } from "modules/shared/components/HorizontalDivider"
+import PropTypes from 'prop-types';
+import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
+import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
 
-const Divider = (props) => {
-  const { type } = props.node;
+const Divider = ({ node }) => {
+  const { type } = node;
 
-  if (type == "horizontal") {
-    return (
-      <HorizontalDivider />
-    )
+  if (type === 'horizontal') {
+    return <HorizontalDivider />;
   }
 
-  else {
-    return (
-      <VerticalDivider />
-    )
-  }
-}
+  return <VerticalDivider />;
+};
 
-export { Divider }
+Divider.propTypes = {
+  node: PropTypes.any,
+};
+
+export { Divider };

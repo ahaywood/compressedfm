@@ -1,2 +1,3 @@
-import { EpisodeGrid } from "./EpisodeGrid";
+import { EpisodeGrid } from './EpisodeGrid';
+
 export { EpisodeGrid };

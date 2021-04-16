@@ -1,32 +1,30 @@
-import PropTypes from "prop-types";
-import Link from "next/link";
-import styled from "styled-components";
-import { Icon } from "modules/shared/components/Icon";
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { Icon } from 'modules/shared/components/Icon';
 
-const MoreLink = ({ className, href, label }) => {
-  return (
-    <StyledMoreLink className={className}>
-      <Link href={href}>
-        <a>
-          {label}
-          <Icon name="arrow" />
-        </a>
-      </Link>
-    </StyledMoreLink>
-  )
-}
+const MoreLink = ({ className, href, label }) => (
+  <StyledMoreLink className={className}>
+    <Link href={href}>
+      <a>
+        {label}
+        <Icon name="arrow" />
+      </a>
+    </Link>
+  </StyledMoreLink>
+);
 
 const StyledMoreLink = styled.div`
   a {
-    color: ${props => props.theme.yellow};
-    font-family: ${props => props.theme.mono};
+    color: ${(props) => props.theme.yellow};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.8rem;
     letter-spacing: 4px;
     text-transform: uppercase;
     text-decoration: none;
 
     &:hover {
-      color: ${props => props.theme.white};
+      color: ${(props) => props.theme.white};
     }
 
     svg {
@@ -45,12 +43,12 @@ const StyledMoreLink = styled.div`
 MoreLink.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string.isRequired,
-  label: PropTypes.string
+  label: PropTypes.string,
 };
 
 MoreLink.defaultProps = {
   className: '',
-  label: "More"
-}
+  label: 'More',
+};
 
-export { MoreLink }
+export { MoreLink };

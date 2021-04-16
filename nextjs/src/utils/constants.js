@@ -1,6 +1,7 @@
 const Constants = Object.freeze({
   // podcat catchers
-  CASTBOX_URL: 'https://castbox.fm/login?jump_uri=%2Fmy%2Fclaim%3Fclaim_token%3D607728efd2336139e869df90%26target_id%3D4038683%26markpass%3D1',
+  CASTBOX_URL:
+    'https://castbox.fm/login?jump_uri=%2Fmy%2Fclaim%3Fclaim_token%3D607728efd2336139e869df90%26target_id%3D4038683%26markpass%3D1',
   GOOGLE_URL: '',
   ITUNES_URL: 'https://podcasts.apple.com/us/podcast/compressedfm/id1562477264',
   POCKET_CASTS_URL: 'https://pca.st/bce39jz8',
@@ -13,7 +14,7 @@ const Constants = Object.freeze({
   COMPRESSEDFM_TWITTER_URL: 'http://twitter.com/compressedfm',
 
   // james
-  JAMES_WEBSITE_URL: "http://jamesqquick.com",
+  JAMES_WEBSITE_URL: 'http://jamesqquick.com',
   JAMES_TWITTER_URL: 'http://twitter.com/jamesqquick',
   JAMES_GITHUB_URL: 'http://github.com/jamesqquick',
   JAMES_YOUTUBE_URL: 'http://youtube.com/c/jamesqquick',
@@ -25,8 +26,7 @@ const Constants = Object.freeze({
   AMY_GITHUB_URL: 'http://github.com/ahaywood',
   AMY_CODEPEN_URL: 'http://github.com/ahaywood',
   AMY_INSTAGRAM_URL: 'http://instagram.com/selfteachme',
-  AMY_TWITTER_URL: 'http://twitter.com/selfteachme',
-  AMY_YOUTUBE_URL: 'http://youtube.com/selfteachme'
+  AMY_YOUTUBE_URL: 'http://youtube.com/selfteachme',
 });
 
 export { Constants };

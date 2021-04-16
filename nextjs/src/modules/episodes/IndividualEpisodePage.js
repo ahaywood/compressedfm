@@ -1,47 +1,48 @@
-import { useState } from "react";
-import Image from "next/image";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { Breakpoints } from "styles/Breakpoints";
+import { useState } from 'react';
+import Image from 'next/image';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Breakpoints } from 'styles/Breakpoints';
 
-
-import { EpisodeSummary } from "./components/EpisodeSummary"
-import { FullTranscript } from "./components/FullTranscript"
-import { Guest } from "./components/Guest"
-import { JumpLinks } from "./components/JumpLinks"
-import { Links } from "./components/Links"
-import { Sponsors } from "./components/Sponsors"
-import { Podcatchers } from "modules/shared/components/Podcatchers";
-import { VerticalDivider } from "modules/shared/components/VerticalDivider";
-import { EpisodeGrid } from "modules/shared/components/EpisodeGrid";
-import { Newsletter } from "modules/shared/components/Newsletter";
-import { WaveformPlayer } from "modules/shared/components/AudioPlayer/WaveformPlayer";
+import { Podcatchers } from 'modules/shared/components/Podcatchers';
+import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
+import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
+import { Newsletter } from 'modules/shared/components/Newsletter';
+import { WaveformPlayer } from 'modules/shared/components/AudioPlayer/WaveformPlayer';
+import { EpisodeSummary } from './components/EpisodeSummary';
+import { FullTranscript } from './components/FullTranscript';
+import { Guest } from './components/Guest';
+import { JumpLinks } from './components/JumpLinks';
+import { Links } from './components/Links';
+import { Sponsors } from './components/Sponsors';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const IndividualEpisodePage = ({ episode: {
-  audioPath,
-  briefDescription,
-  categories,
-  episodeCover,
-  episodeNumber,
-  episodeTranscript,
-  guest,
-  listLink,
-  publishedAt,
-  sponsor,
-  timeJump,
-  title,
-  relatedEpisodes
-} }) => {
+const IndividualEpisodePage = ({
+  episode: {
+    audioPath,
+    briefDescription,
+    categories,
+    episodeCover,
+    episodeNumber,
+    episodeTranscript,
+    guest,
+    listLink,
+    publishedAt,
+    sponsor,
+    timeJump,
+    title,
+    relatedEpisodes,
+  },
+}) => {
   // state
   const [skipTo, setSkipTo] = useState(0);
 
   // jump to a specific time on the waveform player
   const skipToTimestamp = (time) => {
     setSkipTo(time);
-  }
+  };
 
   return (
     <StyledIndividualEpisodePage>
@@ -60,7 +61,7 @@ const IndividualEpisodePage = ({ episode: {
       <div className="content">
         <main>
           {/* GUEST */}
-          {(guest && guest.length > 0) && <Guest guest={guest} className="guests" />}
+          {guest && guest.length > 0 && <Guest guest={guest} className="guests" />}
 
           <div className="time-links">
             {/* TIME JUMP LINKS */}
@@ -71,16 +72,17 @@ const IndividualEpisodePage = ({ episode: {
           </div>
 
           {/* TRANSCRIPT */}
-          {episodeTranscript?.transcript && <FullTranscript className="transcript" handleClick={skipToTimestamp} transcript={episodeTranscript.transcript} />}
+          {episodeTranscript?.transcript && (
+            <FullTranscript
+              className="transcript"
+              handleClick={skipToTimestamp}
+              transcript={episodeTranscript.transcript}
+            />
+          )}
         </main>
 
         {/* SPONSORS */}
-        <aside className="sponsor-list">
-          {sponsor && (
-            <Sponsors className="sponsors" sponsor={sponsor} />
-          )}
-        </aside>
-
+        <aside className="sponsor-list">{sponsor && <Sponsors className="sponsors" sponsor={sponsor} />}</aside>
       </div>
       <VerticalDivider />
 
@@ -98,10 +100,9 @@ const IndividualEpisodePage = ({ episode: {
 
       {/* NEWSLETTER */}
       <Newsletter />
-
     </StyledIndividualEpisodePage>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -120,8 +121,8 @@ IndividualEpisodePage.propTypes = {
     timeJump: PropTypes.array,
     title: PropTypes.string,
     // transcript: PropTypes.string,
-    relatedEpisodes: PropTypes.array
-  })
+    relatedEpisodes: PropTypes.array,
+  }),
 };
 
 IndividualEpisodePage.defaultProps = {
@@ -138,8 +139,8 @@ IndividualEpisodePage.defaultProps = {
     timeJump: [],
     title: '',
     // transcript: '',
-    relatedEpisodes: []
-  }
+    relatedEpisodes: [],
+  },
 };
 
 /** -------------------------------------------------
@@ -148,7 +149,7 @@ IndividualEpisodePage.defaultProps = {
 const StyledIndividualEpisodePage = styled.section`
   .episode-summary {
     margin: 0 auto;
-    max-width: ${props => props.theme.pageWidth};
+    max-width: ${(props) => props.theme.pageWidth};
     position: relative;
   }
 
@@ -162,8 +163,8 @@ const StyledIndividualEpisodePage = styled.section`
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 20px;
     margin: 0 auto;
-    max-width: ${props => props.theme.pageWidth};
-    padding: 0 ${props => props.theme.mobilePadding};
+    max-width: ${(props) => props.theme.pageWidth};
+    padding: 0 ${(props) => props.theme.mobilePadding};
     position: relative;
 
     @media (${Breakpoints.regular}) {
@@ -195,7 +196,6 @@ const StyledIndividualEpisodePage = styled.section`
   .podcatchers {
     padding: 65px 0;
   }
-
 `;
 
-export { IndividualEpisodePage }
+export { IndividualEpisodePage };

@@ -1,2 +1,3 @@
-import { SponsorApplicationPage } from "./SponsorApplicationPage";
+import { SponsorApplicationPage } from './SponsorApplicationPage';
+
 export { SponsorApplicationPage };

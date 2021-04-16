@@ -1,44 +1,44 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Arrow } from "./Arrow";
-import { Dribbble } from "./Dribbble";
-import { Facebook } from "./Facebook";
-import { GitHub } from "./GitHub";
-import { Instagram } from "./Instagram";
-import { LinkedIn } from "./LinkedIn";
-import { Minus } from "./Minus";
-import { Pinterest } from "./Pinterest";
-import { Plus } from "./Plus";
-import { Twitch } from "./Twitch";
-import { Twitter } from "./Twitter";
-import { YouTube } from "./YouTube";
+import { Arrow } from './Arrow';
+import { Dribbble } from './Dribbble';
+import { Facebook } from './Facebook';
+import { GitHub } from './GitHub';
+import { Instagram } from './Instagram';
+import { LinkedIn } from './LinkedIn';
+import { Minus } from './Minus';
+import { Pinterest } from './Pinterest';
+import { Plus } from './Plus';
+import { Twitch } from './Twitch';
+import { Twitter } from './Twitter';
+import { YouTube } from './YouTube';
 
 const Icon = (props) => {
   switch (props.name.toLowerCase()) {
-    case "arrow":
+    case 'arrow':
       return <Arrow {...props} />;
-    case "dribbble":
+    case 'dribbble':
       return <Dribbble {...props} />;
-    case "facebook":
+    case 'facebook':
       return <Facebook {...props} />;
-    case "github":
+    case 'github':
       return <GitHub {...props} />;
-    case "instagram":
+    case 'instagram':
       return <Instagram {...props} />;
-    case "linkedin":
+    case 'linkedin':
       return <LinkedIn {...props} />;
-    case "minus":
+    case 'minus':
       return <Minus {...props} />;
-    case "pinterest":
+    case 'pinterest':
       return <Pinterest {...props} />;
-    case "plus":
+    case 'plus':
       return <Plus {...props} />;
-    case "twitch":
+    case 'twitch':
       return <Twitch {...props} />;
-    case "twitter":
+    case 'twitter':
       return <Twitter {...props} />;
-    case "youtube":
+    case 'youtube':
       return <YouTube {...props} />;
     default:
       return <div />;
@@ -53,9 +53,9 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  className: "",
-  height: "32",
-  width: "32",
+  className: '',
+  height: '32',
+  width: '32',
 };
 
 export { Icon };

@@ -1,2 +1,3 @@
-import { EpisodePage } from "./EpisodePage";
+import { EpisodePage } from './EpisodePage';
+
 export { EpisodePage };

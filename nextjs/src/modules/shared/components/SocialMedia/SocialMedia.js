@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { Icon } from "modules/shared/components/Icon";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Icon } from 'modules/shared/components/Icon';
 
 const SocialMedia = ({
   className,
@@ -12,98 +12,121 @@ const SocialMedia = ({
   twitch,
   twitter,
   pinterest,
-  youtube
-}) => {
-  return (
-    <StyledSocialMedia className={className}>
-      {/* Dribbble */}
-      {dribbble && (
-        <li>
-          <a href={dribbble} target="_blank"><Icon name="dribbble" /></a>
-        </li>
-      )}
+  youtube,
+}) => (
+  <StyledSocialMedia className={className}>
+    {/* Dribbble */}
+    {dribbble && (
+      <li>
+        <a href={dribbble} target="_blank" rel="noreferrer">
+          <Icon name="dribbble" />
+        </a>
+      </li>
+    )}
 
-      {/* Facebook */}
-      {facebook && (
-        <li>
-          <a href={facebook} target="_blank"><Icon name="facebook" /></a>
-        </li>
-      )}
+    {/* Facebook */}
+    {facebook && (
+      <li>
+        <a href={facebook} target="_blank" rel="noreferrer">
+          <Icon name="facebook" />
+        </a>
+      </li>
+    )}
 
-      {/* Instagram */}
-      {instagram && (
-        <li>
-          <a href={instagram} target="_blank"><Icon name="instagram" /></a>
-        </li>
-      )}
+    {/* Instagram */}
+    {instagram && (
+      <li>
+        <a href={instagram} target="_blank" rel="noreferrer">
+          <Icon name="instagram" />
+        </a>
+      </li>
+    )}
 
-      {/* GitHub */}
-      { github && (
-        <li>
-          <a href={github} target="_blank"><Icon name="github" /></a>
-        </li>
-      )}
+    {/* GitHub */}
+    {github && (
+      <li>
+        <a href={github} target="_blank" rel="noreferrer">
+          <Icon name="github" />
+        </a>
+      </li>
+    )}
 
-      {/* LinkedIn */}
-      {linkedin && (
-        <li>
-          <a href={linkedin} target="_blank"><Icon name="linkedin" /></a>
-        </li>
-      )}
+    {/* LinkedIn */}
+    {linkedin && (
+      <li>
+        <a href={linkedin} target="_blank" rel="noreferrer">
+          <Icon name="linkedin" />
+        </a>
+      </li>
+    )}
 
-      {/* Pinterest */}
-      {pinterest && (
-        <li>
-          <a href={pinterest} target="_blank"><Icon name="pinterest" /></a>
-        </li>
-      )}
+    {/* Pinterest */}
+    {pinterest && (
+      <li>
+        <a href={pinterest} target="_blank" rel="noreferrer">
+          <Icon name="pinterest" />
+        </a>
+      </li>
+    )}
 
-      {/* Twitch */}
-      { twitch && (
-        <li>
-          <a href={twitch} target="_blank"><Icon name="twitch" /></a>
-        </li>
-      )}
+    {/* Twitch */}
+    {twitch && (
+      <li>
+        <a href={twitch} target="_blank" rel="noreferrer">
+          <Icon name="twitch" />
+        </a>
+      </li>
+    )}
 
-      {/* Twitter */}
-      { twitter && (
-        <li>
-          <a href={twitter} target="_blank"><Icon name="twitter" /></a>
-        </li>
-      )}
+    {/* Twitter */}
+    {twitter && (
+      <li>
+        <a href={twitter} target="_blank" rel="noreferrer">
+          <Icon name="twitter" />
+        </a>
+      </li>
+    )}
 
-      {/* YouTube */}
-      { youtube && (
-        <li>
-          <a href={youtube} target="_blank"><Icon name="youtube" /></a>
-        </li>
-      )}
-
-    </StyledSocialMedia>
-  )
-}
+    {/* YouTube */}
+    {youtube && (
+      <li>
+        <a href={youtube} target="_blank" rel="noreferrer">
+          <Icon name="youtube" />
+        </a>
+      </li>
+    )}
+  </StyledSocialMedia>
+);
 
 SocialMedia.propTypes = {
   className: PropTypes.string,
+  dribbble: PropTypes.string,
   facebook: PropTypes.string,
   github: PropTypes.string,
+  instagram: PropTypes.string,
+  linkedin: PropTypes.string,
+  pinterest: PropTypes.string,
   twitch: PropTypes.string,
   twitter: PropTypes.string,
-  youtube: PropTypes.string
+  youtube: PropTypes.string,
 };
 
 SocialMedia.defaultProps = {
-  className: "",
-  facebook: "",
-  github: "",
-  twitch: "",
-  twitter: "",
-  youtube: ""
+  className: '',
+  dribbble: '',
+  facebook: '',
+  github: '',
+  instagram: '',
+  linkedin: '',
+  pinterest: '',
+  twitch: '',
+  twitter: '',
+  youtube: '',
 };
 
 const StyledSocialMedia = styled.ul`
   align-items: center;
-  color: ${props => props.theme.lavendarIndigo};
+  color: ${(props) => props.theme.lavenderIndigo};
   display: flex;
   justify-content: center;
   list-style-type: none;
@@ -117,7 +140,6 @@ const StyledSocialMedia = styled.ul`
       margin-right: 0;
     }
   }
-
 `;
 
-export { SocialMedia }
+export { SocialMedia };

@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const Meta = ({ meta }) => {
   const {
@@ -41,8 +41,8 @@ const Meta = ({ meta }) => {
 
       <meta property="og:url" content={url} />
     </>
-  )
-}
+  );
+};
 
 Meta.propTypes = {
   meta: PropTypes.shape({
@@ -57,26 +57,25 @@ Meta.propTypes = {
     twitterDescription: PropTypes.string,
     twitterImage: PropTypes.string,
     twitterImageAlt: PropTypes.string,
-    url: PropTypes.string
-  })
+    url: PropTypes.string,
+  }),
 };
-
 
 Meta.defaultProps = {
   meta: {
-    seoTitle: "",
-    seoDescription: "",
-    ogTitle: "",
-    ogDescription: "",
-    ogImage: "",
-    ogAudio: "",
-    twitterCardType: "",
-    twitterTitle: "",
-    twitterDescription: "",
-    twitterImage: "",
-    twitterImageAlt: "",
-    url: ""
-  }
+    seoTitle: '',
+    seoDescription: '',
+    ogTitle: '',
+    ogDescription: '',
+    ogImage: '',
+    ogAudio: '',
+    twitterCardType: '',
+    twitterTitle: '',
+    twitterDescription: '',
+    twitterImage: '',
+    twitterImageAlt: '',
+    url: '',
+  },
 };
 
-export { Meta }
+export { Meta };

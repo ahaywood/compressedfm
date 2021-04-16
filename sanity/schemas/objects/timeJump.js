@@ -1,3 +1,5 @@
+import TimeInput from "../components/timeInput";
+
 export default {
   type: 'object',
   name: 'timeJump',
@@ -18,6 +20,7 @@ export default {
       title: 'Time',
       name: 'time',
       type: 'number',
+      inputComponent: TimeInput,
       description: 'in seconds'
     },
     {

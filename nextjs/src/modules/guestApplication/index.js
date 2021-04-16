@@ -1,2 +1,3 @@
-import { GuestApplicationPage } from "./GuestApplicationPage";
+import { GuestApplicationPage } from './GuestApplicationPage';
+
 export { GuestApplicationPage };

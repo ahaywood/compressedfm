@@ -1,2 +1,3 @@
-import { NewsletterPage } from "./NewsletterPage";
+import { NewsletterPage } from './NewsletterPage';
+
 export { NewsletterPage };

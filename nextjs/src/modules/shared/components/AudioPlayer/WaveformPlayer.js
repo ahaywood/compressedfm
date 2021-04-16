@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { Icon } from "modules/shared/components/Icon";
-import { calculateTime } from "utils/timeHelpers";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { Icon } from 'modules/shared/components/Icon';
+import { calculateTime } from 'utils/timeHelpers';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -14,15 +14,14 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
   const [speed, setSpeed] = useState(1);
 
   // references
-  const audioPlayer = useRef();   // set up reference for the audio component
-  const progressBar = useRef();   // reference for the progress bar
-  const animationRef = useRef();  // reference the animation
+  const audioPlayer = useRef(); // set up reference for the audio component
+  const progressBar = useRef(); // reference for the progress bar
+  const animationRef = useRef(); // reference the animation
 
   useEffect(() => {
     timeTravel(skipTo);
     play();
-  }, [skipTo])
-
+  }, [skipTo]);
 
   // GET THE DURATION - once the meta data has been loaded
   // loadedmetadata is provided by the browser
@@ -41,22 +40,22 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
     } else {
       play();
     }
-  }
+  };
 
   const play = () => {
     audioPlayer.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);
     console.log('play');
-  }
+  };
 
   const pause = () => {
     audioPlayer.current.pause();
     cancelAnimationFrame(animationRef.current);
-  }
+  };
 
   const whilePlaying = () => {
     progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
-    progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`);
+    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
     updateCurrentTime();
 
     // when you reach the end of the song
@@ -66,49 +65,49 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
     }
 
     animationRef.current = requestAnimationFrame(whilePlaying);
-  }
+  };
 
   const restart = () => {
     // progressBar.current.value = 0;
     // updateCurrentTime();
     pause();
-  }
+  };
 
   // when the playhead is moved, update the current time (text)
   const updateCurrentTime = () => {
     setCurrentTime(progressBar.current.value);
-  }
+  };
 
   // the playhead moves when you click on the progress bar
   // update the audio player to the new point
   const changeAudioToKnobby = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
-    progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`);
-  }
+    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
+  };
 
   // toggle play / pause when you tap the space bar
   const tapSpaceBar = (e) => {
     if (e.keyCode == 32) {
       togglePlaying();
     }
-  }
+  };
 
   // jump back 30 seconds
   const backThirty = () => {
     timeTravel(Number(progressBar.current.value) - 30);
-  }
+  };
 
   // jump forward 30 seconds
   const forwardThirty = () => {
     timeTravel(Number(progressBar.current.value) + 30);
-  }
+  };
 
   // moves to a different point on the track
   const timeTravel = (newTime) => {
     progressBar.current.value = newTime;
     updateCurrentTime();
     changeAudioToKnobby();
-  }
+  };
 
   // change the playback speed
   const changePlaybackSpeed = () => {
@@ -135,7 +134,7 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
         setSpeed(1);
         break;
     }
-  }
+  };
 
   return (
     <StyledFeaturedAudioPlayer>
@@ -160,12 +159,16 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
       {/* play / pause */}
       <div className="controls">
         <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
-          {isPlaying ? (<svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
-            <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
-          </svg>) : (<svg width="24" height="29" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" className="pause">
-            <rect width="9" height="29" />
-            <rect x="15" width="9" height="29" />
-          </svg>)}
+          {isPlaying ? (
+            <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
+              <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
+            </svg>
+          ) : (
+            <svg width="24" height="29" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" className="pause">
+              <rect width="9" height="29" />
+              <rect x="15" width="9" height="29" />
+            </svg>
+          )}
         </button>
 
         {/* current time */}
@@ -192,25 +195,29 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
         </button>
 
         {/* change playback speed */}
-        <button className="playbackSpeed" onClick={changePlaybackSpeed}>{speed}X</button>
+        <button className="playbackSpeed" onClick={changePlaybackSpeed}>
+          {speed}X
+        </button>
       </div>
     </StyledFeaturedAudioPlayer>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledFeaturedAudioPlayer = styled.div`
-  background: linear-gradient(${props => props.theme.black} 0%,
-    ${props => props.theme.black} 50%,
-    ${props => props.theme.bastille} 50%,
-    ${props => props.theme.bastille} 100% );
-  border: 1px solid ${props => props.theme.bastille};
+  background: linear-gradient(
+    ${(props) => props.theme.black} 0%,
+    ${(props) => props.theme.black} 50%,
+    ${(props) => props.theme.bastille} 50%,
+    ${(props) => props.theme.bastille} 100%
+  );
+  border: 1px solid ${(props) => props.theme.bastille};
   display: grid;
   grid-template-areas:
-    "cover meta"
-    "cover controls";
+    'cover meta'
+    'cover controls';
   grid-template-columns: 160px 1fr;
   grid-column-gap: 20px;
   padding: 20px;
@@ -232,7 +239,7 @@ const StyledFeaturedAudioPlayer = styled.div`
 
     /* episode title */
     h2 {
-      font-family: ${props => props.theme.sansSerif};
+      font-family: ${(props) => props.theme.sansSerif};
       font-size: 2rem;
       line-height: 1;
       margin: 0;
@@ -241,8 +248,8 @@ const StyledFeaturedAudioPlayer = styled.div`
 
     /* episode number */
     h4 {
-      color: ${props => props.theme.gray};
-      font-family: ${props => props.theme.mono};
+      color: ${(props) => props.theme.gray};
+      font-family: ${(props) => props.theme.mono};
       font-size: 1.4rem;
       font-weight: normal;
       line-height: 1;
@@ -261,19 +268,19 @@ const StyledFeaturedAudioPlayer = styled.div`
 
   .playbackSpeed {
     background: none;
-    border: 1px solid ${props => props.theme.white};
-    color: ${props => props.theme.white};
+    border: 1px solid ${(props) => props.theme.white};
+    color: ${(props) => props.theme.white};
     cursor: pointer;
-    font-family: ${props => props.theme.mono};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.2rem;
     position: absolute;
     left: 90px;
     top: 55px;
 
     &:hover {
-      background: ${props => props.theme.yellow};
-      border-color: ${props => props.theme.yellow};
-      color: ${props => props.theme.black};
+      background: ${(props) => props.theme.yellow};
+      border-color: ${(props) => props.theme.yellow};
+      color: ${(props) => props.theme.black};
     }
   }
 
@@ -281,10 +288,10 @@ const StyledFeaturedAudioPlayer = styled.div`
     align-items: center;
     background: none;
     border: none;
-    color: ${props => props.theme.yellow};
+    color: ${(props) => props.theme.yellow};
     cursor: pointer;
     display: flex;
-    font-family: ${props => props.theme.mono};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.4rem;
     position: absolute;
     width: 75px;
@@ -318,15 +325,14 @@ const StyledFeaturedAudioPlayer = styled.div`
       right: 0;
       top: 47px;
     }
-
   }
 
   .playPause {
     align-items: center;
-    background: ${props => props.theme.lightGray};
+    background: ${(props) => props.theme.lightGray};
     border: none;
     border-radius: 50%;
-    color: ${props => props.theme.black};
+    color: ${(props) => props.theme.black};
     cursor: pointer;
     display: flex;
     height: 70px;
@@ -336,8 +342,8 @@ const StyledFeaturedAudioPlayer = styled.div`
     width: 70px;
 
     &:hover {
-      background: ${props => props.theme.yellow};
-      color: ${props => props.theme.lavendarIndigo};
+      background: ${(props) => props.theme.yellow};
+      color: ${(props) => props.theme.lavenderIndigo};
     }
 
     svg {
@@ -352,9 +358,9 @@ const StyledFeaturedAudioPlayer = styled.div`
 
   .current-time,
   .duration {
-    background: ${props => props.theme.black};
-    color: ${props => props.theme.white};
-    font-family: ${props => props.theme.mono};
+    background: ${(props) => props.theme.black};
+    color: ${(props) => props.theme.white};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.2rem;
     padding: 3px 0;
     position: absolute;
@@ -380,17 +386,18 @@ const StyledFeaturedAudioPlayer = styled.div`
     position: relative;
   }
 
-  input[type="range"] {
+  input[type='range'] {
     --buffered-width: 0;
     --seek-before-width: 0;
 
-    --bar-bg: ${props => props.theme.montana};
-    --seek-before-color: ${props => props.theme.gray};
-    --buffered-color: ${props => props.theme.shipGray};
+    --bar-bg: ${(props) => props.theme.montana};
+    --seek-before-color: ${(props) => props.theme.gray};
+    --buffered-color: ${(props) => props.theme.shipGray};
 
     appearance: none;
     /* background: var(--bar-bg); */
-    background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
+    background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png')
+      left top no-repeat;
     border-radius: 10px;
     position: relative;
     width: 375px;
@@ -406,13 +413,14 @@ const StyledFeaturedAudioPlayer = styled.div`
       cursor: pointer;
       height: 40px;
       /* width: var(--seek-before-width); */
-      /* width: 30px; */
+    /* width: 30px; */
     /* }  */
 
     /* progress bar - chrome */
     &::before {
-      background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:white,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
-      content: "";
+      background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:white,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png')
+        left top no-repeat;
+      content: '';
       cursor: pointer;
       height: 40px;
       left: 0;
@@ -423,65 +431,66 @@ const StyledFeaturedAudioPlayer = styled.div`
       z-index: 2;
     }
 
-  /* progress bar - firefox */
-  input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: 40px;
-    cursor: pointer;
-    background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
-  }
+    /* progress bar - firefox */
+    input[type='range']::-moz-range-track {
+      width: 100%;
+      height: 40px;
+      cursor: pointer;
+      background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png')
+        left top no-repeat;
+    }
 
-  input[type="range"]::-moz-focus-outer {
+    input[type='range']::-moz-focus-outer {
       border: 0;
-  }
+    }
 
-  /* played bar - firefox */
-  input[type="range"]::-moz-range-progress {
-    background-color: ${props => props.theme.gray};
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-    height: 11px;
-  }
+    /* played bar - firefox */
+    input[type='range']::-moz-range-progress {
+      background-color: ${(props) => props.theme.gray};
+      border-bottom-left-radius: 10px;
+      border-top-left-radius: 10px;
+      height: 11px;
+    }
 
-  /* knobby - safari */
-  input[type="range"]::-webkit-slider-thumb {
-    position: relative;
-    -webkit-appearance: none;
-    box-sizing: content-box;
-    border: none;
-    height: 40px;
-    width: 1px;
-    background-color: ${props => props.theme.yellow};
-    cursor: pointer;
-    margin: -2px 0 0 0;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
-    z-index: 3;
-    position: relative;
-    top: -13px;
-  }
+    /* knobby - safari */
+    input[type='range']::-webkit-slider-thumb {
+      position: relative;
+      -webkit-appearance: none;
+      box-sizing: content-box;
+      border: none;
+      height: 40px;
+      width: 1px;
+      background-color: ${(props) => props.theme.yellow};
+      cursor: pointer;
+      margin: -2px 0 0 0;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
+      z-index: 3;
+      position: relative;
+      top: -13px;
+    }
 
-  /* knobby while dragging - safari */
-  input[type="range"]:active::-webkit-slider-thumb {
-    transform: scale(1.2);
-    background: ${props => props.theme.yellow};
-  }
+    /* knobby while dragging - safari */
+    input[type='range']:active::-webkit-slider-thumb {
+      transform: scale(1.2);
+      background: ${(props) => props.theme.yellow};
+    }
 
-  /* knobby - firefox */
-  input[type="range"]::-moz-range-thumb {
-    box-sizing: content-box;
-    border: transparent;
-    height: 40px;
-    width: 2px;
-    background-color: ${props => props.theme.yellow};
-    cursor: pointer;
-    z-index: 3;
-    position: relative;
-  }
-  input[type="range"]:active::-moz-range-thumb {
-    transform: scale(1.2);
-    background: ${props => props.theme.yellow};
-  }
+    /* knobby - firefox */
+    input[type='range']::-moz-range-thumb {
+      box-sizing: content-box;
+      border: transparent;
+      height: 40px;
+      width: 2px;
+      background-color: ${(props) => props.theme.yellow};
+      cursor: pointer;
+      z-index: 3;
+      position: relative;
+    }
+    input[type='range']:active::-moz-range-thumb {
+      transform: scale(1.2);
+      background: ${(props) => props.theme.yellow};
+    }
   }
 `;
 
-export { WaveformPlayer }
+export { WaveformPlayer };

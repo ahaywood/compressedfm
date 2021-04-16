@@ -1,27 +1,32 @@
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const List = (props) => {
-  if (props.type === "bullet") {
-    return (
-      <StyledUl>{props.children}</StyledUl>
-    );
+const List = ({ type, children }) => {
+  if (type === 'bullet') {
+    return <StyledUl>{children}</StyledUl>;
   }
-  if (props.type === "number") {
-    return (
-      <StyledOl>{props.children}</StyledOl>
-    );
+  if (type === 'number') {
+    return <StyledOl>{children}</StyledOl>;
   }
-  return (
-    <div>{props.children}</div>
-  );
+  return <div>{children}</div>;
+};
+
+List.propTypes = {
+  type: PropTypes.oneOf(['bullet', 'number']),
+  children: PropTypes.string,
+};
+
+List.defaultProps = {
+  type: '',
+  children: '',
 };
 
 export { List };
 
 const StyledUl = styled.ul`
-  margin-bottom: ${props => props.theme.betweenTextBlocks};
+  margin-bottom: ${(props) => props.theme.betweenTextBlocks};
 `;
 
 const StyledOl = styled.ol`
-  margin-bottom: ${props => props.theme.betweenTextBlocks};
+  margin-bottom: ${(props) => props.theme.betweenTextBlocks};
 `;

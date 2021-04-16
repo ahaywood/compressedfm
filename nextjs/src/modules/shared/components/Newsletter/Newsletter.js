@@ -1,22 +1,22 @@
-import { useEffect } from "react";
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
+import { useEffect } from 'react';
+import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
 import kwesforms from 'kwesforms';
 
 // component
-import { Icon } from "modules/shared/components/Icon";
+import { Icon } from 'modules/shared/components/Icon';
 
 // styles
-import { MixinBodyCopy } from "styles/Typography";
-import { MixinTextField, MixinLabel, MixinButtonWithArrow } from "styles/Form";
-import { Breakpoints } from "styles/Breakpoints";
+import { MixinBodyCopy } from 'styles/Typography';
+import { MixinTextField, MixinLabel, MixinButtonWithArrow } from 'styles/Form';
+import { Breakpoints } from 'styles/Breakpoints';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
 const Newsletter = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => { }
+  const onSubmit = () => { };
 
   useEffect(() => {
     kwesforms.init();
@@ -25,11 +25,12 @@ const Newsletter = () => {
   return (
     <StyledNewsletter>
       <h2>Sign up for the newsletter</h2>
-      <p>
-        Want to stay up to date on our podcast? Get a behind-the-scenes look{" "}
-        and know when new episodes drop.
-      </p>
-      <form onSubmit={handleSubmit(onSubmit)} className="kwes-form" action="https://kwes.io/api/foreign/forms/VBsOqTJ8MTds1LU9utSf">
+      <p>Want to stay up to date on our podcast? Get a behind-the-scenes look and know when new episodes drop.</p>
+      <form
+        onSubmit={handleSubmit()}
+        className="kwes-form"
+        action="https://kwes.io/api/foreign/forms/VBsOqTJ8MTds1LU9utSf"
+      >
         <input type="email" name="email" id="email" ref={register} placeholder=" " rules="required" />
         <label htmlFor="email">Email Address</label>
         <button className="submit" type="submit" role="submit" onClick={onSubmit}>
@@ -37,26 +38,26 @@ const Newsletter = () => {
         </button>
       </form>
     </StyledNewsletter>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledNewsletter = styled.div`
-  padding: ${props => props.theme.mobilePadding};
+  padding: ${(props) => props.theme.mobilePadding};
   position: relative;
 
   @media (${Breakpoints.portrait}) {
     margin: 60px auto;
     padding: 0;
-    width: ${props => props.theme.formWidth};
+    width: ${(props) => props.theme.formWidth};
   }
 
   h2 {
-    color: ${props => props.theme.white};
-    font-family: ${props => props.theme.sansSerif};
-    font-weight: ${props => props.theme.fontBlack};
+    color: ${(props) => props.theme.white};
+    font-family: ${(props) => props.theme.sansSerif};
+    font-weight: ${(props) => props.theme.fontBlack};
     font-size: 3.4rem;
     margin: 0 0 10px 0;
     padding: 0;
@@ -79,7 +80,7 @@ const StyledNewsletter = styled.div`
     ${MixinLabel};
   }
 
-  input[type="email"] {
+  input[type='email'] {
     ${MixinTextField};
     padding-right: 70px;
   }
@@ -96,4 +97,4 @@ const StyledNewsletter = styled.div`
   }
 `;
 
-export { Newsletter }
+export { Newsletter };

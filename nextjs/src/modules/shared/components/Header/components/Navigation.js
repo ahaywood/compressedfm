@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import client from "utils/client";
-import groq from "groq";
-import styled from "styled-components";
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import client from 'utils/client';
+import groq from 'groq';
+import styled from 'styled-components';
 
 // components
-import { Tag } from "./Tag";
-import { TopNav } from "./TopNav";
-import { BtmNav } from "./BtmNav";
-import { SearchForm } from "./SearchForm";
+import { Breakpoints } from 'styles/Breakpoints';
+import { Tag } from './Tag';
+import { TopNav } from './TopNav';
+import { BtmNav } from './BtmNav';
+import { SearchForm } from './SearchForm';
 
 // styles
-import { Breakpoints } from "styles/Breakpoints";
-import { Zindex } from "styles/Zindex";
 
 /** -------------------------------------------------
 * COMPONENT
@@ -24,7 +23,7 @@ const Navigation = ({ isShowing }) => {
   useEffect(() => {
     const query = groq`*[_type == "category"] {_id, title, slug}`;
     client.fetch(query).then((res) => setTags(res));
-  }, [])
+  }, []);
 
   return (
     <StyledNavigation className={isShowing ? 'showing' : ''}>
@@ -41,40 +40,43 @@ const Navigation = ({ isShowing }) => {
 
         <h3>Tags</h3>
         <ul className="tag-list">
-          {tags && tags.map((tag) => (
-            <li key={tag._id}><Tag name={tag.title} /></li>
-          ))}
+          {tags &&
+            tags.map((tag) => (
+              <li key={tag._id}>
+                <Tag name={tag.title} />
+              </li>
+            ))}
         </ul>
       </div>
     </StyledNavigation>
-  )
-}
+  );
+};
 
 Navigation.propTypes = {
-  isShowing: PropTypes.bool
+  isShowing: PropTypes.bool,
 };
 
 Navigation.defaultProps = {
-  isShowing: false
+  isShowing: false,
 };
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledNavigation = styled.div`
-  --container-padding: 48px ${props => props.theme.mobilePadding};
+  --container-padding: 48px ${(props) => props.theme.mobilePadding};
 
   @media (${Breakpoints.portrait}) {
     --container-padding: 110px;
   }
 
-  background:${props => props.theme.bastille};
+  background: ${(props) => props.theme.bastille};
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto auto;
   grid-template-areas:
-    "main search"
-    "sub search";
+    'main search'
+    'sub search';
   height: 100vh;
   left: 0;
   position: fixed;
@@ -90,16 +92,16 @@ const StyledNavigation = styled.div`
   }
 
   .main-nav {
-    background: ${props => props.theme.bastille};
+    background: ${(props) => props.theme.bastille};
     grid-area: main;
     padding: var(--container-padding);
     padding-bottom: 0;
-    text-align:left;
+    text-align: left;
   }
 
   .sub-nav {
     align-self: flex-end;
-    background: ${props => props.theme.bastille};;
+    background: ${(props) => props.theme.bastille};
     grid-area: sub;
     padding: var(--container-padding);
     padding-top: 0;
@@ -107,10 +109,10 @@ const StyledNavigation = styled.div`
   }
 
   .search {
-    background: ${props => props.theme.charcoal};
+    background: ${(props) => props.theme.charcoal};
     display: none;
     grid-area: search;
-    padding: var(--container-padding);;
+    padding: var(--container-padding);
     text-align: left;
 
     @media (${Breakpoints.medium}) {
@@ -119,9 +121,9 @@ const StyledNavigation = styled.div`
   }
 
   h3 {
-    color: ${props => props.theme.white};
-    font-family: ${props => props.theme.sansSerif};
-    font-weight: ${props => props.theme.fontMedium};
+    color: ${(props) => props.theme.white};
+    font-family: ${(props) => props.theme.sansSerif};
+    font-weight: ${(props) => props.theme.fontMedium};
     font-size: 2.4rem;
   }
 
@@ -132,8 +134,6 @@ const StyledNavigation = styled.div`
     margin: 0;
     padding: 0;
   }
-
-
 `;
 
 export { Navigation };

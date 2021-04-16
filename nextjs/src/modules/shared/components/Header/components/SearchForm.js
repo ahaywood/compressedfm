@@ -1,26 +1,26 @@
-import { useRef } from "react";
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
-import { useRouter } from 'next/router'
+import { useRef } from 'react';
+import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 // components
-import { Icon } from "modules/shared/components/Icon";
+import { Icon } from 'modules/shared/components/Icon';
 
 // styles
-import { MixinTextField, MixinLabel, MixinButtonWithArrow } from "styles/Form";
+import { MixinTextField, MixinLabel, MixinButtonWithArrow } from 'styles/Form';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
 const SearchForm = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const searchInput = useRef();
   const router = useRouter();
 
   const onSubmit = (data) => {
     // redirect to the homepage, send the key words
     router.push({ pathname: '/search', query: data });
-  }
+  };
 
   return (
     <StyledSearchForm>
@@ -31,8 +31,8 @@ const SearchForm = () => {
           id="search"
           placeholder=" "
           ref={(e) => {
-            searchInput.current = e
-            register(e, { required: true })
+            searchInput.current = e;
+            register(e, { required: true });
           }}
         />
         <label htmlFor="search">Search</label>
@@ -41,27 +41,27 @@ const SearchForm = () => {
         </button>
       </form>
     </StyledSearchForm>
-  )
-}
+  );
+};
 
-export { SearchForm }
+export { SearchForm };
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledSearchForm = styled.div`
   form {
-      position: relative;
-      margin-bottom: 85px;
-    }
+    position: relative;
+    margin-bottom: 85px;
+  }
 
-    input[type=text] {
-      ${MixinTextField}
-    }
+  input[type='text'] {
+    ${MixinTextField}
+  }
 
-    label {
-      ${MixinLabel}
-    }
+  label {
+    ${MixinLabel}
+  }
 
-    ${MixinButtonWithArrow}
+  ${MixinButtonWithArrow}
 `;

@@ -1,17 +1,11 @@
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
+import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
 
 // components
-import { Button } from "modules/shared/form/Button";
+import { Button } from 'modules/shared/form/Button';
 
 // styles
-import {
-  MixinLabel,
-  MixinTextField,
-  MixinTextarea,
-  MixinSelect
-} from "styles/Form";
-
+import { MixinLabel, MixinTextField, MixinTextarea, MixinSelect } from 'styles/Form';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -76,7 +70,9 @@ const SponsorApplicationPage = () => {
         </div>
         <div className="full">
           <h5>Future Episodes</h5>
-          <p>Here’s a list of the episode topics we’ve scheduled. Is there a specific episode that you’d like to sponsor?</p>
+          <p>
+            Here’s a list of the episode topics we’ve scheduled. Is there a specific episode that you’d like to sponsor?
+          </p>
           <ul>
             <li>
               <input type="checkbox" />
@@ -100,7 +96,10 @@ const SponsorApplicationPage = () => {
           <label htmlFor="promoCode">Promo Code</label>
         </div>
         <div className="full">
-          <p>The most successful campaigns are ones where Amy and James have access to the product and can speak from personal experience.</p>
+          <p>
+            The most successful campaigns are ones where Amy and James have access to the product and can speak from
+            personal experience.
+          </p>
         </div>
         <div className="full">
           <textarea ref={register} placeholder=" " />
@@ -114,10 +113,9 @@ const SponsorApplicationPage = () => {
           <Button />
         </div>
       </form>
-
     </StyledSponsorApplicationPage>
-  )
-}
+  );
+};
 
 const StyledSponsorApplicationPage = styled.section`
   .page-title__wrapper {
@@ -129,7 +127,7 @@ const StyledSponsorApplicationPage = styled.section`
       url('/images/horizontal-divider.svg') right center no-repeat;
     color: white;
     display: inline-block;
-    font-family: ${props => props.theme.mono};
+    font-family: ${(props) => props.theme.mono};
     font-size: 2.4rem;
     font-style: italic;
     letter-spacing: 0.2rem;
@@ -144,7 +142,7 @@ const StyledSponsorApplicationPage = styled.section`
     grid-column-gap: 24px;
     grid-row-gap: 32px;
     margin: 60px auto;
-    max-width: ${props => props.theme.formWidth};
+    max-width: ${(props) => props.theme.formWidth};
   }
 
   .half,
@@ -168,9 +166,9 @@ const StyledSponsorApplicationPage = styled.section`
     ${MixinLabel};
   }
 
-  input[type=text],
-  input[type=email],
-  input[type=tel] {
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'] {
     ${MixinTextField}
   }
 
@@ -181,7 +179,6 @@ const StyledSponsorApplicationPage = styled.section`
   select {
     ${MixinSelect}
   }
-
 `;
 
-export { SponsorApplicationPage }
+export { SponsorApplicationPage };

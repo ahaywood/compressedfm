@@ -1,11 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-const ShortAudioPlayer = () => {
-  return (
-    <div>
-      Short Audio Player
-    </div>
-  )
-}
+const ShortAudioPlayer = () => <div>Short Audio Player</div>;
 
-export { ShortAudioPlayer }
+export { ShortAudioPlayer };

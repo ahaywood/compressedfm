@@ -1,17 +1,11 @@
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
+import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
 
 // components
-import { Button } from "modules/shared/form/Button";
+import { Button } from 'modules/shared/form/Button';
 
 // styles
-import {
-  MixinForm,
-  MixinLabel,
-  MixinTextField,
-  MixinTextarea,
-  MixinSelect
-} from "styles/Form";
+import { MixinForm, MixinLabel, MixinTextField, MixinTextarea, MixinSelect } from 'styles/Form';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -69,7 +63,7 @@ const GuestApplicationPage = () => {
         </div>
 
         <div className="full">
-          <textarea name="bio" id="bio" ref={register}></textarea>
+          <textarea name="bio" id="bio" ref={register} />
           <label htmlFor="bio">Bio</label>
         </div>
 
@@ -79,17 +73,23 @@ const GuestApplicationPage = () => {
         </div>
 
         <div className="full">
-          <input type="text" name="podcastTopic" id="podcastTopic" ref={register} placeholder="What would you like to talk about?" />
+          <input
+            type="text"
+            name="podcastTopic"
+            id="podcastTopic"
+            ref={register}
+            placeholder="What would you like to talk about?"
+          />
           <label htmlFor="podcastTopic">Podcast Topic</label>
         </div>
 
         <div className="full">
-          <textarea name="shoutouts" id="shoutouts" ref={register}></textarea>
+          <textarea name="shoutouts" id="shoutouts" ref={register} />
           <label htmlFor="shoutouts">Shoutouts</label>
         </div>
 
         <div className="full">
-          <textarea name="linksToShare" id="linksToShare" ref={register}></textarea>
+          <textarea name="linksToShare" id="linksToShare" ref={register} />
           <label htmlFor="linksToShare">Links to Share</label>
         </div>
 
@@ -98,8 +98,8 @@ const GuestApplicationPage = () => {
         </div>
       </form>
     </StyledGuestApplicationPage>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -111,8 +111,8 @@ const StyledGuestApplicationPage = styled.section`
     ${MixinLabel};
   }
 
-  input[type=text],
-  input[type=email] {
+  input[type='text'],
+  input[type='email'] {
     ${MixinTextField}
   }
 
@@ -125,4 +125,4 @@ const StyledGuestApplicationPage = styled.section`
   }
 `;
 
-export { GuestApplicationPage }
+export { GuestApplicationPage };
