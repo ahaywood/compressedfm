@@ -1,10 +1,35 @@
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { format } from "date-fns";
 import styled from "styled-components";
+import client from "utils/client";
+import groq from "groq";
+
+// components
 import { SocialMedia } from "../SocialMedia"
 import { VerticalDivider } from "../VerticalDivider"
+
+// utils
 import { Constants } from "utils/constants";
 
-const Footer = () => {
+/** -------------------------------------------------
+* QUERY
+---------------------------------------------------- */
+const query = groq`*[_type == "legal" && published == true] {
+  _id,
+  title,
+  slug
+}`;
+
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
+const Footer = ({ props }) => {
+  const [footerLinks, setFooterLinks] = useState();
+
+  useEffect(() => {
+    client.fetch(query).then((res) => setFooterLinks(res));
+  }, []);
 
   const getCurrentYear = () => {
     return format(new Date(), "yyyy");
@@ -19,14 +44,35 @@ const Footer = () => {
         github={Constants.COMPRESSEDFM_GITHUB_URL}
         twitter={Constants.COMPRESSEDFM_TWITTER_URL}
       />
-      <div className="copyright">
-        <span className="line">Copyright &copy;{getCurrentYear()}. COMPRESSED.fm.</span>{" "}
-        <span className="line">All Rights Reserved.</span>
+
+      <div className="links-wrapper">
+        {footerLinks && (
+          <div className="legal">
+            <ul>
+              {footerLinks.map(link => (
+                <li>
+                  <Link href={`/legal/${link.slug.current}`}>
+                    <a>
+                      {link.title}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div className="copyright">
+          <span className="line">Copyright &copy;{getCurrentYear()}. COMPRESSED.fm.</span>{" "}
+          <span className="line">All Rights Reserved.</span>
+        </div>
       </div>
     </StyledFooter>
   )
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledFooter = styled.footer`
   text-align: center;
 
@@ -49,16 +95,50 @@ const StyledFooter = styled.footer`
     }
   }
 
-  .copyright {
+  .links-wrapper {
     border-top: 1px solid #454545;
+    padding: 40px 0 65px;
     color: ${props => props.theme.white};
     font-size: 1.6rem;
     font-family: ${props => props.theme.mono};
+  }
+
+  .legal {
+    ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      text-transform: uppercase;
+
+      li {
+
+        &:first-child:before {
+          content: '*';
+          margin: 0 10px 0 0;
+        }
+
+        &:after {
+          content: '*';
+          margin: 0 10px;
+        }
+      }
+
+      a {
+        color: ${props => props.theme.white};
+
+        &:hover {
+          color: ${props => props.theme.yellow};
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .copyright {
     font-style: italic;
     text-align: center;
     margin: 0 auto;
     max-width: 1245px;
-    padding: 40px 0 65px;
     position: relative;
 
     .line {

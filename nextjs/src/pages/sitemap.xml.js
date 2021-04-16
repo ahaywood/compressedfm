@@ -1,3 +1,4 @@
+// Reference: https://scottspence.com/2021/02/02/dynamic-sitemap-generation-with-nextjs-and-sanity/
 import groq from 'groq'
 import sanityClient from 'utils/client'
 
@@ -11,6 +12,7 @@ export async function getServerSideProps({ res }) {
   const query = groq`{
       "episodes": *[_type == 'episode' && published == true]{slug, _updatedAt},
       "newsletters": *[_type == 'newsletter' && published == true]{slug, _updatedAt},
+      "legals": *[_type == 'legal' && published == true]{slug, _updatedAt},
     }`
   const urls = await sanityClient.fetch(query)
 
@@ -38,6 +40,18 @@ export async function getServerSideProps({ res }) {
     `
   });
 
+  // create a list of legal pages
+  const legals = urls.legals.map(page => {
+    const slug =
+      page.slug.current === '/' ? '/' : `/${page.slug.current}`
+    return `
+      <loc>${baseUrl}${slug}</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.3</priority>
+      <lastmod>${page._updatedAt}</lastmod>
+    `
+  });
+
 
   // static urls
   const staticPages = [
@@ -61,7 +75,7 @@ export async function getServerSideProps({ res }) {
   ))
 
 
-  const locations = [...episodes, ...newsletters, ...pages]
+  const locations = [...episodes, ...newsletters, ...legals, ...pages]
   const createSitemap = () => `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${locations.map(location => `<url> ${location} </url>`).join('')}

@@ -20,10 +20,20 @@ export default {
       },
     },
     {
+      name: 'published',
+      title: 'Published',
+      type: 'boolean',
+    },
+    {
       name: 'content',
       title: 'Content',
       type: 'array',
       of: [{ type: 'block' }]
+    },
+    {
+      name: 'meta',
+      title: 'Meta',
+      type: 'meta'
     },
   ],
 }
