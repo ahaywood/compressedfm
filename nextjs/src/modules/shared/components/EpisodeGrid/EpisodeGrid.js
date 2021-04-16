@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// components
-
 // styles
 import { MixinSectionHeading } from 'styles/Typography';
 import { Breakpoints } from 'styles/Breakpoints';
+
+// components
 import { Episode } from './Episode';
 
 /** -------------------------------------------------
