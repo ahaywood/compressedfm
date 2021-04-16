@@ -2,12 +2,20 @@ import Link from 'next/link';
 import Head from 'next/head';
 import styled from "styled-components";
 import BlockContent from '@sanity/block-content-to-react'
+
+// components
 import { serializers } from "modules/shared/blockContent/Serializers";
 import { Newsletter } from "modules/shared/components/Newsletter";
 import { VerticalDivider } from "modules/shared/components/VerticalDivider";
-import { MixinBodyCopy, MixinPageTitle } from "styles/Typography";
 import { Meta } from 'modules/shared/components/Meta';
 
+// styles
+import { MixinBodyCopy, MixinPageTitle } from "styles/Typography";
+
+
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const IndividualNewsletterPage = (props) => {
   const { dateSent, subject, content, meta } = props;
   return (
@@ -41,6 +49,9 @@ const IndividualNewsletterPage = (props) => {
   )
 }
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledIndividualNewsletterPage = styled.div`
 
   h1.page-title {
