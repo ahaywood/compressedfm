@@ -57,9 +57,13 @@ const StyledNewsletter = styled.div`
     color: ${props => props.theme.white};
     font-family: ${props => props.theme.sansSerif};
     font-weight: ${props => props.theme.fontBlack};
-    font-size: 4.8rem;
+    font-size: 3.4rem;
     margin: 0 0 10px 0;
     padding: 0;
+
+    @media (${Breakpoints.portrait}) {
+      font-size: 4.8rem;
+    }
   }
 
   p {
@@ -81,6 +85,15 @@ const StyledNewsletter = styled.div`
   }
 
   ${MixinButtonWithArrow}
+
+  .kw-alert {
+    position: absolute;
+    margin-top: -50px;
+  }
+
+  .kw-field-error-message {
+    font-size: 1.4rem;
+  }
 `;
 
 export { Newsletter }
