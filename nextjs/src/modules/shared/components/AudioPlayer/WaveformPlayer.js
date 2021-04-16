@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Icon } from 'modules/shared/components/Icon';
 import { calculateTime } from 'utils/timeHelpers';
@@ -6,7 +7,7 @@ import { calculateTime } from 'utils/timeHelpers';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
+const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
   // state
   const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState(0);
@@ -59,7 +60,7 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
     updateCurrentTime();
 
     // when you reach the end of the song
-    if (progressBar.current.value == duration) {
+    if (progressBar.current.value === duration) {
       restart();
       return;
     }
@@ -87,7 +88,7 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
 
   // toggle play / pause when you tap the space bar
   const tapSpaceBar = (e) => {
-    if (e.keyCode == 32) {
+    if (e.keyCode === 32) {
       togglePlaying();
     }
   };
@@ -139,11 +140,7 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
   return (
     <StyledFeaturedAudioPlayer>
       {/* audio element */}
-      <audio
-        ref={audioPlayer}
-        src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/af52a99b-88c0-4638-b120-d46e142d06d3/audio/500344fb-2e2b-48af-be86-af6ac341a6da/default_tc.mp3"
-        preload="metadata"
-      />
+      <audio ref={audioPlayer} src={audioPath} preload="metadata" />
 
       {/* album cover */}
       <div className="album-cover">
@@ -152,13 +149,13 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
 
       {/* episode meta data */}
       <div className="meta">
-        <h4>COMPRESSED.fm || Episode 3</h4>
-        <h2>The Tech Stack behind Compressed.fm</h2>
+        <h4>COMPRESSED.fm {episodeNumber && `|| Episode ${episodeNumber}`}</h4>
+        <h2>{episodeTitle}</h2>
       </div>
 
       {/* play / pause */}
       <div className="controls">
-        <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
+        <button type="button" className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
           {isPlaying ? (
             <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
               <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
@@ -183,24 +180,38 @@ const WaveformPlayer = ({ audioFile, episodeNumber, episodeTitle, skipTo }) => {
         <div className="duration">{duration && calculateTime(duration)}</div>
 
         {/* back thirty */}
-        <button onClick={backThirty} className="forwardBackward backward">
+        <button type="button" onClick={backThirty} className="forwardBackward backward">
           <Icon name="arrow" className="back" />
           30
         </button>
 
         {/* forward thirty */}
-        <button onClick={forwardThirty} className="forwardBackward forward">
+        <button type="button" onClick={forwardThirty} className="forwardBackward forward">
           30
           <Icon name="arrow" />
         </button>
 
         {/* change playback speed */}
-        <button className="playbackSpeed" onClick={changePlaybackSpeed}>
+        <button type="button" className="playbackSpeed" onClick={changePlaybackSpeed}>
           {speed}X
         </button>
       </div>
     </StyledFeaturedAudioPlayer>
   );
+};
+
+WaveformPlayer.propTypes = {
+  audioPath: PropTypes.string,
+  episodeNumber: PropTypes.number,
+  episodeTitle: PropTypes.string,
+  skipTo: PropTypes.func,
+};
+
+WaveformPlayer.defaultProps = {
+  audioPath: '',
+  episodeNumber: '',
+  episodeTitle: '',
+  skipTo: () => { },
 };
 
 /** -------------------------------------------------

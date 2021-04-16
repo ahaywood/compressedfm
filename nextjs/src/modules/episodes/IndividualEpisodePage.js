@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Image from 'next/image';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Breakpoints } from 'styles/Breakpoints';
@@ -23,8 +22,6 @@ const IndividualEpisodePage = ({
   episode: {
     audioPath,
     briefDescription,
-    categories,
-    episodeCover,
     episodeNumber,
     episodeTranscript,
     guest,
@@ -54,7 +51,7 @@ const IndividualEpisodePage = ({
         publishedAt={publishedAt}
       />
       <div className="audio-player">
-        <WaveformPlayer skipTo={skipTo} />
+        <WaveformPlayer audioPath={audioPath} episodeNumber={episodeNumber} skipTo={skipTo} />
       </div>
       <VerticalDivider />
 
@@ -120,7 +117,7 @@ IndividualEpisodePage.propTypes = {
     sponsor: PropTypes.array,
     timeJump: PropTypes.array,
     title: PropTypes.string,
-    // transcript: PropTypes.string,
+    episodeTranscript: PropTypes.array,
     relatedEpisodes: PropTypes.array,
   }),
 };
