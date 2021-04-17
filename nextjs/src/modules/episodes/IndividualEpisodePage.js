@@ -109,7 +109,7 @@ IndividualEpisodePage.propTypes = {
     audioPath: PropTypes.string,
     briefDescription: PropTypes.string,
     categories: PropTypes.array,
-    episodeCover: PropTypes.string,
+    episodeCover: PropTypes.object,
     episodeNumber: PropTypes.number,
     guest: PropTypes.array,
     listLink: PropTypes.array,
@@ -117,7 +117,7 @@ IndividualEpisodePage.propTypes = {
     sponsor: PropTypes.array,
     timeJump: PropTypes.array,
     title: PropTypes.string,
-    episodeTranscript: PropTypes.array,
+    episodeTranscript: PropTypes.object,
     relatedEpisodes: PropTypes.array,
   }),
 };
