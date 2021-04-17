@@ -49,7 +49,7 @@ const Footer = ({ props }) => {
           <div className="legal">
             <ul>
               {footerLinks.map((link) => (
-                <li>
+                <li key={link._id}>
                   <Link href={`/legal/${link.slug.current}`}>
                     <a>{link.title}</a>
                   </Link>
