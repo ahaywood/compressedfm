@@ -1,139 +1,46 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+
+// components
 import { Icon } from 'modules/shared/components/Icon';
+
+// utils
 import { calculateTime } from 'utils/timeHelpers';
+
+// hooks
+import { useAudioPlayer } from './hooks/AudioPlayer';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
 const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
-  // state
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [speed, setSpeed] = useState(1);
-
   // references
   const audioPlayer = useRef(); // set up reference for the audio component
   const progressBar = useRef(); // reference for the progress bar
-  const animationRef = useRef(); // reference the animation
 
-  useEffect(() => {
-    timeTravel(skipTo);
-    play();
-  }, [skipTo]);
+  // hooks
+  const {
+    backThirty,
+    changeAudioToPlayhead,
+    changePlaybackSpeed,
+    currentTime,
+    duration,
+    forwardThirty,
+    isPlaying,
+    skipToTime,
+    speed,
+    togglePlaying,
+  } = useAudioPlayer(audioPlayer, progressBar);
 
-  // GET THE DURATION - once the meta data has been loaded
-  // loadedmetadata is provided by the browser
-  useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current.duration);
-    setDuration(seconds);
-    progressBar.current.max = seconds;
-  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
-
-  // toggle between play and pause
-  const togglePlaying = () => {
-    const prevState = isPlaying;
-    setIsPlaying(!prevState);
-    if (!prevState) {
-      pause();
-    } else {
-      play();
-    }
-  };
-
-  const play = () => {
-    audioPlayer.current.play();
-    animationRef.current = requestAnimationFrame(whilePlaying);
-    console.log('play');
-  };
-
-  const pause = () => {
-    audioPlayer.current.pause();
-    cancelAnimationFrame(animationRef.current);
-  };
-
-  const whilePlaying = () => {
-    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
-    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
-    updateCurrentTime();
-
-    // when you reach the end of the song
-    if (progressBar.current.value === duration) {
-      restart();
-      return;
-    }
-
-    animationRef.current = requestAnimationFrame(whilePlaying);
-  };
-
-  const restart = () => {
-    // progressBar.current.value = 0;
-    // updateCurrentTime();
-    pause();
-  };
-
-  // when the playhead is moved, update the current time (text)
-  const updateCurrentTime = () => {
-    setCurrentTime(progressBar.current.value);
-  };
-
-  // the playhead moves when you click on the progress bar
-  // update the audio player to the new point
-  const changeAudioToKnobby = () => {
-    audioPlayer.current.currentTime = progressBar.current.value;
-    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
-  };
+  // useEffect(() => {
+  //   skipToTime(skipTo);
+  // }, [skipTo]);
 
   // toggle play / pause when you tap the space bar
   const tapSpaceBar = (e) => {
     if (e.keyCode === 32) {
       togglePlaying();
-    }
-  };
-
-  // jump back 30 seconds
-  const backThirty = () => {
-    timeTravel(Number(progressBar.current.value) - 30);
-  };
-
-  // jump forward 30 seconds
-  const forwardThirty = () => {
-    timeTravel(Number(progressBar.current.value) + 30);
-  };
-
-  // moves to a different point on the track
-  const timeTravel = (newTime) => {
-    progressBar.current.value = newTime;
-    updateCurrentTime();
-    changeAudioToKnobby();
-  };
-
-  // change the playback speed
-  const changePlaybackSpeed = () => {
-    switch (speed) {
-      case 1:
-        audioPlayer.current.playbackRate = 1.2;
-        setSpeed(1.2);
-        break;
-      case 1.2:
-        audioPlayer.current.playbackRate = 1.5;
-        setSpeed(1.5);
-        break;
-      case 1.5:
-        audioPlayer.current.playbackRate = 1.7;
-        setSpeed(1.7);
-        break;
-      case 1.7:
-        audioPlayer.current.playbackRate = 2;
-        setSpeed(2);
-        break;
-      case 2:
-      default:
-        audioPlayer.current.playbackRate = 1;
-        setSpeed(1);
-        break;
     }
   };
 
@@ -173,7 +80,7 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
 
         {/* progress bar */}
         <div className="progress-bar">
-          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onChange={changeAudioToKnobby} />
+          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onChange={changeAudioToPlayhead} />
         </div>
 
         {/* duration */}
@@ -204,14 +111,14 @@ WaveformPlayer.propTypes = {
   audioPath: PropTypes.string,
   episodeNumber: PropTypes.number,
   episodeTitle: PropTypes.string,
-  skipTo: PropTypes.func,
+  skipTo: PropTypes.number,
 };
 
 WaveformPlayer.defaultProps = {
   audioPath: '',
   episodeNumber: '',
   episodeTitle: '',
-  skipTo: () => { },
+  skipTo: 0,
 };
 
 /** -------------------------------------------------
