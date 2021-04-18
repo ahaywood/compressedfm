@@ -350,7 +350,7 @@ const StyledFeaturedAudioPlayer = styled.div`
     }
 
     /* progress bar - firefox */
-    input[type='range']::-moz-range-track {
+    &::-moz-range-track {
       width: 100%;
       height: 40px;
       cursor: pointer;
@@ -358,12 +358,12 @@ const StyledFeaturedAudioPlayer = styled.div`
         left top no-repeat;
     }
 
-    input[type='range']::-moz-focus-outer {
+    &::-moz-focus-outer {
       border: 0;
     }
 
     /* played bar - firefox */
-    input[type='range']::-moz-range-progress {
+    &::-moz-range-progress {
       background-color: ${(props) => props.theme.gray};
       border-bottom-left-radius: 10px;
       border-top-left-radius: 10px;
@@ -371,30 +371,30 @@ const StyledFeaturedAudioPlayer = styled.div`
     }
 
     /* knobby - safari */
-    input[type='range']::-webkit-slider-thumb {
+    &::-webkit-slider-thumb {
       position: relative;
       -webkit-appearance: none;
       box-sizing: content-box;
       border: none;
-      height: 40px;
-      width: 1px;
+      height: 50px;
+      width: 3px;
       background-color: ${(props) => props.theme.yellow};
       cursor: pointer;
       margin: -2px 0 0 0;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
       z-index: 3;
       position: relative;
-      top: -13px;
+      top: 0px;
     }
 
     /* knobby while dragging - safari */
-    input[type='range']:active::-webkit-slider-thumb {
-      transform: scale(1.2);
+    &:active::-webkit-slider-thumb {
+      transform: scale(1.1);
       background: ${(props) => props.theme.yellow};
     }
 
     /* knobby - firefox */
-    input[type='range']::-moz-range-thumb {
+    &::-moz-range-thumb {
       box-sizing: content-box;
       border: transparent;
       height: 40px;
@@ -404,7 +404,7 @@ const StyledFeaturedAudioPlayer = styled.div`
       z-index: 3;
       position: relative;
     }
-    input[type='range']:active::-moz-range-thumb {
+    &:active::-moz-range-thumb {
       transform: scale(1.2);
       background: ${(props) => props.theme.yellow};
     }
