@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { calculateTime } from 'utils/timeHelpers';
 
@@ -20,15 +21,25 @@ const JumpLinks = ({ timeJump, handleClick }) => {
         {timeJump &&
           timeJump.map((one) => (
             <li key={one._key}>
-              <a href="#" onClick={(e) => onClick(e, one.time)}>
+              <button type="button" onClick={(e) => onClick(e, one.time)}>
                 <div className="time-code">{calculateTime(one.time)}</div>
                 <div className="description">{one.description}</div>
-              </a>
+              </button>
             </li>
           ))}
       </ul>
     </StyledJumpLinks>
   );
+};
+
+JumpLinks.propTypes = {
+  timeJump: PropTypes.array,
+  handleClick: PropTypes.func,
+};
+
+JumpLinks.defaultProps = {
+  timeJump: [],
+  handleClick: () => { },
 };
 
 /** -------------------------------------------------
