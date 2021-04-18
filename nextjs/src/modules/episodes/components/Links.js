@@ -52,7 +52,7 @@ const StyledLinks = styled.section`
     fill: ${(props) => props.theme.yellow};
     position: absolute;
     left: -40px;
-    top: -5px;
+    top: 2px;
   }
 
   a:hover svg {
