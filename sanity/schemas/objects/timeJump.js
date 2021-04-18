@@ -1,4 +1,5 @@
 import TimeInput from "../components/timeInput";
+import { getHoursMinutesSeconds } from "../parts/convertTime";
 
 export default {
   type: 'object',
@@ -10,8 +11,9 @@ export default {
     },
     prepare(selection) {
       const { time, description } = selection
+      const { hours, minutes, seconds } = getHoursMinutesSeconds(time);
       return {
-        title: `${time} :: ${description}`
+        title: `${hours}:${minutes}:${seconds} :: ${description}`
       }
     }
   },
@@ -19,9 +21,8 @@ export default {
     {
       title: 'Time',
       name: 'time',
-      type: 'number',
+      type: 'string',
       inputComponent: TimeInput,
-      description: 'in seconds'
     },
     {
       title: 'Description',
