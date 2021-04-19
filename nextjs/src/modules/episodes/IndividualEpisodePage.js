@@ -34,7 +34,7 @@ const IndividualEpisodePage = ({
   },
 }) => {
   // state
-  const [skipTo, setSkipTo] = useState(0);
+  const [skipTo, setSkipTo] = useState(null);
 
   // jump to a specific time on the waveform player
   const skipToTimestamp = (time) => {
