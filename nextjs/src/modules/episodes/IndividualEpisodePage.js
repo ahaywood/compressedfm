@@ -181,8 +181,6 @@ const StyledIndividualEpisodePage = styled.section`
   }
 
   .sponsors {
-    position: sticky;
-    top: 10px;
     padding-bottom: 60px;
   }
 
