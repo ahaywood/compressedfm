@@ -21,6 +21,22 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     setCurrentTime(progressBarRef.current.value);
   };
 
+  const play = () => {
+    audioRef.current.play();
+    animationRef.current = requestAnimationFrame(whilePlaying);
+  };
+
+  const pause = () => {
+    audioRef.current.pause();
+    cancelAnimationFrame(animationRef.current);
+  };
+
+  const restart = () => {
+    progressBarRef.current.value = 0;
+    updateCurrentTime();
+    pause();
+  };
+
   const whilePlaying = () => {
     progressBarRef.current.value = Math.floor(audioRef.current.currentTime);
     progressBarRef.current.style.setProperty(
@@ -36,22 +52,6 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     }
 
     animationRef.current = requestAnimationFrame(whilePlaying);
-  };
-
-  const play = () => {
-    audioRef.current.play();
-    animationRef.current = requestAnimationFrame(whilePlaying);
-  };
-
-  const pause = () => {
-    audioRef.current.pause();
-    cancelAnimationFrame(animationRef.current);
-  };
-
-  const restart = () => {
-    progressBarRef.current.value = 0;
-    updateCurrentTime();
-    pause();
   };
 
   const changePlaybackSpeed = () => {
