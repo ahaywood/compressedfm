@@ -51,7 +51,7 @@ const IndividualEpisodePage = ({
         publishedAt={publishedAt}
       />
       <div className="audio-player">
-        <WaveformPlayer audioPath={audioPath} episodeNumber={episodeNumber} skipTo={skipTo} />
+        <WaveformPlayer episodeTitle={title} audioPath={audioPath} episodeNumber={episodeNumber} skipTo={skipTo} />
       </div>
       <VerticalDivider />
 
