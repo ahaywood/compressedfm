@@ -1,29 +1,30 @@
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 // components
-import { EpisodeGrid } from "modules/shared/components/EpisodeGrid";
-import { Newsletter } from "modules/shared/components/Newsletter";
-import { VerticalDivider } from "modules/shared/components/VerticalDivider";
-import { HorizontalDivider } from "modules/shared/components/HorizontalDivider";
+import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
+import { Newsletter } from 'modules/shared/components/Newsletter';
+import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 
 // styles
-import { MixinSectionHeading, MixinPageTitle } from "styles/Typography";
+import { MixinSectionHeading, MixinPageTitle } from 'styles/Typography';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const TagPage = ({ episodes }) => {
+const TagPage = ({ episodes }) => (
+  <StyledTagPage>
+    <h3>Tagged</h3>
+    <h1>Career Development</h1>
+    <EpisodeGrid episodes={episodes} />
+    <VerticalDivider />
+    <Newsletter />
+  </StyledTagPage>
+);
 
-  return (
-    <StyledTagPage>
-      <h3>Tagged</h3>
-      <h1>Career Development</h1>
-      <EpisodeGrid episodes={episodes} />
-      <VerticalDivider />
-      <Newsletter />
-    </StyledTagPage>
-  )
-}
+TagPage.propTypes = {
+  episodes: PropTypes.array.isRequired,
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -42,4 +43,4 @@ const StyledTagPage = styled.section`
   }
 `;
 
-export { TagPage }
+export { TagPage };

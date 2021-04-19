@@ -1,14 +1,14 @@
-import client from "utils/client";
-import groq from "groq";
-import { InteriorLayout } from "modules/shared/layouts/InteriorLayout";
-import { IndividualNewsletterPage } from "modules/newsletter/IndividualNewsletterPage"
+import client from 'utils/client';
+import groq from 'groq';
+import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
+import { IndividualNewsletterPage } from 'modules/newsletter/IndividualNewsletterPage';
 
 export default function IndividualNewsletter(props) {
   return (
     <InteriorLayout>
       <IndividualNewsletterPage {...props} />
     </InteriorLayout>
-  )
+  );
 }
 
 const query = groq`*[_type == "newsletter" && slug.current == $slug] | order(dateSent desc) {
@@ -38,6 +38,6 @@ const query = groq`*[_type == "newsletter" && slug.current == $slug] | order(dat
 }[0]`;
 
 IndividualNewsletter.getInitialProps = async function (context) {
-  const { slug = "" } = context.query;
+  const { slug = '' } = context.query;
   return await client.fetch(query, { slug });
-}
+};

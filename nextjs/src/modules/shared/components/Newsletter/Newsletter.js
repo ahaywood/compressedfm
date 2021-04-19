@@ -1,43 +1,70 @@
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
-import { Icon } from "modules/shared/components/Icon";
-import { MixinBodyCopy } from "styles/Typography";
-import { MixinTextField, MixinLabel, MixinButtonWithArrow } from "styles/Form";
+import { useEffect } from 'react';
+import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
+import kwesforms from 'kwesforms';
 
+// component
+import { Icon } from 'modules/shared/components/Icon';
+
+// styles
+import { MixinBodyCopy } from 'styles/Typography';
+import { MixinTextField, MixinLabel, MixinButtonWithArrow } from 'styles/Form';
+import { Breakpoints } from 'styles/Breakpoints';
+
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const Newsletter = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(JSON.stringify(data));
+  const onSubmit = () => { };
+
+  useEffect(() => {
+    kwesforms.init();
+  }, []);
 
   return (
     <StyledNewsletter>
       <h2>Sign up for the newsletter</h2>
-      <p>
-        Want to stay up to date on our podcast? Get a behind-the-scenes look{" "}
-        and know when new episodes drop.
-      </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="email" name="email" id="email" ref={register} placeholder=" " />
+      <p>Want to stay up to date on our podcast? Get a behind-the-scenes look and know when new episodes drop.</p>
+      <form
+        onSubmit={handleSubmit()}
+        className="kwes-form"
+        action="https://kwes.io/api/foreign/forms/VBsOqTJ8MTds1LU9utSf"
+      >
+        <input type="email" name="email" id="email" ref={register} placeholder=" " rules="required" />
         <label htmlFor="email">Email Address</label>
         <button className="submit" type="submit" role="submit" onClick={onSubmit}>
           <Icon name="arrow" height="64" width="64" />
         </button>
       </form>
     </StyledNewsletter>
-  )
-}
+  );
+};
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledNewsletter = styled.div`
+  padding: ${(props) => props.theme.mobilePadding};
   position: relative;
-  margin: 60px auto;
-  width: ${props => props.theme.formWidth};
+
+  @media (${Breakpoints.portrait}) {
+    margin: 60px auto;
+    padding: 0;
+    width: ${(props) => props.theme.formWidth};
+  }
 
   h2 {
-    color: ${props => props.theme.white};
-    font-family: ${props => props.theme.sansSerif};
-    font-weight: ${props => props.theme.fontBlack};
-    font-size: 4.8rem;
+    color: ${(props) => props.theme.white};
+    font-family: ${(props) => props.theme.sansSerif};
+    font-weight: ${(props) => props.theme.fontBlack};
+    font-size: 3.4rem;
     margin: 0 0 10px 0;
     padding: 0;
+
+    @media (${Breakpoints.portrait}) {
+      font-size: 4.8rem;
+    }
   }
 
   p {
@@ -53,12 +80,21 @@ const StyledNewsletter = styled.div`
     ${MixinLabel};
   }
 
-  input[type="email"] {
+  input[type='email'] {
     ${MixinTextField};
     padding-right: 70px;
   }
 
   ${MixinButtonWithArrow}
+
+  .kw-alert {
+    position: absolute;
+    margin-top: -50px;
+  }
+
+  .kw-field-error-message {
+    font-size: 1.4rem;
+  }
 `;
 
-export { Newsletter }
+export { Newsletter };

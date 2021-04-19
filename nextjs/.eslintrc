@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "wesbos"
+  ],
+  "ignorePatterns": "",
+  "rules": {
+    "import/no-unresolved": "off",
+    "no-return-await": "off",
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 120,
+        "tabWidth": 2
+      }
+    ]
+  }
+}

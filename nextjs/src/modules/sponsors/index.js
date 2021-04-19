@@ -1,2 +1,3 @@
-import { SponsorsPage } from "./SponsorsPage";
+import { SponsorsPage } from './SponsorsPage';
+
 export { SponsorsPage };

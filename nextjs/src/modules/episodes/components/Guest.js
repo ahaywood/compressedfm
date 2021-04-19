@@ -1,13 +1,13 @@
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from "styles/Typography"
-import { SocialMedia } from "modules/shared/components/SocialMedia";
-import { Breakpoints } from "styles/Breakpoints";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/Typography';
+import { SocialMedia } from 'modules/shared/components/SocialMedia';
+import { Breakpoints } from 'styles/Breakpoints';
 
-const Guest = ({ className, guest }) => {
-  return (
-    <div className={className}>
-      {guest && guest.map(item => {
+const Guest = ({ className, guest }) => (
+  <div className={className}>
+    {guest &&
+      guest.map((item) => {
         const {
           _id,
           avatar,
@@ -16,25 +16,19 @@ const Guest = ({ className, guest }) => {
           jobTitle,
           largeBody,
           body,
-          socialMedia: {
-            facebook,
-            twitter,
-            instagram,
-            github,
-            twitch,
-            youtube,
-            website,
-          }
+          socialMedia: { facebook, twitter, instagram, github, twitch, youtube, website },
         } = item;
         return (
           <StyledPersonBio key={_id}>
             <div>
               <div className="meta">
                 <div className="avatar">
-                  <img alt={`{firstName} {lastName}`} src={avatar} />
+                  <img alt="{firstName} {lastName}" src={avatar} />
                 </div>
                 <div>
-                  <h2 className="name"><span className="first">{firstName}</span> <span className="last">{lastName}</span></h2>
+                  <h2 className="name">
+                    <span className="first">{firstName}</span> <span className="last">{lastName}</span>
+                  </h2>
                   <h3 className="title">{jobTitle}</h3>
                 </div>
               </div>
@@ -43,21 +37,20 @@ const Guest = ({ className, guest }) => {
             <p className="body-copy">{body}</p>
             <div className="social-media">
               <SocialMedia
-                facebook={facebook ? facebook : ''}
-                github={github ? github : ''}
-                instagram={instagram ? instagram : ''}
-                twitch={twitch ? twitch : ''}
-                twitter={twitter ? twitter : ''}
-                youtube={youtube ? youtube : ''}
-                website={website ? website : ''}
+                facebook={facebook || ''}
+                github={github || ''}
+                instagram={instagram || ''}
+                twitch={twitch || ''}
+                twitter={twitter || ''}
+                youtube={youtube || ''}
+                website={website || ''}
               />
             </div>
           </StyledPersonBio>
-        )
+        );
       })}
-    </div>
-  )
-}
+  </div>
+);
 
 const StyledPersonBio = styled.section`
   display: flex;
@@ -73,7 +66,7 @@ const StyledPersonBio = styled.section`
     margin-right: 20px;
 
     img {
-      border: 3px solid ${props => props.theme.white};
+      border: 3px solid ${(props) => props.theme.white};
       border-radius: 50%;
       height: 187px;
       width: 187px;
@@ -82,15 +75,15 @@ const StyledPersonBio = styled.section`
 
   /* name */
   h2.name {
-    font-family: ${props => props.theme.sansSerif};
+    font-family: ${(props) => props.theme.sansSerif};
     font-size: 6.8rem;
-    font-weight: ${props => props.theme.fontBlack};
-    line-height: .9;
+    font-weight: ${(props) => props.theme.fontBlack};
+    line-height: 0.9;
     margin: 25px 0 15px 0;
     padding: 0;
 
     .first {
-      color: ${props => props.theme.yellow};
+      color: ${(props) => props.theme.yellow};
     }
 
     .last {
@@ -132,7 +125,7 @@ const StyledPersonBio = styled.section`
       color: #747474;
 
       &:hover {
-        color: ${props => props.theme.yellow};
+        color: ${(props) => props.theme.yellow};
       }
     }
 
@@ -143,4 +136,4 @@ const StyledPersonBio = styled.section`
   }
 `;
 
-export { Guest }
+export { Guest };

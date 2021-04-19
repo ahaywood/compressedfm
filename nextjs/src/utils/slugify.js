@@ -1,9 +1,7 @@
 function slugify(Text) {
-  return Text
-    .toLowerCase()
+  return Text.toLowerCase()
     .replace(/[^\w ]+/g, '')
-    .replace(/ +/g, '-')
-    ;
+    .replace(/ +/g, '-');
 }
 
 export { slugify };

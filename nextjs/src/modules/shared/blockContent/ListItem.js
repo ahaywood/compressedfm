@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import { MixinBodyCopy } from "styles/Typography";
+import styled from 'styled-components';
+import { MixinBodyCopy } from 'styles/Typography';
 
 const ListItem = (props) => {
-  if (props.node.listItem === "number") {
+  if (props.node.listItem === 'number') {
     return <StyledLi>{props.children}</StyledLi>;
   }
-  if (props.node.listItem === "bullet") {
+  if (props.node.listItem === 'bullet') {
     return <StyledLi>{props.children}</StyledLi>;
   }
 };
@@ -17,14 +17,14 @@ const StyledLi = styled.li`
   margin-bottom: 10px;
 
   a {
-    border-bottom: 1px solid ${props => props.theme.yellow};
-    color: ${props => props.theme.yellow};
-    font-weight: ${props => props.theme.fontBold};
+    border-bottom: 1px solid ${(props) => props.theme.yellow};
+    color: ${(props) => props.theme.yellow};
+    font-weight: ${(props) => props.theme.fontBold};
     text-decoration: none;
 
     &:hover {
-      border-color: ${props => props.theme.lavendarIndigo};
-      color: ${props => props.theme.lavendarIndigo};
+      border-color: ${(props) => props.theme.lavenderIndigo};
+      color: ${(props) => props.theme.lavenderIndigo};
     }
   }
 `;

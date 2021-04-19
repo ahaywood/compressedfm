@@ -1,17 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const SearchResultsList = (props) => {
+const SearchResultsList = (props) => <StyledSearchResultsList />;
 
-  return (
-    <StyledSearchResultsList>
+const StyledSearchResultsList = styled.section``;
 
-
-    </StyledSearchResultsList>
-  )
-}
-
-const StyledSearchResultsList = styled.section`
-
-`;
-
-export { SearchResultsList }
+export { SearchResultsList };

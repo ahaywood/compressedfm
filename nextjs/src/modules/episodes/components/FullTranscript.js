@@ -1,41 +1,39 @@
-import styled from "styled-components";
-import BlockContent from '@sanity/block-content-to-react'
-import { serializers } from "modules/shared/blockContent/Serializers";
-import { calculateTime } from "utils/timeHelpers";
+import styled from 'styled-components';
+import BlockContent from '@sanity/block-content-to-react';
+import { serializers } from 'modules/shared/blockContent/Serializers';
+import { calculateTime } from 'utils/timeHelpers';
 
 // styles
-import { MixinBodyCopy, MixinHeading } from "styles/Typography";
+import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
 const FullTranscript = ({ className, handleClick, transcript }) => {
-
   const onClick = (e, time) => {
     e.preventDefault();
-    console.log("hey-o")
+    console.log('hey-o');
     handleClick(time);
-  }
+  };
 
   return (
     <StyledFullTranscript className={className}>
       <h4>Transcript</h4>
-      {transcript && transcript.map(item => (
-        <div className="transcript-line" key={item._id}>
-          <div className="timestamp">
-            <button onClick={(e) => onClick(e, item.timestamp)}>
-              {calculateTime(item.timestamp)}
-            </button>
+      {transcript &&
+        transcript.map((item) => (
+          <div className="transcript-line" key={item._id}>
+            <div className="timestamp">
+              <button onClick={(e) => onClick(e, item.timestamp)}>{calculateTime(item.timestamp)}</button>
+            </div>
+            <div className="speaker">{item.speaker}</div>
+            <div className="transcript-content">
+              <BlockContent blocks={item.content} serializers={serializers} />
+            </div>
           </div>
-          <div className="speaker">{item.speaker}</div>
-          <div className="transcript-content">
-            <BlockContent blocks={item.content} serializers={serializers} />
-          </div>
-        </div>
-      ))}
+        ))}
     </StyledFullTranscript>
-  )
-}
+  );
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -56,27 +54,27 @@ const StyledFullTranscript = styled.section`
   }
 
   .timestamp button {
-    background: ${props => props.theme.lavendarIndigo};
+    background: ${(props) => props.theme.lavenderIndigo};
     border: none;
     border-radius: 3px;
-    color: ${props => props.theme.black};
+    color: ${(props) => props.theme.black};
     cursor: pointer;
     display: inline-block;
-    font-family: ${props => props.theme.sansSerif};
+    font-family: ${(props) => props.theme.sansSerif};
     font-size: 1.6rem;
-    font-weight: ${props => props.theme.fontBlack};
+    font-weight: ${(props) => props.theme.fontBlack};
     padding: 3px 5px;
     margin-top: 4px;
 
     &:hover {
-      background: ${props => props.theme.yellow};
-      color: ${props => props.theme.lavendarIndigo};
+      background: ${(props) => props.theme.yellow};
+      color: ${(props) => props.theme.lavenderIndigo};
     }
   }
 
   .speaker {
-    color: ${props => props.theme.yellow};
-    font-family: ${props => props.theme.mono};
+    color: ${(props) => props.theme.yellow};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.6rem;
     letter-spacing: 0.3rem;
     margin-top: 8px;
@@ -89,4 +87,4 @@ const StyledFullTranscript = styled.section`
   }
 `;
 
-export { FullTranscript }
+export { FullTranscript };

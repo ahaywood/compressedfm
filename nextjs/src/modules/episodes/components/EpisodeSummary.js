@@ -1,32 +1,28 @@
-import styled from "styled-components";
-import { MoreLink } from "modules/shared/components/MoreLink";
+import styled from 'styled-components';
+import { MoreLink } from 'modules/shared/components/MoreLink';
 
 // utilities
-import { EpisodeZeros } from "utils/EpisodeZeros";
-import { formatLongDate } from "utils/dateHelpers";
+import { EpisodeZeros } from 'utils/EpisodeZeros';
+import { formatLongDate } from 'utils/dateHelpers';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const EpisodeSummary = ({ briefDescription, className, title, episodeNumber, publishedAt }) => {
-  return (
-    <StyledEpisodeSummary className={className}>
-      <div className="title">
-        <h3>{formatLongDate(publishedAt)}</h3>
-        <h1>{title}</h1>
+const EpisodeSummary = ({ briefDescription, className, title, episodeNumber, publishedAt }) => (
+  <StyledEpisodeSummary className={className}>
+    <div className="title">
+      <h3>{formatLongDate(publishedAt)}</h3>
+      <h1>{title}</h1>
+    </div>
+    <div className="description">
+      <div className="episode-number">
+        {EpisodeZeros(episodeNumber)}
+        {episodeNumber}
       </div>
-      <div className="description">
-        <div className="episode-number">
-          {EpisodeZeros(episodeNumber)}
-          {episodeNumber}
-        </div>
-        <p className="large-body-copy">
-          {briefDescription}
-        </p>
-      </div>
-    </StyledEpisodeSummary>
-  )
-}
+      <p className="large-body-copy">{briefDescription}</p>
+    </div>
+  </StyledEpisodeSummary>
+);
 
 const StyledEpisodeSummary = styled.section`
   display: grid;
@@ -35,9 +31,9 @@ const StyledEpisodeSummary = styled.section`
 
   /* episode title */
   h3 {
-    font-family: ${props => props.theme.mono};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.8rem;
-    font-weight: ${props => props.theme.fontNormal};
+    font-weight: ${(props) => props.theme.fontNormal};
     letter-spacing: 0.4rem;
     margin: 0;
     padding: 0;
@@ -46,10 +42,10 @@ const StyledEpisodeSummary = styled.section`
 
   /* episode title */
   h1 {
-    color: ${props => props.theme.white};
-    font-family: ${props => props.theme.sansSerif};
+    color: ${(props) => props.theme.white};
+    font-family: ${(props) => props.theme.sansSerif};
     font-size: 8.5rem;
-    font-weight: ${props => props.theme.fontBlack};
+    font-weight: ${(props) => props.theme.fontBlack};
     line-height: 1;
     margin: 0;
     padding: 0;
@@ -60,9 +56,9 @@ const StyledEpisodeSummary = styled.section`
   }
 
   .episode-number {
-    color: ${props => props.theme.yellow};
-    font-family: ${props => props.theme.sansSerif};
-    font-weight: ${props => props.theme.fontBlack};
+    color: ${(props) => props.theme.yellow};
+    font-family: ${(props) => props.theme.sansSerif};
+    font-weight: ${(props) => props.theme.fontBlack};
     font-size: 20rem;
     position: absolute;
     right: 0;
@@ -70,13 +66,13 @@ const StyledEpisodeSummary = styled.section`
   }
 
   .large-body-copy {
-    color: ${props => props.theme.white};
-    font-family: ${props => props.theme.sansSerif};
+    color: ${(props) => props.theme.white};
+    font-family: ${(props) => props.theme.sansSerif};
     font-size: 2.8rem;
-    font-weight: ${props => props.theme.fontBold};
+    font-weight: ${(props) => props.theme.fontBold};
     margin: 0;
-    padding: 75px 0 0  0;
+    padding: 75px 0 0 0;
   }
 `;
 
-export { EpisodeSummary }
+export { EpisodeSummary };

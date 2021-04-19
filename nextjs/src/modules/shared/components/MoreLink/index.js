@@ -1,2 +1,3 @@
-import { MoreLink } from "./MoreLink";
+import { MoreLink } from './MoreLink';
+
 export { MoreLink };

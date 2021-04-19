@@ -1,2 +1,3 @@
-import { TagPage } from "./TagPage";
+import { TagPage } from './TagPage';
+
 export { TagPage };

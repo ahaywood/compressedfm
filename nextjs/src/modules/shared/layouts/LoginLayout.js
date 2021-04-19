@@ -1,9 +1,9 @@
-const LoginLayout = ({ children }) => {
-  return (
-    <div>
-      {children}
-    </div>
-  )
-}
+import PropTypes from 'prop-types';
 
-export { LoginLayout }
+const LoginLayout = ({ children }) => <div>{children}</div>;
+
+LoginLayout.propTypes = {
+  children: PropTypes.any,
+};
+
+export { LoginLayout };

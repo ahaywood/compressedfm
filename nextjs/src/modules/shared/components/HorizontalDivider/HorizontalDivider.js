@@ -1,13 +1,9 @@
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const HorizontalDivider = ({ length }) => {
-  return (
-    <StyledHr className={length} />
-  )
-}
+const HorizontalDivider = ({ length }) => <StyledHr className={length} />;
 
-export { HorizontalDivider }
+export { HorizontalDivider };
 
 const StyledHr = styled.hr`
   background: url('/images/horizontal-divider.svg') center top repeat-x;
@@ -21,10 +17,9 @@ const StyledHr = styled.hr`
 `;
 
 HorizontalDivider.propTypes = {
-  length: PropTypes.string
+  length: PropTypes.string,
 };
 
-
 HorizontalDivider.defaultProps = {
-  length: ''
+  length: '',
 };

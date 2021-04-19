@@ -1,22 +1,22 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { Icon } from "modules/shared/components/Icon";
-import { calculateTime } from "utils/timeHelpers";
+import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { Icon } from 'modules/shared/components/Icon';
+import { calculateTime } from 'utils/timeHelpers';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const FeaturedAudioPlayer = () => {
+const FeaturedAudioPlayer = ({ track }) => {
   // state
   const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
   // references
-  const audioPlayer = useRef();   // set up reference for the audio component
-  const progressBar = useRef();   // reference for the progress bar
-  const animationRef = useRef();  // reference the animation
-
+  const audioPlayer = useRef(); // set up reference for the audio component
+  const progressBar = useRef(); // reference for the progress bar
+  const animationRef = useRef(); // reference the animation
 
   // GET THE DURATION - once the meta data has been loaded
   // loadedmetadata is provided by the browser
@@ -25,6 +25,36 @@ const FeaturedAudioPlayer = () => {
     setDuration(seconds);
     progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+
+  // when the playhead is moved, update the current time (text)
+  const updateCurrentTime = () => {
+    setCurrentTime(progressBar.current.value);
+  };
+
+  const pause = () => {
+    audioPlayer.current.pause();
+    cancelAnimationFrame(animationRef.current);
+  };
+
+  const restart = () => {
+    // progressBar.current.value = 0;
+    // updateCurrentTime();
+    pause();
+  };
+
+  const whilePlaying = () => {
+    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
+    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
+    updateCurrentTime();
+
+    // when you reach the end of the song
+    if (progressBar.current.value === duration) {
+      restart();
+      return;
+    }
+
+    animationRef.current = requestAnimationFrame(whilePlaying);
+  };
 
   // toggle between play and pause
   const togglePlaying = () => {
@@ -35,101 +65,83 @@ const FeaturedAudioPlayer = () => {
     } else {
       pause();
     }
-  }
-
-  const pause = () => {
-    audioPlayer.current.pause();
-    cancelAnimationFrame(animationRef.current);
-  }
-
-  const whilePlaying = () => {
-    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
-    progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`);
-    updateCurrentTime();
-
-    // when you reach the end of the song
-    if (progressBar.current.value == duration) {
-      restart();
-      return;
-    }
-
-    animationRef.current = requestAnimationFrame(whilePlaying);
-  }
-
-  const restart = () => {
-    // progressBar.current.value = 0;
-    // updateCurrentTime();
-    pause();
-  }
-
-  // when the playhead is moved, update the current time (text)
-  const updateCurrentTime = () => {
-    setCurrentTime(progressBar.current.value);
-  }
+  };
 
   // the knobby moves when you click on the progress bar
   // update the audio player to the new point
   const changeAudioToKnobby = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
-    progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`);
-  }
+    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
+  };
 
   // toggle play / pause when you tap the space bar
   const tapSpaceBar = (e) => {
-    if (e.keyCode == 32) {
+    if (e.keyCode === 32) {
       togglePlaying();
     }
-  }
+  };
 
   // jump back 30 seconds
   const backThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) - 30
+    progressBar.current.value = Number(progressBar.current.value) - 30;
     updateCurrentTime();
     changeAudioToKnobby();
-  }
+  };
 
   // jump forward 30 seconds
   const forwardThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) + 30
+    progressBar.current.value = Number(progressBar.current.value) + 30;
     updateCurrentTime();
     changeAudioToKnobby();
-  }
+  };
 
   return (
     <StyledFeaturedAudioPlayer>
-      <audio
-        ref={audioPlayer}
-        src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/88284991-93d9-436a-845d-4133c01cde8a/audio/2040cdce-b212-4958-906d-1706fa39f6ac/default_tc.mp3"
-        preload="metadata"
-      />
+      <audio ref={audioPlayer} src={track} preload="metadata" />
 
       <div className="controls">
-        <button onClick={backThirty} className="forwardBackward">
+        <button type="button" onClick={backThirty} className="forwardBackward">
           <Icon name="arrow" className="back" />
           30
         </button>
-        <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
-          {isPlaying ? (<svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
-            <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
-          </svg>) : (<svg width="24" height="29" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" className="pause">
-            <rect width="9" height="29" />
-            <rect x="15" width="9" height="29" />
-          </svg>)}
+        <button type="button" className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
+          {isPlaying ? (
+            <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
+              <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
+            </svg>
+          ) : (
+            <svg width="24" height="29" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" className="pause">
+              <rect width="9" height="29" />
+              <rect x="15" width="9" height="29" />
+            </svg>
+          )}
         </button>
-        <button onClick={forwardThirty} className="forwardBackward">
+        <button type="button" onClick={forwardThirty} className="forwardBackward">
           30
           <Icon name="arrow" />
         </button>
         <div className="current-time">{calculateTime(currentTime)}</div>
         <div className="progress-bar">
-          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onInput={updateCurrentTime} onChange={changeAudioToKnobby} />
+          <input
+            type="range"
+            min="0"
+            max="100"
+            defaultValue="0"
+            ref={progressBar}
+            onInput={updateCurrentTime}
+            onChange={changeAudioToKnobby}
+          />
           {/* <div className="bookmark"></div> */}
         </div>
         <div className="duration">{calculateTime(duration)}</div>
       </div>
     </StyledFeaturedAudioPlayer>
-  )
-}
+  );
+};
+
+FeaturedAudioPlayer.propTypes = {
+  track: PropTypes.string.isRequired,
+};
 
 /** -------------------------------------------------
 * STYLES
@@ -144,10 +156,10 @@ const StyledFeaturedAudioPlayer = styled.div`
     align-items: center;
     background: none;
     border: none;
-    color: ${props => props.theme.yellow};
+    color: ${(props) => props.theme.yellow};
     cursor: pointer;
     display: flex;
-    font-family: ${props => props.theme.mono};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.8rem;
     width: 75px;
 
@@ -165,16 +177,16 @@ const StyledFeaturedAudioPlayer = styled.div`
     }
 
     &:hover .back {
-        transform: rotate(180deg) translateX(5px);
-      }
+      transform: rotate(180deg) translateX(5px);
+    }
   }
 
   .playPause {
     align-items: center;
-    background: ${props => props.theme.charcoal};
+    background: ${(props) => props.theme.charcoal};
     border: none;
     border-radius: 50%;
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
     cursor: pointer;
     display: flex;
     height: 70px;
@@ -184,8 +196,8 @@ const StyledFeaturedAudioPlayer = styled.div`
     width: 70px;
 
     &:hover {
-      background: ${props => props.theme.yellow};
-      color: ${props => props.theme.lavendarIndigo};
+      background: ${(props) => props.theme.yellow};
+      color: ${(props) => props.theme.lavenderIndigo};
     }
 
     svg {
@@ -200,8 +212,8 @@ const StyledFeaturedAudioPlayer = styled.div`
 
   .current-time,
   .duration {
-    color: ${props => props.theme.white};
-    font-family: ${props => props.theme.mono};
+    color: ${(props) => props.theme.white};
+    font-family: ${(props) => props.theme.mono};
     font-size: 1.8rem;
     width: 50px;
   }
@@ -214,13 +226,13 @@ const StyledFeaturedAudioPlayer = styled.div`
     position: relative;
   }
 
-  input[type="range"] {
+  input[type='range'] {
     --buffered-width: 0;
     --seek-before-width: 0;
 
-    --bar-bg: ${props => props.theme.montana};
-    --seek-before-color: ${props => props.theme.gray};
-    --buffered-color: ${props => props.theme.shipGray};
+    --bar-bg: ${(props) => props.theme.montana};
+    --seek-before-color: ${(props) => props.theme.gray};
+    --buffered-color: ${(props) => props.theme.shipGray};
 
     appearance: none;
     background: var(--bar-bg);
@@ -232,11 +244,12 @@ const StyledFeaturedAudioPlayer = styled.div`
 
     /* progress bar - safari */
     &::-webkit-slider-runnable-track {
-      background: linear-gradient(to right,
+      background: linear-gradient(
+        to right,
         var(--buffered-color) 0%,
         var(--buffered-color) var(--buffered-width),
         transparent var(--buffered-width),
-        transparent 100%,
+        transparent 100%
       );
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
@@ -250,7 +263,7 @@ const StyledFeaturedAudioPlayer = styled.div`
       background-color: var(--seek-before-color);
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
-      content: "";
+      content: '';
       cursor: pointer;
       height: 11px;
       left: 0;
@@ -263,35 +276,36 @@ const StyledFeaturedAudioPlayer = styled.div`
   }
 
   /* progress bar - firefox */
-  input[type="range"]::-moz-range-track {
+  input[type='range']::-moz-range-track {
     width: 100%;
     height: 11px;
     cursor: pointer;
-    background: linear-gradient(to right,
+    background: linear-gradient(
+      to right,
       var(--buffered-color) var(--buffered-width),
       var(--bar-bg) var(--buffered-width)
     );
     border-radius: 10px;
   }
 
-  input[type="range"]::-moz-focus-outer {
-      border: 0;
+  input[type='range']::-moz-focus-outer {
+    border: 0;
   }
 
   /* played bar - firefox */
-  input[type="range"]::-moz-range-progress {
-    background-color: ${props => props.theme.gray};
+  input[type='range']::-moz-range-progress {
+    background-color: ${(props) => props.theme.gray};
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
     height: 11px;
   }
 
-  input[type="range"]::-moz-focus-outer {
+  input[type='range']::-moz-focus-outer {
     border: 0;
   }
 
   /* knobby - safari */
-  input[type="range"]::-webkit-slider-thumb {
+  input[type='range']::-webkit-slider-thumb {
     position: relative;
     -webkit-appearance: none;
     box-sizing: content-box;
@@ -299,7 +313,7 @@ const StyledFeaturedAudioPlayer = styled.div`
     height: 15px;
     width: 15px;
     border-radius: 50%;
-    background-color: ${props => props.theme.white};;
+    background-color: ${(props) => props.theme.white};
     cursor: pointer;
     margin: -2px 0 0 0;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
@@ -308,30 +322,30 @@ const StyledFeaturedAudioPlayer = styled.div`
   }
 
   /* knobby while dragging - safari */
-  input[type="range"]:active::-webkit-slider-thumb {
+  input[type='range']:active::-webkit-slider-thumb {
     transform: scale(1.2);
-    background: ${props => props.theme.yellow};
+    background: ${(props) => props.theme.yellow};
   }
 
   /* knobby - firefox */
-  input[type="range"]::-moz-range-thumb {
+  input[type='range']::-moz-range-thumb {
     box-sizing: content-box;
     border: transparent;
     height: 15px;
     width: 15px;
     border-radius: 50%;
-    background-color: ${props => props.theme.white};
+    background-color: ${(props) => props.theme.white};
     cursor: pointer;
     z-index: 3;
     position: relative;
   }
-  input[type="range"]:active::-moz-range-thumb {
+  input[type='range']:active::-moz-range-thumb {
     transform: scale(1.2);
-    background: ${props => props.theme.yellow};
+    background: ${(props) => props.theme.yellow};
   }
 
   .bookmark {
-    background: ${props => props.theme.yellow};
+    background: ${(props) => props.theme.yellow};
     display: block;
     height: 11px;
     left: 300px;
@@ -343,4 +357,4 @@ const StyledFeaturedAudioPlayer = styled.div`
   }
 `;
 
-export { FeaturedAudioPlayer }
+export { FeaturedAudioPlayer };

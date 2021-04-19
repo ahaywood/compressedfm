@@ -1,32 +1,30 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // components
-import { EpisodeGrid } from "modules/shared/components/EpisodeGrid";
-import { Newsletter } from "modules/shared/components/Newsletter";
-import { VerticalDivider } from "modules/shared/components/VerticalDivider";
-import { HorizontalDivider } from "modules/shared/components/HorizontalDivider";
-import { SearchForm } from "modules/shared/components/Header/components/SearchForm"
+import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
+import { Newsletter } from 'modules/shared/components/Newsletter';
+import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
+import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
+import { SearchForm } from 'modules/shared/components/Header/components/SearchForm';
 
 // styles
-import { MixinSectionHeading, MixinPageTitle } from "styles/Typography";
+import { MixinSectionHeading, MixinPageTitle } from 'styles/Typography';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const SearchPage = ({ episodes, keywords }) => {
-  return (
-    <StyledSearchPage>
-      <h3>Search Results</h3>
-      <h1>{keywords}</h1>
-      <div className="search-again">
-        <SearchForm />
-      </div>
-      <EpisodeGrid episodes={episodes} />
-      <VerticalDivider />
-      <Newsletter />
-    </StyledSearchPage>
-  )
-}
+const SearchPage = ({ episodes, keywords }) => (
+  <StyledSearchPage>
+    <h3>Search Results</h3>
+    <h1>{keywords}</h1>
+    <div className="search-again">
+      <SearchForm />
+    </div>
+    <EpisodeGrid episodes={episodes} />
+    <VerticalDivider />
+    <Newsletter />
+  </StyledSearchPage>
+);
 
 /** -------------------------------------------------
 * STYLES
@@ -51,4 +49,4 @@ const StyledSearchPage = styled.section`
   }
 `;
 
-export { SearchPage }
+export { SearchPage };

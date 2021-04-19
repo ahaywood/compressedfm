@@ -1,17 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const Dropdown = () => {
-  return (
-    <StyledDropdown>
-      <select>
-        <option value=""></option>
-      </select>
-    </StyledDropdown>
-  )
-}
+const Dropdown = () => <StyledDropdown>{/* <select>
+      <option value="" />
+    </select> */}</StyledDropdown>;
 
 const StyledDropdown = styled.section`
   position: relative;
 `;
 
-export { Dropdown }
+export { Dropdown };

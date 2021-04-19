@@ -1,32 +1,30 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // components
-import { Icon } from "modules/shared/components/Icon";
+import { Icon } from 'modules/shared/components/Icon';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const Button = () => {
-  return (
-    <StyledButton type="submit">
-      Submit
-      <Icon name="arrow" />
-    </StyledButton>
-  )
-}
+const Button = () => (
+  <StyledButton type="submit">
+    Submit
+    <Icon name="arrow" />
+  </StyledButton>
+);
 
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledButton = styled.button`
   align-items: center;
-  background: ${props => props.theme.white};
+  background: ${(props) => props.theme.white};
   border: none;
   bottom: 10px;
-  color: ${props => props.theme.black};
+  color: ${(props) => props.theme.black};
   cursor: pointer;
   display: flex;
-  font-family: ${props => props.theme.mono};
+  font-family: ${(props) => props.theme.mono};
   font-size: 1.8rem;
   justify-content: center;
   left: 10px;
@@ -38,12 +36,12 @@ const StyledButton = styled.button`
   z-index: 2;
 
   &:hover {
-    background: ${props => props.theme.yellow};
+    background: ${(props) => props.theme.yellow};
     transform: translateX(-15px) translateY(15px);
   }
 
   &:before {
-    border: 2px solid ${props => props.theme.white};
+    border: 2px solid ${(props) => props.theme.white};
     content: '';
     display: block;
     height: 100%;
@@ -56,7 +54,7 @@ const StyledButton = styled.button`
   }
 
   &:hover:before {
-    border-color: ${props => props.theme.yellow};
+    border-color: ${(props) => props.theme.yellow};
     transform: translateX(13px) translateY(-17px); /* magical numbers take border into account */
   }
 
@@ -65,4 +63,4 @@ const StyledButton = styled.button`
   }
 `;
 
-export { Button }
+export { Button };
