@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
 import { Icon } from 'modules/shared/components/Icon';
+import { Breakpoints } from 'styles/Breakpoints';
 
 const Links = ({ listLink }) => (
   <StyledLinks>
@@ -33,9 +34,13 @@ const StyledLinks = styled.section`
   li {
     ${MixinBodyCopy}
     display: flex;
-    line-height: 1.8rem;
+    line-height: 1.2rem;
     margin-bottom: 20px;
     padding-left: 35px;
+
+    @media (${Breakpoints.portrait}) {
+      line-height: 1.5;
+    }
   }
 
   a {

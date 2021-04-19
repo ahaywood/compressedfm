@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { calculateTime } from 'utils/timeHelpers';
 
 // styles
+import { Breakpoints } from 'styles/Breakpoints';
 import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
 
 /** -------------------------------------------------
@@ -57,10 +58,14 @@ const StyledJumpLinks = styled.section`
   }
 
   li {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
-    a {
-      display: flex;
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 60px 1fr;
       text-decoration: none;
     }
 
@@ -77,14 +82,21 @@ const StyledJumpLinks = styled.section`
       font-weight: ${(props) => props.theme.fontBlack};
       line-height: 1;
       margin-right: 10px;
+      position: relative;
       text-align: right;
-      width: 55px;
+      top: 5px;
+      /* width: 60px; */
     }
 
     .description {
       ${MixinBodyCopy}
+      text-align: left;
       line-height: 1;
       margin-bottom: 0;
+
+      @media (${Breakpoints.portrait}) {
+        line-height: 1.5;
+      }
     }
   }
 `;
