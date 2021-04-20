@@ -15,7 +15,7 @@ import { MixinHeadingWithHorizontalLines } from 'styles/Typography';
 ---------------------------------------------------- */
 const ContactPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => { };
 
   useEffect(() => {
     kwesforms.init();
@@ -75,6 +75,7 @@ const StyledContactPage = styled.section`
 
   .kw-alert
   .kw-alert-error {
+    max-width: 445px;
     column-span: 2;
   }
 

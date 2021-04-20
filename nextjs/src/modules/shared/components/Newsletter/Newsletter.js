@@ -90,6 +90,7 @@ const StyledNewsletter = styled.div`
   .kw-alert {
     position: absolute;
     margin-top: -50px;
+    max-width: 445px;
   }
 
   .kw-field-error-message {
