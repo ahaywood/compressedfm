@@ -46,15 +46,10 @@ const StyledTheHosts = styled.section`
   grid-column-gap: 0;
   margin: 60px auto;
   max-width: ${(props) => props.theme.pageWidth};
-  padding: 0 ${(props) => props.theme.mobilePadding};
   width: 100%;
 
   @media (${Breakpoints.portrait}) {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (${Breakpoints.regular}) {
-    padding: 0;
   }
 
   .section-heading__wrapper {
@@ -89,6 +84,11 @@ const StyledTheHosts = styled.section`
     display: flex;
     flex-direction: column;
     height: 100%;
+    padding: 0 ${(props) => props.theme.mobilePadding};
+
+    @media (${Breakpoints.regular}) {
+      padding: 0;
+    }
   }
 `;
 

@@ -42,7 +42,7 @@ const StyledEpisodeGrid = styled.section`
   max-width: ${(props) => props.theme.pageWidth};
 
   @media (${Breakpoints.portrait}) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
   }
 
   @media (${Breakpoints.regular}) {
@@ -55,6 +55,10 @@ const StyledEpisodeGrid = styled.section`
     width: 100%;
 
     @media (${Breakpoints.portrait}) {
+      grid-column: span 2;
+    }
+
+    @media (${Breakpoints.regular}) {
       grid-column: span 3;
     }
   }

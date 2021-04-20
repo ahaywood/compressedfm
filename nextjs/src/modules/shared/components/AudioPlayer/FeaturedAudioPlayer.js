@@ -1,98 +1,43 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+
+// component
 import { Icon } from 'modules/shared/components/Icon';
+
+// utils
 import { calculateTime } from 'utils/timeHelpers';
+
+// styles
+import { Breakpoints } from 'styles/Breakpoints';
+
+// hooks
+import { useAudioPlayer } from './hooks/AudioPlayer';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
 const FeaturedAudioPlayer = ({ track }) => {
-  // state
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-
   // references
   const audioPlayer = useRef(); // set up reference for the audio component
   const progressBar = useRef(); // reference for the progress bar
-  const animationRef = useRef(); // reference the animation
 
-  // GET THE DURATION - once the meta data has been loaded
-  // loadedmetadata is provided by the browser
-  useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current.duration);
-    setDuration(seconds);
-    progressBar.current.max = seconds;
-  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
-
-  // when the playhead is moved, update the current time (text)
-  const updateCurrentTime = () => {
-    setCurrentTime(progressBar.current.value);
-  };
-
-  const pause = () => {
-    audioPlayer.current.pause();
-    cancelAnimationFrame(animationRef.current);
-  };
-
-  const restart = () => {
-    // progressBar.current.value = 0;
-    // updateCurrentTime();
-    pause();
-  };
-
-  const whilePlaying = () => {
-    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
-    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
-    updateCurrentTime();
-
-    // when you reach the end of the song
-    if (progressBar.current.value === duration) {
-      restart();
-      return;
-    }
-
-    animationRef.current = requestAnimationFrame(whilePlaying);
-  };
-
-  // toggle between play and pause
-  const togglePlaying = () => {
-    setIsPlaying(!isPlaying);
-    if (isPlaying) {
-      audioPlayer.current.play();
-      animationRef.current = requestAnimationFrame(whilePlaying);
-    } else {
-      pause();
-    }
-  };
-
-  // the knobby moves when you click on the progress bar
-  // update the audio player to the new point
-  const changeAudioToKnobby = () => {
-    audioPlayer.current.currentTime = progressBar.current.value;
-    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
-  };
+  // hooks
+  const {
+    backThirty,
+    changeAudioToPlayhead,
+    currentTime,
+    duration,
+    forwardThirty,
+    isPlaying,
+    togglePlaying,
+  } = useAudioPlayer(audioPlayer, progressBar);
 
   // toggle play / pause when you tap the space bar
   const tapSpaceBar = (e) => {
     if (e.keyCode === 32) {
       togglePlaying();
     }
-  };
-
-  // jump back 30 seconds
-  const backThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) - 30;
-    updateCurrentTime();
-    changeAudioToKnobby();
-  };
-
-  // jump forward 30 seconds
-  const forwardThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value) + 30;
-    updateCurrentTime();
-    changeAudioToKnobby();
   };
 
   return (
@@ -122,18 +67,9 @@ const FeaturedAudioPlayer = ({ track }) => {
         </button>
         <div className="current-time">{calculateTime(currentTime)}</div>
         <div className="progress-bar">
-          <input
-            type="range"
-            min="0"
-            max="100"
-            defaultValue="0"
-            ref={progressBar}
-            onInput={updateCurrentTime}
-            onChange={changeAudioToKnobby}
-          />
-          {/* <div className="bookmark"></div> */}
+          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onChange={changeAudioToPlayhead} />
         </div>
-        <div className="duration">{calculateTime(duration)}</div>
+        <div className="duration">{duration && !isNaN(duration) && calculateTime(duration)}</div>
       </div>
     </StyledFeaturedAudioPlayer>
   );
@@ -149,7 +85,16 @@ FeaturedAudioPlayer.propTypes = {
 const StyledFeaturedAudioPlayer = styled.div`
   .controls {
     align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+
+    @media (${Breakpoints.portrait}) {
+      display: flex;
+    }
+
+    @media (${Breakpoints.regular}) {
+      padding: 0;
+    }
   }
 
   button.forwardBackward {
@@ -191,9 +136,13 @@ const StyledFeaturedAudioPlayer = styled.div`
     display: flex;
     height: 70px;
     justify-content: center;
-    margin: 0 20px;
+    margin: 0 auto 10px;
     outline: none;
     width: 70px;
+
+    @media (${Breakpoints.portrait}) {
+      margin: 0 20px;
+    }
 
     &:hover {
       background: ${(props) => props.theme.yellow};

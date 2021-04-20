@@ -9,14 +9,14 @@ import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const JumpLinks = ({ timeJump, handleClick }) => {
+const JumpLinks = ({ className, timeJump, handleClick }) => {
   const onClick = (e, time) => {
     e.preventDefault();
     handleClick(time);
   };
 
   return (
-    <StyledJumpLinks>
+    <StyledJumpLinks className={className}>
       <h4>Jump Links</h4>
       <ul>
         {timeJump &&
@@ -34,11 +34,13 @@ const JumpLinks = ({ timeJump, handleClick }) => {
 };
 
 JumpLinks.propTypes = {
+  className: PropTypes.string,
   timeJump: PropTypes.array,
   handleClick: PropTypes.func,
 };
 
 JumpLinks.defaultProps = {
+  className: '',
   timeJump: [],
   handleClick: () => { },
 };
@@ -84,8 +86,11 @@ const StyledJumpLinks = styled.section`
       margin-right: 10px;
       position: relative;
       text-align: right;
-      top: 5px;
-      /* width: 60px; */
+      top: 0px;
+
+      @media (${Breakpoints.medium}) {
+        top: 5px;
+      }
     }
 
     .description {

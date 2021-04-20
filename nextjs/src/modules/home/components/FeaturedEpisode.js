@@ -42,7 +42,7 @@ const FeaturedEpisode = ({
         </Link>
       </h3>
       <p>{briefDescription}</p>
-      <MoreLink href={`/episode/${slug.current}`} />
+      <MoreLink href={`/episode/${slug.current}`} className="more-link" />
       <ul className="tiny-avatars">
         <li>
           <Image src="/images/james.png" height={60} width={60} alt="James Q Quick" layout="intrinsic" />
@@ -84,7 +84,6 @@ const StyledFeaturedEpisode = styled.section`
     'player';
   margin: 0 auto;
   max-width: ${(props) => props.theme.pageWidth};
-  padding: 0 ${(props) => props.theme.mobilePadding};
   position: relative;
 
   @media (${Breakpoints.portrait}) {
@@ -97,10 +96,6 @@ const StyledFeaturedEpisode = styled.section`
 
   @media (${Breakpoints.medium}) {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (${Breakpoints.regular}) {
-    padding: 0;
   }
 
   .episode-number-date__wrapper {
@@ -157,11 +152,14 @@ const StyledFeaturedEpisode = styled.section`
   /* episode title */
   h3 {
     font-family: ${(props) => props.theme.sansSerif};
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: ${(props) => props.theme.fontBlack};
     line-height: 0.95;
     margin: 0 0 36px 0;
-    padding: 0;
+
+    @media (${Breakpoints.small}) {
+      font-size: 6rem;
+    }
 
     @media (${Breakpoints.portrait}) {
       font-size: 8.5rem;
@@ -178,13 +176,30 @@ const StyledFeaturedEpisode = styled.section`
     }
   }
 
+  .episode-content {
+    padding: 0 ${(props) => props.theme.mobilePadding};
+
+    @media (${Breakpoints.regular}) {
+      padding: 0;
+    }
+  }
+
   /* description */
   p {
     ${MixinBodyCopy};
   }
 
+  .more-link {
+    position: relative;
+    top: -30px;
+
+    @media (${Breakpoints.portrait}) {
+      top: 0;
+    }
+  }
+
   .tiny-avatars {
-    display: flex;
+    display: none;
     flex-direction: row-reverse;
     list-style-type: none;
     margin: 0;
@@ -193,6 +208,10 @@ const StyledFeaturedEpisode = styled.section`
     position: relative;
     top: -25px;
 
+    @media (${Breakpoints.portrait}) {
+      display: flex;
+    }
+
     li {
       margin-left: -10px;
     }
@@ -200,6 +219,11 @@ const StyledFeaturedEpisode = styled.section`
 
   .audio-player {
     grid-area: player;
+    padding: 0 ${(props) => props.theme.mobilePadding};
+
+    @media (${Breakpoints.regular}) {
+      padding: 0;
+    }
   }
 `;
 

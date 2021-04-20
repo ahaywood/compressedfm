@@ -62,7 +62,7 @@ const IndividualEpisodePage = ({
 
           <div className="time-links">
             {/* TIME JUMP LINKS */}
-            {timeJump && <JumpLinks timeJump={timeJump} className="time" handleClick={skipToTimestamp} />}
+            {timeJump && <JumpLinks className="jump-links time" timeJump={timeJump} handleClick={skipToTimestamp} />}
 
             {/* SHOW LINKS */}
             {listLink && <Links listLink={listLink} className="links" />}
@@ -157,12 +157,16 @@ const StyledIndividualEpisodePage = styled.section`
 
   .content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 20px;
     margin: 0 auto;
     max-width: ${(props) => props.theme.pageWidth};
     padding: 0 ${(props) => props.theme.mobilePadding};
     position: relative;
+
+    @media (${Breakpoints.medium}) {
+      grid-template-columns: 2fr 1fr;
+    }
 
     @media (${Breakpoints.regular}) {
       padding: 0;
@@ -175,9 +179,22 @@ const StyledIndividualEpisodePage = styled.section`
 
   .time-links {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 20px;
-    margin-bottom: 200px;
+    margin-bottom: 75px;
+
+    @media (${Breakpoints.medium}) {
+      margin-bottom: 200px;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .jump-links {
+    margin-bottom: 75px;
+
+    @media (${Breakpoints.medium}) {
+      margin-bottom: 0;
+    }
   }
 
   .sponsors {

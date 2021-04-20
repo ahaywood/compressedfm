@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
+// styles
+import { Breakpoints } from 'styles/Breakpoints';
+
 // components
 import { Icon } from 'modules/shared/components/Icon';
 
@@ -56,7 +59,10 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
 
       {/* episode meta data */}
       <div className="meta">
-        <h4>COMPRESSED.fm {episodeNumber && `|| Episode ${episodeNumber}`}</h4>
+        <h4>
+          <span className="show-title">COMPRESSED.fm</span>{' '}
+          <span className="episode-number">{episodeNumber && `Episode ${episodeNumber}`}</span>
+        </h4>
         <h2>{episodeTitle}</h2>
       </div>
 
@@ -132,28 +138,49 @@ const StyledFeaturedAudioPlayer = styled.div`
     ${(props) => props.theme.bastille} 100%
   );
   border: 1px solid ${(props) => props.theme.bastille};
+  box-sizing: border-box;
   display: grid;
   grid-template-areas:
     'cover meta'
-    'cover controls';
-  grid-template-columns: 160px 1fr;
-  grid-column-gap: 20px;
+    'controls controls';
+  grid-template-columns: 125px 1fr;
   padding: 20px;
   max-width: 660px;
   margin: 0 auto;
   position: relative;
+  width: 100%;
+
+  @media (${Breakpoints.small}) {
+    grid-template-areas:
+      'cover meta'
+      'cover controls';
+    grid-template-columns: 160px 1fr;
+    grid-column-gap: 20px;
+  }
 
   .album-cover {
     grid-area: cover;
 
     img {
+      border: 1px solid ${(props) => props.theme.bastille};
+      margin-bottom: 10px;
+      max-width: 200px;
       width: 100%;
+
+      @media (${Breakpoints.small}) {
+        max-width: 100%;
+      }
     }
   }
 
   .meta {
     grid-area: meta;
     text-align: left;
+    padding: 0 20px;
+
+    @media (${Breakpoints.small}) {
+      padding: 0;
+    }
 
     /* episode title */
     h2 {
@@ -173,6 +200,21 @@ const StyledFeaturedAudioPlayer = styled.div`
       line-height: 1;
       margin: 0 0 10px 0;
       padding: 0;
+    }
+
+    .show-title,
+    .episode-number {
+      display: block;
+
+      @media (${Breakpoints.small}) {
+        display: inline;
+      }
+    }
+
+    .episode-number:before {
+      @media (${Breakpoints.small}) {
+        content: '|| ';
+      }
     }
   }
 
@@ -317,12 +359,13 @@ const StyledFeaturedAudioPlayer = styled.div`
     background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png')
       left top no-repeat;
     border-radius: 10px;
-    position: relative;
-    width: 375px;
     height: 40px;
+    max-width: 375px;
     outline: none;
     position: relative;
+    position: relative;
     top: -10px;
+    width: 100%;
     z-index: 1;
 
     /* progress bar - safari */
