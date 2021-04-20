@@ -54,7 +54,7 @@ export default {
       name: 'associatedEmails',
       title: 'Associated Email(s)',
       type: 'string',
-      description: 'Comma deliminated list'
+      description: 'Comma delaminated list'
     },
     {
       name: 'contractsInvoices',

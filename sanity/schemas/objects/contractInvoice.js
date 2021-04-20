@@ -5,18 +5,37 @@ export default {
     { name: 'contract', title: 'Contract' },
     { name: 'invoice', title: 'Invoice' }
   ],
+  preview: {
+    select: {
+      contractDateIssued: 'contractDateIssued',
+      invoiceDescription: 'invoiceDescription'
+    },
+    prepare(selection) {
+      const { contractDateIssued, invoiceDescription } = selection
+      return {
+        title: `${contractDateIssued} :: ${invoiceDescription}`
+      }
+    },
+  },
   fields: [
     {
       name: 'contractDescription',
       title: 'Contract Description',
-      type: 'text',
+      type: 'string',
+      description: 'Example: "Founding Sponsor" or "Bundle"',
       fieldset: 'contract'
     },
     {
       name: 'contractStatus',
       title: 'Contract Status',
-      type: 'text',
+      type: 'string',
       fieldset: 'contract',
+      options: {
+        list: [
+          { title: 'Attn', value: 'attn' },
+          { title: 'Signed', value: 'signed' },
+        ]
+      }
     },
     {
       name: 'contractDateIssued',
@@ -31,13 +50,6 @@ export default {
       fieldset: 'contract'
     },
     {
-      name: 'contractLink',
-      title: 'Contract Link',
-      description: 'Link to sign the contract via HelloSign',
-      type: 'text',
-      fieldset: 'contract',
-    },
-    {
       name: 'contractPDF',
       title: 'Contract PDF',
       type: 'file',
@@ -46,19 +58,26 @@ export default {
     {
       name: 'invoiceDescription',
       title: "Invoice Description",
-      type: 'text',
+      type: 'string',
+      description: 'Example: "3 EPISODES: 60 seconds"',
       fieldset: 'invoice'
     },
     {
       name: 'invoiceStatus',
       title: 'Invoice Status',
-      type: 'text',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Attn', value: 'attn' },
+          { title: 'Paid', value: 'paid' },
+        ]
+      },
       fieldset: 'invoice'
     },
     {
       name: 'invoiceNumber',
       title: 'Invoice Number',
-      type: 'number',
+      type: 'string',
       fieldset: 'invoice'
     },
     {
@@ -71,7 +90,7 @@ export default {
       name: 'invoiceLink',
       title: 'Invoice Link',
       description: 'Link to pay the invoice in FreshBooks',
-      type: 'text',
+      type: 'string',
       fieldset: 'invoice'
     },
     {

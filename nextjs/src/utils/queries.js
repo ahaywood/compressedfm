@@ -2,14 +2,14 @@ import groq from 'groq';
 
 export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match $email && published==true]{
   title,
-  logo,
+  "logo": logo.asset->url,
   offer,
   offerLink,
   offerLink,
   about,
   founding,
   contractsInvoices[],
-  "episodes": *[_type=='episode' && references(^._id)]{ 
+  "episodes": *[_type=='episode' && references(^._id)]{
     title,
     audioPath,
     simplecastId
@@ -20,7 +20,7 @@ export const guestQuery = groq`*[_type == "guest" && guestEmail == $email && pub
   firstName,
   lastName,
   guestEmail,
-  "episodes": *[_type=='episode' && references(^._id)]{ 
+  "episodes": *[_type=='episode' && references(^._id)]{
     title,
     audioPath,
     simplecastId
