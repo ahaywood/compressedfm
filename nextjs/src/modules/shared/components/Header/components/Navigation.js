@@ -31,9 +31,7 @@ const Navigation = ({ isShowing }) => {
         <TopNav />
       </div>
 
-      <div className="sub-nav">
-        <BtmNav />
-      </div>
+      <div className="sub-nav">{/* <BtmNav /> */}</div>
 
       <div className="search">
         <SearchForm />
