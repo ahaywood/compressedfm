@@ -2,13 +2,23 @@ import { css } from 'styled-components';
 import { Breakpoints } from 'styles/Breakpoints';
 
 const MixinForm = css`
+  padding: 0 ${(props) => props.theme.mobilePadding};
+
+  @media (${Breakpoints.portrait}) {
+    padding: 0;
+  }
+
   form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     grid-column-gap: 24px;
     grid-row-gap: 32px;
     margin: 60px auto;
     max-width: ${(props) => props.theme.formWidth};
+
+    @media (${Breakpoints.portrait}) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .half,
@@ -17,7 +27,9 @@ const MixinForm = css`
   }
 
   .full {
-    grid-column: span 2;
+    @media (${Breakpoints.portrait}) {
+      grid-column: span 2;
+    }
   }
 
   .action-buttons {
