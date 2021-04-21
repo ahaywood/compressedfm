@@ -73,21 +73,17 @@ const StyledTheHosts = styled.section`
     }
   }
 
-  .amy {
-    @media (${Breakpoints.portrait}) {
-      padding-left: 85px;
-    }
-  }
-
   .james,
   .amy {
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 0 ${(props) => props.theme.mobilePadding};
+  }
 
-    @media (${Breakpoints.regular}) {
-      padding: 0;
+  .amy {
+    @media (${Breakpoints.portrait}) {
+      padding: 0 0 0 85px;
     }
   }
 `;
