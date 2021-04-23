@@ -10,20 +10,23 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
 
   // GET THE DURATION - once the meta data has been loaded
   // loadedmetadata is provided by the browser
-  useEffect(() => {
+  // useEffect(() => {
+  //   const seconds = Math.floor(audioRef.current.duration);
+  //   setDuration(seconds);
+  //   progressBarRef.current.max = seconds;
+  //   // console.log(audioRef.current);
+  //   console.log('getting here');
+  // }, [audioRef, progressBarRef, audioRef?.current?.loadedmetadata, audioRef?.current?.readyState]);
+
+  const onLoadedMetadata = () => {
     const seconds = Math.floor(audioRef.current.duration);
     setDuration(seconds);
     progressBarRef.current.max = seconds;
-  }, [audioRef?.current?.loadedmetadata, audioRef?.current?.readyState]);
+  };
 
   // when the playhead is moved, update the current time (text)
   const updateCurrentTime = () => {
     setCurrentTime(progressBarRef.current.value);
-  };
-
-  const play = () => {
-    audioRef.current.play();
-    animationRef.current = requestAnimationFrame(whilePlaying);
   };
 
   const pause = () => {
@@ -51,6 +54,11 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
       return;
     }
 
+    animationRef.current = requestAnimationFrame(whilePlaying);
+  };
+
+  const play = () => {
+    audioRef.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);
   };
 
@@ -129,6 +137,7 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     duration,
     forwardThirty,
     isPlaying,
+    onLoadedMetadata,
     play,
     skipToTime,
     speed,

@@ -30,6 +30,7 @@ const FeaturedAudioPlayer = ({ track }) => {
     duration,
     forwardThirty,
     isPlaying,
+    onLoadedMetadata,
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
 
@@ -42,7 +43,7 @@ const FeaturedAudioPlayer = ({ track }) => {
 
   return (
     <StyledFeaturedAudioPlayer>
-      <audio ref={audioPlayer} src={track} preload="metadata" />
+      <audio ref={audioPlayer} src={track} preload="metadata" onLoadedMetadata={onLoadedMetadata} />
 
       <div className="controls">
         <button type="button" onClick={backThirty} className="forwardBackward">

@@ -31,6 +31,7 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
     duration,
     forwardThirty,
     isPlaying,
+    onLoadedMetadata,
     skipToTime,
     speed,
     togglePlaying,
@@ -50,7 +51,7 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
   return (
     <StyledFeaturedAudioPlayer>
       {/* audio element */}
-      <audio ref={audioPlayer} src={audioPath} preload="metadata" />
+      <audio ref={audioPlayer} src={audioPath} preload="metadata" onLoadedMetadata={onLoadedMetadata} />
 
       {/* album cover */}
       <div className="album-cover">
