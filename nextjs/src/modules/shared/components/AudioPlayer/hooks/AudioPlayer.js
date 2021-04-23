@@ -5,7 +5,6 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-
   const animationRef = useRef(); // reference the animation
 
   // GET THE DURATION - once the meta data has been loaded
@@ -91,9 +90,9 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     const prevState = isPlaying;
     setIsPlaying(!prevState);
     if (!prevState) {
-      pause();
-    } else {
       play();
+    } else {
+      pause();
     }
   };
 
