@@ -20,6 +20,18 @@ const query = groq`*[_type == "newsletter" && slug.current == $slug] | order(dat
     ...,
     _type == "image" => {
       "imageUrl": @.asset->url
+    },
+    _type == "thumbnailWithContent" => {
+      "thumbUrl": @.thumbnail.asset->{url}
+    },
+    _type == 'referenceSponsor' => {
+      "sponsor": @.sponsor->{
+        title,
+        about,
+        "logo": logo.asset->{url},
+        offer,
+        offerLink
+      }
     }
   },
   pagination{

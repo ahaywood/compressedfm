@@ -8,6 +8,9 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import fullWidthImage from "./blockContent/fullWidthImage";
 import divider from "./blockContent/divider";
 import preformatted from "./blockContent/preformatted";
+import thumbnailWithContent from "./blockContent/thumbnailWithContent";
+import podcatchers from "./blockContent/podcatchers";
+import referenceSponsor from "./blockContent/referenceSponsor";
 
 // document schemas
 import category from './documents/category'
@@ -70,6 +73,9 @@ export default createSchema({
     // BLOCK CONTENT
     divider,
     fullWidthImage,
-    preformatted
+    preformatted,
+    thumbnailWithContent,
+    podcatchers,
+    referenceSponsor
   ]),
 })

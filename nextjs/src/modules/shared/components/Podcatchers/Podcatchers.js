@@ -11,9 +11,9 @@ import { Breakpoints } from 'styles/Breakpoints';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const Podcatchers = ({ className }) => (
+const Podcatchers = ({ className, showHeading }) => (
   <StyledPodcatcher className={className}>
-    <h3>SUBSCRIBE ON YOUR PODCATCHER OF CHOICE</h3>
+    {showHeading && <h3>SUBSCRIBE ON YOUR PODCATCHER OF CHOICE</h3>}
     <ul>
       {/* ITUNES */}
       {Constants.ITUNES_URL !== '' && (
@@ -74,10 +74,12 @@ const Podcatchers = ({ className }) => (
 
 Podcatchers.propTypes = {
   className: PropTypes.string,
+  showHeading: PropTypes.bool,
 };
 
 Podcatchers.defaultProps = {
   className: '',
+  showHeading: true,
 };
 
 /** -------------------------------------------------
