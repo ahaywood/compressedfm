@@ -3,8 +3,7 @@ import groq from 'groq';
 import { TagPage } from 'modules/tag';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 
-export default function Tag(props) {
-  const content = Object.values(props);
+export default function Tag({tags}) {
   return <InteriorLayout>{/* <TagPage episodes={content} /> */}</InteriorLayout>;
 }
 
@@ -23,7 +22,8 @@ const query = groq`*[_type == "category"] {
   }
 }`;
 
-Tag.getInitialProps = async function (context) {
+export async function getServerSideProps(context) {
   const { slug = '' } = context.query;
-  return await client.fetch(query, { slug });
+  const tags = await client.fetch(query, { slug });
+  return {props: {tags}};
 };

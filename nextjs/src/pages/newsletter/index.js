@@ -3,11 +3,10 @@ import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { NewsletterPage } from 'modules/newsletter';
 
-export default function Newsletter(props) {
-  const content = Object.values(props);
+export default function Newsletter({newsletters}) {
   return (
     <InteriorLayout>
-      <NewsletterPage newsletters={content} />
+      <NewsletterPage newsletters={newsletters} />
     </InteriorLayout>
   );
 }
@@ -19,6 +18,7 @@ const query = groq`*[_type == "newsletter" && published == true] | order(dateSen
   slug
 }`;
 
-Newsletter.getInitialProps = async function (context) {
-  return await client.fetch(query);
+export async function getServerSideProps(context) {
+  const newsletters = await client.fetch(query);
+  return {props: {newsletters}}
 };
