@@ -10,16 +10,15 @@ import { SearchPage } from 'modules/search';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-export default function Search(props) {
+export default function Search({episodes}) {
   const router = useRouter();
-  const content = Object.values(props);
 
   return (
     <InteriorLayout>
       <Head>
         <title>Search Results for {router.query.keywords} | Compressed.fm</title>
       </Head>
-      <SearchPage keywords={router.query.keywords} episodes={content} />
+      <SearchPage keywords={router.query.keywords} episodes={episodes} />
     </InteriorLayout>
   );
 }
@@ -37,7 +36,10 @@ const query = groq`*[_type == "episode" && published == true && publishedAt < no
   audioPath
 }`;
 
-Search.getInitialProps = async function (context) {
+export async function getServerSideProps(context) {
   const { keywords = '' } = context.query;
-  return await client.fetch(query, { keywords });
-};
+  const episodes = await client.fetch(query, { keywords });
+  return {
+    props: {episodes}
+  }
+}

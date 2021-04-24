@@ -3,10 +3,10 @@ import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { IndividualEpisodePage } from 'modules/episodes/IndividualEpisodePage';
 
-export default function Episode(props) {
+export default function Episode({episode}) {
   return (
     <InteriorLayout>
-      <IndividualEpisodePage episode={props} />
+      <IndividualEpisodePage episode={episode} />
     </InteriorLayout>
   );
 }
@@ -56,7 +56,8 @@ const query = groq`*[_type == "episode" && slug.current == $slug] {
   }
 }[0]`;
 
-Episode.getInitialProps = async function (context) {
+export async function getServerSideProps(context) {
   const { slug = '' } = context.query;
-  return await client.fetch(query, { slug });
-};
+  const episode = await client.fetch(query, { slug });
+  return {props: {episode}}
+}

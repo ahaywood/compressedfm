@@ -13,8 +13,8 @@ import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
 ---------------------------------------------------- */
 const EpisodePage = ({ episodes }) => {
   // get the first element in the array to feature
-  const featuredEpisode = episodes.shift();
-
+  const featuredEpisode = episodes[0];
+  const remainingEpisodes = episodes.slice(1)
   return (
     <StyledEpisodePage>
       {featuredEpisode && (
@@ -23,7 +23,7 @@ const EpisodePage = ({ episodes }) => {
           <VerticalDivider />
         </>
       )}
-      <EpisodeGrid episodes={episodes} />
+      <EpisodeGrid episodes={remainingEpisodes} />
       <VerticalDivider />
       <Podcatchers className="podcatchers" />
       <VerticalDivider />
