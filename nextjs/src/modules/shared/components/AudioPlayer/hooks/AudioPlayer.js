@@ -128,6 +128,13 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     play();
   };
 
+  // toggle play / pause when you tap the space bar
+  const tapSpaceBar = (e) => {
+    if (e.keyCode === 32) {
+      togglePlaying();
+    }
+  };
+
   return {
     backThirty,
     changeAudioToPlayhead,
@@ -140,6 +147,7 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     play,
     skipToTime,
     speed,
+    tapSpaceBar,
     togglePlaying,
   };
 };

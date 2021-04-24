@@ -31,15 +31,9 @@ const FeaturedAudioPlayer = ({ track }) => {
     forwardThirty,
     isPlaying,
     onLoadedMetadata,
+    tapSpaceBar,
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
-
-  // toggle play / pause when you tap the space bar
-  const tapSpaceBar = (e) => {
-    if (e.keyCode === 32) {
-      togglePlaying();
-    }
-  };
 
   return (
     <StyledFeaturedAudioPlayer>

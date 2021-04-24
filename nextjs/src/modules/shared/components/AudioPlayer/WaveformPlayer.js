@@ -34,19 +34,13 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
     onLoadedMetadata,
     skipToTime,
     speed,
+    tapSpaceBar,
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
 
   // useEffect(() => {
   //   skipToTime(skipTo);
   // }, [skipTo]);
-
-  // toggle play / pause when you tap the space bar
-  const tapSpaceBar = (e) => {
-    if (e.keyCode === 32) {
-      togglePlaying();
-    }
-  };
 
   return (
     <StyledFeaturedAudioPlayer>
