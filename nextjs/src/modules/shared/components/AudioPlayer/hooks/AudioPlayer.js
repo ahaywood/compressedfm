@@ -7,16 +7,6 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
   const [currentTime, setCurrentTime] = useState(0);
   const animationRef = useRef(); // reference the animation
 
-  // GET THE DURATION - once the meta data has been loaded
-  // loadedmetadata is provided by the browser
-  // useEffect(() => {
-  //   const seconds = Math.floor(audioRef.current.duration);
-  //   setDuration(seconds);
-  //   progressBarRef.current.max = seconds;
-  //   // console.log(audioRef.current);
-  //   console.log('getting here');
-  // }, [audioRef, progressBarRef, audioRef?.current?.loadedmetadata, audioRef?.current?.readyState]);
-
   const onLoadedMetadata = () => {
     const seconds = Math.floor(audioRef.current.duration);
     setDuration(seconds);
