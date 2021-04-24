@@ -5,18 +5,7 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-
   const animationRef = useRef(); // reference the animation
-
-  // GET THE DURATION - once the meta data has been loaded
-  // loadedmetadata is provided by the browser
-  // useEffect(() => {
-  //   const seconds = Math.floor(audioRef.current.duration);
-  //   setDuration(seconds);
-  //   progressBarRef.current.max = seconds;
-  //   // console.log(audioRef.current);
-  //   console.log('getting here');
-  // }, [audioRef, progressBarRef, audioRef?.current?.loadedmetadata, audioRef?.current?.readyState]);
 
   const onLoadedMetadata = () => {
     const seconds = Math.floor(audioRef.current.duration);
@@ -91,9 +80,9 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     const prevState = isPlaying;
     setIsPlaying(!prevState);
     if (!prevState) {
-      pause();
-    } else {
       play();
+    } else {
+      pause();
     }
   };
 
@@ -129,6 +118,13 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     play();
   };
 
+  // toggle play / pause when you tap the space bar
+  const tapSpaceBar = (e) => {
+    if (e.keyCode === 32) {
+      togglePlaying();
+    }
+  };
+
   return {
     backThirty,
     changeAudioToPlayhead,
@@ -141,6 +137,7 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     play,
     skipToTime,
     speed,
+    tapSpaceBar,
     togglePlaying,
   };
 };
