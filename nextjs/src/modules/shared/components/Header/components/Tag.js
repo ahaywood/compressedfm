@@ -6,16 +6,21 @@ import { slugify } from 'utils/slugify';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const Tag = ({ name }) => (
+const Tag = ({ handleClick, name }) => (
   <StyledTag>
     <Link href={`/tag/${slugify(name)}`}>
-      <a>{name}</a>
+      <a onClick={handleClick}>{name}</a>
     </Link>
   </StyledTag>
 );
 
 Tag.propTypes = {
+  handleClick: PropTypes.func,
   name: PropTypes.string.isRequired,
+};
+
+Tag.defaultProps = {
+  handleClick: () => { },
 };
 
 /** -------------------------------------------------
