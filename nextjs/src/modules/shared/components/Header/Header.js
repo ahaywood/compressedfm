@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <Navigation isShowing={navShowing} handleClick={handleClick} />
-      <Hamburger className="hamburger" onClick={handleClick} />
+      <Hamburger className="hamburger" onClick={handleClick} navShowing={navShowing} />
 
       <div>
         <h1>

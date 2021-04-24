@@ -1,11 +1,19 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import styled from 'styled-components';
 
+// styles
 import { Zindex } from 'styles/Zindex';
 
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const Hamburger = ({ className, onClick, navShowing }) => {
   const [toggled, setToggled] = useState(navShowing);
+
+  useEffect(() => {
+    setToggled(navShowing);
+  }, [navShowing]);
 
   const toggle = () => {
     setToggled((prevToggled) => !prevToggled);
@@ -35,6 +43,9 @@ Hamburger.defaultProps = {
   navShowing: false,
 };
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledHamburger = styled.button`
   background: transparent;
   border: none;
