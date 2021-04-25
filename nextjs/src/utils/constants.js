@@ -12,6 +12,7 @@ const Constants = Object.freeze({
   COMPRESSEDFM_GITHUB_URL: 'http://github.com/compressedfm',
   COMPRESSEDFM_INSTAGRAM_URL: 'http://instagram.com/compressedfm',
   COMPRESSEDFM_TWITTER_URL: 'http://twitter.com/compressedfm',
+  COMPRESSEDFM_RSS: 'https://feeds.simplecast.com/hq7M2S7s',
 
   // james
   JAMES_WEBSITE_URL: 'http://jamesqquick.com',
