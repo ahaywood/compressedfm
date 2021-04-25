@@ -163,4 +163,11 @@ const MixinButtonWithArrow = css`
   }
 `;
 
-export { MixinButtonWithArrow, MixinForm, MixinLabel, MixinSelect, MixinTextarea, MixinTextField };
+const MixinFormError = css`
+  font-size: 1.4rem;
+  font-family: ${(props) => props.theme.mono};
+  margin-top: 5px;
+  font-style: italic;
+`;
+
+export { MixinButtonWithArrow, MixinForm, MixinLabel, MixinSelect, MixinTextarea, MixinTextField, MixinFormError };
