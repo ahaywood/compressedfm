@@ -383,7 +383,7 @@ const StyledSponsoringPage = styled.main`
     ${MixinPageTitle}
     text-align: left;
 
-    @media (${Breakpoints.portrait}) {
+    @media (${Breakpoints.medium}) {
       font-size: 6.4rem;
       padding: 0;
       margin-left: 0;
@@ -451,21 +451,46 @@ const StyledSponsoringPage = styled.main`
   }
 
   .intro {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
+    margin-bottom: 25px;
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 4 / -4;
+      margin-bottom: 50px;
+    }
 
     p.large-body-copy {
       font-weight: ${(props) => props.theme.fontNormal};
+      padding: ${(props) => props.theme.mobilePadding};
+
+      @media (${Breakpoints.medium}) {
+        padding: 0;
+      }
     }
   }
 
   .why-start {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
+    padding: ${(props) => props.theme.mobilePadding};
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 4 / -4;
+      padding: 0;
+    }
+
+    ol {
+      padding-left: 60px;
+    }
   }
 
   .major-podcatchers {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
     margin: 100px auto 50px;
     position: relative;
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 4 / -4;
+    }
 
     h3 {
       ${MixinSectionHeading};
@@ -486,8 +511,14 @@ const StyledSponsoringPage = styled.main`
   }
 
   .sponsoring-perfect {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
     margin: 75px 0;
+    padding: 0 ${(props) => props.theme.mobilePadding};
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 4 / -4;
+      padding: 0;
+    }
 
     h2 {
       margin: 0;
@@ -495,6 +526,11 @@ const StyledSponsoringPage = styled.main`
 
     ul {
       list-style-type: none;
+      padding-left: 40px;
+
+      @media (${Breakpoints.medium}) {
+        padding-left: 0;
+      }
 
       li {
         font-family: ${(props) => props.theme.sansSerif};
@@ -502,6 +538,11 @@ const StyledSponsoringPage = styled.main`
         font-weight: ${(props) => props.theme.fontBlack};
         color: ${(props) => props.theme.white};
         margin-bottom: 0px;
+        text-indent: -50px;
+
+        @media (${Breakpoints.mediium}) {
+          text-indent: 0;
+        }
 
         svg {
           fill: ${(props) => props.theme.yellow};
@@ -513,7 +554,11 @@ const StyledSponsoringPage = styled.main`
   }
 
   .audience-breakdown {
-    grid-column: 3 / -3;
+    grid-column: 1 / -1;
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 3 / -3;
+    }
 
     > h2,
     > .large-body-copy {
@@ -524,9 +569,13 @@ const StyledSponsoringPage = styled.main`
 
     .two-up {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-column-gap: 200px;
+      grid-template-columns: 1fr;
       margin-top: 75px;
+
+      @media (${Breakpoints.medium}) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-column-gap: 200px;
+      }
     }
 
     &__number {
