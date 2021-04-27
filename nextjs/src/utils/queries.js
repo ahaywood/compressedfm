@@ -26,3 +26,8 @@ export const guestQuery = groq`*[_type == "guest" && guestEmail == $email && pub
     simplecastId
   }
 }[0]`;
+
+export const getEpisodeByIdQuery = groq`*[_type == "episode" && _id in $ids] {
+  title, audioPath, episodeNumber, _id, waveform
+}`;
+
