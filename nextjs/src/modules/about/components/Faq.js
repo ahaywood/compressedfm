@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 // components
-import { Icon } from 'modules/shared/components/Icon';
+import { Icon } from 'modules/shared/components/icon';
 
 // styles
 import { MixinBodyCopy } from 'styles/Typography';

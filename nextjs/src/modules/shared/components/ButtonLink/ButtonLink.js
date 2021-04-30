@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 // components
-import { Icon } from 'modules/shared/components/Icon';
+import { Icon } from 'modules/shared/components/icon';
 
 /** -------------------------------------------------
 * COMPONENT

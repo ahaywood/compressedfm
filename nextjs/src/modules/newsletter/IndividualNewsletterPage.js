@@ -8,7 +8,7 @@ import { serializers } from 'modules/shared/blockContent/Serializers';
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 import { Meta } from 'modules/shared/components/Meta';
-import { Icon } from 'modules/shared/components/Icon';
+import { Icon } from 'modules/shared/components/icon';
 
 // styles
 import { Breakpoints } from 'styles/Breakpoints';

@@ -22,6 +22,8 @@ const SponsorDashboardPage = ({ sponsor }) => {
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
   const { user } = useUser();
 
+  const { title, logo, contractsInvoices } = sponsor;
+
   console.log(sponsor);
 
   const handleMultipleAudioPlayers = (id) => {
@@ -36,7 +38,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
     <StyledSponsorDashboardPage>
       <h1>Thanks for Sponsoring!</h1>
       <div className="logo">
-        <img src={sponsor.logo} alt={sponsor.title} />
+        <img src={logo} alt={title} />
       </div>
 
       <div className="box-grid">
@@ -50,15 +52,23 @@ const SponsorDashboardPage = ({ sponsor }) => {
       <VerticalDivider />
 
       {/* contracts & invoices */}
-      <div className="contract-list">
-        <div className="contracts-invoices__header">Contracts</div>
-        {/* <InvoiceItem invoice={invoice} /> */}
-      </div>
+      {contractsInvoices && (
+        <>
+          <div className="contract-list">
+            <div className="contracts-invoices__header">Contracts</div>
+            {contractsInvoices.map((contract) => (
+              <ContractItem key={`contract${contract._key}`} contract={contract} />
+            ))}
+          </div>
 
-      <div className="invoice-list">
-        <div className="contracts-invoices__header">Invoices</div>
-        {/* <ContractItem contract={contract} /> */}
-      </div>
+          <div className="invoice-list">
+            <div className="contracts-invoices__header">Invoices</div>
+            {contractsInvoices.map((invoice) => (
+              <InvoiceItem key={`invoice${invoice._key}`} invoice={invoice} />
+            ))}
+          </div>
+        </>
+      )}
 
       <VerticalDivider />
 

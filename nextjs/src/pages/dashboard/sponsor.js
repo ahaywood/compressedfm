@@ -30,8 +30,8 @@ export const getServerSideProps = withPageAuthRequired({
       const episodeIds = sponsor.episodes.map((episode) => episode.simplecastId);
       const stats = await getStatsForEpisodes(episodeIds);
       for (let i = 0; i < sponsor.episodes.length; i++) {
-        sponsor.episodes[i].downloads = stats[i].downloads;
-        sponsor.episodes[i].listens = stats[i].listens;
+        sponsor.episodes[i].downloads = stats[i].downloads || 0;
+        sponsor.episodes[i].listens = stats[i].listens || 0;
       }
       return { props: { sponsor, user } };
     } catch (err) {
