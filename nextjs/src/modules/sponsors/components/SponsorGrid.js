@@ -45,11 +45,16 @@ const StyledSponsorGrid = styled.section`
     grid-template-columns: 1fr;
     margin: 40px auto 70px;
     max-width: ${(props) => props.theme.pageWidth};
+    padding: 0 ${(props) => props.theme.mobilePadding};
     position: relative;
     column-gap: 80px;
 
     @media (${Breakpoints.portrait}) {
       grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (${Breakpoints.regular}) {
+      padding: 0;
     }
   }
 `;

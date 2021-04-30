@@ -4,15 +4,20 @@ import { TagPage } from 'modules/tag';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 
 export default function Tag(props) {
-  const content = Object.values(props);
-  return <InteriorLayout>{/* <TagPage episodes={content} /> */}</InteriorLayout>;
+  console.log('inside page/tag');
+  console.log(props);
+  return (
+    <InteriorLayout>
+      <TagPage content={props} />
+    </InteriorLayout>
+  );
 }
 
-const query = groq`*[_type == "category"] {
+const query = groq`*[_type == "category" && slug.current == $slug ] {
   _id,
   title,
   description,
-  "episodes": *[_type=='' && references(^._id)] {
+  "episodes": *[_type=='episode' && references(^._id)] {
     title,
     categories[]->,
     episodeNumber,
@@ -21,9 +26,10 @@ const query = groq`*[_type == "category"] {
     briefDescription,
     audioPath
   }
-}`;
+}[0]`;
 
-Tag.getInitialProps = async function (context) {
+export async function getServerSideProps(context) {
   const { slug = '' } = context.query;
-  return await client.fetch(query, { slug });
-};
+  const content = await client.fetch(query, { slug });
+  return { props: { content } };
+}

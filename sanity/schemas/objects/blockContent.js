@@ -1,6 +1,7 @@
 import React from "react";
 import { ImFontSize } from "react-icons/im";
 import { CgFormatText } from "react-icons/cg";
+import referenceSponsor from "../blockContent/referenceSponsor";
 
 const largeBodyCopyRender = (props) => (
   <p style={{ fontSize: "22px" }}>{props.children}</p>
@@ -99,6 +100,16 @@ export default {
           name: 'attribution',
           title: 'Attribution',
           type: 'string',
+        },
+        {
+          name: 'alignment',
+          title: 'Alignment',
+          type: 'string',
+          options: {
+            list: ['left', 'center', 'right'],
+            layout: 'radio',
+            direction: 'horizontal'
+          }
         }
       ]
     },
@@ -107,6 +118,15 @@ export default {
     },
     {
       type: 'preformatted'
+    },
+    {
+      type: 'thumbnailWithContent'
+    },
+    {
+      type: 'podcatchers'
+    },
+    {
+      type: 'referenceSponsor'
     }
   ],
 }

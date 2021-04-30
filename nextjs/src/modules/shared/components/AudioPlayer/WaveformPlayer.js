@@ -31,8 +31,10 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
     duration,
     forwardThirty,
     isPlaying,
+    onLoadedMetadata,
     skipToTime,
     speed,
+    tapSpaceBar,
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
 
@@ -40,17 +42,10 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
   //   skipToTime(skipTo);
   // }, [skipTo]);
 
-  // toggle play / pause when you tap the space bar
-  const tapSpaceBar = (e) => {
-    if (e.keyCode === 32) {
-      togglePlaying();
-    }
-  };
-
   return (
     <StyledFeaturedAudioPlayer>
       {/* audio element */}
-      <audio ref={audioPlayer} src={audioPath} preload="metadata" />
+      <audio ref={audioPlayer} src={audioPath} preload="metadata" onLoadedMetadata={onLoadedMetadata} />
 
       {/* album cover */}
       <div className="album-cover">
@@ -70,13 +65,13 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
       <div className="controls">
         <button type="button" className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
           {isPlaying ? (
-            <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
-              <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
-            </svg>
-          ) : (
             <svg width="24" height="29" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" className="pause">
               <rect width="9" height="29" />
               <rect x="15" width="9" height="29" />
+            </svg>
+          ) : (
+            <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
+              <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
             </svg>
           )}
         </button>

@@ -18,6 +18,9 @@ import { UnorderedList } from './UnorderedList';
 // import { Subtitle } from "./Subtitle";
 import { Divider } from './Divider';
 import { Image } from './Image';
+import { Podcatchers } from './Podcatchers';
+import { ThumbnailWithContent } from './ThumbnailWithContent';
+import { ReferenceSponsor } from './ReferenceSponsor';
 
 const serializers = {
   types: {
@@ -50,6 +53,9 @@ const serializers = {
     preformatted: Pre,
     image: Image,
     divider: Divider,
+    thumbnailWithContent: ThumbnailWithContent,
+    podcatchers: Podcatchers,
+    referenceSponsor: ReferenceSponsor,
   },
   list,
   listItem,

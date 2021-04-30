@@ -48,8 +48,8 @@ const StyledTheHosts = styled.section`
   max-width: ${(props) => props.theme.pageWidth};
   width: 100%;
 
-  @media (${Breakpoints.portrait}) {
-    grid-template-columns: repeat(2, 1fr);
+  @media (${Breakpoints.medium}) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .section-heading__wrapper {
@@ -57,7 +57,7 @@ const StyledTheHosts = styled.section`
     text-align: center;
     width: 100%;
 
-    @media (${Breakpoints.portrait}) {
+    @media (${Breakpoints.medium}) {
       grid-column: span 2;
     }
   }
@@ -66,28 +66,32 @@ const StyledTheHosts = styled.section`
     ${MixinSectionHeading}
   }
 
-  .james {
-    @media (${Breakpoints.portrait}) {
-      border-right: 1px solid ${(props) => props.theme.white};
-      padding-right: 85px;
-    }
-  }
-
-  .amy {
-    @media (${Breakpoints.portrait}) {
-      padding-left: 85px;
-    }
-  }
-
   .james,
   .amy {
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 0 ${(props) => props.theme.mobilePadding};
+  }
+
+  .james {
+    @media (${Breakpoints.medium}) {
+      border-right: 1px solid ${(props) => props.theme.white};
+      padding-right: 85px;
+    }
 
     @media (${Breakpoints.regular}) {
-      padding: 0;
+      padding-left: 0;
+    }
+  }
+
+  .amy {
+    @media (${Breakpoints.medium}) {
+      padding: 0 ${(props) => props.theme.mobilePadding} 0 85px;
+    }
+
+    @media (${Breakpoints.regular}) {
+      padding-right: 0;
     }
   }
 `;

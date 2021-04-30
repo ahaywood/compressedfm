@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import styled from 'styled-components';
 import BlockContent from '@sanity/block-content-to-react';
@@ -12,13 +12,16 @@ import { Icon } from 'modules/shared/components/icon';
 
 // styles
 import { Breakpoints } from 'styles/Breakpoints';
-import { MixinBodyCopy, MixinPageTitle } from 'styles/Typography';
+import { MixinBodyCopy, MixinPageTitle, MixinSectionHeading } from 'styles/Typography';
+
+// utils
+import { formatShortDate } from 'utils/dateHelpers';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const IndividualNewsletterPage = (props) => {
-  const { dateSent, subject, content, meta, pagination } = props;
+const IndividualNewsletterPage = ({ dateSent, subject, content, meta, pagination }) => {
+  console.log(pagination);
   return (
     <StyledIndividualNewsletterPage>
       <Head>
@@ -26,22 +29,13 @@ const IndividualNewsletterPage = (props) => {
         {meta && <Meta meta={meta} />}
       </Head>
 
+      <h3 className="sent-date">Sent {formatShortDate(dateSent)}</h3>
       <h1 className="page-title">{subject}</h1>
       <main>
         <BlockContent blocks={content} serializers={serializers} />
       </main>
 
       {/* pagination */}
-      <div className="pagination">
-        {pagination.previous && (
-          <div className="previous">
-            <Icon name="arrow" />
-            Previous
-          </div>
-        )}
-
-        {pagination.next && <div className="next">Next</div>}
-      </div>
 
       <VerticalDivider />
 
@@ -50,12 +44,29 @@ const IndividualNewsletterPage = (props) => {
   );
 };
 
+IndividualNewsletterPage.propTypes = {
+  dateSent: PropTypes.string,
+  subject: PropTypes.string,
+  content: PropTypes.array,
+  meta: PropTypes.object,
+  pagination: PropTypes.object,
+};
+
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
 const StyledIndividualNewsletterPage = styled.div`
   h1.page-title {
     ${MixinPageTitle}
+  }
+
+  h3.sent-date {
+    ${MixinSectionHeading}
+
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 100%;
   }
 
   main {

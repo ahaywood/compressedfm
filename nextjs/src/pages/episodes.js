@@ -3,11 +3,10 @@ import groq from 'groq';
 import { EpisodePage } from 'modules/episodes';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 
-export default function Episodes(props) {
-  const content = Object.values(props);
+export default function Episodes({episodes}) {
   return (
     <InteriorLayout>
-      <EpisodePage episodes={content} />
+      <EpisodePage episodes={episodes} />
     </InteriorLayout>
   );
 }
@@ -23,6 +22,9 @@ const query = groq`*[_type == "episode" && published == true && publishedAt < no
   audioPath
 }[0...8]`;
 
-Episodes.getInitialProps = async function () {
-  return await client.fetch(query);
-};
+export async function getServerSideProps(){
+  const episodes =  await client.fetch(query);
+  return {
+    props: {episodes}
+  }
+}

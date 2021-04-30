@@ -17,16 +17,18 @@ import { FeaturedEpisode } from './components/FeaturedEpisode';
 ---------------------------------------------------- */
 const HomePage = ({ episodes }) => {
   // get the first element in the array to feature
-  const featuredEpisode = episodes.shift();
+  console.log(episodes);
+  const featured = episodes[0];
+  const remainingEpisodes = episodes.slice(1);
 
   return (
     <StyledHomePage>
       <Podcatchers className="podcatchers" />
       <VerticalDivider />
 
-      {featuredEpisode && (
+      {featured && (
         <>
-          <FeaturedEpisode episode={featuredEpisode} />
+          <FeaturedEpisode episode={featured} />
           <VerticalDivider />
         </>
       )}
@@ -36,7 +38,7 @@ const HomePage = ({ episodes }) => {
 
       {episodes && (
         <>
-          <EpisodeGrid header="Recent Episodes" episodes={episodes} />
+          <EpisodeGrid header="Recent Episodes" episodes={remainingEpisodes} />
           <VerticalDivider />
         </>
       )}

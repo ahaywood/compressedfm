@@ -25,7 +25,7 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
 
   // when another audio player starts playing
   useEffect(() => {
-    if (currentlyPlaying != id) {
+    if (currentlyPlaying !== id) {
       setIsPlaying(true);
       pauseAudio();
     }
