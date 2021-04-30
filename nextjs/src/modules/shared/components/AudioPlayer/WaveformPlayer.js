@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Breakpoints } from 'styles/Breakpoints';
 
 // components
-import { Icon } from 'modules/shared/components/icon';
+import { Icon } from 'modules/shared/components/Icon';
 
 // utils
 import { calculateTime } from 'utils/timeHelpers';

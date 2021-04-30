@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Icon } from 'modules/shared/components/icon';
+import { Icon } from 'modules/shared/components/Icon';
 
 const SocialMedia = ({
   className,

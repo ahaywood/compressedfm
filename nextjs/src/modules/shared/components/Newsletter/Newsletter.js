@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import kwesforms from 'kwesforms';
 
 // component
-import { Icon } from 'modules/shared/components/icon';
+import { Icon } from 'modules/shared/components/Icon';
 
 // styles
 import { MixinBodyCopy } from 'styles/Typography';

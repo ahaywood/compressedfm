@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 // component
-import { Icon } from 'modules/shared/components/icon';
+import { Icon } from 'modules/shared/components/Icon';
 
 // utils
 import { calculateTime } from 'utils/timeHelpers';

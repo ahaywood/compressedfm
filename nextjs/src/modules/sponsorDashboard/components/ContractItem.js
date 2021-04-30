@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Tag } from 'modules/shared/components/Tag';
-import { Icon } from 'modules/shared/components/icon';
+import { Icon } from 'modules/shared/components/Icon';
 
 const ContractItem = ({ contractDescription, contractDateIssued, contractStatus, contractPDF, quantity }) => (
   <StyledContractItem>
