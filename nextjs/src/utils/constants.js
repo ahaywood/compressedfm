@@ -1,7 +1,6 @@
 const Constants = Object.freeze({
   // podcast catchers
-  CASTBOX_URL:
-    'https://castbox.fm/login?jump_uri=%2Fmy%2Fclaim%3Fclaim_token%3D607728efd2336139e869df90%26target_id%3D4038683%26markpass%3D1',
+  CASTBOX_URL: 'https://castbox.fm/channel/COMPRESSEDfm-id4038683?country=us',
   GOOGLE_URL: 'https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkcy5zaW1wbGVjYXN0LmNvbS9ocTdNMlM3cw%3D%3D',
   ITUNES_URL: 'https://podcasts.apple.com/us/podcast/compressedfm/id1562477264',
   POCKET_CASTS_URL: 'https://pca.st/bce39jz8',
