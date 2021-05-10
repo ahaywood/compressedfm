@@ -11,7 +11,7 @@ const InvoiceItem = ({ invoice }) => {
   return (
     <StyledInvoiceItem>
       <div className="invoice-status">
-        <Tag className={invoiceStatus === 'attn' && 'alert'} label={invoiceStatus} />
+        <Tag className={invoiceStatus === 'attn' ? 'alert' : ''} label={invoiceStatus} />
       </div>
       <div className="invoice-number">#{invoiceNumber}</div>
       <div className="invoice-description">{invoiceDescription}</div>
@@ -29,7 +29,7 @@ InvoiceItem.propTypes = {
   invoice: PropTypes.shape({
     invoiceDescription: PropTypes.string,
     invoiceNumber: PropTypes.string,
-    invoiceAmount: PropTypes.string,
+    invoiceAmount: PropTypes.number,
     invoiceStatus: PropTypes.string,
     invoiceLink: PropTypes.string,
   }).isRequired,
@@ -38,12 +38,14 @@ InvoiceItem.propTypes = {
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
-const StyledInvoiceItem = styled.section`
+const StyledInvoiceItem = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 75px 75px 1fr 75px 75px;
+  grid-template-columns: 75px 50px 1fr 75px 50px;
   grid-column-gap: 30px;
   position: relative;
+  background: url('/images/horizontal-divider.svg') left top repeat-x;
+  padding: 25px 0;
 
   .invoice-number {
     color: white;

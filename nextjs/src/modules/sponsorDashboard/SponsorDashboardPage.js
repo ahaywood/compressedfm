@@ -53,7 +53,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
 
       {/* contracts & invoices */}
       {contractsInvoices && (
-        <>
+        <div className="contracts-invoices">
           <div className="contract-list">
             <div className="contracts-invoices__header">Contracts</div>
             {contractsInvoices.map((contract) => (
@@ -67,7 +67,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
               <InvoiceItem key={`invoice${invoice._key}`} invoice={invoice} />
             ))}
           </div>
-        </>
+        </div>
       )}
 
       <VerticalDivider />
@@ -144,6 +144,29 @@ const StyledSponsorDashboardPage = styled.section`
 
   .button-link-wrapper {
     max-width: 85%;
+  }
+
+  .contracts-invoices__header {
+    font-family: ${(props) => props.theme.mono};
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 2.4rem;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+  }
+
+  .contracts-invoices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 75px;
+    max-width: ${(props) => props.theme.pageWidth};
+    position: relative;
+    margin: 50px auto;
+  }
+
+  .contract-list,
+  .invoice-list {
+    background: url('/images/horizontal-divider.svg') left bottom repeat-x;
   }
 `;
 
