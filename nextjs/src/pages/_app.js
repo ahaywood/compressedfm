@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
-import * as Fathom from 'fathom-client';
+import Router from 'next/router';
 import Head from 'next/head';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { UserProvider } from '@auth0/nextjs-auth0';
@@ -19,26 +17,6 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const { user } = pageProps;
-  const router = useRouter();
-
-  // FATHOM ANALYTICS
-  useEffect(() => {
-    // Initialize Fathom when the app loads
-    Fathom.load('TRUYKXEJ', {
-      includedDomains: ['compressed.fm'],
-    });
-
-    function onRouteChangeComplete() {
-      Fathom.trackPageview();
-    }
-    // Record a pageview when route changes
-    router.events.on('routeChangeComplete', onRouteChangeComplete);
-
-    // Unassign event listener
-    return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete);
-    };
-  }, []);
 
   return (
     <UserProvider user={user}>
@@ -46,6 +24,7 @@ function MyApp({ Component, pageProps }) {
         <Head>
           <title>Compressed.fm</title>
           <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
+          <script src="https://cdn.usefathom.com/script.js" data-site="TRUYKXEJ" defer />
         </Head>
         <GlobalStyle />
         <Component {...pageProps} />
