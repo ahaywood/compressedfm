@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // components
@@ -6,7 +7,6 @@ import { Newsletter } from 'modules/shared/components/Newsletter';
 import { Podcatchers } from 'modules/shared/components/Podcatchers';
 import { FeaturedEpisode } from 'modules/home/components/FeaturedEpisode';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
-import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -14,7 +14,7 @@ import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
 const EpisodePage = ({ episodes }) => {
   // get the first element in the array to feature
   const featuredEpisode = episodes[0];
-  const remainingEpisodes = episodes.slice(1)
+  const remainingEpisodes = episodes.slice(1);
   return (
     <StyledEpisodePage>
       {featuredEpisode && (
@@ -30,6 +30,10 @@ const EpisodePage = ({ episodes }) => {
       <Newsletter />
     </StyledEpisodePage>
   );
+};
+
+EpisodePage.propTypes = {
+  episodes: PropTypes.array.isRequired,
 };
 
 /** -------------------------------------------------
