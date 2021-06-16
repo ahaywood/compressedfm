@@ -101,13 +101,13 @@ const SocialMedia = ({
     )}
 
     {/*  RSS */}
-    {/* {rss && ( */}
-    <li>
-      <a href={rss} target="_blank" rel="noreferrer">
-        <Icon name="rss" />
-      </a>
-    </li>
-    {/* )} */}
+    {rss && (
+      <li>
+        <a href={rss} target="_blank" rel="noreferrer">
+          <Icon name="rss" />
+        </a>
+      </li>
+    )}
   </StyledSocialMedia>
 );
 
