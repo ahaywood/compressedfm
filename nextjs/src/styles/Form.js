@@ -142,6 +142,18 @@ const MixinLabel = css`
   @media (${Breakpoints.small}) {
     font-size: 1.8rem;
   }
+
+  .description {
+    font-family: ${(props) => props.theme.sansSerif};
+    color: ${(props) => props.theme.white};
+    opacity: 0.5;
+    letter-spacing: 0;
+    font-size: 1.8rem;
+    text-transform: none;
+    position: relative;
+    top: -1px;
+    margin-left: 10px;
+  }
 `;
 
 const MixinButtonWithArrow = css`
@@ -163,4 +175,24 @@ const MixinButtonWithArrow = css`
   }
 `;
 
-export { MixinButtonWithArrow, MixinForm, MixinLabel, MixinSelect, MixinTextarea, MixinTextField };
+const MixinFileField = css`
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  border: 2px dashed ${(props) => props.theme.white};
+  padding: 10px 15px;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  height: 55px;
+  margin: 30px 0 0 0;
+
+  & + label {
+    display: flex;
+    align-items: center;
+    left: 15px;
+    top: 48px;
+  }
+`;
+
+export { MixinButtonWithArrow, MixinFileField, MixinForm, MixinLabel, MixinSelect, MixinTextarea, MixinTextField };
