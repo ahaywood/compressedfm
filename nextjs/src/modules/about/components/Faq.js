@@ -15,7 +15,8 @@ const Faq = ({ question, answer }) => {
   const [isToggled, setIsToggled] = useState(false);
 
   // toggle answer visibility
-  const toggle = () => {
+  const toggle = (event) => {
+    event.preventDefault();
     setIsToggled(!isToggled);
   };
 

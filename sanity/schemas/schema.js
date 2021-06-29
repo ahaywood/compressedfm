@@ -30,6 +30,7 @@ import episodeTranscript from './objects/episodeTranscript'
 import linkList from './objects/linkList'
 import meta from './objects/meta'
 import newsletterPagination from './objects/newsletterPagination'
+import reasonsBehindPodcast from './objects/reasonsBehindPodcast'
 import socialMedia from './objects/socialMedia'
 import stat from './objects/stat'
 import timeJump from './objects/timeJump'
@@ -65,6 +66,7 @@ export default createSchema({
     linkList,
     meta,
     newsletterPagination,
+    reasonsBehindPodcast,
     stat,
     socialMedia,
     timeJump,

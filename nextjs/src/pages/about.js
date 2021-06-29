@@ -10,9 +10,18 @@ export default function About() {
   const [faqs, setFaqs] = useState();
   const [gettingStarted, setGettingStarted] = useState();
   const [mostPopular, setMostPopular] = useState();
+  const [siteSettings, setSiteSettings] = useState();
 
   // get data
   useEffect(() => {
+    // get siteSettings
+    const siteSettings = groq`*[_type == "siteSettings"]{
+     _id,
+     reasonsBehind
+   }[1]`;
+
+    client.fetch(siteSettings).then((res) => setSiteSettings(res));
+
     // get FAQs
     const faqQuery = groq`*[_type == "faq" && published == true]{
       _id,
@@ -60,7 +69,7 @@ export default function About() {
           url="https://compressed.fm/about"
         />
       </Head>
-      <AboutPage faqs={faqs} gettingStarted={gettingStarted} mostPopular={mostPopular} />
+      <AboutPage siteSettings={siteSettings} faqs={faqs} gettingStarted={gettingStarted} mostPopular={mostPopular} />
     </InteriorLayout>
   );
 }

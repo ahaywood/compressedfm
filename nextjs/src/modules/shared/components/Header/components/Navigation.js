@@ -51,11 +51,13 @@ const Navigation = ({ handleClick, isShowing }) => {
 };
 
 Navigation.propTypes = {
+  closeNav: PropTypes.func,
   isShowing: PropTypes.bool,
   handleClick: PropTypes.func,
 };
 
 Navigation.defaultProps = {
+  closeNav: () => { },
   isShowing: false,
   handleClick: () => { },
 };

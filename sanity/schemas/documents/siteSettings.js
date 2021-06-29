@@ -11,5 +11,11 @@ export default {
       title: 'Social Media',
       type: 'socialMedia',
     },
+    {
+      name: 'reasonsBehind',
+      title: 'Reasons Behind Podcast',
+      type: 'array',
+      of: [{ type: 'reasonsBehindPodcast' }]
+    }
   ],
 }
