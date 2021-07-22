@@ -20,7 +20,7 @@ const query = groq`*[_type == "episode" && published == true && publishedAt < no
   publishedAt,
   briefDescription,
   audioPath
-}[0...13]`;
+}`;
 
 export async function getServerSideProps() {
   const episodes = await client.fetch(query);
