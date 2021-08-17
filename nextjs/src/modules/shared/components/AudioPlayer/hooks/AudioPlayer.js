@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export const useAudioPlayer = (audioRef, progressBarRef) => {
   const [speed, setSpeed] = useState(1);
@@ -12,6 +12,10 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
+
+  useEffect(() => {
+    onLoadedMetadata();
+  }, [audioRef?.current?.loadedmetadata, audioRef?.current?.readyState]);
 
   // when the playhead is moved, update the current time (text)
   const updateCurrentTime = () => {
@@ -104,12 +108,10 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
   };
 
   const backThirty = () => {
-    console.log('back 30');
     timeTravel(Number(progressBarRef.current.value) - 30);
   };
 
   const forwardThirty = () => {
-    console.log('forward 30');
     timeTravel(Number(progressBarRef.current.value) + 30);
   };
 

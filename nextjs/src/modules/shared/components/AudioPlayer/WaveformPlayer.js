@@ -38,14 +38,14 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
 
-  // useEffect(() => {
-  //   skipToTime(skipTo);
-  // }, [skipTo]);
+  useEffect(() => {
+    skipToTime(skipTo);
+  }, [skipTo]);
 
   return (
     <StyledFeaturedAudioPlayer>
       {/* audio element */}
-      <audio ref={audioPlayer} src={audioPath} preload="metadata" onLoadedMetadata={onLoadedMetadata} />
+      <audio ref={audioPlayer} src={audioPath} preload="metadata" />
 
       {/* album cover */}
       <div className="album-cover">

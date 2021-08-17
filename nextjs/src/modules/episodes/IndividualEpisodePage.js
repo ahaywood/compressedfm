@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Breakpoints } from 'styles/Breakpoints';
@@ -35,6 +36,12 @@ const IndividualEpisodePage = ({
 }) => {
   // state
   const [skipTo, setSkipTo] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const UrlParams = router.query;
+    skipToTimestamp(UrlParams.time);
+  }, [router]);
 
   // jump to a specific time on the waveform player
   const skipToTimestamp = (time) => {
