@@ -69,7 +69,9 @@ const IndividualEpisodePage = ({
 
           <div className="time-links">
             {/* TIME JUMP LINKS */}
-            {timeJump && <JumpLinks className="jump-links time" timeJump={timeJump} handleClick={skipToTimestamp} />}
+            {timeJump && (
+              <JumpLinks className="jump-links time" timeJump={timeJump} skipToTimestamp={skipToTimestamp} />
+            )}
 
             {/* SHOW LINKS */}
             {listLink && <Links listLink={listLink} className="links" />}
