@@ -40,7 +40,7 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
 
   useEffect(() => {
     skipToTime(skipTo);
-  }, [skipTo]);
+  }, [skipToTime, skipTo]);
 
   return (
     <StyledFeaturedAudioPlayer>
