@@ -25,7 +25,7 @@ const query = groq`*[_type == "legal" && published == true] {
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const Footer = ({ props }) => {
+const Footer = () => {
   const [footerLinks, setFooterLinks] = useState();
 
   useEffect(() => {

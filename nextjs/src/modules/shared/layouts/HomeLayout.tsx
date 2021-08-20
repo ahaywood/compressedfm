@@ -1,22 +1,21 @@
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { HeaderHome } from 'modules/shared/components/Header/HeaderHome';
 import { Footer } from 'modules/shared/components/Footer';
+
+interface HomeLayoutProps {
+  children: React.ReactNode
+}
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const HomeLayout = ({ children }) => (
+const HomeLayout = ({ children }: HomeLayoutProps) => (
   <StyledPage>
     <HeaderHome />
     {children}
     <Footer />
   </StyledPage>
 );
-
-HomeLayout.propTypes = {
-  children: PropTypes.any,
-};
 
 /** -------------------------------------------------
 * STYLES

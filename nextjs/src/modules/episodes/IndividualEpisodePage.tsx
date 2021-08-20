@@ -14,6 +14,11 @@ import { Guest } from './components/Guest';
 import { JumpLinks } from './components/JumpLinks';
 import { Links } from './components/Links';
 import { Sponsors } from './components/Sponsors';
+import { IndividualEpisode } from 'pages/episode/[slug]';
+
+interface Props {
+  episode: IndividualEpisode
+}
 
 /** -------------------------------------------------
 * COMPONENT
@@ -24,7 +29,7 @@ const IndividualEpisodePage = ({
     briefDescription,
     episodeNumber,
     episodeTranscript,
-    guest,
+    guest = [],
     listLink,
     publishedAt,
     sponsor,
@@ -32,12 +37,12 @@ const IndividualEpisodePage = ({
     title,
     relatedEpisodes,
   },
-}) => {
+}: Props) => {
   // state
-  const [skipTo, setSkipTo] = useState(null);
+  const [skipTo, setSkipTo] = useState<number>(null!);
 
   // jump to a specific time on the waveform player
-  const skipToTimestamp = (time) => {
+  const skipToTimestamp = (time: number) => {
     setSkipTo(time);
   };
 
@@ -58,7 +63,7 @@ const IndividualEpisodePage = ({
       <div className="content">
         <main>
           {/* GUEST */}
-          {guest && guest.length > 0 && <Guest guest={guest} className="guests" />}
+          {(guest?.length > 0) && <Guest guest={guest} className="guests" />}
 
           <div className="time-links">
             {/* TIME JUMP LINKS */}
@@ -104,24 +109,6 @@ const IndividualEpisodePage = ({
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
-IndividualEpisodePage.propTypes = {
-  episode: PropTypes.shape({
-    audioPath: PropTypes.string,
-    briefDescription: PropTypes.string,
-    categories: PropTypes.array,
-    episodeCover: PropTypes.object,
-    episodeNumber: PropTypes.number,
-    guest: PropTypes.array,
-    listLink: PropTypes.array,
-    publishedAt: PropTypes.string,
-    sponsor: PropTypes.array,
-    timeJump: PropTypes.array,
-    title: PropTypes.string,
-    episodeTranscript: PropTypes.object,
-    relatedEpisodes: PropTypes.array,
-  }),
-};
-
 IndividualEpisodePage.defaultProps = {
   episode: {
     audioPath: '',

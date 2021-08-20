@@ -3,8 +3,8 @@ import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
 import { Icon } from 'modules/shared/components/Icon';
 import { Breakpoints } from 'styles/Breakpoints';
 
-const Links = ({ listLink }) => (
-  <StyledLinks>
+const Links = ({ className, listLink }) => (
+  <StyledLinks className={className}>
     <h4>Links</h4>
     <ul>
       {listLink &&

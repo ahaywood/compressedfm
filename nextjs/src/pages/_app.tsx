@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
-import PropTypes from 'prop-types';
+import { AppProps } from 'next/app'
 import Router from 'next/router';
 import Head from 'next/head';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
@@ -15,7 +15,7 @@ Router.events.on('routeChangeStart', () => {
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   const { user } = pageProps;
 
   return (
@@ -32,11 +32,6 @@ function MyApp({ Component, pageProps }) {
     </UserProvider>
   );
 }
-
-MyApp.propTypes = {
-  Component: PropTypes.any,
-  pageProps: PropTypes.any,
-};
 
 export default MyApp;
 

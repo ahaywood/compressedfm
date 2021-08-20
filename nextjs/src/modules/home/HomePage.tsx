@@ -12,12 +12,19 @@ import { Breakpoints } from 'styles/Breakpoints';
 import { TheHosts } from './components/TheHosts';
 import { FeaturedEpisode } from './components/FeaturedEpisode';
 
+// types
+import { Episode } from 'pages';
+
+interface Props {
+  episodes: Episode[]
+}
+
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const HomePage = ({ episodes }) => {
+const HomePage = ({ episodes }: Props) => {
   // get the first element in the array to feature
-    const featuredEpisode = episodes[0];
+  const featuredEpisode = episodes[0];
   const remainingEpisodes = episodes.slice(1)
 
   return (

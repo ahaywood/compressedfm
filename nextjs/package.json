@@ -3,6 +3,8 @@
     "@auth0/nextjs-auth0": "^1.2.0",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^2.2.6",
+    "@types/nprogress": "^0.2.0",
+    "@types/styled-components": "^5.1.12",
     "babel-plugin-styled-components": "^1.12.0",
     "date-fns": "^2.17.0",
     "fathom-client": "^3.0.0",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "@neutrinojs/airbnb": "^9.5.0",
+    "@types/react": "^17.0.19",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -32,7 +35,8 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "install-peerdeps": "^3.0.3",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "typescript": "^4.3.5"
   },
   "name": "nextjs",
   "private": true,
