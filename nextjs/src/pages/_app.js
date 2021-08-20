@@ -1,19 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import Head from 'next/head';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import NProgress from 'nprogress';
+import client from 'utils/client';
+import groq from 'groq';
 import Theme from '../styles/Theme';
 
 // Bind nProgress Bar
-Router.events.on('routeChangeStart', () => {
-  NProgress.start();
-});
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
+useEffect(() => {
+  Router.events.on('routeChangeStart', () => {
+    NProgress.start();
+  });
+  Router.events.on('routeChangeComplete', () => NProgress.done());
+  Router.events.on('routeChangeError', () => NProgress.done());
+}, [Router]);
 
 function MyApp({ Component, pageProps }) {
   const { user } = pageProps;

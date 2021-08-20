@@ -22,9 +22,12 @@ const query = groq`*[_type == "episode" && published == true && publishedAt < no
   audioPath
 }`;
 
-export async function getServerSideProps() {
+const tagQuery = groq`*[_type == "category"] {_id, title, slug}`;
+
+export async function getStaticProps() {
   const episodes = await client.fetch(query);
+  const tags = await client.fetch(tagQuery);
   return {
-    props: { episodes },
+    props: { episodes, tags },
   };
 }
