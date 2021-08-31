@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@types/styled-components": "^5.1.12"
+  }
+}
