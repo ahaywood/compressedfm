@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import styled from 'styled-components';
 import BlockContent from '@sanity/block-content-to-react';
@@ -15,7 +14,16 @@ import { NewsletterPagination } from './components/NewsletterPagination';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const IndividualNewsletterPage = ({ dateSent, subject, content, meta, pagination }) => {
+
+interface Props {
+  dateSent: string;
+  subject: string;
+  content: string[];
+  meta: {};
+  pagination: {};
+}
+
+const IndividualNewsletterPage = ({ dateSent, subject, content, meta, pagination }: Props) => {
   console.log(pagination);
   return (
     <StyledIndividualNewsletterPage>
@@ -40,14 +48,6 @@ const IndividualNewsletterPage = ({ dateSent, subject, content, meta, pagination
   );
 };
 
-IndividualNewsletterPage.propTypes = {
-  dateSent: PropTypes.string,
-  subject: PropTypes.string,
-  content: PropTypes.array,
-  meta: PropTypes.object,
-  pagination: PropTypes.object,
-};
-
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
@@ -66,7 +66,7 @@ const StyledIndividualNewsletterPage = styled.div`
   }
 
   main {
-    padding: 0 ${(props) => props.theme.mobilePadding};
+    padding: 0 ${props => props.theme.mobilePadding};
     margin: 0 auto;
     max-width: 600px;
 
@@ -78,7 +78,7 @@ const StyledIndividualNewsletterPage = styled.div`
       font-size: 2rem;
 
       @media (${Breakpoints.portrait}) {
-        color: ${(props) => props.theme.yellow};
+        color: ${props => props.theme.yellow};
         font-size: 2.4rem;
       }
     }
@@ -89,7 +89,7 @@ const StyledIndividualNewsletterPage = styled.div`
 
     p {
       ${MixinBodyCopy}
-      margin-bottom: ${(props) => props.theme.betweenTextBlocks};
+      margin-bottom: ${props => props.theme.betweenTextBlocks};
     }
   }
 `;
