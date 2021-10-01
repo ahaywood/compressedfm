@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+// components
 import { Arrow } from './Arrow';
 import { Dribbble } from './Dribbble';
 import { Facebook } from './Facebook';
@@ -15,9 +15,21 @@ import { Twitch } from './Twitch';
 import { Twitter } from './Twitter';
 import { YouTube } from './YouTube';
 
-const Icon = (props) => {
+/** -------------------------------------------------
+* TYPES
+---------------------------------------------------- */
+interface Props {
+  className?: '',
+  height: '32',
+  name: string,
+  width: '32',
+}
+
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
+const Icon = (props: Props):JSX.Element => {
   const { name } = props;
-  console.log(name);
   switch (name.toLowerCase()) {
     case 'arrow':
       return <Arrow {...props} />;
@@ -48,19 +60,6 @@ const Icon = (props) => {
     default:
       return <div />;
   }
-};
-
-Icon.propTypes = {
-  className: PropTypes.string,
-  height: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  width: PropTypes.string,
-};
-
-Icon.defaultProps = {
-  className: '',
-  height: '32',
-  width: '32',
 };
 
 export { Icon };

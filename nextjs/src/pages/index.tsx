@@ -3,29 +3,6 @@ import groq from 'groq';
 import { HomePage } from 'modules/home';
 import { HomeLayout } from 'modules/shared/layouts/HomeLayout';
 
-export interface Episode {
-  _id: string;
-  audioPath: string;
-  briefDescription: string;
-  episodeCover: EpisodeCover;
-  episodeNumber: number;
-  publishedAt?: null;
-  slug: Slug;
-  title: string;
-}
-export interface EpisodeCover {
-  _type: string;
-  asset: Asset;
-}
-export interface Asset {
-  _ref: string;
-  _type: string;
-}
-export interface Slug {
-  _type: string;
-  current: string;
-}
-
 interface Props {
   episodes: Episode[]
 }

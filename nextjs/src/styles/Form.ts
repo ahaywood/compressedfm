@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { Breakpoints } from 'styles/Breakpoints';
+import { Breakpoints } from './Breakpoints';
 
 const MixinForm = css`
   padding: 0 ${(props) => props.theme.mobilePadding};

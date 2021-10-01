@@ -1,6 +1,16 @@
-import PropTypes from 'prop-types';
+/** -------------------------------------------------
+* TYPES
+---------------------------------------------------- */
+interface Props {
+  className: string;
+  height: '32';
+  width: '32';
+}
 
-const YouTube = ({ className, height, width }) => (
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
+const YouTube = ({ className, height, width }: Props): JSX.Element => (
   <svg className={className} width={width} height={height} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
     <path
       opacity="0.3"
@@ -30,17 +40,5 @@ const YouTube = ({ className, height, width }) => (
     />
   </svg>
 );
-
-YouTube.propTypes = {
-  className: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.string,
-};
-
-YouTube.defaultProps = {
-  className: '',
-  height: '32',
-  width: '32',
-};
 
 export { YouTube };

@@ -9,9 +9,18 @@ import { Icon } from 'modules/shared/components/Icon';
 import { MixinBodyCopy } from 'styles/Typography';
 
 /** -------------------------------------------------
+* TYPES
+---------------------------------------------------- */
+interface Props {
+  question: string;
+  answer: string;
+}
+
+
+/** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const Faq = ({ question, answer }) => {
+const Faq = ({ question, answer }: Props): JSX.Element => {
   const [isToggled, setIsToggled] = useState(false);
 
   // toggle answer visibility

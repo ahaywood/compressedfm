@@ -10,10 +10,10 @@ interface Props {
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const Minus = ({ className, height, width }: Props): JSX.Element => (
+const Arrow = ({ className, height, width }: Props): JSX.Element => (
   <svg className={className} width={width} height={height} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-    <rect x="9" y="18" width="3" height="15" transform="rotate(-90 9 18)" />
+    <path d="M17.4 11L16 12.4L18.5 15H10V16.9H18.5L16 19.5L17.4 20.9L20.9 17.4L22.3 16L17.4 11Z" />
   </svg>
 );
 
-export { Minus };
+export { Arrow };

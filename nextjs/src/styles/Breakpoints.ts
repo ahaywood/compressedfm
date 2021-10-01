@@ -1,4 +1,14 @@
-const Breakpoints = {
+interface Breakpoints {
+  xlarge: string;
+  large: string;
+  regular: string;
+  medium: string;
+  portrait: string;
+  small: string;
+  mobile: string;
+}
+
+const Breakpoints: Breakpoints = {
   xlarge: 'min-width: 1600px',
   large: 'min-width: 1440px',
   regular: 'min-width: 1300px',

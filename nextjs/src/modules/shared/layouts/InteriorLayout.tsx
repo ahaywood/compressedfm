@@ -4,9 +4,17 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
 /** -------------------------------------------------
+* TYPES
+---------------------------------------------------- */
+interface Props {
+  children: JSX.Element
+}
+
+
+/** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const InteriorLayout = ({ children }) => (
+const InteriorLayout = ({ children }: Props): JSX.Element => (
   <StyledPage>
     <Header />
     {children}
