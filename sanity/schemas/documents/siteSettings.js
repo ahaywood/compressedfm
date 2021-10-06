@@ -4,12 +4,39 @@ export default {
   title: 'Site Settings',
   type: 'document',
   icon,
-  // __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
+  __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
   fields: [
     {
       name: 'socialMediaLinks',
       title: 'Social Media',
       type: 'socialMedia',
+      options: {
+        collapsible: true,
+        collapsed: true
+      }
     },
+    {
+      name: 'AmySocialMedia',
+      title: 'Amy\'s Social Media',
+      type: 'socialMediaWithMetrics',
+      options: {
+        collapsible: true,
+        collapsed: true
+      }
+    },
+    {
+      name: 'JamesSocialMedia',
+      title: 'James\'s Social Media',
+      type: 'socialMediaWithMetrics',
+      options: {
+        collapsible: true,
+        collapsed: true
+      }
+    },
+    {
+      name: 'SponsorshipOptions',
+      title: 'Sponsorship Options',
+      type: 'sponsorshipOptions'
+    }
   ],
 }
