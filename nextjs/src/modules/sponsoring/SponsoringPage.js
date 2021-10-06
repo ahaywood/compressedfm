@@ -22,7 +22,7 @@ const SponsoringPage = () => (
         <span className="highlight">We’d love to help!</span>
       </h1>
       <p className="large-body-copy">
-        Compressed.fm is a <em>new</em> podcast, distributed weekly, that focuses on industry news, tools, and
+        Compressed.fm is a podcast, distributed weekly, that focuses on industry news, tools, and
         workflows. It aims to keep listeners up-to-date on the latest technology and best practices.
       </p>
       <p className="large-body-copy">
@@ -111,16 +111,16 @@ const SponsoringPage = () => (
         Twitter, YouTube, and Twitch subscribers, we’re making the following assumptions.
       </p>
       <div className="two-up">
-        <div>
+        <div className="two-up__usa">
           <img src="/images/usa.svg" alt="United States of America Silhouette" />
         </div>
-        <div>
+        <div className="two-up__age">
           <div className="audience-breakdown__number">25-34</div>
         </div>
-        <div>
+        <div className="two-up__usa__description">
           <p className="large-body-copy">A majority of listeners live in the United States of America</p>
         </div>
-        <div>
+        <div className="two-up__age__description">
           <p className="large-body-copy">Most listeners fall within this age range</p>
         </div>
       </div>
@@ -139,7 +139,7 @@ const SponsoringPage = () => (
         <div className="current-audience__social__icon">
           <Icon width="90" height="90" name="twitter" />
         </div>
-        <div className="current-audience__social__featured-number">15.6k Followers</div>
+        <div className="current-audience__social__featured-number">22.9k Followers</div>
         <div className="current-audience__social__link">
           <a href="http://twitter.com/jamesqquick" target="_blank" rel="noreferrer">
             twitter.com/jamesqquick
@@ -151,7 +151,7 @@ const SponsoringPage = () => (
         <div className="current-audience__social__icon">
           <Icon width="90" height="90" name="twitch" />
         </div>
-        <div className="current-audience__social__featured-number">6.2k Followers</div>
+        <div className="current-audience__social__featured-number">1.6k Followers</div>
         <div className="current-audience__social__link">
           <a href="http://twitch.com/jamesqquick" target="_blank" rel="noreferrer">
             twitch.com/jamesqquick
@@ -163,7 +163,7 @@ const SponsoringPage = () => (
         <div className="current-audience__social__icon">
           <Icon width="90" height="90" name="discord" />
         </div>
-        <div className="current-audience__social__featured-number">1k Members</div>
+        <div className="current-audience__social__featured-number">2.6k Members</div>
         <div className="current-audience__social__link">
           <a href="http://learnbuildteach.com" target="_blank" rel="noreferrer">
             Discord Server
@@ -175,10 +175,10 @@ const SponsoringPage = () => (
         <div className="current-audience__social__icon">
           <Icon width="90" height="90" name="youtube" />
         </div>
-        <div className="current-audience__social__featured-number">42.3k Subscribers</div>
+        <div className="current-audience__social__featured-number">105k Subscribers</div>
         <div className="current-audience__social__link">
           <a href="http://youtube.com/c/jamesqquick" target="_blank" rel="noreferrer">
-            youtube.com/c/selfteachme
+            youtube.com/c/jamesqquick
           </a>
         </div>
       </div>
@@ -187,7 +187,7 @@ const SponsoringPage = () => (
         <div className="current-audience__social__icon">
           <Icon width="90" height="90" name="youtube" />
         </div>
-        <div className="current-audience__social__featured-number">1.2k Subscribers</div>
+        <div className="current-audience__social__featured-number">2.9k Subscribers</div>
         <div className="current-audience__social__link">
           <a href="http://youtube.com/c/selfteachme" target="_blank" rel="noreferrer">
             youtube.com/c/selfteachme
@@ -199,7 +199,7 @@ const SponsoringPage = () => (
         <div className="current-audience__social__icon">
           <Icon width="90" height="90" name="twitter" />
         </div>
-        <div className="current-audience__social__featured-number">695 Followers</div>
+        <div className="current-audience__social__featured-number">1.4k Followers</div>
         <div className="current-audience__social__link">
           <a href="http://twitter.com/selfteachme" target="_blank" rel="noreferrer">
             twitter.com/selfteachme
@@ -295,19 +295,19 @@ const SponsoringPage = () => (
           <li>
             <div className="description">Single Show</div>
             <div className="separator" />
-            <div className="pricing">$50 USD</div>
+            <div className="pricing">$125 USD</div>
           </li>
 
           <li>
             <div className="description">3 Shows</div>
             <div className="separator" />
-            <div className="pricing">$125 USD</div>
+            <div className="pricing">$350 USD</div>
           </li>
 
           <li>
             <div className="description">8 Shows</div>
             <div className="separator" />
-            <div className="pricing">$350 USD</div>
+            <div className="pricing">$900 USD</div>
           </li>
         </ul>
       </div>
@@ -383,6 +383,11 @@ const StyledSponsoringPage = styled.main`
     ${MixinPageTitle}
     text-align: left;
 
+    @media (${Breakpoints.portrait}) {
+      max-width: 100%;
+      padding: 0 ${props => props.theme.mobilePadding};
+    }
+
     @media (${Breakpoints.medium}) {
       font-size: 6.4rem;
       padding: 0;
@@ -394,8 +399,12 @@ const StyledSponsoringPage = styled.main`
 
   h2 {
     font-family: ${(props) => props.theme.sansSerif};
-    font-size: 4.8rem;
+    font-size: 3.2rem;
     font-weight: ${(props) => props.theme.fontBlack};
+
+    @media (${Breakpoints.medium}) {
+      font-size: 4.8rem;
+    }
   }
 
   .highlight {
@@ -461,7 +470,7 @@ const StyledSponsoringPage = styled.main`
 
     p.large-body-copy {
       font-weight: ${(props) => props.theme.fontNormal};
-      padding: ${(props) => props.theme.mobilePadding};
+      padding: 0 ${(props) => props.theme.mobilePadding};
 
       @media (${Breakpoints.medium}) {
         padding: 0;
@@ -486,10 +495,12 @@ const StyledSponsoringPage = styled.main`
   .major-podcatchers {
     grid-column: 1 / -1;
     margin: 100px auto 50px;
+    padding: 0 ${props => props.theme.mobilePadding};
     position: relative;
 
     @media (${Breakpoints.medium}) {
       grid-column: 4 / -4;
+      padding: 0;
     }
 
     h3 {
@@ -555,26 +566,61 @@ const StyledSponsoringPage = styled.main`
 
   .audience-breakdown {
     grid-column: 1 / -1;
+    padding: 0 ${props => props.theme.mobilePadding};
 
     @media (${Breakpoints.medium}) {
       grid-column: 3 / -3;
+      padding: 0;
     }
 
     > h2,
     > .large-body-copy {
-      width: 75%;
+      width: 100%;
       margin-left: auto;
       margin-right: auto;
+
+      @media (${Breakpoints.medium}) {
+        width: 75%;
+      }
     }
 
     .two-up {
       display: grid;
       grid-template-columns: 1fr;
       margin-top: 75px;
+      grid-template-areas:
+        "usa"
+        "usaDescription"
+        "age"
+        "ageDescription";
 
       @media (${Breakpoints.medium}) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-column-gap: 200px;
+        grid-template-areas:
+          "usa age"
+          "usaDescription ageDescription";
+      }
+
+      &__usa {
+        grid-area: usa;
+      }
+
+      &__age {
+        grid-area: age;
+      }
+
+      &__usa__description {
+        grid-area: usaDescription;
+        margin-bottom: 25px;
+
+        @media (${Breakpoints.medium}) {
+          margin-bottom: 0;
+        }
+      }
+
+      &__age__description {
+        grid-area: ageDescription;
       }
     }
 
@@ -583,10 +629,20 @@ const StyledSponsoringPage = styled.main`
       color: ${(props) => props.theme.yellow};
       display: flex;
       font-family: ${(props) => props.theme.sansSerif};
-      font-size: 10.8rem;
+      font-size: 6.8rem;
       font-weight: ${(props) => props.theme.fontBlack};
       height: 100%;
       margin-top: auto;
+      text-align: center;
+
+      @media (${Breakpoints.medium}) {
+        font-size: 9rem;
+        text-align: left;
+      }
+
+      @media (${Breakpoints.regular}) {
+        font-size: 10.8rem;
+      }
     }
 
     .large-body-copy {
@@ -595,10 +651,23 @@ const StyledSponsoringPage = styled.main`
   }
 
   .current-audience {
-    display: grid;
-    grid-column: 3 / -3;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column: 1 / -1;
     margin: 75px 0;
+    padding: 0 ${props => props.theme.mobilePadding};
+
+    @media (${Breakpoints.portrait}) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 2 / -2;
+      padding: 0;
+    }
+
+    @media (${Breakpoints.large}) {
+      grid-column: 3 / -3;
+    }
 
     h3 {
       ${MixinSectionHeading}
@@ -612,28 +681,56 @@ const StyledSponsoringPage = styled.main`
 
     &__social {
       display: grid;
-      grid-template-columns: 100px 1fr;
+      grid-template-columns: 40px 1fr;
       grid-column-gap: 25px;
       grid-template-areas:
-        'icon number'
-        'icon link';
+      'icon number'
+      'icon link';
       margin-bottom: 60px;
+
+      @media (${Breakpoints.regular}) {
+        grid-template-columns: 100px 1fr;
+      }
 
       &__icon {
         grid-area: icon;
+
+        svg {
+          height: 40px;
+          width: 40px;
+
+          @media (${Breakpoints.regular}) {
+            height: 90px;
+            width: 90px;
+          }
+        }
       }
 
       &__featured-number {
         font-family: ${(props) => props.theme.sansSerif};
         color: ${(props) => props.theme.white};
-        font-size: 4.8rem;
+        font-size: 3.8rem;
         font-weight: ${(props) => props.theme.fontBlack};
         grid-area: 'number';
+
+        @media (${Breakpoints.medium}) {
+          font-size: 4.8rem;
+        }
       }
 
       &__link {
         ${MixinLargeBodyCopy}
+        font-size: 1.6rem;
         grid-area: 'link';
+
+        @media (${Breakpoints.portrait}) {
+          font-size: 2rem;
+        }
+
+
+        @media (${Breakpoints.regular}) {
+          font-size: 2.8rem;
+        }
 
         a {
           color: ${(props) => props.theme.white};
@@ -654,7 +751,13 @@ const StyledSponsoringPage = styled.main`
   }
 
   .audience-interests {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
+    padding: 0 ${props => props.theme.mobilePadding};
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 4 / -4;
+      padding: 0;
+    }
 
     h3 {
       font-family: ${(props) => props.theme.sansSerif};
@@ -688,26 +791,51 @@ const StyledSponsoringPage = styled.main`
   }
 
   .youll-receive {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
+    padding: 0 ${props => props.theme.mobilePadding};
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 4 / -4;
+      padding: 0;
+    }
   }
 
   .get-and-investments {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
     margin-bottom: 75px;
+    padding: 0 ${props => props.theme.mobilePadding};
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 4 / -4;
+      padding: 0;
+    }
 
     .box {
       background: ${(props) => props.theme.yellow};
       color: ${(props) => props.theme.black};
-      padding: 65px 100px;
-      margin-bottom: 35px;
+      padding: 20px;
+      margin-bottom: 15px;
+
+      @media (${Breakpoints.medium}) {
+        margin-bottom: 35px;
+        padding: 50px;
+      }
+
+      @media (${Breakpoints.regular}) {
+        padding: 65px 100px;
+      }
 
       h4 {
         font-family: ${(props) => props.theme.mono};
-        font-size: 2.4rem;
+        font-size: 2rem;
         letter-spacing: 5px;
         margin: 0 0 30px 0;
         padding: 0;
         text-transform: uppercase;
+
+        @media (${Breakpoints.medium}) {
+          font-size: 2.4rem;
+        }
       }
 
       ul {
@@ -719,9 +847,17 @@ const StyledSponsoringPage = styled.main`
       li {
         display: flex;
         font-family: ${(props) => props.theme.sansSerif};
-        font-size: 3.2rem;
+        font-size: 2rem;
         color: ${(props) => props.theme.black};
         margin-bottom: 30px;
+
+        @media (${Breakpoints.small}) {
+          font-siz: 2.8rem;
+        }
+
+        @media (${Breakpoints.medium}) {
+          font-size: 3.2rem;
+        }
 
         &:last-child {
           margin: 0;
@@ -740,17 +876,28 @@ const StyledSponsoringPage = styled.main`
 
     .fine-print {
       font-family: ${(props) => props.theme.mono};
-      font-size: 2rem;
+      font-size: 1.6rem;
       color: white;
       font-style: italic;
+      line-height: 1.5;
+
+      @media (${Breakpoints.medium}) {
+        font-size: 2rem;
+      }
     }
   }
 
   .interested-in-working-together {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
     text-align: center;
     margin: 0 auto 75px;
+    padding: 0 ${props => props.theme.mobilePadding};
     position: relative;
+
+    @media (${Breakpoints.medium}) {
+      grid-column: 4 / -4;
+      padding: 0;
+    }
 
     p {
       margin-bottom: 50px;
