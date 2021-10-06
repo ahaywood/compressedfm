@@ -15,7 +15,7 @@ import { MixinHeadingWithHorizontalLines } from 'styles/Typography';
 ---------------------------------------------------- */
 const ContactPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => { };
+  const onSubmit = () => {};
 
   useEffect(() => {
     kwesforms.init();

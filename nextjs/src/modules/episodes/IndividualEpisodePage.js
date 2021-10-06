@@ -9,7 +9,6 @@ import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { WaveformPlayer } from 'modules/shared/components/AudioPlayer/WaveformPlayer';
 import { EpisodeSummary } from './components/EpisodeSummary';
-import { FullTranscript } from './components/FullTranscript';
 import { Guest } from './components/Guest';
 import { JumpLinks } from './components/JumpLinks';
 import { Links } from './components/Links';
@@ -23,7 +22,6 @@ const IndividualEpisodePage = ({
     audioPath,
     briefDescription,
     episodeNumber,
-    episodeTranscript,
     guest,
     listLink,
     publishedAt,

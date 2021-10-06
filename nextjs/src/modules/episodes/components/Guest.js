@@ -1,8 +1,6 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/Typography';
 import { SocialMedia } from 'modules/shared/components/SocialMedia';
-import { Breakpoints } from 'styles/Breakpoints';
 
 const Guest = ({ className, guest }) => (
   <div className={className}>

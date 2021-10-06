@@ -2,12 +2,12 @@
   "extends": [
     "wesbos"
   ],
-  "ignorePatterns": "",
   "rules": {
     "import/no-unresolved": "off",
     "no-return-await": "off",
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/media-has-caption": "off",
+    "react/prop-types": "off",
     "prettier/prettier": [
       "error",
       {

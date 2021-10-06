@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 // styles
@@ -32,7 +32,7 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
     forwardThirty,
     isPlaying,
     onLoadedMetadata,
-    skipToTime,
+    // skipToTime,
     speed,
     tapSpaceBar,
     togglePlaying,

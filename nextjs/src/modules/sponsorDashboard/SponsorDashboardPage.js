@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useUser } from '@auth0/nextjs-auth0';
 
 // styles
 import { MixinHeading, MixinPageTitle } from 'styles/Typography';
@@ -20,7 +18,6 @@ import { InvoiceItem } from './components/InvoiceItem';
 ---------------------------------------------------- */
 const SponsorDashboardPage = ({ sponsor }) => {
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
-  const { user } = useUser();
 
   const { title, logo, contractsInvoices } = sponsor;
 

@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import { Breakpoints } from 'styles/Breakpoints';
 import { Tag } from './Tag';
 import { TopNav } from './TopNav';
-import { BtmNav } from './BtmNav';
 import { SearchForm } from './SearchForm';
 
 // styles
@@ -57,7 +56,7 @@ Navigation.propTypes = {
 
 Navigation.defaultProps = {
   isShowing: false,
-  handleClick: () => { },
+  handleClick: () => {},
 };
 
 /** -------------------------------------------------

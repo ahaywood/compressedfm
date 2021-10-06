@@ -3,7 +3,7 @@ import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { LegalPage } from 'modules/legal';
 
-export default function Legal({legal}) {
+export default function Legal({ legal }) {
   return (
     <InteriorLayout>
       <LegalPage content={legal} />
@@ -18,9 +18,8 @@ const query = groq`*[_type == "legal" && slug.current == $slug] {
   meta
 }[0]`;
 
-
 export async function getServerSideProps(context) {
   const { slug = '' } = context.query;
   const legal = await client.fetch(query, { slug });
-  return {props: {legal}}
+  return { props: { legal } };
 }

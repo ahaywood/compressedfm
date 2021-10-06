@@ -4,7 +4,7 @@ import { serializers } from 'modules/shared/blockContent/Serializers';
 import { calculateTime } from 'utils/timeHelpers';
 
 // styles
-import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
+import { MixinHeading } from 'styles/Typography';
 
 /** -------------------------------------------------
 * COMPONENT

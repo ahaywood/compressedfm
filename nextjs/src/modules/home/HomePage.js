@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 
 // components
@@ -8,7 +7,6 @@ import { Podcatchers } from 'modules/shared/components/Podcatchers';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 
 // styles
-import { Breakpoints } from 'styles/Breakpoints';
 import { TheHosts } from './components/TheHosts';
 import { FeaturedEpisode } from './components/FeaturedEpisode';
 

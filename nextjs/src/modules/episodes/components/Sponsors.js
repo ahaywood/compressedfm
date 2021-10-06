@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 import { MoreLink } from 'modules/shared/components/MoreLink';
 import { MixinBodyCopy, MixinHeading } from 'styles/Typography';

@@ -10,7 +10,7 @@ import { SearchPage } from 'modules/search';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-export default function Search({episodes}) {
+export default function Search({ episodes }) {
   const router = useRouter();
 
   return (
@@ -40,6 +40,6 @@ export async function getServerSideProps(context) {
   const { keywords = '' } = context.query;
   const episodes = await client.fetch(query, { keywords });
   return {
-    props: {episodes}
-  }
+    props: { episodes },
+  };
 }

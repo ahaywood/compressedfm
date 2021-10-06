@@ -16,7 +16,7 @@ import { Breakpoints } from 'styles/Breakpoints';
 ---------------------------------------------------- */
 const Newsletter = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = () => { };
+  const onSubmit = () => {};
 
   useEffect(() => {
     kwesforms.init();

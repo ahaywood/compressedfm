@@ -20,7 +20,7 @@ Tag.propTypes = {
 };
 
 Tag.defaultProps = {
-  handleClick: () => { },
+  handleClick: () => {},
 };
 
 /** -------------------------------------------------
