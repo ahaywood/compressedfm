@@ -14,12 +14,26 @@ import { MixinBodyCopy } from 'styles/Typography';
 * COMPONENT
 ---------------------------------------------------- */
 const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
+  const [upcomingEpisodes, setUpcomingEpisodes] = useState();
+  const { SponsorshipOptions: { singleShow, threeEpisodeBundle, eightEpisodeBundle } } = pricing;
+
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => { };
 
   useEffect(() => {
     kwesforms.init();
   }, []);
+
+  useEffect(() => {
+    // check to see if the future episode has an empty sponsor slot
+
+    // Build to the array
+    // -- title
+    // -- date mm.dd.yyyy
+    // -- value mm-dd-yyyy
+
+
+  }, [futureEpisodes]);
 
   return (
     <StyledSponsorApplicationPage>
@@ -79,22 +93,22 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
               <li>
                 <input type="radio" name="options" value="1 Episode" id="options__1-episode" />
                 <label htmlFor="options__1-episode">
-                  <div className="amount">$50</div>
+                  <div className="amount">${singleShow}</div>
                   <div className="sponsor-description">1 Episode</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="3 Episodes" id="options__3-episodes" />
                 <label htmlFor="options__3-episodes">
-                  <div className="amount">$125</div>
+                  <div className="amount">${threeEpisodeBundle}</div>
                   <div className="sponsor-description">3 Episode Bundle</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="8 Episodes" id="options__8-episodes" />
                 <label htmlFor="options__8-episodes">
-                  <div className="amount">$400</div>
-                  <div className="sponsor-description">10 Episode Bundle</div>
+                  <div className="amount">${eightEpisodeBundle}</div>
+                  <div className="sponsor-description">8 Episode Bundle</div>
                 </label>
               </li>
             </ul>
