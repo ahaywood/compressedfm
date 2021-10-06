@@ -11,7 +11,7 @@ export default function Newsletter({ newsletters }) {
   );
 }
 
-const query = groq`*[_type == "newsletter" && published == true] | order(dateSent desc) {
+export const AllNewslettersQuery = groq`*[_type == "newsletter" && published == true] | order(dateSent desc) {
   _id,
   subject,
   dateSent,
@@ -19,6 +19,6 @@ const query = groq`*[_type == "newsletter" && published == true] | order(dateSen
 }`;
 
 export async function getServerSideProps(context) {
-  const newsletters = await client.fetch(query);
+  const newsletters = await client.fetch(AllNewslettersQuery);
   return { props: { newsletters } };
 }
