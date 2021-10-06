@@ -11,7 +11,7 @@ export default function Episodes({ episodes }) {
   );
 }
 
-const query = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
+export const AllEpisodesQuery = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
   _id,
   title,
   "cover": episodeCover.asset->url,
@@ -20,10 +20,14 @@ const query = groq`*[_type == "episode" && published == true && publishedAt < no
   publishedAt,
   briefDescription,
   audioPath
-}[0...8]`;
+}`;
 
 export async function getServerSideProps() {
+<<<<<<< HEAD
   const episodes = await client.fetch(query);
+=======
+  const episodes = await client.fetch(AllEpisodesQuery);
+>>>>>>> ffaef74ddf1b374d39e55111e76db78bd7e2b543
   return {
     props: { episodes },
   };

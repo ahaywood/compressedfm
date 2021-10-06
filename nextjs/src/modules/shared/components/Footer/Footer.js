@@ -42,6 +42,7 @@ const Footer = () => {
         instagram={Constants.COMPRESSEDFM_INSTAGRAM_URL}
         github={Constants.COMPRESSEDFM_GITHUB_URL}
         twitter={Constants.COMPRESSEDFM_TWITTER_URL}
+        rss={Constants.COMPRESSEDFM_RSS}
       />
 
       <div className="links-wrapper">

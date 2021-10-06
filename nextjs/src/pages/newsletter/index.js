@@ -11,14 +11,19 @@ export default function Newsletter({ newsletters }) {
   );
 }
 
-const query = groq`*[_type == "newsletter" && published == true] | order(dateSent desc) {
+export const AllNewslettersQuery = groq`*[_type == "newsletter" && published == true] | order(dateSent desc) {
   _id,
   subject,
   dateSent,
   slug
 }`;
 
+<<<<<<< HEAD
 export async function getServerSideProps() {
   const newsletters = await client.fetch(query);
+=======
+export async function getServerSideProps(context) {
+  const newsletters = await client.fetch(AllNewslettersQuery);
+>>>>>>> ffaef74ddf1b374d39e55111e76db78bd7e2b543
   return { props: { newsletters } };
 }

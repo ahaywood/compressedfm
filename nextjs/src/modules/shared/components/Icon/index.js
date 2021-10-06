@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Arrow } from './Arrow';
+import { Discord } from './Discord';
 import { Dribbble } from './Dribbble';
 import { Facebook } from './Facebook';
 import { GitHub } from './GitHub';
@@ -10,14 +11,18 @@ import { LinkedIn } from './LinkedIn';
 import { Minus } from './Minus';
 import { Pinterest } from './Pinterest';
 import { Plus } from './Plus';
+import { Rss } from './Rss';
 import { Twitch } from './Twitch';
 import { Twitter } from './Twitter';
 import { YouTube } from './YouTube';
 
 const Icon = (props) => {
-  switch (props.name.toLowerCase()) {
+  const { name } = props;
+  switch (name.toLowerCase()) {
     case 'arrow':
       return <Arrow {...props} />;
+    case 'discord':
+      return <Discord {...props} />;
     case 'dribbble':
       return <Dribbble {...props} />;
     case 'facebook':
@@ -34,6 +39,8 @@ const Icon = (props) => {
       return <Pinterest {...props} />;
     case 'plus':
       return <Plus {...props} />;
+    case 'rss':
+      return <Rss {...props} />;
     case 'twitch':
       return <Twitch {...props} />;
     case 'twitter':

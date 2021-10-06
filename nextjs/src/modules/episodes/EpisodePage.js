@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // components
@@ -29,6 +30,10 @@ const EpisodePage = ({ episodes }) => {
       <Newsletter />
     </StyledEpisodePage>
   );
+};
+
+EpisodePage.propTypes = {
+  episodes: PropTypes.array.isRequired,
 };
 
 /** -------------------------------------------------

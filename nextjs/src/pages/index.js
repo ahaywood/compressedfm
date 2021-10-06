@@ -11,7 +11,7 @@ export default function Home({ episodes }) {
   );
 }
 
-const query = groq`*[_type == "episode" && published == true] | order(episodeNumber desc) {
+const query = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
   _id,
   title,
   episodeNumber,
@@ -25,6 +25,11 @@ const query = groq`*[_type == "episode" && published == true] | order(episodeNum
 export async function getServerSideProps() {
   const episodes = await client.fetch(query);
   return {
+<<<<<<< HEAD
     props: { episodes },
   };
+=======
+    props: { episodes }
+  }
+>>>>>>> ffaef74ddf1b374d39e55111e76db78bd7e2b543
 }
