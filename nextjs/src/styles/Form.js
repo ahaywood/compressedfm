@@ -77,6 +77,7 @@ const MixinTextarea = css`
   color: ${(props) => props.theme.white};
   font-family: ${(props) => props.theme.sansSerif};
   font-size: 1.8rem;
+  line-height: 1.4;
   height: 175px;
   margin: 30px 0 0 0;
   padding: 15px;
