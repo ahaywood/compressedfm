@@ -22,6 +22,7 @@ const IndividualEpisodePage = ({
   episode: {
     audioPath,
     briefDescription,
+    episodeCover,
     episodeNumber,
     episodeTranscript,
     guest,
@@ -51,7 +52,7 @@ const IndividualEpisodePage = ({
         publishedAt={publishedAt}
       />
       <div className="audio-player">
-        <WaveformPlayer episodeTitle={title} audioPath={audioPath} episodeNumber={episodeNumber} skipTo={skipTo} />
+        <WaveformPlayer artwork={episodeCover.asset.url} episodeTitle={title} audioPath={audioPath} episodeNumber={episodeNumber} skipTo={skipTo} />
       </div>
       <VerticalDivider />
 
