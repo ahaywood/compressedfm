@@ -32,6 +32,8 @@ import meta from './objects/meta'
 import newsletterPagination from './objects/newsletterPagination'
 import reasonsBehindPodcast from './objects/reasonsBehindPodcast'
 import socialMedia from './objects/socialMedia'
+import socialMediaWithMetrics from './objects/socialMediaWithMetrics'
+import sponsorshipOptions from './objects/sponsorshipOptions'
 import stat from './objects/stat'
 import timeJump from './objects/timeJump'
 import transcript from './objects/transcript'
@@ -69,6 +71,8 @@ export default createSchema({
     reasonsBehindPodcast,
     stat,
     socialMedia,
+    socialMediaWithMetrics,
+    sponsorshipOptions,
     timeJump,
     transcript,
 
