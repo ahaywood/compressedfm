@@ -18,7 +18,6 @@ import { YouTube } from './YouTube';
 
 const Icon = (props) => {
   const { name } = props;
-  console.log(name);
   switch (name.toLowerCase()) {
     case 'arrow':
       return <Arrow {...props} />;
