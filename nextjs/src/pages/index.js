@@ -3,7 +3,7 @@ import groq from 'groq';
 import { HomePage } from 'modules/home';
 import { HomeLayout } from 'modules/shared/layouts/HomeLayout';
 
-export default function Home({episodes}) {
+export default function Home({ episodes }) {
   return (
     <HomeLayout>
       <HomePage episodes={episodes} />
@@ -11,7 +11,7 @@ export default function Home({episodes}) {
   );
 }
 
-const query = groq`*[_type == "episode" && published == true] | order(episodeNumber desc) {
+const query = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
   _id,
   title,
   episodeNumber,
@@ -22,9 +22,9 @@ const query = groq`*[_type == "episode" && published == true] | order(episodeNum
   audioPath
 }[0...4]`;
 
-export async function getServerSideProps(){
-  const episodes =  await client.fetch(query);
+export async function getServerSideProps() {
+  const episodes = await client.fetch(query);
   return {
-    props: {episodes}
+    props: { episodes }
   }
 }
