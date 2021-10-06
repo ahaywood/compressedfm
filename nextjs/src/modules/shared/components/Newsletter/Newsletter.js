@@ -33,7 +33,7 @@ const Newsletter = () => {
       >
         <input type="email" name="email" id="email" ref={register} placeholder=" " rules="required" />
         <label htmlFor="email">Email Address</label>
-        <button className="submit" type="submit" role="submit" onClick={onSubmit}>
+        <button className="submit" type="submit" onClick={onSubmit}>
           <Icon name="arrow" height="64" width="64" />
         </button>
       </form>

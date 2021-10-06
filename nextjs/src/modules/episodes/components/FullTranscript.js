@@ -23,7 +23,9 @@ const FullTranscript = ({ className, handleClick, transcript }) => {
         transcript.map((item) => (
           <div className="transcript-line" key={item._id}>
             <div className="timestamp">
-              <button onClick={(e) => onClick(e, item.timestamp)}>{calculateTime(item.timestamp)}</button>
+              <button type="button" onClick={(e) => onClick(e, item.timestamp)}>
+                {calculateTime(item.timestamp)}
+              </button>
             </div>
             <div className="speaker">{item.speaker}</div>
             <div className="transcript-content">
