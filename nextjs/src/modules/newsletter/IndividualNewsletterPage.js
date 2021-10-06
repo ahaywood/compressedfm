@@ -3,18 +3,14 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import BlockContent from '@sanity/block-content-to-react';
 
-// components
-import { serializers } from 'modules/shared/blockContent/Serializers';
-import { Newsletter } from 'modules/shared/components/Newsletter';
-import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
-import { Meta } from 'modules/shared/components/Meta';
-
-// styles
 import { Breakpoints } from 'styles/Breakpoints';
-import { MixinBodyCopy, MixinPageTitle, MixinSectionHeading } from 'styles/Typography';
-
-// utils
 import { formatShortDate } from 'utils/dateHelpers';
+import { Meta } from 'modules/shared/components/Meta';
+import { MixinBodyCopy, MixinPageTitle, MixinSectionHeading } from 'styles/Typography';
+import { Newsletter } from 'modules/shared/components/Newsletter';
+import { serializers } from 'modules/shared/blockContent/Serializers';
+import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
+import { NewsletterPagination } from './components/NewsletterPagination';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -35,6 +31,7 @@ const IndividualNewsletterPage = ({ dateSent, subject, content, meta, pagination
       </main>
 
       {/* pagination */}
+      <NewsletterPagination pagination={pagination} />
 
       <VerticalDivider />
 

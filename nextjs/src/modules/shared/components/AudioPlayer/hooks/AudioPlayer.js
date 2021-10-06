@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 export const useAudioPlayer = (audioRef, progressBarRef) => {
   const [speed, setSpeed] = useState(1);
@@ -71,6 +71,7 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
         break;
       case 2:
       default:
+        audioRef.current.playbackRate = 1;
         setSpeed(1);
         break;
     }
