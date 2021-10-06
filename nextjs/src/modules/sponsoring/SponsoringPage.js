@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 import { TheHosts } from 'modules/home/components/TheHosts';
 import { Podcatchers } from 'modules/shared/components/Podcatchers';
-import { Icon } from 'modules/shared/components/icon';
+import { Icon } from 'modules/shared/components/Icon';
 import { ButtonLink } from 'modules/shared/components/ButtonLink';
 
 // styles
