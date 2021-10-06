@@ -11,12 +11,15 @@ import { LinkedIn } from './LinkedIn';
 import { Minus } from './Minus';
 import { Pinterest } from './Pinterest';
 import { Plus } from './Plus';
+import { Rss } from './Rss';
 import { Twitch } from './Twitch';
 import { Twitter } from './Twitter';
 import { YouTube } from './YouTube';
 
 const Icon = (props) => {
-  switch (props.name.toLowerCase()) {
+  const { name } = props;
+  console.log(name);
+  switch (name.toLowerCase()) {
     case 'arrow':
       return <Arrow {...props} />;
     case 'discord':
@@ -37,6 +40,8 @@ const Icon = (props) => {
       return <Pinterest {...props} />;
     case 'plus':
       return <Plus {...props} />;
+    case 'rss':
+      return <Rss {...props} />;
     case 'twitch':
       return <Twitch {...props} />;
     case 'twitter':

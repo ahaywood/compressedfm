@@ -12,18 +12,33 @@ import { MixinSectionHeading, MixinPageTitle } from 'styles/Typography';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const TagPage = ({ episodes }) => (
-  <StyledTagPage>
-    <h3>Tagged</h3>
-    <h1>Career Development</h1>
-    <EpisodeGrid episodes={episodes} />
-    <VerticalDivider />
-    <Newsletter />
-  </StyledTagPage>
-);
+const TagPage = ({ content }) => {
+  const { title, episodes } = content.content;
+  console.log({ title, episodes });
+  return (
+    <StyledTagPage>
+      <h3>Tagged</h3>
+      {title && <h1>{title}</h1>}
+      {episodes ? (
+        <EpisodeGrid episodes={episodes} />
+      ) : (
+        <p>
+          <em>No Episodes Found</em>
+        </p>
+      )}
+      <VerticalDivider />
+      <Newsletter />
+    </StyledTagPage>
+  );
+};
 
 TagPage.propTypes = {
-  episodes: PropTypes.array.isRequired,
+  content: PropTypes.shape({
+    content: PropTypes.shape({
+      title: PropTypes.string,
+      episodes: PropTypes.array,
+    }),
+  }).isRequired,
 };
 
 /** -------------------------------------------------

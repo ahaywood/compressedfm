@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Icon } from 'modules/shared/components/Icon';
 
+/** -------------------------------------------------
+* COMPONENT
+---------------------------------------------------- */
 const SocialMedia = ({
   className,
   dribbble,
@@ -11,6 +14,7 @@ const SocialMedia = ({
   linkedin,
   twitch,
   twitter,
+  rss,
   pinterest,
   youtube,
 }) => (
@@ -95,6 +99,15 @@ const SocialMedia = ({
         </a>
       </li>
     )}
+
+    {/*  RSS */}
+    {rss && (
+      <li>
+        <a href={rss} target="_blank" rel="noreferrer">
+          <Icon name="rss" />
+        </a>
+      </li>
+    )}
   </StyledSocialMedia>
 );
 
@@ -108,6 +121,7 @@ SocialMedia.propTypes = {
   pinterest: PropTypes.string,
   twitch: PropTypes.string,
   twitter: PropTypes.string,
+  rss: PropTypes.string,
   youtube: PropTypes.string,
 };
 
@@ -121,9 +135,13 @@ SocialMedia.defaultProps = {
   pinterest: '',
   twitch: '',
   twitter: '',
+  rss: '',
   youtube: '',
 };
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledSocialMedia = styled.ul`
   align-items: center;
   color: ${(props) => props.theme.lavenderIndigo};

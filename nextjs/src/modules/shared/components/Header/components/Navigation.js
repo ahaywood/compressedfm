@@ -16,7 +16,7 @@ import { SearchForm } from './SearchForm';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const Navigation = ({ isShowing }) => {
+const Navigation = ({ handleClick, isShowing }) => {
   const [tags, setTags] = useState();
 
   // GET TAGS
@@ -41,7 +41,7 @@ const Navigation = ({ isShowing }) => {
           {tags &&
             tags.map((tag) => (
               <li key={tag._id}>
-                <Tag name={tag.title} />
+                <Tag name={tag.title} handleClick={handleClick} />
               </li>
             ))}
         </ul>
@@ -52,10 +52,12 @@ const Navigation = ({ isShowing }) => {
 
 Navigation.propTypes = {
   isShowing: PropTypes.bool,
+  handleClick: PropTypes.func,
 };
 
 Navigation.defaultProps = {
   isShowing: false,
+  handleClick: () => { },
 };
 
 /** -------------------------------------------------
