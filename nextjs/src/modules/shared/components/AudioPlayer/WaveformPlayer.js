@@ -17,7 +17,7 @@ import { useAudioPlayer } from './hooks/AudioPlayer';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const WaveformPlayer = ({ artwork = '/images/podcast-cover.jpg', audioPath, episodeNumber, episodeTitle, skipTo }) => {
+const WaveformPlayer = ({ artwork = '/images/podcast-cover.jpg', audioPath, episodeNumber, episodeTitle }) => {
   // references
   const audioPlayer = useRef(); // set up reference for the audio component
   const progressBar = useRef(); // reference for the progress bar
@@ -112,14 +112,14 @@ WaveformPlayer.propTypes = {
   audioPath: PropTypes.string,
   episodeNumber: PropTypes.number,
   episodeTitle: PropTypes.string,
-  skipTo: PropTypes.number,
+  // skipTo: PropTypes.number,
 };
 
 WaveformPlayer.defaultProps = {
   audioPath: '',
   episodeNumber: '',
   episodeTitle: '',
-  skipTo: 0,
+  // skipTo: 0,
 };
 
 /** -------------------------------------------------

@@ -22,23 +22,15 @@ const IndividualLegalQuery = groq`*[_type == "legal" && slug.current == $slug] {
   meta
 }[0]`;
 
-<<<<<<< HEAD
-export async function getServerSideProps(context) {
-  const { slug = '' } = context.query;
-  const legal = await client.fetch(query, { slug });
-  return { props: { legal } };
-=======
-
 export async function getStaticPaths() {
   const allLegal = await client.fetch(AllLegalPagesQuery);
 
   // Get the paths we want to pre-render based on episodes
   const paths = allLegal.map((legal) => ({
     params: { slug: legal.slug.current },
-  }))
+  }));
 
-  return { paths, fallback: false }
->>>>>>> ffaef74ddf1b374d39e55111e76db78bd7e2b543
+  return { paths, fallback: false };
 }
 
 // This function gets called at build time on server-side.
@@ -49,7 +41,7 @@ export async function getStaticProps({ params }) {
   const legal = await client.fetch(IndividualLegalQuery, { slug });
   return {
     props: {
-      legal
+      legal,
     },
-  }
+  };
 }

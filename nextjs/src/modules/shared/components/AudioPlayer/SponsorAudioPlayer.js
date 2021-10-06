@@ -23,6 +23,22 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
     progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
+  // when the playhead is moved, update the current time (text)
+  const updateCurrentTime = () => {
+    setCurrentTime(progressBar.current.value);
+  };
+
+  const pauseAudio = () => {
+    audioPlayer.current.pause();
+    cancelAnimationFrame(animationRef.current);
+  };
+
+  const whilePlaying = () => {
+    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
+    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
+    updateCurrentTime();
+    animationRef.current = requestAnimationFrame(whilePlaying);
+  };
   // when another audio player starts playing
   useEffect(() => {
     if (currentlyPlaying !== id) {
@@ -45,23 +61,6 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
     }
   };
 
-  const pauseAudio = () => {
-    audioPlayer.current.pause();
-    cancelAnimationFrame(animationRef.current);
-  };
-
-  const whilePlaying = () => {
-    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
-    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
-    updateCurrentTime();
-    animationRef.current = requestAnimationFrame(whilePlaying);
-  };
-
-  // when the playhead is moved, update the current time (text)
-  const updateCurrentTime = () => {
-    setCurrentTime(progressBar.current.value);
-  };
-
   // the knobby moves when you click on the progress bar
   // update the audio player to the new point
   const changeAudioToKnobby = () => {
@@ -71,7 +70,7 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
 
   // toggle play / pause when you tap the space bar
   const tapSpaceBar = (e) => {
-    if (e.keyCode == 32) {
+    if (e.keyCode === 32) {
       togglePlaying();
     }
   };

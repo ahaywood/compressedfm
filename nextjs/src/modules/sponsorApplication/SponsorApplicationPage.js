@@ -7,15 +7,15 @@ import kwesforms from 'kwesforms';
 import { Button } from 'modules/shared/form/Button';
 
 // styles
-import { MixinLabel, MixinTextField, MixinTextarea, MixinSelect, MixinFormError } from 'styles/Form';
+import { MixinLabel, MixinTextField, MixinTextarea, MixinSelect } from 'styles/Form';
 import { MixinBodyCopy } from 'styles/Typography';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
+const SponsorApplicationPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => { };
+  const onSubmit = () => {};
 
   useEffect(() => {
     kwesforms.init();

@@ -24,19 +24,19 @@ const futureEpisodesQuery = groq`*[_type == "episode" && published == true && pu
     _id,
     title,
   },
-}`
+}`;
 
 // get the sponsorship pricing
 const pricingQuery = groq`*[_type == "siteSettings"]`;
 
 // This function gets called at build time on server-side.
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const futureEpisodes = await client.fetch(futureEpisodesQuery);
   const pricing = await client.fetch(pricingQuery);
   return {
     props: {
       futureEpisodes,
-      pricing
+      pricing,
     },
-  }
+  };
 }
