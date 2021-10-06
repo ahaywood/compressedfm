@@ -13,7 +13,7 @@ import { MixinBodyCopy } from 'styles/Typography';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const SponsorApplicationPage = () => {
+const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => { };
 
@@ -172,6 +172,9 @@ const SponsorApplicationPage = () => {
   );
 };
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const StyledSponsorApplicationPage = styled.section`
   .page-title__wrapper {
     text-align: center;
