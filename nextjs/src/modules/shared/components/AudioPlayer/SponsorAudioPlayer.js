@@ -1,11 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { calculateTime } from 'utils/timeHelpers';
+import { formatLongDate } from 'utils/dateHelpers';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }) => {
+const SponsorAudioPlayer = ({
+  currentlyPlaying,
+  date,
+  downloads,
+  episodeNumber,
+  handleMultipleAudioPlayers,
+  id,
+  listens,
+  title,
+  track,
+}) => {
   // state
   const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState();
@@ -77,14 +88,28 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
 
   return (
     <StyledFeaturedAudioPlayer>
-      <audio
-        ref={audioPlayer}
-        src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/88284991-93d9-436a-845d-4133c01cde8a/audio/2040cdce-b212-4958-906d-1706fa39f6ac/default_tc.mp3"
-        preload="metadata"
-      />
+      <audio ref={audioPlayer} src={track} preload="metadata" />
+
+      <div className="episodeNumber">{episodeNumber && episodeNumber}</div>
+      <div className="episodeMetaData">
+        <div className="episodeTitle">{title && title}</div>
+        <div className="episodeDate">{date && formatLongDate(date)}</div>
+      </div>
+      {downloads && (
+        <div className="downloads">
+          <div className="number">{downloads}</div>
+          <div className="label">Downloads</div>
+        </div>
+      )}
+      {listens && (
+        <div className="listens">
+          <div className="downloads">{listens}</div>
+          <div className="label">Listens</div>
+        </div>
+      )}
 
       <div className="controls">
-        <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
+        <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar} type="button">
           {isPlaying ? (
             <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
               <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />

@@ -13,7 +13,7 @@ const TotalBlock = ({ number, label }) => (
 
 TotalBlock.propTypes = {
   label: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
+  number: PropTypes.string.isRequired,
 };
 
 /** -------------------------------------------------

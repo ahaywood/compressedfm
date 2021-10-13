@@ -5,6 +5,9 @@ import styled from 'styled-components';
 // styles
 import { MixinHeading, MixinPageTitle } from 'styles/Typography';
 
+// utils
+import { numberWithCommas } from 'utils/numberHelpers';
+
 // components
 import { SponsorAudioPlayer } from 'modules/shared/components/AudioPlayer/SponsorAudioPlayer';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
@@ -17,11 +20,14 @@ import { InvoiceItem } from './components/InvoiceItem';
 * COMPONENT
 ---------------------------------------------------- */
 const SponsorDashboardPage = ({ sponsor }) => {
-  const [currentlyPlaying, setCurrentlyPlaying] = useState();
-
-  const { title, logo, contractsInvoices } = sponsor;
+  const { title, logo, contractsInvoices, episodes } = sponsor;
 
   console.log(sponsor);
+
+  // state
+  const [currentlyPlaying, setCurrentlyPlaying] = useState();
+
+  // console.log(sponsor);
 
   const handleMultipleAudioPlayers = (id) => {
     setCurrentlyPlaying(id);
@@ -39,8 +45,8 @@ const SponsorDashboardPage = ({ sponsor }) => {
       </div>
 
       <div className="box-grid">
-        <TotalBlock number={totalListens} label="Total Listens" />
-        <TotalBlock number={totalDownloads} label="Total Downloads" />
+        <TotalBlock number={numberWithCommas(totalListens)} label="Total Listens" />
+        <TotalBlock number={numberWithCommas(totalDownloads)} label="Total Downloads" />
         <div className="button-link-wrapper">
           <ButtonLink label="Sponsor Again" href="/sponsor-application" />
         </div>
@@ -72,21 +78,21 @@ const SponsorDashboardPage = ({ sponsor }) => {
       <h2 className="heading">Episodes You've Sponsored</h2>
 
       {/* PLAYERS */}
-      <SponsorAudioPlayer
-        id="1"
-        currentlyPlaying={currentlyPlaying}
-        handleMultipleAudioPlayers={handleMultipleAudioPlayers}
-      />
-      <SponsorAudioPlayer
-        id="2"
-        currentlyPlaying={currentlyPlaying}
-        handleMultipleAudioPlayers={handleMultipleAudioPlayers}
-      />
-      <SponsorAudioPlayer
-        id="3"
-        currentlyPlaying={currentlyPlaying}
-        handleMultipleAudioPlayers={handleMultipleAudioPlayers}
-      />
+      {episodes &&
+        episodes.map((episode, index) => (
+          <SponsorAudioPlayer
+            currentlyPlaying={currentlyPlaying}
+            date={episode.publishedAt}
+            downloads={numberWithCommas(episode.downloads)}
+            episodeNumber={episode.episodeNumber}
+            handleMultipleAudioPlayers={handleMultipleAudioPlayers}
+            id={episode.__id}
+            key={index}
+            listens={numberWithCommas(episode.listens)}
+            title={episode.title}
+            track={episode.audioPath}
+          />
+        ))}
     </StyledSponsorDashboardPage>
   );
 };
@@ -117,7 +123,7 @@ const StyledSponsorDashboardPage = styled.section`
   }
 
   .logo {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     text-align: center;
 
     img {

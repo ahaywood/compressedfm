@@ -20,7 +20,7 @@ export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match 
   }
 }[0]`;
 
-export const sponsorBySlugQuery = groq`*[_type == "sponsor" && slug.current == $slug && published==true]{
+export const sponsorBySlugQuery = groq`*[_type == "sponsor" && slug.current == $slug && published]{
   title,
   "logo": logo.asset->url,
   offer,
@@ -34,8 +34,12 @@ export const sponsorBySlugQuery = groq`*[_type == "sponsor" && slug.current == $
     "contractPDF": contractPDF.asset->url,
     "invoicePDF": invoicePDF.asset->url
   },
-  "episodes": *[_type=='episode' && references(^._id)]{
+  "episodes": *[_type=='episode' && references(^._id) && published == true && publishedAt < now()] | order(episodeNumber desc) {
+    __id,
     title,
+    publishedAt,
+    slug,
+    episodeNumber,
     audioPath,
     simplecastId
   }
