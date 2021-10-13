@@ -63,7 +63,7 @@ export async function getStaticPaths() {
     params: { slug: newsletter.slug.current },
   }))
 
-  return { paths, fallback: false }
+  return { paths, fallback: 'blocking' }
 }
 
 // This function gets called at build time on server-side.
