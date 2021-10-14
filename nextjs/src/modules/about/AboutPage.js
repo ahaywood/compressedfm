@@ -43,16 +43,21 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
     <section className="colophon">
       <div className="section-heading__wrapper">
         <h2 className="section-heading">Colophon</h2>
+        <p className="large-body">Since we're web designers and developers, we care about this sort of thing.</p>
+        <p>The website is built on Next.js and Sanity and hosted on Vercel.</p>
+        <div className="logo-line">
+          <Img src={ } alt="Next.js" width="" height="" />
+          <Img src={ } alt="Vercel" width="" height="" />
+          <Img src={ } alt="Sanity" width="" height="" />
+        </div>
         <div className="colors">
           <ColophonColor color="#ffffff" />
-          <ColophonColor color="#000000" border="#313131" />
+          <ColophonColor color="#000000" border="#444444" />
           <ColophonColor color="#484848" />
           <ColophonColor color="#FAFF00" />
           <ColophonColor color="#8C59FF" />
         </div>
       </div>
-      <p className="large-body">Since we're web designers and developers, we care about this sort of thing.</p>
-      <p>The website is built on Next.js and Sanity and hosted on Vercel.</p>
       <h4>Colors</h4>
       <h4>Typography</h4>
       <HorizontalDivider />
@@ -151,6 +156,10 @@ const StyledAboutPage = styled.div`
     .colors {
       display: flex;
       justify-content: space-between;
+    }
+
+    h3 {
+
     }
   }
 

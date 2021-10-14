@@ -42,7 +42,11 @@ export default {
     {
       name: 'SponsorshipOptions',
       title: 'Sponsorship Options',
-      type: 'sponsorshipOptions'
+      type: 'sponsorshipOptions',
+      options: {
+        collapsible: true,
+        collapsed: true
+      }
     }
   ],
 }
