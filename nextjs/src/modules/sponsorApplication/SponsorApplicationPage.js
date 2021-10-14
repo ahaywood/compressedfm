@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { formatMoney, removeDoubleZeros } from 'utils/moneyHelpers';
+import { formatShortDate, formatDashes } from 'utils/dateHelpers';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import kwesforms from 'kwesforms';
@@ -14,12 +16,36 @@ import { MixinBodyCopy } from 'styles/Typography';
 * COMPONENT
 ---------------------------------------------------- */
 const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
+  const [upcomingEpisodes, setUpcomingEpisodes] = useState();
+  const [fileName, setFileName] = useState();
+  const { SponsorshipOptions: { singleShow, threeEpisodeBundle, eightEpisodeBundle } } = pricing;
+
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => { };
+  const onSubmit = (data) => { console.table(data) };
 
   useEffect(() => {
     kwesforms.init();
   }, []);
+
+  const hasEmptySlot = (episodes) => {
+    return episodes.filter(episode => {
+      if (!episode.sponsor || episode.sponsor.length < 3) {
+        return true;
+      }
+    });
+  }
+
+  const handleFileUpload = (e) => {
+    // split the file name up by '/'
+    const file = e.target.value.split('\\');
+    const nameOfFile = file[file.length - 1];
+    setFileName(nameOfFile);
+  }
+
+  useEffect(() => {
+    // check to see if the future episode has an empty sponsor slot
+    setUpcomingEpisodes(hasEmptySlot(futureEpisodes));
+  }, [futureEpisodes]);
 
   return (
     <StyledSponsorApplicationPage>
@@ -30,7 +56,7 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="kwes-form"
-        action="https://kwes.io/api/foreign/forms/CbhUqoBNI4qKnBSlUuKM"
+        action="https://kwesforms.com/api/foreign/forms/dyR6Keedo7Vph2lHmJWK"
       >
         <div className="half">
           <input
@@ -79,22 +105,22 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
               <li>
                 <input type="radio" name="options" value="1 Episode" id="options__1-episode" />
                 <label htmlFor="options__1-episode">
-                  <div className="amount">$50</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(singleShow))}</div>
                   <div className="sponsor-description">1 Episode</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="3 Episodes" id="options__3-episodes" />
                 <label htmlFor="options__3-episodes">
-                  <div className="amount">$125</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(threeEpisodeBundle))}</div>
                   <div className="sponsor-description">3 Episode Bundle</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="8 Episodes" id="options__8-episodes" />
                 <label htmlFor="options__8-episodes">
-                  <div className="amount">$400</div>
-                  <div className="sponsor-description">10 Episode Bundle</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(eightEpisodeBundle))}</div>
+                  <div className="sponsor-description">8 Episode Bundle</div>
                 </label>
               </li>
             </ul>
@@ -104,42 +130,36 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
           <div className="file-upload">
             <label htmlFor="hi-res-logo">
               HI-RES LOGO
-              <span>Click to Upload</span>
+              <span>{fileName ? fileName : 'Click to Upload'}</span>
             </label>
-            <input type="file" name="hi-res-logo" id="hi-res-logo" {...register('hi-res-logo')} />
+            <input type="file" name="hi-res-logo" id="hi-res-logo" {...register('hi-res-logo')} onChange={handleFileUpload} />
           </div>
         </div>
-        <div className="full">
-          <h5>Future Episodes</h5>
-          <p>
-            Here’s a list of the episode topics we’ve scheduled. Is there a specific episode that you’d like to sponsor?
-          </p>
-          <fieldset data-kw-group>
-            <ul>
-              <li>
-                <input type="checkbox" name="future-episodes" value="3-10" id="future-episodes__3-10" />
-                <label htmlFor="future-episodes__3-10">
-                  <div className="date">03.10.21</div>
-                  <div className="episode-description">TypeScript Fundamentals</div>
-                </label>
-              </li>
-              <li>
-                <input type="checkbox" name="future-episodes" value="3-16" id="future-episodes__3-16" />
-                <label htmlFor="future-episodes__3-16">
-                  <div className="date">03.16.21</div>
-                  <div className="episode-description">The Deno Show</div>
-                </label>
-              </li>
-              <li>
-                <input type="checkbox" name="future-episodes" value="3-20" id="future-episodes__3-20" />
-                <label htmlFor="future-episodes__3-20">
-                  <div className="date">03.20.21</div>
-                  <div className="episode-description">CSS Grid and Flexbox</div>
-                </label>
-              </li>
-            </ul>
-          </fieldset>
-        </div>
+        {/* ---------------------------------------
+        RIGHT NOW, THIS BLOCK OF CODE IS PRODUCING INCONSISTENT RESULTS
+        I have a support request into KwesForms. Hopefully, I'll hear from them soon.
+        -------------------------------------------
+        <fieldset data-kw-group>.
+          {upcomingEpisodes && (
+            <div className="full">
+              <h5>Future Episodes</h5>
+              <p>
+                Here’s a list of the episode topics we’ve scheduled. Is there a specific episode that you’d like to sponsor?
+              </p>
+              <ul>
+                {upcomingEpisodes.map(episode => (
+                  <li key={episode._id}>
+                    <input type="checkbox" name="future-episodes" value={episode.title} id={`future-episodes__${formatDashes(episode.publishedAt)}`} {...register('futureEpisodes')} ref={register} />
+                    <label htmlFor={`future-episodes__${formatDashes(episode.publishedAt)}`}>
+                      <div className="date">{formatShortDate(episode.publishedAt)}</div>
+                      <div className="episode-description">{episode.title}</div>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </fieldset> */}
         <div className="full">
           <input {...register('promo-code')} type="text" ref={register} placeholder=" " name="promo-code" />
           <label htmlFor="promoCode">Promo Code</label>
@@ -248,7 +268,7 @@ const StyledSponsorApplicationPage = styled.section`
   }
 
   input[type='checkbox'] {
-    display: none;
+    /* display: none; */
 
     & + label {
       background: url('/images/checkbox--unchecked.svg') left top no-repeat;
@@ -289,6 +309,10 @@ const StyledSponsorApplicationPage = styled.section`
       position: relative;
       margin-left: 10px;
       top: -4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 65%;
     }
 
     &:hover span {
@@ -336,6 +360,13 @@ const StyledSponsorApplicationPage = styled.section`
     ${MixinTextField}
   }
 
+  input[type='text'] + label,
+  input[type='email'] + label,
+  input[type='tel'] + label,
+  textarea + label {
+    pointer-events: none;;
+  }
+
   textarea {
     ${MixinTextarea}
   }
@@ -351,7 +382,7 @@ const StyledSponsorApplicationPage = styled.section`
     font-size: 1.8rem;
     line-height: 1;
     letter-spacing: 2px;
-    min-width: 65px;
+    min-width: 90px;
     text-transform: uppercase;
   }
 
