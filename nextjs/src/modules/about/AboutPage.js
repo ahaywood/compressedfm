@@ -46,9 +46,9 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
         <p className="large-body">Since we're web designers and developers, we care about this sort of thing.</p>
         <p>The website is built on Next.js and Sanity and hosted on Vercel.</p>
         <div className="logo-line">
-          <Img src={ } alt="Next.js" width="" height="" />
-          <Img src={ } alt="Vercel" width="" height="" />
-          <Img src={ } alt="Sanity" width="" height="" />
+          <Image src="/images/logo__nextjs@2x.png" alt="Next.js" width="182" height="114" />
+          <Image src="/images/logo__sanity@2x.png" alt="Sanity" width="191" height="38" />
+          <Image src="/images/logo__vercel@2x.png" alt="Vercel" width="240" height="60" />
         </div>
         <div className="colors">
           <ColophonColor color="#ffffff" />
@@ -160,6 +160,11 @@ const StyledAboutPage = styled.div`
 
     h3 {
 
+    }
+
+    p {
+      ${MixinBodyCopy};
+      text-align: left;
     }
   }
 
