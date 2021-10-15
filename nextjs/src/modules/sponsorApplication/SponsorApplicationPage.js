@@ -135,9 +135,9 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
             <input type="file" name="hi-res-logo" id="hi-res-logo" {...register('hi-res-logo')} onChange={handleFileUpload} />
           </div>
         </div>
-        <fieldset data-kw-group>.
+        <fieldset data-kw-group className="full">
           {upcomingEpisodes && (
-            <div className="full">
+            <div>
               <h5>Future Episodes</h5>
               <p>
                 Here’s a list of the episode topics we’ve scheduled. Is there a specific episode that you’d like to sponsor?
