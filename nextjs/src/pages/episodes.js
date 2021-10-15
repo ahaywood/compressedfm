@@ -22,9 +22,11 @@ export const AllEpisodesQuery = groq`*[_type == "episode" && published == true &
   audioPath
 }`;
 
-export async function getServerSideProps() {
+export async function getStaticProps({ params }) {
   const episodes = await client.fetch(AllEpisodesQuery);
   return {
-    props: { episodes },
-  };
+    props: {
+      episodes
+    },
+  }
 }
