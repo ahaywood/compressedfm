@@ -25,7 +25,7 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
 
   useEffect(() => {
     kwesforms.init();
-  }, []);
+  });
 
   const hasEmptySlot = (episodes) => {
     return episodes.filter(episode => {
@@ -135,10 +135,6 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
             <input type="file" name="hi-res-logo" id="hi-res-logo" {...register('hi-res-logo')} onChange={handleFileUpload} />
           </div>
         </div>
-        {/* ---------------------------------------
-        RIGHT NOW, THIS BLOCK OF CODE IS PRODUCING INCONSISTENT RESULTS
-        I have a support request into KwesForms. Hopefully, I'll hear from them soon.
-        -------------------------------------------
         <fieldset data-kw-group>.
           {upcomingEpisodes && (
             <div className="full">
@@ -159,7 +155,7 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
               </ul>
             </div>
           )}
-        </fieldset> */}
+        </fieldset>
         <div className="full">
           <input {...register('promo-code')} type="text" ref={register} placeholder=" " name="promo-code" />
           <label htmlFor="promoCode">Promo Code</label>
