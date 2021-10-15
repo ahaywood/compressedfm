@@ -264,7 +264,7 @@ const StyledSponsorApplicationPage = styled.section`
   }
 
   input[type='checkbox'] {
-    /* display: none; */
+    display: none;
 
     & + label {
       background: url('/images/checkbox--unchecked.svg') left top no-repeat;
