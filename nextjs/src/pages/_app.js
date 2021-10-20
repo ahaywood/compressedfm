@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
-import PropTypes from 'prop-types';
 import Router from 'next/router';
 import Head from 'next/head';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
@@ -32,11 +31,6 @@ function MyApp({ Component, pageProps }) {
     </UserProvider>
   );
 }
-
-MyApp.propTypes = {
-  Component: PropTypes.any,
-  pageProps: PropTypes.any,
-};
 
 export default MyApp;
 
