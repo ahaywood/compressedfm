@@ -22,7 +22,7 @@ import { InvoiceItem } from './components/InvoiceItem';
 const SponsorDashboardPage = ({ sponsor }) => {
   const { title, logo, contractsInvoices, episodes } = sponsor;
 
-  console.log(sponsor);
+  // console.log(sponsor);
 
   // state
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
@@ -35,7 +35,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
 
   const totalDownloads = sponsor.episodes.reduce((acc, episode) => acc + episode.downloads, 0);
 
-  const totalListens = sponsor.episodes.reduce((acc, episode) => acc + episode.listens, 0);
+  // const totalListens = sponsor.episodes.reduce((acc, episode) => acc + episode.listens, 0);
 
   return (
     <StyledSponsorDashboardPage>
@@ -45,7 +45,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
       </div>
 
       <div className="box-grid">
-        <TotalBlock number={numberWithCommas(totalListens)} label="Total Listens" />
+        {/* <TotalBlock number={numberWithCommas(totalListens)} label="Total Listens" /> */}
         <TotalBlock number={numberWithCommas(totalDownloads)} label="Total Downloads" />
         <div className="button-link-wrapper">
           <ButtonLink label="Sponsor Again" href="/sponsor-application" />
