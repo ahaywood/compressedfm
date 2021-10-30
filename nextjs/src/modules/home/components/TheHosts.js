@@ -29,13 +29,14 @@ const TheHosts = () => (
       avatar="/images/amy.png"
       firstName="Amy"
       lastName="Dutton"
-      jobTitle="Senior UI/UX"
+      jobTitle="Director of Design"
       largeBody="I love️ teaching designers how to code and developers how to design."
       body="I'm a Senior UI / UX designer and frontend developer at ZEAL. I have over 20 years of web experience, officially making me a granny in Internet years. I live in Nashville, TN with my husband, 3 adorable kids, and 2 dogs. If I'm not sitting in front of my computer making things, I'm hanging out with family and friends. I love streaming all the things, playing cards, reading, and drinking coffee. Lots of coffee."
       twitter="http://twitter.com/selfteachme"
       instagram="http://instagram.com/selfteachme"
       github="http://github.com/ahaywood"
       youtube="http://youtube.com/c/selfteachme"
+      twitch="http://twitch.com/selfteachme"
     />
   </StyledTheHosts>
 );
