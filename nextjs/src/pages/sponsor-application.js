@@ -27,7 +27,9 @@ const futureEpisodesQuery = groq`*[_type == "episode" && published == true && pu
 }`;
 
 // get the sponsorship pricing
-const pricingQuery = groq`*[_type == "siteSettings"]`;
+const pricingQuery = groq`*[_type == "siteSettings"] {
+  SponsorshipOptions
+}[0]`;
 
 // This function gets called at build time on server-side.
 export async function getStaticProps() {
