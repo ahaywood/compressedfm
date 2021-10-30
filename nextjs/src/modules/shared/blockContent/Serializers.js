@@ -73,6 +73,7 @@ const serializers = {
     // internalLink,
     large: LargeText,
   },
+  // eslint-disable-next-line react/display-name
   container: ({ children }) => <>{children}</> /* removes the wrapping div */,
 };
 export { serializers };

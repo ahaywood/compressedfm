@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { calculateTime } from 'utils/timeHelpers';
 import { formatLongDate } from 'utils/dateHelpers';
@@ -10,12 +10,11 @@ import { useAudioPlayer } from './hooks/AudioPlayer';
 ---------------------------------------------------- */
 const SponsorAudioPlayer = ({
   chapters,
-  currentlyPlaying,
+  // currentlyPlaying,
   date,
   downloads,
   episodeNumber,
-  handleMultipleAudioPlayers,
-  id,
+  // handleMultipleAudioPlayers,
   listens,
   title,
   track,

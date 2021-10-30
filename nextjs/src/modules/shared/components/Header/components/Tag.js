@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -20,7 +21,8 @@ Tag.propTypes = {
 };
 
 Tag.defaultProps = {
-  handleClick: () => {},
+  // eslint-disable-next-line prettier/prettier
+  handleClick: () => { },
 };
 
 /** -------------------------------------------------

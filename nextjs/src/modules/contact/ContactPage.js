@@ -15,7 +15,8 @@ import { MixinHeadingWithHorizontalLines } from 'styles/Typography';
 ---------------------------------------------------- */
 const ContactPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = () => {};
+  // eslint-disable-next-line prettier/prettier
+  const onSubmit = () => { };
 
   useEffect(() => {
     kwesforms.init();

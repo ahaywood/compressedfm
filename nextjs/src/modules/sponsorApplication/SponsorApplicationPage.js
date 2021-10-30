@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from 'react';
 import { formatMoney, removeDoubleZeros } from 'utils/moneyHelpers';
 import { formatShortDate, formatDashes } from 'utils/dateHelpers';

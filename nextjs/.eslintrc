@@ -1,7 +1,11 @@
 {
-  "extends": ["wesbos"],
+  "extends": [
+    "wesbos"
+  ],
   "ignorePatterns": "",
   "rules": {
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "import/no-unresolved": "off",
     "no-return-await": "off",
     "react/jsx-props-no-spreading": "off",

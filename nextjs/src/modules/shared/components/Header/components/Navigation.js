@@ -59,6 +59,7 @@ Navigation.propTypes = {
 
 Navigation.defaultProps = {
   isShowing: false,
+  // eslint-disable-next-line prettier/prettier
   handleClick: () => { },
 };
 
