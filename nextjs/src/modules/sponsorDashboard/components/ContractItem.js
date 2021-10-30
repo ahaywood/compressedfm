@@ -31,7 +31,7 @@ ContractItem.propTypes = {
     contractDateIssued: PropTypes.string,
     contractStatus: PropTypes.string,
     contractPDF: PropTypes.string,
-    quantity: PropTypes.string,
+    quantity: PropTypes.number,
   }).isRequired,
 };
 
@@ -42,7 +42,7 @@ const StyledContractItem = styled.div`
   align-items: center;
   background: url('/images/horizontal-divider.svg') left top repeat-x;
   display: grid;
-  grid-template-columns: 80px 100px 50px 1fr 50px;
+  grid-template-columns: 80px 100px 25px 1fr 50px;
   grid-column-gap: 30px;
   padding: 25px 0;
 

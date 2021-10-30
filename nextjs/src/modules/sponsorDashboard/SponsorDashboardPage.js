@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { find, sumBy } from 'lodash';
 
 // styles
-import { MixinHeading, MixinPageTitle } from 'styles/Typography';
+import { MixinSectionHeading, MixinPageTitle } from 'styles/Typography';
 
 // utils
 import { numberWithCommas } from 'utils/numberHelpers';
@@ -20,22 +21,19 @@ import { InvoiceItem } from './components/InvoiceItem';
 * COMPONENT
 ---------------------------------------------------- */
 const SponsorDashboardPage = ({ sponsor }) => {
-  const { title, logo, contractsInvoices, episodes } = sponsor;
-
-  // console.log(sponsor);
-
-  // state
+  const { _id, title, logo, contractsInvoices, episodes } = sponsor;
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
 
-  // console.log(sponsor);
+  console.log(sponsor);
 
   const handleMultipleAudioPlayers = (id) => {
     setCurrentlyPlaying(id);
   };
 
-  const totalDownloads = sponsor.episodes.reduce((acc, episode) => acc + episode.downloads, 0);
+  const totalDownloads = sumBy(sponsor.episodes, (episode) => episode.episodeStats.stats.downloads);
+  const totalListens = sumBy(sponsor.episodes, (episode) => episode.episodeStats.stats.listens);
 
-  // const totalListens = sponsor.episodes.reduce((acc, episode) => acc + episode.listens, 0);
+  const GetAdSpot = (sponsorWithTimeCodes) => find(sponsorWithTimeCodes, (one) => one.sponsor._id === _id);
 
   return (
     <StyledSponsorDashboardPage>
@@ -45,7 +43,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
       </div>
 
       <div className="box-grid">
-        {/* <TotalBlock number={numberWithCommas(totalListens)} label="Total Listens" /> */}
+        <TotalBlock number={numberWithCommas(totalListens)} label="Total Listens" />
         <TotalBlock number={numberWithCommas(totalDownloads)} label="Total Downloads" />
         <div className="button-link-wrapper">
           <ButtonLink label="Sponsor Again" href="/sponsor-application" />
@@ -75,24 +73,32 @@ const SponsorDashboardPage = ({ sponsor }) => {
 
       <VerticalDivider />
 
-      <h2 className="heading">Episodes You've Sponsored</h2>
+      <div className="heading-wrapper">
+        <h2 className="heading">Episodes You've Sponsored</h2>
+      </div>
 
       {/* PLAYERS */}
       {episodes &&
-        episodes.map((episode, index) => (
-          <SponsorAudioPlayer
-            currentlyPlaying={currentlyPlaying}
-            date={episode.publishedAt}
-            downloads={numberWithCommas(episode.downloads)}
-            episodeNumber={episode.episodeNumber}
-            handleMultipleAudioPlayers={handleMultipleAudioPlayers}
-            id={episode.__id}
-            key={index}
-            listens={numberWithCommas(episode.listens)}
-            title={episode.title}
-            track={episode.audioPath}
-          />
-        ))}
+        episodes.map((episode, index) => {
+          console.log(episode.sponsorWithTimecode);
+          const chapters = GetAdSpot(episode.sponsorWithTimecode);
+          console.log({ chapters });
+          return (
+            <SponsorAudioPlayer
+              chapters={chapters}
+              currentlyPlaying={currentlyPlaying}
+              date={episode.publishedAt}
+              downloads={numberWithCommas(Number(episode.episodeStats.stats.downloads))}
+              episodeNumber={episode.episodeNumber}
+              handleMultipleAudioPlayers={handleMultipleAudioPlayers}
+              id={episode.__id}
+              key={index}
+              listens={numberWithCommas(Number(episode.episodeStats.stats.listens))}
+              title={episode.title}
+              track={episode.audioPath}
+            />
+          );
+        })}
     </StyledSponsorDashboardPage>
   );
 };
@@ -118,8 +124,14 @@ const StyledSponsorDashboardPage = styled.section`
     ${MixinPageTitle};
   }
 
+  .heading-wrapper {
+    margin-bottom: 60px;
+    text-align: center;
+    width: 100%;
+  }
+
   .heading {
-    ${MixinHeading}
+    ${MixinSectionHeading}
   }
 
   .logo {

@@ -3,11 +3,6 @@ export default {
   name: 'stat',
   fields: [
     {
-      name: 'dateReported',
-      title: 'Date Reported',
-      type: 'date',
-    },
-    {
       name: 'downloads',
       title: 'Downloads',
       type: 'number',
@@ -27,11 +22,9 @@ export default {
       listens: 'listens',
     },
     prepare(selection) {
-      const { dateReported, downloads, listens } = selection
-      const date = dateReported.split('-');
+      const { downloads, listens } = selection
       return {
-        title: `${date[1]}-${date[2]}-${date[0]}`,
-        subtitle: `Downloads: ${downloads} :: Listens: ${listens}`
+        title: `Downloads: ${downloads} :: Listens: ${listens}`
       }
     }
   }

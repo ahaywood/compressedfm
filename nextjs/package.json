@@ -10,6 +10,7 @@
     "groq": "^2.2.6",
     "install-peers": "^1.0.3",
     "kwesforms": "^2.0.18",
+    "lodash": "^4.17.21",
     "next": "^11.1.2",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",

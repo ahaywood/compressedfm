@@ -16,11 +16,13 @@ export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match 
   "episodes": *[_type=='episode' && references(^._id)]{
     title,
     audioPath,
+    episodeStats,
     simplecastId
   }
 }[0]`;
 
 export const sponsorBySlugQuery = groq`*[_type == "sponsor" && slug.current == $slug && published]{
+  _id,
   title,
   "logo": logo.asset->url,
   offer,
@@ -39,9 +41,18 @@ export const sponsorBySlugQuery = groq`*[_type == "sponsor" && slug.current == $
     title,
     publishedAt,
     slug,
+    sponsorWithTimecode[] {
+      adStart,
+      adEnd,
+      sponsor->{
+        _id,
+        title
+      }
+    },
     episodeNumber,
     audioPath,
-    simplecastId
+    episodeStats,
+    simplecastId,
   }
 }[0]`;
 

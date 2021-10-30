@@ -4,7 +4,6 @@ import { SponsorDashboardPage } from 'modules/sponsorDashboard';
 import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 import { sponsorBySlugQuery } from 'utils/queries';
-import { getStatsForEpisodes } from 'utils/simpleCast';
 import CustomError from '../../customError';
 
 export default function Sponsor({ sponsor, error = null }) {
@@ -27,19 +26,12 @@ export const getServerSideProps = withPageAuthRequired({
     const { slug = '' } = context.query;
     const { user } = getSession(req, res);
     const { email } = user;
+
     try {
       const sponsorBySlug = await client.fetch(sponsorBySlugQuery, { slug });
       // checking email addresses for access
       if (!sponsorBySlug.associatedEmails?.includes(email) && !process.env.ADMIN_EMAILS.includes(email)) {
         return { props: { sponsor: null } };
-      }
-
-      //
-      const episodeIds = sponsorBySlug.episodes.map((episode) => episode.simplecastId);
-      const stats = await getStatsForEpisodes(episodeIds);
-      for (let i = 0; i < sponsorBySlug.episodes.length; i += 1) {
-        sponsorBySlug.episodes[i].downloads = stats[i].downloads || 0;
-        sponsorBySlug.episodes[i].listens = stats[i].listens || 0;
       }
 
       return { props: { sponsor: sponsorBySlug, user } };
