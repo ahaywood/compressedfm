@@ -11,7 +11,7 @@ import { MixinForm, MixinLabel, MixinTextField, MixinTextarea, MixinSelect } fro
 * COMPONENT
 ---------------------------------------------------- */
 const GuestApplicationPage = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => alert(JSON.stringify(data));
 
   return (

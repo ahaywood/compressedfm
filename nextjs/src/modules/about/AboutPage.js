@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Faq } from './components/Faq';
 
-const AboutPage = ({ faqs, gettingStarted, mostPopular }) => (
+const AboutPage = ({ faqs }) => (
   <StyledAboutPage>
     About Page
     {/* frequently asked questions */}

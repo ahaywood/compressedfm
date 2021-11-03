@@ -3,8 +3,7 @@ import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SponsorsPage } from 'modules/sponsors';
 
-export default function Sponsors({sponsors}) {
-
+export default function Sponsors({ sponsors }) {
   return (
     <InteriorLayout>
       <SponsorsPage sponsors={sponsors} />
@@ -22,12 +21,9 @@ const query = groq`*[_type == "sponsor" && published == true && publishedAt < no
   founding,
 }`;
 
-
-export async function getServerSideProps(){
+export async function getServerSideProps() {
   const sponsors = await client.fetch(query);
   return {
-    props: {sponsors}
-  }
+    props: { sponsors },
+  };
 }
-  
-

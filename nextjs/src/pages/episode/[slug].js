@@ -71,9 +71,9 @@ export async function getStaticPaths() {
   // Get the paths we want to pre-render based on episodes
   const paths = allEpisodes.map((episode) => ({
     params: { slug: episode.slug.current },
-  }))
+  }));
 
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: 'blocking' };
 }
 
 // This function gets called at build time on server-side.
@@ -84,7 +84,7 @@ export async function getStaticProps({ params }) {
   const episode = await client.fetch(IndividualEpisodeQuery, { slug });
   return {
     props: {
-      episode
+      episode,
     },
-  }
+  };
 }

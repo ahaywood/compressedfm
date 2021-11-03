@@ -1,13 +1,12 @@
 import client from 'utils/client';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SponsorDashboardPage } from 'modules/sponsorDashboard';
-import { useUser, getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-import { sponsorQuery } from 'utils/queries';
-import { getStatsForEpisodes } from 'utils/simpleCast';
-import CustomError from '../customError';
+import { sponsorBySlugQuery } from 'utils/queries';
+import CustomError from '../../customError';
 
-export default function sponsor({ sponsor, error = null }) {
+export default function Sponsor({ sponsor, error = null }) {
   if (error) {
     return <CustomError status={500} text={error} />;
   }
@@ -22,18 +21,20 @@ export default function sponsor({ sponsor, error = null }) {
 }
 
 export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps({ req, res }) {
+  async getServerSideProps(context) {
+    const { req, res } = context;
+    const { slug = '' } = context.query;
     const { user } = getSession(req, res);
     const { email } = user;
-    const sponsor = await client.fetch(sponsorQuery, { email });
+
     try {
-      const episodeIds = sponsor.episodes.map((episode) => episode.simplecastId);
-      const stats = await getStatsForEpisodes(episodeIds);
-      for (let i = 0; i < sponsor.episodes.length; i++) {
-        sponsor.episodes[i].downloads = stats[i].downloads;
-        sponsor.episodes[i].listens = stats[i].listens;
+      const sponsorBySlug = await client.fetch(sponsorBySlugQuery, { slug });
+      // checking email addresses for access
+      if (!sponsorBySlug.associatedEmails?.includes(email) && !process.env.ADMIN_EMAILS.includes(email)) {
+        return { props: { sponsor: null } };
       }
-      return { props: { sponsor, user } };
+
+      return { props: { sponsor: sponsorBySlug, user } };
     } catch (err) {
       console.error(err);
       return {

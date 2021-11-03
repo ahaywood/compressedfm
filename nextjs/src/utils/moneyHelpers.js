@@ -4,8 +4,6 @@ export const formatMoney = (amount) => {
     currency: 'USD',
   });
   return formatter.format(amount);
-}
+};
 
-export const removeDoubleZeros = (amount) => {
-  return amount.replace(/\.00$/, '');
-}
+export const removeDoubleZeros = (amount) => amount.replace(/\.00$/, '');

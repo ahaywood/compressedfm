@@ -18,7 +18,7 @@ export const AllNewslettersQuery = groq`*[_type == "newsletter" && published == 
   slug
 }`;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const newsletters = await client.fetch(AllNewslettersQuery);
   return { props: { newsletters } };
 }

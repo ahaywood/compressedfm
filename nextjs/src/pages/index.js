@@ -25,6 +25,6 @@ const query = groq`*[_type == "episode" && published == true && publishedAt < no
 export async function getServerSideProps() {
   const episodes = await client.fetch(query);
   return {
-    props: { episodes }
-  }
+    props: { episodes },
+  };
 }

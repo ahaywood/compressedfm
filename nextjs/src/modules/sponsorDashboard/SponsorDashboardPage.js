@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useUser } from '@auth0/nextjs-auth0';
+import { find, sumBy } from 'lodash';
 
 // styles
-import { MixinHeading, MixinPageTitle } from 'styles/Typography';
+import { MixinSectionHeading, MixinPageTitle } from 'styles/Typography';
+
+// utils
+import { numberWithCommas } from 'utils/numberHelpers';
 
 // components
 import { SponsorAudioPlayer } from 'modules/shared/components/AudioPlayer/SponsorAudioPlayer';
@@ -19,27 +21,30 @@ import { InvoiceItem } from './components/InvoiceItem';
 * COMPONENT
 ---------------------------------------------------- */
 const SponsorDashboardPage = ({ sponsor }) => {
+  const { _id, title, logo, contractsInvoices, episodes } = sponsor;
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
-  const { user } = useUser();
+
+  console.log(sponsor);
 
   const handleMultipleAudioPlayers = (id) => {
     setCurrentlyPlaying(id);
   };
 
-  const totalDownloads = sponsor.episodes.reduce((acc, episode) => acc + episode.downloads, 0);
+  const totalDownloads = sumBy(sponsor.episodes, (episode) => episode.episodeStats.stats.downloads);
+  const totalListens = sumBy(sponsor.episodes, (episode) => episode.episodeStats.stats.listens);
 
-  const totalListens = sponsor.episodes.reduce((acc, episode) => acc + episode.listens, 0);
+  const GetAdSpot = (sponsorWithTimeCodes) => find(sponsorWithTimeCodes, (one) => one.sponsor._id === _id);
 
   return (
     <StyledSponsorDashboardPage>
       <h1>Thanks for Sponsoring!</h1>
       <div className="logo">
-        <img src={sponsor.logo} alt={sponsor.title} />
+        <img src={logo} alt={title} />
       </div>
 
       <div className="box-grid">
-        <TotalBlock number={totalListens} label="Total Listens" />
-        <TotalBlock number={totalDownloads} label="Total Downloads" />
+        <TotalBlock number={numberWithCommas(totalListens)} label="Total Listens" />
+        <TotalBlock number={numberWithCommas(totalDownloads)} label="Total Downloads" />
         <div className="button-link-wrapper">
           <ButtonLink label="Sponsor Again" href="/sponsor-application" />
         </div>
@@ -48,36 +53,52 @@ const SponsorDashboardPage = ({ sponsor }) => {
       <VerticalDivider />
 
       {/* contracts & invoices */}
-      <div className="contract-list">
-        <div className="contracts-invoices__header">Contracts</div>
-        {/* <InvoiceItem invoice={invoice} /> */}
-      </div>
+      {contractsInvoices && (
+        <div className="contracts-invoices">
+          <div className="contract-list">
+            <div className="contracts-invoices__header">Contracts</div>
+            {contractsInvoices.map((contract) => (
+              <ContractItem key={`contract${contract._key}`} contract={contract} />
+            ))}
+          </div>
 
-      <div className="invoice-list">
-        <div className="contracts-invoices__header">Invoices</div>
-        {/* <ContractItem contract={contract} /> */}
-      </div>
+          <div className="invoice-list">
+            <div className="contracts-invoices__header">Invoices</div>
+            {contractsInvoices.map((invoice) => (
+              <InvoiceItem key={`invoice${invoice._key}`} invoice={invoice} />
+            ))}
+          </div>
+        </div>
+      )}
 
       <VerticalDivider />
 
-      <h2 className="heading">Episodes You've Sponsored</h2>
+      <div className="heading-wrapper">
+        <h2 className="heading">Episodes You've Sponsored</h2>
+      </div>
 
       {/* PLAYERS */}
-      <SponsorAudioPlayer
-        id="1"
-        currentlyPlaying={currentlyPlaying}
-        handleMultipleAudioPlayers={handleMultipleAudioPlayers}
-      />
-      <SponsorAudioPlayer
-        id="2"
-        currentlyPlaying={currentlyPlaying}
-        handleMultipleAudioPlayers={handleMultipleAudioPlayers}
-      />
-      <SponsorAudioPlayer
-        id="3"
-        currentlyPlaying={currentlyPlaying}
-        handleMultipleAudioPlayers={handleMultipleAudioPlayers}
-      />
+      {episodes &&
+        episodes.map((episode, index) => {
+          console.log(episode.sponsorWithTimecode);
+          const chapters = GetAdSpot(episode.sponsorWithTimecode);
+          console.log({ chapters });
+          return (
+            <SponsorAudioPlayer
+              chapters={chapters}
+              currentlyPlaying={currentlyPlaying}
+              date={episode.publishedAt}
+              downloads={numberWithCommas(Number(episode.episodeStats.stats.downloads))}
+              episodeNumber={episode.episodeNumber}
+              handleMultipleAudioPlayers={handleMultipleAudioPlayers}
+              id={episode.__id}
+              key={index}
+              listens={numberWithCommas(Number(episode.episodeStats.stats.listens))}
+              title={episode.title}
+              track={episode.audioPath}
+            />
+          );
+        })}
     </StyledSponsorDashboardPage>
   );
 };
@@ -103,12 +124,18 @@ const StyledSponsorDashboardPage = styled.section`
     ${MixinPageTitle};
   }
 
+  .heading-wrapper {
+    margin-bottom: 60px;
+    text-align: center;
+    width: 100%;
+  }
+
   .heading {
-    ${MixinHeading}
+    ${MixinSectionHeading}
   }
 
   .logo {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     text-align: center;
 
     img {
@@ -132,6 +159,29 @@ const StyledSponsorDashboardPage = styled.section`
 
   .button-link-wrapper {
     max-width: 85%;
+  }
+
+  .contracts-invoices__header {
+    font-family: ${(props) => props.theme.mono};
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 2.4rem;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+  }
+
+  .contracts-invoices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 75px;
+    max-width: ${(props) => props.theme.pageWidth};
+    position: relative;
+    margin: 50px auto;
+  }
+
+  .contract-list,
+  .invoice-list {
+    background: url('/images/horizontal-divider.svg') left bottom repeat-x;
   }
 `;
 

@@ -9,8 +9,7 @@ export default {
     {
       name: 'stats',
       title: 'Stats',
-      type: 'array',
-      of: [{ type: 'stat' }]
+      type: 'stat',
     },
   ]
 }

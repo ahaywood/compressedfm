@@ -72,6 +72,12 @@ export default {
       of: [{ type: 'reference', to: { type: 'sponsor' } }],
     },
     {
+      name: 'sponsorWithTimecode',
+      title: 'Sponsor with Timecode',
+      type: 'array',
+      of: [{ type: 'sponsorTimecode' }]
+    },
+    {
       name: 'episodeCover',
       title: 'Episode Cover',
       type: 'image',
@@ -159,6 +165,12 @@ export default {
     {
       name: 'transcriptDownload',
       title: 'Download Transcript',
+      description: 'PDF',
+      type: 'file',
+    },
+    {
+      name: 'leadMagnet',
+      title: 'Lead Magnet',
       description: 'PDF',
       type: 'file',
     },
