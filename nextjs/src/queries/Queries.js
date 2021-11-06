@@ -29,3 +29,14 @@ export const PopularEpisodesQuery = groq`*[_type == "episode" && published == tr
   publishedAt,
   briefDescription
 }[0...3]`;
+
+export const AllEpisodesQuery = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
+  _id,
+  title,
+  "cover": episodeCover.asset->url,
+  episodeNumber,
+  slug,
+  publishedAt,
+  briefDescription,
+  audioPath
+}`;

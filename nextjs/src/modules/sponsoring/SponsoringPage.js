@@ -22,8 +22,8 @@ const SponsoringPage = () => (
         <span className="highlight">We’d love to help!</span>
       </h1>
       <p className="large-body-copy">
-        Compressed.fm is a podcast, distributed weekly, that focuses on industry news, tools, and
-        workflows. It aims to keep listeners up-to-date on the latest technology and best practices.
+        Compressed.fm is a podcast, distributed weekly, that focuses on industry news, tools, and workflows. It aims to
+        keep listeners up-to-date on the latest technology and best practices.
       </p>
       <p className="large-body-copy">
         Each episode is focused on a single topic, presenting the <em>compressed</em> version of everything you need to
@@ -385,7 +385,7 @@ const StyledSponsoringPage = styled.main`
 
     @media (${Breakpoints.portrait}) {
       max-width: 100%;
-      padding: 0 ${props => props.theme.mobilePadding};
+      padding: 0 ${(props) => props.theme.mobilePadding};
     }
 
     @media (${Breakpoints.medium}) {
@@ -495,7 +495,7 @@ const StyledSponsoringPage = styled.main`
   .major-podcatchers {
     grid-column: 1 / -1;
     margin: 100px auto 50px;
-    padding: 0 ${props => props.theme.mobilePadding};
+    padding: 0 ${(props) => props.theme.mobilePadding};
     position: relative;
 
     @media (${Breakpoints.medium}) {
@@ -566,7 +566,7 @@ const StyledSponsoringPage = styled.main`
 
   .audience-breakdown {
     grid-column: 1 / -1;
-    padding: 0 ${props => props.theme.mobilePadding};
+    padding: 0 ${(props) => props.theme.mobilePadding};
 
     @media (${Breakpoints.medium}) {
       grid-column: 3 / -3;
@@ -589,17 +589,17 @@ const StyledSponsoringPage = styled.main`
       grid-template-columns: 1fr;
       margin-top: 75px;
       grid-template-areas:
-        "usa"
-        "usaDescription"
-        "age"
-        "ageDescription";
+        'usa'
+        'usaDescription'
+        'age'
+        'ageDescription';
 
       @media (${Breakpoints.medium}) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-column-gap: 200px;
         grid-template-areas:
-          "usa age"
-          "usaDescription ageDescription";
+          'usa age'
+          'usaDescription ageDescription';
       }
 
       &__usa {
@@ -653,7 +653,7 @@ const StyledSponsoringPage = styled.main`
   .current-audience {
     grid-column: 1 / -1;
     margin: 75px 0;
-    padding: 0 ${props => props.theme.mobilePadding};
+    padding: 0 ${(props) => props.theme.mobilePadding};
 
     @media (${Breakpoints.portrait}) {
       display: grid;
@@ -684,8 +684,8 @@ const StyledSponsoringPage = styled.main`
       grid-template-columns: 40px 1fr;
       grid-column-gap: 25px;
       grid-template-areas:
-      'icon number'
-      'icon link';
+        'icon number'
+        'icon link';
       margin-bottom: 60px;
 
       @media (${Breakpoints.regular}) {
@@ -727,7 +727,6 @@ const StyledSponsoringPage = styled.main`
           font-size: 2rem;
         }
 
-
         @media (${Breakpoints.regular}) {
           font-size: 2.8rem;
         }
@@ -752,7 +751,7 @@ const StyledSponsoringPage = styled.main`
 
   .audience-interests {
     grid-column: 1 / -1;
-    padding: 0 ${props => props.theme.mobilePadding};
+    padding: 0 ${(props) => props.theme.mobilePadding};
 
     @media (${Breakpoints.medium}) {
       grid-column: 4 / -4;
@@ -792,7 +791,7 @@ const StyledSponsoringPage = styled.main`
 
   .youll-receive {
     grid-column: 1 / -1;
-    padding: 0 ${props => props.theme.mobilePadding};
+    padding: 0 ${(props) => props.theme.mobilePadding};
 
     @media (${Breakpoints.medium}) {
       grid-column: 4 / -4;
@@ -803,7 +802,7 @@ const StyledSponsoringPage = styled.main`
   .get-and-investments {
     grid-column: 1 / -1;
     margin-bottom: 75px;
-    padding: 0 ${props => props.theme.mobilePadding};
+    padding: 0 ${(props) => props.theme.mobilePadding};
 
     @media (${Breakpoints.medium}) {
       grid-column: 4 / -4;
@@ -891,7 +890,7 @@ const StyledSponsoringPage = styled.main`
     grid-column: 1 / -1;
     text-align: center;
     margin: 0 auto 75px;
-    padding: 0 ${props => props.theme.mobilePadding};
+    padding: 0 ${(props) => props.theme.mobilePadding};
     position: relative;
 
     @media (${Breakpoints.medium}) {

@@ -2,7 +2,7 @@ import client from 'utils/client';
 import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SponsorApplicationPage } from 'modules/sponsorApplication';
-import { LegalQuery } from "queries/Queries";
+import { LegalQuery } from 'queries/Queries';
 
 export default function SponsorApplication({ footerLinks, futureEpisodes, pricing }) {
   return (
@@ -25,15 +25,14 @@ const futureEpisodesQuery = groq`*[_type == "episode" && published == true && pu
     _id,
     title,
   },
-}`
+}`;
 
 // get the sponsorship pricing
 const pricingQuery = groq`*[_type == "siteSettings"] {
   SponsorshipOptions
 }[0]`;
 
-// This function gets called at build time on server-side.
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const footerLinks = await client.fetch(LegalQuery);
   const futureEpisodes = await client.fetch(futureEpisodesQuery);
   const pricing = await client.fetch(pricingQuery);
@@ -41,7 +40,7 @@ export async function getStaticProps({ params }) {
     props: {
       footerLinks,
       futureEpisodes,
-      pricing
+      pricing,
     },
-  }
+  };
 }

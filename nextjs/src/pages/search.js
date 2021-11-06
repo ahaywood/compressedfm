@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import client from 'utils/client';
 import groq from 'groq';
-import { LegalQuery } from "../queries/Queries";
 
 // components
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SearchPage } from 'modules/search';
+import { LegalQuery } from '../queries/Queries';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -42,6 +42,6 @@ export async function getServerSideProps(context) {
   const footerLinks = await client.fetch(LegalQuery);
   const episodes = await client.fetch(query, { keywords });
   return {
-    props: { episodes, footerLinks }
-  }
+    props: { episodes, footerLinks },
+  };
 }

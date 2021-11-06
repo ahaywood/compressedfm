@@ -19,7 +19,7 @@ import { Breakpoints } from 'styles/Breakpoints';
 * COMPONENT
 ---------------------------------------------------- */
 const FeaturedEpisode = ({
-  episode: { audioPath, publishedAt, episodeNumber, guest, slug, title, briefDescription, cover },
+  episode: { audioPath, publishedAt, episodeNumber, slug, title, briefDescription, cover },
 }) => (
   <StyledFeaturedEpisode>
     <div className="episode-number-date__wrapper">

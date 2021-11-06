@@ -1,12 +1,17 @@
 {
-  "extends": ["wesbos"],
+  "extends": [
+    "wesbos"
+  ],
   "ignorePatterns": "",
   "rules": {
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "import/no-unresolved": "off",
     "no-return-await": "off",
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/media-has-caption": "off",
     "semi": "error",
+    "react/prop-types": "off",
     "prettier/prettier": [
       "error",
       {
@@ -15,7 +20,7 @@
         "printWidth": 120,
         "tabWidth": 2,
         "semi": true,
-        "arrowParens": true
+        "arrowParens": "always"
       }
     ]
   }

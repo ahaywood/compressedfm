@@ -1,8 +1,7 @@
 import client from 'utils/client';
-import groq from 'groq';
 import { EpisodePage } from 'modules/episodes';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
-import { LegalQuery } from "../queries/Queries";
+import { LegalQuery, AllEpisodesQuery } from '../queries/Queries';
 
 export default function Episodes({ episodes, footerLinks }) {
   return (
@@ -12,24 +11,13 @@ export default function Episodes({ episodes, footerLinks }) {
   );
 }
 
-export const AllEpisodesQuery = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
-  _id,
-  title,
-  "cover": episodeCover.asset->url,
-  episodeNumber,
-  slug,
-  publishedAt,
-  briefDescription,
-  audioPath
-}`;
-
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const footerLinks = await client.fetch(LegalQuery);
   const episodes = await client.fetch(AllEpisodesQuery);
   return {
     props: {
       episodes,
-      footerLinks
+      footerLinks,
     },
-  }
+  };
 }

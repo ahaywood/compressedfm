@@ -2,7 +2,7 @@ import client from 'utils/client';
 import groq from 'groq';
 import { HomePage } from 'modules/home';
 import { HomeLayout } from 'modules/shared/layouts/HomeLayout';
-import { LegalQuery } from "../queries/Queries";
+import { LegalQuery } from '../queries/Queries';
 
 export default function Home({ episodes, footerLinks }) {
   return (
@@ -27,6 +27,6 @@ export async function getServerSideProps() {
   const episodes = await client.fetch(query);
   const footerLinks = await client.fetch(LegalQuery);
   return {
-    props: { episodes, footerLinks }
-  }
+    props: { episodes, footerLinks },
+  };
 }

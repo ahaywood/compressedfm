@@ -12,7 +12,6 @@ import { H4 } from './H4';
 import { P } from './P';
 import { LargeText } from './LargeText';
 import { Pre } from './Pre';
-import { UnorderedList } from './UnorderedList';
 // import { InternalLink as internalLink } from "./InternalLink";
 // import { ExternalLink as link } from "./ExternalLink";
 // import { Subtitle } from "./Subtitle";
@@ -74,6 +73,7 @@ const serializers = {
     // internalLink,
     large: LargeText,
   },
+  // eslint-disable-next-line react/display-name
   container: ({ children }) => <>{children}</> /* removes the wrapping div */,
 };
 export { serializers };

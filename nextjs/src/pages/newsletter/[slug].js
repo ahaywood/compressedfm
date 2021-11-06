@@ -4,8 +4,7 @@ import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { IndividualNewsletterPage } from 'modules/newsletter/IndividualNewsletterPage';
 
 // query
-import { AllNewslettersQuery } from "./index";
-import { LegalQuery } from 'queries/Queries';
+import { AllNewslettersQuery, LegalQuery } from 'queries/Queries';
 
 export default function IndividualNewsletter({ footerLinks, newsletter }) {
   return (
@@ -55,16 +54,15 @@ const IndividualNewsletterQuery = groq`*[_type == "newsletter" && slug.current =
   meta
 }[0]`;
 
-
 export async function getStaticPaths() {
   const allNewsletters = await client.fetch(AllNewslettersQuery);
 
   // Get the paths we want to pre-render based on episodes
   const paths = allNewsletters.map((newsletter) => ({
     params: { slug: newsletter.slug.current },
-  }))
+  }));
 
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: 'blocking' };
 }
 
 // This function gets called at build time on server-side.
@@ -80,7 +78,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       footerLinks,
-      newsletter
+      newsletter,
     },
-  }
+  };
 }

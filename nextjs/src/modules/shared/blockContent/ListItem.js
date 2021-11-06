@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { MixinBodyCopy } from 'styles/Typography';
 
-const ListItem = (props) => {
-  if (props.node.listItem === 'number') {
-    return <StyledLi>{props.children}</StyledLi>;
+const ListItem = ({ node, children }) => {
+  if (node.listItem === 'number') {
+    return <StyledLi>{children}</StyledLi>;
   }
-  if (props.node.listItem === 'bullet') {
-    return <StyledLi>{props.children}</StyledLi>;
+  if (node.listItem === 'bullet') {
+    return <StyledLi>{children}</StyledLi>;
   }
 };
 

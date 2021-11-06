@@ -9,7 +9,7 @@ import kwesforms from 'kwesforms';
 import { Button } from 'modules/shared/form/Button';
 
 // styles
-import { MixinLabel, MixinTextField, MixinTextarea, MixinSelect, MixinFormError } from 'styles/Form';
+import { MixinLabel, MixinTextField, MixinTextarea, MixinSelect } from 'styles/Form';
 import { MixinBodyCopy } from 'styles/Typography';
 
 /** -------------------------------------------------
@@ -18,29 +18,33 @@ import { MixinBodyCopy } from 'styles/Typography';
 const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
   const [upcomingEpisodes, setUpcomingEpisodes] = useState();
   const [fileName, setFileName] = useState();
-  const { SponsorshipOptions: { singleShow, threeEpisodeBundle, eightEpisodeBundle } } = pricing;
+  const {
+    SponsorshipOptions: { singleShow, threeEpisodeBundle, eightEpisodeBundle },
+  } = pricing;
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => { console.table(data) };
+  const onSubmit = (data) => {
+    console.table(data);
+  };
 
   useEffect(() => {
     kwesforms.init();
   });
 
-  const hasEmptySlot = (episodes) => {
-    return episodes.filter(episode => {
+  const hasEmptySlot = (episodes) =>
+    episodes.filter((episode) => {
       if (!episode.sponsor || episode.sponsor.length < 3) {
         return true;
       }
+      return false;
     });
-  }
 
   const handleFileUpload = (e) => {
     // split the file name up by '/'
     const file = e.target.value.split('\\');
     const nameOfFile = file[file.length - 1];
     setFileName(nameOfFile);
-  }
+  };
 
   useEffect(() => {
     // check to see if the future episode has an empty sponsor slot
@@ -130,9 +134,15 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
           <div className="file-upload">
             <label htmlFor="hi-res-logo">
               HI-RES LOGO
-              <span>{fileName ? fileName : 'Click to Upload'}</span>
+              <span>{fileName || 'Click to Upload'}</span>
             </label>
-            <input type="file" name="hi-res-logo" id="hi-res-logo" {...register('hi-res-logo')} onChange={handleFileUpload} />
+            <input
+              type="file"
+              name="hi-res-logo"
+              id="hi-res-logo"
+              {...register('hi-res-logo')}
+              onChange={handleFileUpload}
+            />
           </div>
         </div>
         <fieldset data-kw-group className="full">
@@ -140,12 +150,20 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
             <div>
               <h5>Future Episodes</h5>
               <p>
-                Here’s a list of the episode topics we’ve scheduled. Is there a specific episode that you’d like to sponsor?
+                Here’s a list of the episode topics we’ve scheduled. Is there a specific episode that you’d like to
+                sponsor?
               </p>
               <ul>
-                {upcomingEpisodes.map(episode => (
+                {upcomingEpisodes.map((episode) => (
                   <li key={episode._id}>
-                    <input type="checkbox" name="future-episodes" value={episode.title} id={`future-episodes__${formatDashes(episode.publishedAt)}`} {...register('futureEpisodes')} ref={register} />
+                    <input
+                      type="checkbox"
+                      name="future-episodes"
+                      value={episode.title}
+                      id={`future-episodes__${formatDashes(episode.publishedAt)}`}
+                      {...register('futureEpisodes')}
+                      ref={register}
+                    />
                     <label htmlFor={`future-episodes__${formatDashes(episode.publishedAt)}`}>
                       <div className="date">{formatShortDate(episode.publishedAt)}</div>
                       <div className="episode-description">{episode.title}</div>
@@ -360,7 +378,7 @@ const StyledSponsorApplicationPage = styled.section`
   input[type='email'] + label,
   input[type='tel'] + label,
   textarea + label {
-    pointer-events: none;;
+    pointer-events: none;
   }
 
   textarea {

@@ -5,7 +5,6 @@ import { SponsorsPage } from 'modules/sponsors';
 import { LegalQuery } from 'queries/Queries';
 
 export default function Sponsors({ footerLinks, sponsors }) {
-
   return (
     <InteriorLayout footerLinks={footerLinks}>
       <SponsorsPage sponsors={sponsors} />
@@ -23,15 +22,10 @@ const query = groq`*[_type == "sponsor" && published == true && publishedAt < no
   founding,
 }`;
 
-
-
-
 export async function getServerSideProps() {
   const sponsors = await client.fetch(query);
   const footerLinks = await client.fetch(LegalQuery);
   return {
-    props: { footerLinks, sponsors }
-  }
+    props: { footerLinks, sponsors },
+  };
 }
-
-

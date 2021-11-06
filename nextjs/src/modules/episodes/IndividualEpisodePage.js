@@ -9,7 +9,6 @@ import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { WaveformPlayer } from 'modules/shared/components/AudioPlayer/WaveformPlayer';
 import { EpisodeSummary } from './components/EpisodeSummary';
-import { FullTranscript } from './components/FullTranscript';
 import { Guest } from './components/Guest';
 import { JumpLinks } from './components/JumpLinks';
 import { Links } from './components/Links';
@@ -24,7 +23,6 @@ const IndividualEpisodePage = ({
     briefDescription,
     episodeCover,
     episodeNumber,
-    episodeTranscript,
     guest,
     listLink,
     publishedAt,
@@ -52,7 +50,13 @@ const IndividualEpisodePage = ({
         publishedAt={publishedAt}
       />
       <div className="audio-player">
-        <WaveformPlayer artwork={episodeCover.asset.url} episodeTitle={title} audioPath={audioPath} episodeNumber={episodeNumber} skipTo={skipTo} />
+        <WaveformPlayer
+          artwork={episodeCover.asset.url}
+          episodeTitle={title}
+          audioPath={audioPath}
+          episodeNumber={episodeNumber}
+          skipTo={skipTo}
+        />
       </div>
       <VerticalDivider />
 

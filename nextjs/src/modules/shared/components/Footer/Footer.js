@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import styled from 'styled-components';
-import client from 'utils/client';
 
 // components
 import { Breakpoints } from 'styles/Breakpoints';
