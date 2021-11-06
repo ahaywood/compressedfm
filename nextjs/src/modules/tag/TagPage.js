@@ -13,8 +13,7 @@ import { MixinSectionHeading, MixinPageTitle } from 'styles/Typography';
 * COMPONENT
 ---------------------------------------------------- */
 const TagPage = ({ content }) => {
-  const { title, episodes } = content.content;
-  console.log({ title, episodes });
+  const { title, episodes } = content;
   return (
     <StyledTagPage>
       <h3>Tagged</h3>

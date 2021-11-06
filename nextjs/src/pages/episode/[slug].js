@@ -7,10 +7,11 @@ import { IndividualEpisodePage } from 'modules/episodes/IndividualEpisodePage';
 
 // queries
 import { AllEpisodesQuery } from '../episodes';
+import { LegalQuery } from 'queries/Queries';
 
-export default function Episode({ episode }) {
+export default function Episode({ episode, footerLinks }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <IndividualEpisodePage episode={episode} />
     </InteriorLayout>
   );
@@ -80,11 +81,16 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
+
+  // page content
   const { slug } = params;
   const episode = await client.fetch(IndividualEpisodeQuery, { slug });
   return {
     props: {
-      episode
+      episode,
+      footerLinks
     },
   }
 }

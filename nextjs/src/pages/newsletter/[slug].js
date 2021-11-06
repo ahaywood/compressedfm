@@ -5,10 +5,11 @@ import { IndividualNewsletterPage } from 'modules/newsletter/IndividualNewslette
 
 // query
 import { AllNewslettersQuery } from "./index";
+import { LegalQuery } from 'queries/Queries';
 
-export default function IndividualNewsletter({ newsletter }) {
+export default function IndividualNewsletter({ footerLinks, newsletter }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <IndividualNewsletterPage {...newsletter} />
     </InteriorLayout>
   );
@@ -70,10 +71,15 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
+
+  // episode content
   const { slug } = params;
   const newsletter = await client.fetch(IndividualNewsletterQuery, { slug });
   return {
     props: {
+      footerLinks,
       newsletter
     },
   }

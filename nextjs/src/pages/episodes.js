@@ -2,10 +2,11 @@ import client from 'utils/client';
 import groq from 'groq';
 import { EpisodePage } from 'modules/episodes';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
+import { LegalQuery } from "../queries/Queries";
 
-export default function Episodes({ episodes }) {
+export default function Episodes({ episodes, footerLinks }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <EpisodePage episodes={episodes} />
     </InteriorLayout>
   );
@@ -23,10 +24,12 @@ export const AllEpisodesQuery = groq`*[_type == "episode" && published == true &
 }`;
 
 export async function getStaticProps({ params }) {
+  const footerLinks = await client.fetch(LegalQuery);
   const episodes = await client.fetch(AllEpisodesQuery);
   return {
     props: {
-      episodes
+      episodes,
+      footerLinks
     },
   }
 }

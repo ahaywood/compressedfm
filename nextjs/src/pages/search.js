@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import client from 'utils/client';
 import groq from 'groq';
+import { LegalQuery } from "../queries/Queries";
 
 // components
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
@@ -10,11 +11,11 @@ import { SearchPage } from 'modules/search';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-export default function Search({episodes}) {
+export default function Search({ episodes, footerLinks }) {
   const router = useRouter();
 
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <Head>
         <title>Search Results for {router.query.keywords} | Compressed.fm</title>
       </Head>
@@ -38,8 +39,9 @@ const query = groq`*[_type == "episode" && published == true && publishedAt < no
 
 export async function getServerSideProps(context) {
   const { keywords = '' } = context.query;
+  const footerLinks = await client.fetch(LegalQuery);
   const episodes = await client.fetch(query, { keywords });
   return {
-    props: {episodes}
+    props: { episodes, footerLinks }
   }
 }
