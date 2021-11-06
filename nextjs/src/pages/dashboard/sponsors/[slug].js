@@ -3,8 +3,7 @@ import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SponsorDashboardPage } from 'modules/sponsorDashboard';
 import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-import { sponsorBySlugQuery } from 'utils/queries';
-import { LegalQuery } from 'queries/Queries';
+import { LegalQuery, SponsorBySlugQuery } from 'queries/Queries';
 import CustomError from '../../customError';
 
 export default function Sponsor({ sponsor, error = null, footerLinks }) {
@@ -31,7 +30,7 @@ export const getServerSideProps = withPageAuthRequired({
     const footerLinks = await client.fetch(LegalQuery);
 
     try {
-      const sponsorBySlug = await client.fetch(sponsorBySlugQuery, { slug });
+      const sponsorBySlug = await client.fetch(SponsorBySlugQuery, { slug });
       // checking email addresses for access
       if (!sponsorBySlug.associatedEmails?.includes(email) && !process.env.ADMIN_EMAILS.includes(email)) {
         return { props: { sponsor: null } };

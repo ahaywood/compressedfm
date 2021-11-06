@@ -1,8 +1,7 @@
 import { useUser, withPageAuthRequired, getSession } from '@auth0/nextjs-auth0';
 import CustomError from 'pages/customError';
 import client from 'utils/client';
-import { guestQuery } from 'utils/queries';
-import { footerLinks } from 'queries/Queries';
+import { LegalQuery, GuestQuery } from 'queries/Queries';
 
 export default function Guest({ footerLinks, guest }) {
   const { user, error, isLoading } = useUser();
@@ -20,7 +19,7 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps({ req, res }) {
     const { user } = getSession(req, res);
     const { email } = user;
-    const guest = await client.fetch(guestQuery, { email });
+    const guest = await client.fetch(GuestQuery, { email });
     const footerLinks = await client.fetch(LegalQuery);
     return { props: { footerLinks, guest, user } };
   },
