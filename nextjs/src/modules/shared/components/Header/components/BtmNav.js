@@ -40,34 +40,34 @@ const BtmNav = () => {
   return (
     <StyledBtmNav>
       <ul className={currentPage || 'home'}>
-        <li className="press-kit">
+        {/* <li className="press-kit">
           <Link href="/press-kit">
             <a>Press Kit</a>
           </Link>
-        </li>
-        {!isSponsor && (
+        </li> */}
+        {/* {!isSponsor && (
           <li className="sponsoring">
             <Link href="/sponsoring">
               <a>Sponsoring</a>
             </Link>
           </li>
-        )}
+        )} */}
 
-        {isSponsor && (
+        {/* {isSponsor && (
           <li className="sponsor-dashboard">
             <Link href="/dashboard/sponsor">
               <a>Sponsor Dashboard</a>
             </Link>
           </li>
-        )}
+        )} */}
 
-        {isGuest && (
+        {/* {isGuest && (
           <li className="guest-dashboard">
             <Link href="/dashboard/guest">
               <a>Guest Dashboard</a>
             </Link>
           </li>
-        )}
+        )} */}
 
         <li className="login">{user ? <a href="/api/auth/logout">Logout</a> : <a href="/api/auth/login">Login</a>}</li>
       </ul>
