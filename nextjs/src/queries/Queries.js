@@ -40,3 +40,77 @@ export const AllEpisodesQuery = groq`*[_type == "episode" && published == true &
   briefDescription,
   audioPath
 }`;
+
+export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match $email && published==true]{
+  title,
+  "logo": logo.asset->url,
+  offer,
+  offerLink,
+  offerLink,
+  about,
+  founding,
+  contractsInvoices[]{
+    ...,
+    "contractPDF": contractPDF.asset->url,
+    "invoicePDF": invoicePDF.asset->url
+  },
+  "episodes": *[_type=='episode' && references(^._id)]{
+    title,
+    audioPath,
+    episodeStats,
+    simplecastId
+  }
+}[0]`;
+
+export const AllNewslettersQuery = groq`*[_type == "newsletter" && published == true] | order(dateSent desc) {
+  _id,
+  subject,
+  dateSent,
+  slug
+}`;
+
+export const SponsorBySlugQuery = groq`*[_type == "sponsor" && slug.current == $slug && published]{
+  _id,
+  title,
+  "logo": logo.asset->url,
+  offer,
+  offerLink,
+  offerLink,
+  about,
+  founding,
+  associatedEmails,
+  contractsInvoices[]{
+    ...,
+    "contractPDF": contractPDF.asset->url,
+    "invoicePDF": invoicePDF.asset->url
+  },
+  "episodes": *[_type=='episode' && references(^._id) && published == true && publishedAt < now()] | order(episodeNumber desc) {
+    __id,
+    title,
+    publishedAt,
+    slug,
+    sponsorWithTimecode[] {
+      adStart,
+      adEnd,
+      sponsor->{
+        _id,
+        title
+      }
+    },
+    episodeNumber,
+    audioPath,
+    episodeStats,
+    simplecastId,
+  }
+}[0]`;
+
+export const GuestQuery = groq`*[_type == "guest" && guestEmail match $email && published==true] {
+  firstName,
+  lastName,
+  guestEmail,
+  "episodes": *[_type=='episode' && references(^._id)]{
+    title,
+    audioPath,
+    simplecastId
+  }
+}[0]`;
