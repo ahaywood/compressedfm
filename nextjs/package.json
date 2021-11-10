@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@neutrinojs/airbnb": "^9.5.0",
+    "@next/eslint-plugin-next": "^12.0.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 
 // components
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
@@ -112,7 +113,7 @@ const SponsoringPage = () => (
       </p>
       <div className="two-up">
         <div className="two-up__usa">
-          <img src="/images/usa.svg" alt="United States of America Silhouette" />
+          <Image src="/images/usa.svg" alt="United States of America Silhouette" width={271} height={168} />
         </div>
         <div className="two-up__age">
           <div className="audience-breakdown__number">25-34</div>

@@ -43,6 +43,7 @@ export const AllEpisodesQuery = groq`*[_type == "episode" && published == true &
 
 export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match $email && published==true]{
   title,
+  slug,
   "logo": logo.asset->url,
   offer,
   offerLink,
