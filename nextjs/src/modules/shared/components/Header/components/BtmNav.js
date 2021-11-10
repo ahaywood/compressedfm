@@ -12,9 +12,12 @@ import { guestQuery, sponsorQuery } from 'utils/queries';
 const BtmNav = () => {
   const { user } = useUser();
   const [isSponsor, setIsSponsor] = useState(false);
+  const [sponsorSlug, setSponsorSlug] = useState();
   const [isGuest, setIsGuest] = useState(false);
 
   const router = useRouter();
+
+  // console.log(user);
 
   // strip the slash out of the pathname so that I can use it as a className
   const currentPage = router.asPath.replace('/', '');
@@ -30,6 +33,7 @@ const BtmNav = () => {
         const guest = await client.fetch(guestQuery, {
           email: user.email,
         });
+        setSponsorSlug(sponsor.slug.current);
         setIsSponsor(!!sponsor);
         setIsGuest(!!guest);
       }
@@ -53,22 +57,23 @@ const BtmNav = () => {
           </li>
         )} */}
 
-        {/* {isSponsor && (
+        {isSponsor && (
           <li className="sponsor-dashboard">
-            <Link href="/dashboard/sponsor">
-              <a>Sponsor Dashboard</a>
+            <Link href={`/dashboard/sponsors/${sponsorSlug}`}>
+              <a>Dashboard</a>
             </Link>
           </li>
-        )} */}
+        )}
 
-        {/* {isGuest && (
+        {isGuest && (
           <li className="guest-dashboard">
-            <Link href="/dashboard/guest">
-              <a>Guest Dashboard</a>
+            <Link href="/dashboard/guests">
+              <a>Dashboard</a>
             </Link>
           </li>
-        )} */}
+        )}
 
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <li className="login">{user ? <a href="/api/auth/logout">Logout</a> : <a href="/api/auth/login">Login</a>}</li>
       </ul>
     </StyledBtmNav>

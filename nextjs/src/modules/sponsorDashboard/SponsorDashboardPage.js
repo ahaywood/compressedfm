@@ -24,14 +24,18 @@ const SponsorDashboardPage = ({ sponsor }) => {
   const { _id, title, logo, contractsInvoices, episodes } = sponsor;
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
 
-  console.log(sponsor);
+  // console.log(sponsor);
 
   const handleMultipleAudioPlayers = (id) => {
     setCurrentlyPlaying(id);
   };
 
-  const totalDownloads = sumBy(sponsor.episodes, (episode) => episode.episodeStats.stats.downloads);
-  const totalListens = sumBy(sponsor.episodes, (episode) => episode.episodeStats.stats.listens);
+  const totalDownloads = sumBy(sponsor.episodes, (episode) =>
+    episode?.episodeStats?.stats?.downloads ? episode.episodeStats.stats.downloads : 0
+  );
+  const totalListens = sumBy(sponsor.episodes, (episode) =>
+    episode?.episodeStats?.stats?.listens ? episode.episodeStats.stats.listens : 0
+  );
 
   const GetAdSpot = (sponsorWithTimeCodes) => find(sponsorWithTimeCodes, (one) => one.sponsor._id === _id);
 
@@ -88,12 +92,17 @@ const SponsorDashboardPage = ({ sponsor }) => {
               chapters={chapters}
               currentlyPlaying={currentlyPlaying}
               date={episode.publishedAt}
-              downloads={numberWithCommas(Number(episode.episodeStats.stats.downloads))}
+              downloads={
+                episode?.episodeStats?.stats?.downloads &&
+                numberWithCommas(Number(episode.episodeStats.stats.downloads))
+              }
               episodeNumber={episode.episodeNumber}
               handleMultipleAudioPlayers={handleMultipleAudioPlayers}
               id={episode.__id}
               key={index}
-              listens={numberWithCommas(Number(episode.episodeStats.stats.listens))}
+              listens={
+                episode?.episodeStats?.stats?.listens && numberWithCommas(Number(episode.episodeStats.stats.listens))
+              }
               title={episode.title}
               track={episode.audioPath}
             />

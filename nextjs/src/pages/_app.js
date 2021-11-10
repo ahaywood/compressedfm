@@ -6,6 +6,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import NProgress from 'nprogress';
 import Theme from '../styles/Theme';
+import 'styles/nprogress.css';
 
 // Bind nProgress Bar
 Router.events.on('routeChangeStart', () => {
@@ -22,7 +23,6 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={Theme}>
         <Head>
           <title>Compressed.fm</title>
-          <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
           <script src="https://cdn.usefathom.com/script.js" data-site="TRUYKXEJ" defer />
         </Head>
         <GlobalStyle />

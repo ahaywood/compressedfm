@@ -2,6 +2,7 @@ import groq from 'groq';
 
 export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match $email && published==true]{
   title,
+  slug,
   "logo": logo.asset->url,
   offer,
   offerLink,
