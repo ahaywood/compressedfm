@@ -6,7 +6,7 @@ import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { IndividualEpisodePage } from 'modules/episodes/IndividualEpisodePage';
 
 // queries
-import { AllEpisodesQuery } from '../episodes';
+import { AllEpisodesQuery } from 'utils/queries';
 
 export default function Episode({ episode }) {
   return (

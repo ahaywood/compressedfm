@@ -4,8 +4,6 @@ import { TagPage } from 'modules/tag';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 
 export default function Tag(props) {
-  console.log('inside page/tag');
-  console.log(props);
   return (
     <InteriorLayout>
       <TagPage content={props} />

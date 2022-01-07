@@ -1,5 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import client from 'utils/client';
 import { AllEpisodesQuery } from 'utils/queries';
 
@@ -28,12 +26,18 @@ const xml = (episodes) =>
   </channel>
 </rss>`;
 
-export default async function handler(req, res) {
+export default function RSS() {
+  return <div>RSS</div>;
+}
+
+export async function getServerSideProps({ res }) {
   const episodes = await client.fetch(AllEpisodesQuery);
   const rssString = xml(episodes);
-  //   const headers = {
-  //     'Cache-Control': 'max-age=0, s-maxage=3600',
-  //     'Content-Type': 'application/xml',
-  //   }
-  res.json(rssString);
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=3600');
+  res.setHeader('Content-Type', 'text/xml');
+  res.write(rssString);
+  res.end();
+  return {
+    props: {},
+  };
 }

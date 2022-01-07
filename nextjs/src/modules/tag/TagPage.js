@@ -14,7 +14,6 @@ import { MixinSectionHeading, MixinPageTitle } from 'styles/Typography';
 ---------------------------------------------------- */
 const TagPage = ({ content }) => {
   const { title, episodes } = content.content;
-  console.log({ title, episodes });
   return (
     <StyledTagPage>
       <h3>Tagged</h3>

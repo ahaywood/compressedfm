@@ -17,8 +17,6 @@ const BtmNav = () => {
 
   const router = useRouter();
 
-  // console.log(user);
-
   // strip the slash out of the pathname so that I can use it as a className
   const currentPage = router.asPath.replace('/', '');
 

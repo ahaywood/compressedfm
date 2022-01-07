@@ -24,8 +24,6 @@ const SponsorDashboardPage = ({ sponsor }) => {
   const { _id, title, logo, contractsInvoices, episodes } = sponsor;
   const [currentlyPlaying, setCurrentlyPlaying] = useState();
 
-  // console.log(sponsor);
-
   const handleMultipleAudioPlayers = (id) => {
     setCurrentlyPlaying(id);
   };
@@ -84,9 +82,7 @@ const SponsorDashboardPage = ({ sponsor }) => {
       {/* PLAYERS */}
       {episodes &&
         episodes.map((episode, index) => {
-          console.log(episode.sponsorWithTimecode);
           const chapters = GetAdSpot(episode.sponsorWithTimecode);
-          console.log({ chapters });
           return (
             <SponsorAudioPlayer
               chapters={chapters}

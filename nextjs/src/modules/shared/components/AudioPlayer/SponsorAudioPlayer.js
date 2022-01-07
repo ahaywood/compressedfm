@@ -34,8 +34,6 @@ const SponsorAudioPlayer = ({
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
 
-  // console.log({ chapters });
-
   const determineTime = (time) => (time / duration) * 100;
 
   return (

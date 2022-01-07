@@ -1,5 +1,4 @@
 import client from 'utils/client';
-import groq from 'groq';
 import { EpisodePage } from 'modules/episodes';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { AllEpisodesQuery } from 'utils/queries';

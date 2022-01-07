@@ -12,7 +12,6 @@ import { MixinHeading } from 'styles/Typography';
 const FullTranscript = ({ className, handleClick, transcript }) => {
   const onClick = (e, time) => {
     e.preventDefault();
-    console.log('hey-o');
     handleClick(time);
   };
 
