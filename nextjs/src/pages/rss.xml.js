@@ -1,7 +1,7 @@
 import client from 'utils/client';
 import { AllEpisodesQuery } from 'utils/queries';
 
-const website = 'https://compressed.fm/';
+const website = 'https://compressed.fm';
 
 const xml = (episodes) =>
   `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
