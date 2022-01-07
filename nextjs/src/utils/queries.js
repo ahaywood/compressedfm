@@ -67,3 +67,14 @@ export const guestQuery = groq`*[_type == "guest" && guestEmail match $email && 
     simplecastId
   }
 }[0]`;
+
+export const AllEpisodesQuery = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
+  _id,
+  title,
+  "cover": episodeCover.asset->url,
+  episodeNumber,
+  slug,
+  publishedAt,
+  briefDescription,
+  audioPath
+}`;
