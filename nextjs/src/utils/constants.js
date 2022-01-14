@@ -8,25 +8,25 @@ const Constants = Object.freeze({
   STITCHER_URL: 'https://www.stitcher.com/s?fid=624509',
 
   // social
-  COMPRESSEDFM_GITHUB_URL: 'http://github.com/compressedfm',
-  COMPRESSEDFM_INSTAGRAM_URL: 'http://instagram.com/compressedfm',
-  COMPRESSEDFM_TWITTER_URL: 'http://twitter.com/compressedfm',
+  COMPRESSEDFM_GITHUB_URL: 'https://github.com/compressedfm',
+  COMPRESSEDFM_INSTAGRAM_URL: 'https://instagram.com/compressedfm',
+  COMPRESSEDFM_TWITTER_URL: 'https://twitter.com/compressedfm',
   COMPRESSEDFM_RSS: 'https://www.compressed.fm/rss.xml',
 
   // james
-  JAMES_WEBSITE_URL: 'http://jamesqquick.com',
-  JAMES_TWITTER_URL: 'http://twitter.com/jamesqquick',
-  JAMES_GITHUB_URL: 'http://github.com/jamesqquick',
-  JAMES_YOUTUBE_URL: 'http://youtube.com/c/jamesqquick',
-  JAMES_TWITCH_URL: 'http://twitch.com/jamesqquick',
+  JAMES_WEBSITE_URL: 'https://jamesqquick.com',
+  JAMES_TWITTER_URL: 'https://twitter.com/jamesqquick',
+  JAMES_GITHUB_URL: 'https://github.com/jamesqquick',
+  JAMES_YOUTUBE_URL: 'https://youtube.com/c/jamesqquick',
+  JAMES_TWITCH_URL: 'https://twitch.com/jamesqquick',
 
   // amy
-  AMY_WEBSITE_URL: 'http://selfteach.me',
-  AMY_TWITTER_URL: 'http://twitter.com/selfteachme',
-  AMY_GITHUB_URL: 'http://github.com/ahaywood',
-  AMY_CODEPEN_URL: 'http://github.com/ahaywood',
-  AMY_INSTAGRAM_URL: 'http://instagram.com/selfteachme',
-  AMY_YOUTUBE_URL: 'http://youtube.com/selfteachme',
+  AMY_WEBSITE_URL: 'https://selfteach.me',
+  AMY_TWITTER_URL: 'https://twitter.com/selfteachme',
+  AMY_GITHUB_URL: 'https://github.com/ahaywood',
+  AMY_CODEPEN_URL: 'https://github.com/ahaywood',
+  AMY_INSTAGRAM_URL: 'https://instagram.com/selfteachme',
+  AMY_YOUTUBE_URL: 'https://youtube.com/selfteachme',
 });
 
 export { Constants };
