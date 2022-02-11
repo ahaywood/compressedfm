@@ -140,7 +140,7 @@ const SponsoringPage = () => (
         <div className="current-audience__social__icon">
           <Icon width="90" height="90" name="twitter" />
         </div>
-        <div className="current-audience__social__featured-number">22.9k Followers</div>
+        <div className="current-audience__social__featured-number">28k Followers</div>
         <div className="current-audience__social__link">
           <a href="http://twitter.com/jamesqquick" target="_blank" rel="noreferrer">
             twitter.com/jamesqquick
@@ -176,7 +176,7 @@ const SponsoringPage = () => (
         <div className="current-audience__social__icon">
           <Icon width="90" height="90" name="youtube" />
         </div>
-        <div className="current-audience__social__featured-number">105k Subscribers</div>
+        <div className="current-audience__social__featured-number">130k Subscribers</div>
         <div className="current-audience__social__link">
           <a href="http://youtube.com/c/jamesqquick" target="_blank" rel="noreferrer">
             youtube.com/c/jamesqquick
@@ -294,21 +294,21 @@ const SponsoringPage = () => (
         <h4>Founding Investment</h4>
         <ul>
           <li>
-            <div className="description">Single Show</div>
+            <div className="description">1-3 Episodes</div>
             <div className="separator" />
-            <div className="pricing">$125 USD</div>
+            <div className="pricing">$300 USD/episode</div>
           </li>
 
           <li>
-            <div className="description">3 Shows</div>
+            <div className="description">4-8 Episodes</div>
             <div className="separator" />
-            <div className="pricing">$350 USD</div>
+            <div className="pricing">$275 USD/episode</div>
           </li>
 
           <li>
-            <div className="description">8 Shows</div>
+            <div className="description">8-16 Episodes</div>
             <div className="separator" />
-            <div className="pricing">$900 USD</div>
+            <div className="pricing">$250 USD/episode</div>
           </li>
         </ul>
       </div>

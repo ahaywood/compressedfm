@@ -110,21 +110,21 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
                 <input type="radio" name="options" value="1 Episode" id="options__1-episode" />
                 <label htmlFor="options__1-episode">
                   <div className="amount">{removeDoubleZeros(formatMoney(singleShow))}/episode</div>
-                  <div className="sponsor-description">1-3 Episodes</div>
+                  <div className="sponsor-description">(1-3 Episodes)</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="3 Episodes" id="options__3-episodes" />
                 <label htmlFor="options__3-episodes">
                   <div className="amount">{removeDoubleZeros(formatMoney(threeEpisodeBundle))}/episode</div>
-                  <div className="sponsor-description">4-7 Episodes</div>
+                  <div className="sponsor-description">(4-7 Episodes)</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="8 Episodes" id="options__8-episodes" />
                 <label htmlFor="options__8-episodes">
                   <div className="amount">{removeDoubleZeros(formatMoney(eightEpisodeBundle))}/episode</div>
-                  <div className="sponsor-description">8-16 Episodes</div>
+                  <div className="sponsor-description">(8-16 Episodes)</div>
                 </label>
               </li>
             </ul>
@@ -398,6 +398,7 @@ const StyledSponsorApplicationPage = styled.section`
     letter-spacing: 2px;
     min-width: 90px;
     text-transform: uppercase;
+    margin-right: 5px;
   }
 
   .date {
