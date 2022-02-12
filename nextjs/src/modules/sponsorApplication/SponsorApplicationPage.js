@@ -109,21 +109,21 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
               <li>
                 <input type="radio" name="options" value="1 Episode" id="options__1-episode" />
                 <label htmlFor="options__1-episode">
-                  <div className="amount">{removeDoubleZeros(formatMoney(singleShow))}/episode</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(singleShow))}/ea</div>
                   <div className="sponsor-description">(1-3 Episodes)</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="3 Episodes" id="options__3-episodes" />
                 <label htmlFor="options__3-episodes">
-                  <div className="amount">{removeDoubleZeros(formatMoney(threeEpisodeBundle))}/episode</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(threeEpisodeBundle))}/ea</div>
                   <div className="sponsor-description">(4-7 Episodes)</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="8 Episodes" id="options__8-episodes" />
                 <label htmlFor="options__8-episodes">
-                  <div className="amount">{removeDoubleZeros(formatMoney(eightEpisodeBundle))}/episode</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(eightEpisodeBundle))}/ea</div>
                   <div className="sponsor-description">(8-16 Episodes)</div>
                 </label>
               </li>
@@ -146,7 +146,7 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
           </div>
         </div>
         <fieldset data-kw-group className="full">
-          {upcomingEpisodes && (
+          {upcomingEpisodes && upcomingEpisodes.length > 0 && (
             <div>
               <h5>Future Episodes</h5>
               <p>
