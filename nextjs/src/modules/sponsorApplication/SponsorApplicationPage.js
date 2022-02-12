@@ -177,16 +177,17 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
         <div className="full">
           <input {...register('promo-code')} type="text" ref={register} placeholder=" " name="promo-code" />
           <label htmlFor="promoCode">Promo Code</label>
-        </div>
-        <div className="full">
           <p className="no-btm-margin">
-            The most successful campaigns are ones where Amy and James have access to the product and can speak from
-            personal experience.
+            Do you have a coupon code that we can promote to incentivize listeners to try out your product?
           </p>
         </div>
         <div className="full">
           <textarea {...register('access-information')} ref={register} placeholder=" " name="access-information" />
           <label htmlFor="accessInformation">Access Information</label>
+          <p className="no-btm-margin">
+            The most successful campaigns are ones where Amy and James have access to the product and can speak from
+            personal experience.
+          </p>
         </div>
         <div className="full">
           <textarea
@@ -197,6 +198,9 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
             rules="required"
           />
           <label htmlFor="talkingPoints">Talking Points*</label>
+          <p className="no-btm-margin">
+            What are the most important features of your product that we should highlight?
+          </p>
         </div>
         <div className="full action-buttons">
           <Button />
