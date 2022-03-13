@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import BlockContent from '@sanity/block-content-to-react';
 
 // components
 import { MoreLink } from 'modules/shared/components/MoreLink';
+import { serializers } from 'modules/shared/blockContent/Serializers';
 
 // styles
 import { MixinBodyCopy } from 'styles/Typography';
@@ -16,8 +18,12 @@ const SponsorCard = ({ sponsor }) => (
     <div className="logo-wrapper">
       <img src={sponsor.logo} alt={sponsor.title} className="logo" />
     </div>
-    {sponsor?.offerLink && sponsor?.offer && <MoreLink href={sponsor.offerLink} label={sponsor.offer} />}
-    <p>{sponsor.about}</p>
+    {sponsor?.offerLink && sponsor?.offer && (
+      <div className="more-link-wrapper">
+        <MoreLink href={sponsor.offerLink} label={sponsor.offer} />
+      </div>
+    )}
+    {sponsor.aboutText && <BlockContent blocks={sponsor.aboutText} serializers={serializers} />}
   </StyledSponsorCard>
 );
 
@@ -28,6 +34,7 @@ SponsorCard.propTypes = {
     offerLink: PropTypes.string,
     offer: PropTypes.string,
     about: PropTypes.string,
+    aboutText: PropTypes.string,
   }).isRequired,
 };
 
@@ -57,6 +64,10 @@ const StyledSponsorCard = styled.section`
   p {
     ${MixinBodyCopy};
     font-size: 1.6rem;
+  }
+
+  .more-link-wrapper {
+    margin-bottom: 20px;
   }
 `;
 
