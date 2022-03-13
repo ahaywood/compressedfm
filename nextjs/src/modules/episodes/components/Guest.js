@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/Typography';
 import { SocialMedia } from 'modules/shared/components/SocialMedia';
+import BlockContent from '@sanity/block-content-to-react';
+import { serializers } from 'modules/shared/blockContent/Serializers';
 
 const Guest = ({ className, guest }) => (
   <div className={className}>
@@ -13,8 +15,24 @@ const Guest = ({ className, guest }) => (
           lastName,
           jobTitle,
           largeBody,
-          body,
-          socialMedia: { facebook, twitter, instagram, github, twitch, youtube, website },
+          bio,
+          socialMedia: {
+            devTo,
+            discord,
+            dribbble,
+            facebook,
+            github,
+            hashnode,
+            instagram,
+            linkedin,
+            medium,
+            pinterest,
+            tiktok,
+            twitch,
+            twitter,
+            website,
+            youtube,
+          },
         } = item;
         return (
           <StyledPersonBio key={_id}>
@@ -32,16 +50,24 @@ const Guest = ({ className, guest }) => (
               </div>
             </div>
             <p className="large-body-copy">{largeBody}</p>
-            <p className="body-copy">{body}</p>
+            <BlockContent blocks={bio} serializers={serializers} />
             <div className="social-media">
               <SocialMedia
+                devTo={devTo || ''}
+                discord={discord || ''}
+                dribbble={dribbble || ''}
                 facebook={facebook || ''}
                 github={github || ''}
+                hashnode={hashnode || ''}
                 instagram={instagram || ''}
+                linkedin={linkedin || ''}
+                medium={medium || ''}
+                pinterest={pinterest || ''}
+                tiktok={tiktok || ''}
                 twitch={twitch || ''}
                 twitter={twitter || ''}
-                youtube={youtube || ''}
                 website={website || ''}
+                youtube={youtube || ''}
               />
             </div>
           </StyledPersonBio>
