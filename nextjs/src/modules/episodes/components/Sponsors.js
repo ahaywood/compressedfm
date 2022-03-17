@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import BlockContent from '@sanity/block-content-to-react';
 import { MoreLink } from 'modules/shared/components/MoreLink';
+import { serializers } from 'modules/shared/blockContent/Serializers';
 import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
 
 const Sponsors = ({ className, sponsor }) => (
@@ -11,7 +13,7 @@ const Sponsors = ({ className, sponsor }) => (
           <img src={item.logo} alt={item.title} className="logo" />
           {sponsor.title}
           {item.offerLink && item.offer && <MoreLink href={item.offerLink} label={item.offer} className="promo-link" />}
-          <p>{item.about}</p>
+          {item.aboutText && <BlockContent blocks={item.aboutText} serializers={serializers} />}
         </li>
       ))}
     </ul>

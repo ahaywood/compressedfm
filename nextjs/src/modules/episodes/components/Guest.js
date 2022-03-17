@@ -8,32 +8,7 @@ const Guest = ({ className, guest }) => (
   <div className={className}>
     {guest &&
       guest.map((item) => {
-        const {
-          _id,
-          avatar,
-          firstName,
-          lastName,
-          jobTitle,
-          largeBody,
-          bio,
-          socialMedia: {
-            devTo,
-            discord,
-            dribbble,
-            facebook,
-            github,
-            hashnode,
-            instagram,
-            linkedin,
-            medium,
-            pinterest,
-            tiktok,
-            twitch,
-            twitter,
-            website,
-            youtube,
-          },
-        } = item;
+        const { _id, avatar, firstName, lastName, jobTitle, largeBody, bio, socialMedia } = item;
         return (
           <StyledPersonBio key={_id}>
             <div>
@@ -52,23 +27,7 @@ const Guest = ({ className, guest }) => (
             <p className="large-body-copy">{largeBody}</p>
             <BlockContent blocks={bio} serializers={serializers} />
             <div className="social-media">
-              <SocialMedia
-                devTo={devTo || ''}
-                discord={discord || ''}
-                dribbble={dribbble || ''}
-                facebook={facebook || ''}
-                github={github || ''}
-                hashnode={hashnode || ''}
-                instagram={instagram || ''}
-                linkedin={linkedin || ''}
-                medium={medium || ''}
-                pinterest={pinterest || ''}
-                tiktok={tiktok || ''}
-                twitch={twitch || ''}
-                twitter={twitter || ''}
-                website={website || ''}
-                youtube={youtube || ''}
-              />
+              <SocialMedia className={className} socialMedia={socialMedia} />
             </div>
           </StyledPersonBio>
         );

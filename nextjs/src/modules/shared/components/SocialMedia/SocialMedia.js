@@ -5,171 +5,173 @@ import { Icon } from 'modules/shared/components/Icon';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const SocialMedia = ({
-  className,
-  discord,
-  devTo,
-  dribbble,
-  facebook,
-  instagram,
-  hashnode,
-  github,
-  linkedin,
-  medium,
-  tiktok,
-  twitch,
-  twitter,
-  rss,
-  pinterest,
-  website,
-  youtube,
-}) => (
-  <StyledSocialMedia className={className}>
-    {/* DevTo */}
-    {devTo && (
-      <li>
-        <a href={devTo} target="_blank" rel="noreferrer">
-          <Icon name="devto" />
-        </a>
-      </li>
-    )}
+const SocialMedia = ({ className, socialMedia }) => {
+  const {
+    devTo,
+    discord,
+    dribbble,
+    facebook,
+    github,
+    hashnode,
+    instagram,
+    linkedin,
+    medium,
+    pinterest,
+    rss,
+    tiktok,
+    twitch,
+    twitter,
+    website,
+    youtube,
+  } = socialMedia || '';
+  return (
+    <StyledSocialMedia className={className}>
+      {/* DevTo */}
+      {devTo && (
+        <li>
+          <a href={devTo} target="_blank" rel="noreferrer">
+            <Icon name="devto" />
+          </a>
+        </li>
+      )}
 
-    {/* Dribbble */}
-    {dribbble && (
-      <li>
-        <a href={dribbble} target="_blank" rel="noreferrer">
-          <Icon name="dribbble" />
-        </a>
-      </li>
-    )}
+      {/* Dribbble */}
+      {dribbble && (
+        <li>
+          <a href={dribbble} target="_blank" rel="noreferrer">
+            <Icon name="dribbble" />
+          </a>
+        </li>
+      )}
 
-    {/* Facebook */}
-    {facebook && (
-      <li>
-        <a href={facebook} target="_blank" rel="noreferrer">
-          <Icon name="facebook" />
-        </a>
-      </li>
-    )}
+      {/* Facebook */}
+      {facebook && (
+        <li>
+          <a href={facebook} target="_blank" rel="noreferrer">
+            <Icon name="facebook" />
+          </a>
+        </li>
+      )}
 
-    {/* Hashnode */}
-    {hashnode && (
-      <li>
-        <a href={hashnode} target="_blank" rel="noreferrer">
-          <Icon name="hashnode" />
-        </a>
-      </li>
-    )}
+      {/* Hashnode */}
+      {hashnode && (
+        <li>
+          <a href={hashnode} target="_blank" rel="noreferrer">
+            <Icon name="hashnode" />
+          </a>
+        </li>
+      )}
 
-    {/* Instagram */}
-    {instagram && (
-      <li>
-        <a href={instagram} target="_blank" rel="noreferrer">
-          <Icon name="instagram" />
-        </a>
-      </li>
-    )}
+      {/* Instagram */}
+      {instagram && (
+        <li>
+          <a href={instagram} target="_blank" rel="noreferrer">
+            <Icon name="instagram" />
+          </a>
+        </li>
+      )}
 
-    {/* GitHub */}
-    {github && (
-      <li>
-        <a href={github} target="_blank" rel="noreferrer">
-          <Icon name="github" />
-        </a>
-      </li>
-    )}
+      {/* GitHub */}
+      {github && (
+        <li>
+          <a href={github} target="_blank" rel="noreferrer">
+            <Icon name="github" />
+          </a>
+        </li>
+      )}
 
-    {/* LinkedIn */}
-    {linkedin && (
-      <li>
-        <a href={linkedin} target="_blank" rel="noreferrer">
-          <Icon name="linkedin" />
-        </a>
-      </li>
-    )}
+      {/* LinkedIn */}
+      {linkedin && (
+        <li>
+          <a href={linkedin} target="_blank" rel="noreferrer">
+            <Icon name="linkedin" />
+          </a>
+        </li>
+      )}
 
-    {/* Medium */}
-    {medium && (
-      <li>
-        <a href={medium} target="_blank" rel="noreferrer">
-          <Icon name="medium" />
-        </a>
-      </li>
-    )}
+      {/* Medium */}
+      {medium && (
+        <li>
+          <a href={medium} target="_blank" rel="noreferrer">
+            <Icon name="medium" />
+          </a>
+        </li>
+      )}
 
-    {/* Pinterest */}
-    {pinterest && (
-      <li>
-        <a href={pinterest} target="_blank" rel="noreferrer">
-          <Icon name="pinterest" />
-        </a>
-      </li>
-    )}
+      {/* Pinterest */}
+      {pinterest && (
+        <li>
+          <a href={pinterest} target="_blank" rel="noreferrer">
+            <Icon name="pinterest" />
+          </a>
+        </li>
+      )}
 
-    {/* TikTok */}
-    {tiktok && (
-      <li>
-        <a href={tiktok} target="_blank" rel="noreferrer">
-          <Icon name="tiktok" />
-        </a>
-      </li>
-    )}
+      {/* TikTok */}
+      {tiktok && (
+        <li>
+          <a href={tiktok} target="_blank" rel="noreferrer">
+            <Icon name="tiktok" />
+          </a>
+        </li>
+      )}
 
-    {/* Twitch */}
-    {twitch && (
-      <li>
-        <a href={twitch} target="_blank" rel="noreferrer">
-          <Icon name="twitch" />
-        </a>
-      </li>
-    )}
+      {/* Twitch */}
+      {twitch && (
+        <li>
+          <a href={twitch} target="_blank" rel="noreferrer">
+            <Icon name="twitch" />
+          </a>
+        </li>
+      )}
 
-    {/* Twitter */}
-    {twitter && (
-      <li>
-        <a href={twitter} target="_blank" rel="noreferrer">
-          <Icon name="twitter" />
-        </a>
-      </li>
-    )}
+      {/* Twitter */}
+      {twitter && (
+        <li>
+          <a href={twitter} target="_blank" rel="noreferrer">
+            <Icon name="twitter" />
+          </a>
+        </li>
+      )}
 
-    {/* YouTube */}
-    {youtube && (
-      <li>
-        <a href={youtube} target="_blank" rel="noreferrer">
-          <Icon name="youtube" />
-        </a>
-      </li>
-    )}
+      {/* YouTube */}
+      {youtube && (
+        <li>
+          <a href={youtube} target="_blank" rel="noreferrer">
+            <Icon name="youtube" />
+          </a>
+        </li>
+      )}
 
-    {/*  RSS */}
-    {rss && (
-      <li>
-        <a href={rss} target="_blank" rel="noreferrer">
-          <Icon name="rss" />
-        </a>
-      </li>
-    )}
+      {/*  RSS */}
+      {rss && (
+        <li>
+          <a href={rss} target="_blank" rel="noreferrer">
+            <Icon name="rss" />
+          </a>
+        </li>
+      )}
 
-    {/*  Discord */}
-    {discord && (
-      <li>
-        <a href={discord} target="_blank" rel="noreferrer">
-          <Icon name="discord" />
-        </a>
-      </li>
-    )}
+      {/*  Discord */}
+      {discord && (
+        <li>
+          <a href={discord} target="_blank" rel="noreferrer">
+            <Icon name="discord" />
+          </a>
+        </li>
+      )}
 
-    {/*  Website */}
-    {website && (
-      <li>
-        <a href={website} target="_blank" rel="noreferrer">
-          <Icon name="website" />
-        </a>
-      </li>
-    )}
-  </StyledSocialMedia>
-);
+      {/*  Website */}
+      {website && (
+        <li>
+          <a href={website} target="_blank" rel="noreferrer">
+            <Icon name="website" />
+          </a>
+        </li>
+      )}
+    </StyledSocialMedia>
+  );
+};
 
 SocialMedia.propTypes = {
   className: PropTypes.string,

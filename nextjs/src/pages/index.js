@@ -11,7 +11,7 @@ export default function Home({ episodes }) {
   );
 }
 
-const query = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
+const FeaturedEpisode = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
   _id,
   title,
   episodeNumber,
@@ -19,11 +19,16 @@ const query = groq`*[_type == "episode" && published == true && publishedAt < no
   slug,
   publishedAt,
   briefDescription,
-  audioPath
+  audioPath,
+  guest[]->{
+    firstName,
+    lastName,
+    "avatar": avatar.asset->url,
+  },
 }[0...4]`;
 
 export async function getServerSideProps() {
-  const episodes = await client.fetch(query);
+  const episodes = await client.fetch(FeaturedEpisode);
   return {
     props: { episodes },
   };
