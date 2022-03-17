@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/Typography';
 import { SocialMedia } from 'modules/shared/components/SocialMedia';
+import BlockContent from '@sanity/block-content-to-react';
+import { serializers } from 'modules/shared/blockContent/Serializers';
 
 const Guest = ({ className, guest }) => (
   <div className={className}>
     {guest &&
       guest.map((item) => {
-        const { _id, avatar, firstName, lastName, jobTitle, largeBody, body, socialMedia } = item;
+        const { _id, avatar, firstName, lastName, jobTitle, largeBody, bio, socialMedia } = item;
         return (
           <StyledPersonBio key={_id}>
             <div>
@@ -23,9 +25,9 @@ const Guest = ({ className, guest }) => (
               </div>
             </div>
             <p className="large-body-copy">{largeBody}</p>
-            <p className="body-copy">{body}</p>
+            <BlockContent blocks={bio} serializers={serializers} />
             <div className="social-media">
-              <SocialMedia socialMedia={socialMedia} />
+              <SocialMedia className={className} socialMedia={socialMedia} />
             </div>
           </StyledPersonBio>
         );

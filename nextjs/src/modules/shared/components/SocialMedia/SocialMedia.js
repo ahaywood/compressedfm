@@ -6,10 +6,35 @@ import { Icon } from 'modules/shared/components/Icon';
 * COMPONENT
 ---------------------------------------------------- */
 const SocialMedia = ({ className, socialMedia }) => {
-  const { dribbble, facebook, instagram, github, linkedin, twitch, twitter, rss, pinterest, youtube } =
-    socialMedia || '';
+  const {
+    devTo,
+    discord,
+    dribbble,
+    facebook,
+    github,
+    hashnode,
+    instagram,
+    linkedin,
+    medium,
+    pinterest,
+    rss,
+    tiktok,
+    twitch,
+    twitter,
+    website,
+    youtube,
+  } = socialMedia || '';
   return (
     <StyledSocialMedia className={className}>
+      {/* DevTo */}
+      {devTo && (
+        <li>
+          <a href={devTo} target="_blank" rel="noreferrer">
+            <Icon name="devto" />
+          </a>
+        </li>
+      )}
+
       {/* Dribbble */}
       {dribbble && (
         <li>
@@ -24,6 +49,15 @@ const SocialMedia = ({ className, socialMedia }) => {
         <li>
           <a href={facebook} target="_blank" rel="noreferrer">
             <Icon name="facebook" />
+          </a>
+        </li>
+      )}
+
+      {/* Hashnode */}
+      {hashnode && (
+        <li>
+          <a href={hashnode} target="_blank" rel="noreferrer">
+            <Icon name="hashnode" />
           </a>
         </li>
       )}
@@ -55,11 +89,29 @@ const SocialMedia = ({ className, socialMedia }) => {
         </li>
       )}
 
+      {/* Medium */}
+      {medium && (
+        <li>
+          <a href={medium} target="_blank" rel="noreferrer">
+            <Icon name="medium" />
+          </a>
+        </li>
+      )}
+
       {/* Pinterest */}
       {pinterest && (
         <li>
           <a href={pinterest} target="_blank" rel="noreferrer">
             <Icon name="pinterest" />
+          </a>
+        </li>
+      )}
+
+      {/* TikTok */}
+      {tiktok && (
+        <li>
+          <a href={tiktok} target="_blank" rel="noreferrer">
+            <Icon name="tiktok" />
           </a>
         </li>
       )}
@@ -99,12 +151,31 @@ const SocialMedia = ({ className, socialMedia }) => {
           </a>
         </li>
       )}
+
+      {/*  Discord */}
+      {discord && (
+        <li>
+          <a href={discord} target="_blank" rel="noreferrer">
+            <Icon name="discord" />
+          </a>
+        </li>
+      )}
+
+      {/*  Website */}
+      {website && (
+        <li>
+          <a href={website} target="_blank" rel="noreferrer">
+            <Icon name="website" />
+          </a>
+        </li>
+      )}
     </StyledSocialMedia>
   );
 };
 
 SocialMedia.propTypes = {
   className: PropTypes.string,
+  discord: PropTypes.string,
   dribbble: PropTypes.string,
   facebook: PropTypes.string,
   github: PropTypes.string,
@@ -119,6 +190,7 @@ SocialMedia.propTypes = {
 
 SocialMedia.defaultProps = {
   className: '',
+  discord: '',
   dribbble: '',
   facebook: '',
   github: '',
