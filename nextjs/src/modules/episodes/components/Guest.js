@@ -6,16 +6,7 @@ const Guest = ({ className, guest }) => (
   <div className={className}>
     {guest &&
       guest.map((item) => {
-        const {
-          _id,
-          avatar,
-          firstName,
-          lastName,
-          jobTitle,
-          largeBody,
-          body,
-          socialMedia: { facebook, twitter, instagram, github, twitch, youtube, website },
-        } = item;
+        const { _id, avatar, firstName, lastName, jobTitle, largeBody, body, socialMedia } = item;
         return (
           <StyledPersonBio key={_id}>
             <div>
@@ -34,15 +25,7 @@ const Guest = ({ className, guest }) => (
             <p className="large-body-copy">{largeBody}</p>
             <p className="body-copy">{body}</p>
             <div className="social-media">
-              <SocialMedia
-                facebook={facebook || ''}
-                github={github || ''}
-                instagram={instagram || ''}
-                twitch={twitch || ''}
-                twitter={twitter || ''}
-                youtube={youtube || ''}
-                website={website || ''}
-              />
+              <SocialMedia socialMedia={socialMedia} />
             </div>
           </StyledPersonBio>
         );
