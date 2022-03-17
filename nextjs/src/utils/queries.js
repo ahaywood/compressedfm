@@ -72,6 +72,11 @@ export const AllEpisodesQuery = groq`*[_type == "episode" && published == true &
   _id,
   title,
   "cover": episodeCover.asset->url,
+  guest[]->{
+    firstName,
+    lastName,
+    "avatar": avatar.asset->url,
+  },
   episodeNumber,
   slug,
   publishedAt,

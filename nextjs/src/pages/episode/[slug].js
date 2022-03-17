@@ -49,7 +49,7 @@ const IndividualEpisodeQuery = groq`*[_type == "episode" && slug.current == $slu
     "logo": logo.asset->url,
     offer,
     offerLink,
-    about,
+    aboutText,
     founding,
   },
   timeJump,
