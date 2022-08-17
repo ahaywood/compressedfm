@@ -6,41 +6,53 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const wrapTitleWords = (title, maxLettersPerLine) => {
+const wrapTitleWords = (title, maxLettersPerLine, maxLines) => {
+  if (title.length <= maxLettersPerLine) return [title];
   let breakPoint = 0;
+  const lines = [];
+
   for (let i = 0; i < title.length; i += 1) {
     const letter = title[i];
-    if (letter === ' ') {
-      breakPoint = i;
+    console.log(i);
+    if (i - breakPoint >= maxLettersPerLine && letter === ' ') {
+      lines.push(title.slice(breakPoint, i));
+      breakPoint = i + 1;
     }
-    if (i >= maxLettersPerLine) {
+    if (lines.length === maxLines - 1 || i === title.length - 1) {
+      lines.push(title.slice(breakPoint));
+      console.log('break');
       break;
     }
   }
-  const firstLine = title.substring(0, breakPoint);
-  const secondLine = title.substring(breakPoint);
-  return [firstLine, secondLine];
+  return lines;
 };
 
 const generateGuestCoverURL = ({ title, guestName, guestImageName }) => {
-  const [firstLine, secondLine] = wrapTitleWords(title, 16);
+  const lines = wrapTitleWords(title, 16, 4);
+  console.log(lines);
+  const titleTexts = lines.map((line, i) => {
+    const crop = line.length < 12 ? 'fit' : 'scale';
+    const y = (lines.length * -20 + 60 + i * 60).toString();
+    return {
+      overlay: {
+        font_family: 'Montserrat',
+        font_size: 50,
+        font_weight: 900,
+        text: line,
+        text_align: 'center',
+      },
+      width: 500,
+      color: '#ffffff',
+      y,
+      x: '-210',
+      crop,
+    };
+  });
+  console.log(titleTexts);
   const [firstName, lastName] = guestName.split(' ');
   const url = cloudinary.url('compressed/social-cover-base', {
     transformation: [
-      {
-        overlay: {
-          font_family: 'Montserrat',
-          font_size: 66,
-          font_weight: 900,
-          text: title,
-          text_align: 'center',
-        },
-        width: 500,
-        color: '#ffffff',
-        y: '10',
-        x: '-210',
-        crop: 'fit',
-      },
+      ...titleTexts,
       {
         overlay: `compressed:${guestImageName}`,
         height: '242',
@@ -55,7 +67,7 @@ const generateGuestCoverURL = ({ title, guestName, guestImageName }) => {
       {
         overlay: {
           font_family: 'Montserrat',
-          font_size: 55,
+          font_size: 50,
           text: firstName,
           font_weight: 900,
           text_align: 'center',
@@ -70,7 +82,7 @@ const generateGuestCoverURL = ({ title, guestName, guestImageName }) => {
       {
         overlay: {
           font_family: 'Montserrat',
-          font_size: 55,
+          font_size: 50,
           text: lastName,
           font_weight: 900,
           text_align: 'center',
