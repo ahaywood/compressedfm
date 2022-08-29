@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 
 // components
@@ -8,7 +7,6 @@ import { Podcatchers } from 'modules/shared/components/Podcatchers';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 
 // styles
-import { Breakpoints } from 'styles/Breakpoints';
 import { TheHosts } from './components/TheHosts';
 import { FeaturedEpisode } from './components/FeaturedEpisode';
 
@@ -17,17 +15,17 @@ import { FeaturedEpisode } from './components/FeaturedEpisode';
 ---------------------------------------------------- */
 const HomePage = ({ episodes }) => {
   // get the first element in the array to feature
-    const featuredEpisode = episodes[0];
-  const remainingEpisodes = episodes.slice(1)
+  const featured = episodes[0];
+  const remainingEpisodes = episodes.slice(1);
 
   return (
     <StyledHomePage>
       <Podcatchers className="podcatchers" />
       <VerticalDivider />
 
-      {featuredEpisode && (
+      {featured && (
         <>
-          <FeaturedEpisode episode={featuredEpisode} />
+          <FeaturedEpisode episode={featured} />
           <VerticalDivider />
         </>
       )}

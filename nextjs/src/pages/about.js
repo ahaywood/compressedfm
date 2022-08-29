@@ -1,51 +1,14 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import client from 'utils/client';
-import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { AboutPage } from 'modules/about';
 import { Meta } from 'modules/shared/components/Meta';
+import { LegalQuery, FaqQuery, GettingStartedEpisodesQuery, PopularEpisodesQuery } from "../queries/Queries";
 
-export default function About() {
-  const [faqs, setFaqs] = useState();
-  const [gettingStarted, setGettingStarted] = useState();
-  const [mostPopular, setMostPopular] = useState();
-
-  // get data
-  useEffect(() => {
-    // get FAQs
-    const faqQuery = groq`*[_type == "faq" && published == true]{
-      _id,
-      question,
-      answer
-    }`;
-    client.fetch(faqQuery).then((res) => setFaqs(res));
-
-    // get Getting Started Episodes
-    const gettingStartedQuery = groq`*[_type == "episode" && published == true && gettingStarted == true] | order(episodeNumber desc){
-      _id,
-      title,
-      episodeNumber,
-      slug,
-      publishedAt,
-      briefDescription
-    }[0...3]`;
-    client.fetch(gettingStartedQuery).then((res) => setGettingStarted(res));
-
-    // get Popular Episodes
-    const popularEpisodesQuery = groq`*[_type == "episode" && published == true && popularEpisode == true] | order(episodeNumber desc) {
-      _id,
-      title,
-      episodeNumber,
-      slug,
-      publishedAt,
-      briefDescription
-    }[0...3]`;
-    client.fetch(popularEpisodesQuery).then((res) => setMostPopular(res));
-  }, []);
-
+export default function About({ faqs, footerLinks, gettingStarted, mostPopular }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <Head>
         <Meta
           seoTitle="About Compressed.fm"
@@ -63,4 +26,27 @@ export default function About() {
       <AboutPage faqs={faqs} gettingStarted={gettingStarted} mostPopular={mostPopular} />
     </InteriorLayout>
   );
+}
+
+export async function getStaticProps({ params }) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
+
+  // get FAQs
+  const faqs = await client.fetch(FaqQuery);
+
+  // get Getting Started Episodes
+  const gettingStarted = await client.fetch(GettingStartedEpisodesQuery);
+
+  // get Popular Episodes
+  const mostPopular = await client.fetch(PopularEpisodesQuery);
+
+  return {
+    props: {
+      faqs,
+      footerLinks,
+      gettingStarted,
+      mostPopular
+    },
+  }
 }

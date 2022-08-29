@@ -42,7 +42,7 @@ JumpLinks.propTypes = {
 JumpLinks.defaultProps = {
   className: '',
   timeJump: [],
-  handleClick: () => { },
+  handleClick: () => {},
 };
 
 /** -------------------------------------------------

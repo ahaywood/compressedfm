@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 // component
@@ -64,7 +64,7 @@ const FeaturedAudioPlayer = ({ track }) => {
         <div className="progress-bar">
           <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onChange={changeAudioToPlayhead} />
         </div>
-        <div className="duration">{duration && !isNaN(duration) && calculateTime(duration)}</div>
+        <div className="duration">{duration && !Number.isNaN(duration) && calculateTime(duration)}</div>
       </div>
     </StyledFeaturedAudioPlayer>
   );

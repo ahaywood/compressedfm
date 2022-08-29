@@ -36,6 +36,46 @@ export default {
       title: 'Website',
       name: 'website',
       type: 'string'
+    },
+    {
+      title: 'TikTok',
+      name: 'tiktok',
+      type: 'string'
+    },
+    {
+      title: 'Dev.to',
+      name: 'devto',
+      type: 'string'
+    },
+    {
+      title: 'Medium',
+      name: 'medium',
+      type: 'string'
+    },
+    {
+      title: 'Hashnode',
+      name: 'hashnode',
+      type: 'string'
+    },
+    {
+      title: 'Discord',
+      name: 'discord',
+      type: 'string'
+    },
+    {
+      title: 'LinkedIn',
+      name: 'linkedin',
+      type: 'string'
+    },
+    {
+      title: 'Pinterest',
+      name: 'pinterest',
+      type: 'string'
+    },
+    {
+      title: 'Dribbble',
+      name: 'dribbble',
+      type: 'string'
     }
   ]
 }

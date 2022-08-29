@@ -6,11 +6,11 @@ import { Footer } from 'modules/shared/components/Footer';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const HomeLayout = ({ children }) => (
+const HomeLayout = ({ children, footerLinks }) => (
   <StyledPage>
     <HeaderHome />
     {children}
-    <Footer />
+    <Footer footerLinks={footerLinks} />
   </StyledPage>
 );
 

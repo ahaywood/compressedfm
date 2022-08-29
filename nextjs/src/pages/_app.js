@@ -1,14 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
-import * as Fathom from 'fathom-client';
+import Router from 'next/router';
 import Head from 'next/head';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import NProgress from 'nprogress';
 import Theme from '../styles/Theme';
+import 'styles/nprogress.css';
 
 // Bind nProgress Bar
 Router.events.on('routeChangeStart', () => {
@@ -18,34 +16,14 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
-  const { user } = pageProps;
-  const router = useRouter();
-
-  // FATHOM ANALYTICS
-  useEffect(() => {
-    // Initialize Fathom when the app loads
-    Fathom.load('TRUYKXEJ', {
-      includedDomains: ['compressed.fm'],
-    });
-
-    function onRouteChangeComplete() {
-      Fathom.trackPageview();
-    }
-    // Record a pageview when route changes
-    router.events.on('routeChangeComplete', onRouteChangeComplete);
-
-    // Unassign event listener
-    return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete);
-    };
-  }, []);
+  const { footerLinks, user } = pageProps;
 
   return (
-    <UserProvider user={user}>
+    <UserProvider>
       <ThemeProvider theme={Theme}>
         <Head>
           <title>Compressed.fm</title>
-          <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
+          <script src="https://cdn.usefathom.com/script.js" data-site="TRUYKXEJ" defer />
         </Head>
         <GlobalStyle />
         <Component {...pageProps} />
@@ -54,13 +32,11 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-MyApp.propTypes = {
-  Component: PropTypes.any,
-  pageProps: PropTypes.any,
-};
-
 export default MyApp;
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const GlobalStyle = createGlobalStyle`
   /* DankMono */
   @font-face {

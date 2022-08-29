@@ -3,15 +3,18 @@ import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { IndividualNewsletterPage } from 'modules/newsletter/IndividualNewsletterPage';
 
-export default function IndividualNewsletter({newsletter}) {
+// query
+import { AllNewslettersQuery, LegalQuery } from 'queries/Queries';
+
+export default function IndividualNewsletter({ footerLinks, newsletter }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <IndividualNewsletterPage {...newsletter} />
     </InteriorLayout>
   );
 }
 
-const query = groq`*[_type == "newsletter" && slug.current == $slug] | order(dateSent desc) {
+const IndividualNewsletterQuery = groq`*[_type == "newsletter" && slug.current == $slug] | order(dateSent desc) {
   _id,
   subject,
   dateSent,
@@ -38,20 +41,44 @@ const query = groq`*[_type == "newsletter" && slug.current == $slug] | order(dat
     next->{
       subject,
       dateSent,
-      slug
+      slug,
+      published
     },
     previous->{
       subject,
       dateSent,
-      slug
+      slug,
+      published
     }
   },
   meta
 }[0]`;
 
+export async function getStaticPaths() {
+  const allNewsletters = await client.fetch(AllNewslettersQuery);
 
-export async function getServerSideProps(context) {
-  const { slug = '' } = context.query;
-  const newsletter = await client.fetch(query, { slug });
-  return {props: {newsletter}}
+  // Get the paths we want to pre-render based on episodes
+  const paths = allNewsletters.map((newsletter) => ({
+    params: { slug: newsletter.slug.current },
+  }));
+
+  return { paths, fallback: 'blocking' };
+}
+
+// This function gets called at build time on server-side.
+// It may be called again, on a serverless function, if
+// revalidation is enabled and a new request comes in
+export async function getStaticProps({ params }) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
+
+  // episode content
+  const { slug } = params;
+  const newsletter = await client.fetch(IndividualNewsletterQuery, { slug });
+  return {
+    props: {
+      footerLinks,
+      newsletter,
+    },
+  };
 }

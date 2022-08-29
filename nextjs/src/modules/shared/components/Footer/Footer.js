@@ -1,9 +1,6 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import styled from 'styled-components';
-import client from 'utils/client';
-import groq from 'groq';
 
 // components
 import { Breakpoints } from 'styles/Breakpoints';
@@ -11,27 +8,10 @@ import { Constants } from 'utils/constants';
 import { SocialMedia } from '../SocialMedia';
 import { VerticalDivider } from '../VerticalDivider';
 
-// utils
-
-/** -------------------------------------------------
-* QUERY
----------------------------------------------------- */
-const query = groq`*[_type == "legal" && published == true] {
-  _id,
-  title,
-  slug
-}`;
-
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const Footer = ({ props }) => {
-  const [footerLinks, setFooterLinks] = useState();
-
-  useEffect(() => {
-    client.fetch(query).then((res) => setFooterLinks(res));
-  }, []);
-
+const Footer = ({ footerLinks }) => {
   const getCurrentYear = () => format(new Date(), 'yyyy');
 
   return (
@@ -42,6 +22,7 @@ const Footer = ({ props }) => {
         instagram={Constants.COMPRESSEDFM_INSTAGRAM_URL}
         github={Constants.COMPRESSEDFM_GITHUB_URL}
         twitter={Constants.COMPRESSEDFM_TWITTER_URL}
+        rss={Constants.COMPRESSEDFM_RSS}
       />
 
       <div className="links-wrapper">
