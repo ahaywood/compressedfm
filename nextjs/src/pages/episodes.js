@@ -1,7 +1,7 @@
 import client from 'utils/client';
 import { EpisodePage } from 'modules/episodes';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
-import { LegalQuery, AllEpisodesQuery } from '../queries/Queries';
+import { LegalQuery, AllEpisodesQuery } from 'queries/Queries';
 
 export default function Episodes({ episodes, footerLinks }) {
   return (

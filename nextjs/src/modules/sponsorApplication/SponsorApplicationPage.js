@@ -109,22 +109,22 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
               <li>
                 <input type="radio" name="options" value="1 Episode" id="options__1-episode" />
                 <label htmlFor="options__1-episode">
-                  <div className="amount">{removeDoubleZeros(formatMoney(singleShow))}</div>
-                  <div className="sponsor-description">1 Episode</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(singleShow))}/ea</div>
+                  <div className="sponsor-description">(1-3 Episodes)</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="3 Episodes" id="options__3-episodes" />
                 <label htmlFor="options__3-episodes">
-                  <div className="amount">{removeDoubleZeros(formatMoney(threeEpisodeBundle))}</div>
-                  <div className="sponsor-description">3 Episode Bundle</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(threeEpisodeBundle))}/ea</div>
+                  <div className="sponsor-description">(4-7 Episodes)</div>
                 </label>
               </li>
               <li>
                 <input type="radio" name="options" value="8 Episodes" id="options__8-episodes" />
                 <label htmlFor="options__8-episodes">
-                  <div className="amount">{removeDoubleZeros(formatMoney(eightEpisodeBundle))}</div>
-                  <div className="sponsor-description">8 Episode Bundle</div>
+                  <div className="amount">{removeDoubleZeros(formatMoney(eightEpisodeBundle))}/ea</div>
+                  <div className="sponsor-description">(8-16 Episodes)</div>
                 </label>
               </li>
             </ul>
@@ -146,7 +146,7 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
           </div>
         </div>
         <fieldset data-kw-group className="full">
-          {upcomingEpisodes && (
+          {upcomingEpisodes && upcomingEpisodes.length > 0 && (
             <div>
               <h5>Future Episodes</h5>
               <p>
@@ -177,16 +177,17 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
         <div className="full">
           <input {...register('promo-code')} type="text" ref={register} placeholder=" " name="promo-code" />
           <label htmlFor="promoCode">Promo Code</label>
-        </div>
-        <div className="full">
           <p className="no-btm-margin">
-            The most successful campaigns are ones where Amy and James have access to the product and can speak from
-            personal experience.
+            Do you have a coupon code that we can promote to incentivize listeners to try out your product?
           </p>
         </div>
         <div className="full">
           <textarea {...register('access-information')} ref={register} placeholder=" " name="access-information" />
           <label htmlFor="accessInformation">Access Information</label>
+          <p className="no-btm-margin">
+            The most successful campaigns are ones where Amy and James have access to the product and can speak from
+            personal experience.
+          </p>
         </div>
         <div className="full">
           <textarea
@@ -197,6 +198,9 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
             rules="required"
           />
           <label htmlFor="talkingPoints">Talking Points*</label>
+          <p className="no-btm-margin">
+            What are the most important features of your product that we should highlight?
+          </p>
         </div>
         <div className="full action-buttons">
           <Button />
@@ -398,6 +402,7 @@ const StyledSponsorApplicationPage = styled.section`
     letter-spacing: 2px;
     min-width: 90px;
     text-transform: uppercase;
+    margin-right: 5px;
   }
 
   .date {

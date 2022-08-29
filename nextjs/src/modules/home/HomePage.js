@@ -15,7 +15,6 @@ import { FeaturedEpisode } from './components/FeaturedEpisode';
 ---------------------------------------------------- */
 const HomePage = ({ episodes }) => {
   // get the first element in the array to feature
-  console.log(episodes);
   const featured = episodes[0];
   const remainingEpisodes = episodes.slice(1);
 

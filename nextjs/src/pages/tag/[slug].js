@@ -2,7 +2,7 @@ import client from 'utils/client';
 import groq from 'groq';
 import { TagPage } from 'modules/tag';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
-import { LegalQuery } from "../../queries/Queries"
+import { LegalQuery } from 'queries/Queries';
 
 export default function Tag({ content, footerLinks }) {
   return (
@@ -36,7 +36,8 @@ export async function getServerSideProps(context) {
   const content = await client.fetch(TagsQuery, { slug });
   return {
     props: {
-      content, footerLinks
-    }
+      content,
+      footerLinks,
+    },
   };
 }

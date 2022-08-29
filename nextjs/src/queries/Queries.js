@@ -31,15 +31,36 @@ export const PopularEpisodesQuery = groq`*[_type == "episode" && published == tr
 }[0...3]`;
 
 export const AllEpisodesQuery = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
-  _id,
-  title,
-  "cover": episodeCover.asset->url,
-  episodeNumber,
-  slug,
-  publishedAt,
-  briefDescription,
-  audioPath
-}`;
+    _id,
+    title,
+    "cover": episodeCover.asset->url,
+    guest[]->{
+      firstName,
+      lastName,
+      "avatar": avatar.asset->url,
+    },
+    episodeNumber,
+    slug,
+    publishedAt,
+    briefDescription,
+    audioPath
+  }`;
+
+export const RecentEpisodesQuery = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
+    _id,
+    title,
+    "cover": episodeCover.asset->url,
+    guest[]->{
+      firstName,
+      lastName,
+      "avatar": avatar.asset->url,
+    },
+    episodeNumber,
+    slug,
+    publishedAt,
+    briefDescription,
+    audioPath
+  }[0...4]`;
 
 export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match $email && published==true]{
   title,

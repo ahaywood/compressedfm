@@ -19,7 +19,7 @@ import { Breakpoints } from 'styles/Breakpoints';
 * COMPONENT
 ---------------------------------------------------- */
 const FeaturedEpisode = ({
-  episode: { audioPath, publishedAt, episodeNumber, slug, title, briefDescription, cover },
+  episode: { audioPath, guest, publishedAt, episodeNumber, slug, title, briefDescription, cover },
 }) => (
   <StyledFeaturedEpisode>
     <div className="episode-number-date__wrapper">
@@ -50,6 +50,18 @@ const FeaturedEpisode = ({
         <li>
           <Image src="/images/amy.png" height={60} width={60} alt="Amy Dutton" layout="intrinsic" />
         </li>
+        {guest &&
+          guest.map((one, index) => (
+            <li key={index}>
+              <Image
+                src={one.avatar}
+                height={60}
+                width={60}
+                alt={`${one.firstName} ${one.lastName}`}
+                layout="intrinsic"
+              />
+            </li>
+          ))}
       </ul>
     </div>
     <div className="audio-player">
@@ -63,11 +75,15 @@ FeaturedEpisode.propTypes = {
     audioPath: PropTypes.string,
     publishedAt: PropTypes.string,
     episodeNumber: PropTypes.number,
-    guest: PropTypes.any,
     slug: PropTypes.object,
     title: PropTypes.string,
     briefDescription: PropTypes.string,
     cover: PropTypes.string,
+    guest: PropTypes.shape({
+      avatar: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+    }),
   }),
 };
 
@@ -214,6 +230,11 @@ const StyledFeaturedEpisode = styled.section`
 
     li {
       margin-left: -10px;
+    }
+
+    img {
+      border-radius: 50%;
+      border: 1px solid white !important;
     }
   }
 

@@ -2,7 +2,6 @@ import React from "react"
 
 const contentPreview = ({ value }) => {
   const { sponsor } = value;
-  console.log(sponsor);
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center", borderBottom: "1px solid #dee2e9", height: "45px", padding: "6px 6px 6px 12px" }}>

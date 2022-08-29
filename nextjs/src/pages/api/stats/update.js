@@ -31,8 +31,8 @@ export const getStats = async (type = STAT_TYPES.DOWNLOADS) => {
     );
     const result = await res.json();
     return result;
-  } catch {
-    console.log('errors with downloads');
+  } catch (err) {
+    console.error(err);
   }
 };
 
@@ -82,7 +82,6 @@ export default async function handler(req, res) {
       }) // Shallow merge
       .commit() // Perform the patch and return a promise
       .then((updatedEpisode) => {
-        console.log('Hurray, the episode is updated! New document:');
         console.log(updatedEpisode);
       })
       .catch((err) => {

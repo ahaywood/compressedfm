@@ -18,7 +18,7 @@ const query = groq`*[_type == "sponsor" && published == true && publishedAt < no
   "logo": logo.asset->url,
   offer,
   offerLink,
-  about,
+  aboutText,
   founding,
 }`;
 

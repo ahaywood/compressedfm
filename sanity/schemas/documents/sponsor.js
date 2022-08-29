@@ -18,9 +18,9 @@ export default {
         source: 'title',
         maxLength: 200, // will be ignored if slugify is set
         slugify: input => input
-                            .toLowerCase()
-                            .replace(/\s+/g, '-')
-                            .slice(0, 200)
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .slice(0, 200)
       }
     },
     {
@@ -54,9 +54,9 @@ export default {
       })
     },
     {
-      name: 'about',
+      name: 'aboutText',
       title: 'About the Sponsor',
-      type: 'text',
+      type: 'blockContent',
     },
     {
       name: 'founding',

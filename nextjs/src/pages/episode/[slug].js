@@ -6,8 +6,7 @@ import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { IndividualEpisodePage } from 'modules/episodes/IndividualEpisodePage';
 
 // queries
-import { LegalQuery } from 'queries/Queries';
-import { AllEpisodesQuery } from '../episodes';
+import { AllEpisodesQuery, LegalQuery } from 'queries/Queries';
 
 export default function Episode({ episode, footerLinks }) {
   return (
@@ -50,7 +49,7 @@ const IndividualEpisodeQuery = groq`*[_type == "episode" && slug.current == $slu
     "logo": logo.asset->url,
     offer,
     offerLink,
-    about,
+    aboutText,
     founding,
   },
   timeJump,

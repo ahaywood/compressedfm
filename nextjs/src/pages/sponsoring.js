@@ -15,6 +15,6 @@ export default function Sponsoring({ footerLinks }) {
 export async function getServerSideProps() {
   const footerLinks = await client.fetch(LegalQuery);
   return {
-    props: { footerLinks }
-  }
+    props: { footerLinks },
+  };
 }

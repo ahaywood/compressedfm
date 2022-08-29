@@ -16,7 +16,7 @@ const TheHosts = () => (
       lastName="Q Quick"
       jobTitle="Fullstack Developer"
       largeBody="I'm a Fullstack Web Developer who is addicted to learning and loves working with people."
-      body="I’m a Developer Advocate at Auth0 and have over 7 years of experience in Advocacy and Software Development. In my spare time, I run a YouTube channel, play co-ed soccer with my wife, spend time with my dogs, and can solve a Rubik's cube in under a minute."
+      body="I’m a Staff Developer Advocate at PlanetScale and have over 7 years of experience in Advocacy and Software Development. In my spare time, I run a YouTube channel, play co-ed soccer with my wife, spend time with my dogs, and can solve a Rubik's cube in under a minute."
       twitter="http://twitter.com/jamesqquick"
       github="http://github.com/jamesqquick"
       youtube="http://youtube.com/jamesqquick"
