@@ -10,7 +10,7 @@ const client = sanityClient({
 });
 
 export const clientWithEdit = sanityClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  projectId: 'gqnsvyvh',
   dataset: 'production',
   apiVersion: '2021-03-25', // use current UTC date - see "specifying API version"!
   token: process.env.SANITY_WRITE_TOKEN, // or leave blank for unauthenticated usage
