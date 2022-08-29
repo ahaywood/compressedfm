@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useUser } from '@auth0/nextjs-auth0';
 import client from 'utils/client';
-import { guestQuery, sponsorQuery } from 'utils/queries';
+import { GuestQuery, sponsorQuery } from 'queries/Queries';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -30,7 +30,7 @@ const BtmNav = () => {
         const sponsor = await client.fetch(sponsorQuery, {
           email: user.email,
         });
-        const guest = await client.fetch(guestQuery, {
+        const guest = await client.fetch(GuestQuery, {
           email: user.email,
         });
         setSponsorSlug(sponsor.slug.current);
