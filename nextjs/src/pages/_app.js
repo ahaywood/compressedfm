@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   const { footerLinks, user } = pageProps;
 
   return (
-    <UserProvider user={user}>
+    <UserProvider>
       <ThemeProvider theme={Theme}>
         <Head>
           <title>Compressed.fm</title>
