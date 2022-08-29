@@ -1,7 +1,6 @@
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 import styled from 'styled-components';
-
 import { Faq } from './components/Faq';
 
 const AboutPage = ({ faqs }) => (
@@ -17,7 +16,6 @@ const AboutPage = ({ faqs }) => (
         />
       ))}
     <VerticalDivider />
-    {/* newsletter */}
     <Newsletter />
   </StyledAboutPage>
 );

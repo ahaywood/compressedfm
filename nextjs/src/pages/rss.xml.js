@@ -1,5 +1,5 @@
 import client from 'utils/client';
-import { AllEpisodesQuery } from 'utils/queries';
+import { AllEpisodesQuery } from 'queries/Queries';
 
 const website = 'https://compressed.fm';
 
