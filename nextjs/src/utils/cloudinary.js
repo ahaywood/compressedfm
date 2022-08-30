@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary').v2;
+import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -6,111 +6,29 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const wrapTitleWords = (title, maxLettersPerLine, maxLines) => {
-  if (title.length <= maxLettersPerLine) return [title];
-  let breakPoint = 0;
-  const lines = [];
-
-  for (let i = 0; i < title.length; i += 1) {
-    const letter = title[i];
-    console.log(i);
-    if (i - breakPoint >= maxLettersPerLine && letter === ' ') {
-      lines.push(title.slice(breakPoint, i));
-      breakPoint = i + 1;
-    }
-    if (lines.length === maxLines - 1 || i === title.length - 1) {
-      lines.push(title.slice(breakPoint));
-      console.log('break');
-      break;
-    }
-  }
-  return lines;
-};
-
-const generateGuestCoverURL = ({ title, guestName, guestImageName }) => {
-  const lines = wrapTitleWords(title, 16, 4);
-  console.log(lines);
-  const titleTexts = lines.map((line, i) => {
-    const crop = line.length < 12 ? 'fit' : 'scale';
-    const y = (lines.length * -20 + 60 + i * 60).toString();
-    return {
-      overlay: {
-        font_family: 'Montserrat',
-        font_size: 50,
-        font_weight: 900,
-        text: line,
-        text_align: 'center',
-      },
-      width: 500,
-      color: '#ffffff',
-      y,
-      x: '-210',
-      crop,
-    };
+const uploadAudio = async (audioPath, episodeNumber) => {
+  const audio = await cloudinary.uploader.upload(audioPath, {
+    public_id: episodeNumber,
+    resource_type: 'video',
+    upload_preset: 'compressedfm',
   });
-  console.log(titleTexts);
-  const [firstName, lastName] = guestName.split(' ');
-  const url = cloudinary.url('compressed/social-cover-base', {
-    transformation: [
-      ...titleTexts,
-      {
-        overlay: `compressed:${guestImageName}`,
-        height: '242',
-        width: '242',
-        y: '-50',
-        x: '65',
-        gravity: 'east',
-        radius: 'max',
-        crop: 'fill',
-        border: '4px_solid_rgb:ffffff',
-      },
-      {
-        overlay: {
-          font_family: 'Montserrat',
-          font_size: 50,
-          text: firstName,
-          font_weight: 900,
-          text_align: 'center',
-        },
-        color: '#faff00',
-        y: '120',
-        x: '315',
-        width: '325',
-        crop: 'scale',
-        gravity: 'center',
-      },
-      {
-        overlay: {
-          font_family: 'Montserrat',
-          font_size: 50,
-          text: lastName,
-          font_weight: 900,
-          text_align: 'center',
-        },
-        color: '#ffffff',
-        y: '190',
-        x: '315',
-        width: '325',
-        crop: 'scale',
-        gravity: 'center',
-      },
-    ],
+  const { public_id: publicId } = audio;
+  return publicId;
+};
+
+const uploadAudioFromEpisode = (episode) => uploadAudio(episode.audioPath, episode.episodeNumber);
+
+const getWaveformURLForAudio = (publicId) => {
+  const waveformURL = cloudinary.url(`${publicId}.png`, {
+    height: 200,
+    width: 500,
+    flags: 'waveform',
+    color: '#FAFF00',
+    background: 'black',
+    resource_type: 'video',
   });
-  return url;
+  const httpsUrl = waveformURL.replace('http', 'https');
+  return httpsUrl;
 };
 
-const uploadGuestProfilePicIfNotExists = async (guestName, guestImageURL) => {
-  console.log(`Uploading image for${guestName}`);
-  console.log(`Upload image from ${guestImageURL}`);
-  const guestImageName = guestName.replace(' ', '-');
-  try {
-    await cloudinary.uploader.upload(guestImageURL, {
-      public_id: `compressed/${guestImageName}`,
-    });
-    return guestImageName;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-module.exports = { cloudinary, uploadGuestProfilePicIfNotExists, generateGuestCoverURL };
+export { cloudinary, getWaveformURLForAudio, uploadAudioFromEpisode };

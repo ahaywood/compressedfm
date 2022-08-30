@@ -16,10 +16,10 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
-  const { user } = pageProps;
+  const { footerLinks, user } = pageProps;
 
   return (
-    <UserProvider user={user}>
+    <UserProvider>
       <ThemeProvider theme={Theme}>
         <Head>
           <title>Compressed.fm</title>
@@ -34,6 +34,9 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp;
 
+/** -------------------------------------------------
+* STYLES
+---------------------------------------------------- */
 const GlobalStyle = createGlobalStyle`
   /* DankMono */
   @font-face {

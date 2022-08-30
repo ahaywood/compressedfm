@@ -1,28 +1,20 @@
-import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
-import { SponsoringPage } from 'modules/sponsoring';
 import client from 'utils/client';
 import groq from 'groq';
+import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
+import { SponsoringPage } from 'modules/sponsoring';
+import { LegalQuery } from 'queries/Queries';
 
-export default function Sponsoring({ settings }) {
+export default function Sponsoring({ footerLinks }) {
   return (
-    <InteriorLayout>
-      <SponsoringPage settings={settings} />
+    <InteriorLayout footerLinks={footerLinks}>
+      <SponsoringPage />
     </InteriorLayout>
   );
 }
 
-const settingsQuery = groq`*[_type == "siteSettings"] {
-  SponsorshipOptions,
-  JamesSocialMedia,
-  AmySocialMedia
-}[0]`;
-
-// This function gets called at build time on server-side.
-export async function getStaticProps() {
-  const settings = await client.fetch(settingsQuery);
+export async function getServerSideProps() {
+  const footerLinks = await client.fetch(LegalQuery);
   return {
-    props: {
-      settings,
-    },
+    props: { footerLinks },
   };
 }

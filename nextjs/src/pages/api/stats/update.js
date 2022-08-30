@@ -1,16 +1,10 @@
 import sanityClient from '@sanity/client';
 import groq from 'groq';
 import { find } from 'lodash';
+import { clientWithEdit } from 'utils/client';
 
 // set the sanity client.
 // This is different than the normal Sanity client because it has read / write
-const client = sanityClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: 'production',
-  apiVersion: '2021-03-25', // use current UTC date - see "specifying API version"!
-  token: process.env.SANITY_WRITE_TOKEN, // or leave blank for unauthenticated usage
-  useCdn: false, // `false` if you want to ensure fresh data
-});
 
 const STAT_TYPES = {
   DOWNLOADS: 'episodes',
@@ -50,8 +44,7 @@ export default async function handler(req, res) {
   const listens = await getStats(STAT_TYPES.LISTENS);
 
   // 2. grab all episodes from sanity
-  const episodes = await client.fetch(AllEpisodesQuery);
-
+  const episodes = await clientWithEdit.fetch(AllEpisodesQuery);
   // 3. loop over each episode (from Sanity) and build a new object
   //    with downloads and listens
   const analytics = episodes.map((episode) => {
@@ -68,7 +61,7 @@ export default async function handler(req, res) {
 
   // 4. Update Sanity, saving the downloads and listens
   const updateSanity = async ({ episodeId, episodeDownloads, episodeListens }) => {
-    client
+    clientWithEdit
       .patch(episodeId) // Document ID to patch
       .set({
         episodeStats: {

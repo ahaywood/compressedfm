@@ -1,21 +1,23 @@
 import client from 'utils/client';
 import { EpisodePage } from 'modules/episodes';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
-import { AllEpisodesQuery } from 'utils/queries';
+import { LegalQuery, AllEpisodesQuery } from 'queries/Queries';
 
-export default function Episodes({ episodes }) {
+export default function Episodes({ episodes, footerLinks }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <EpisodePage episodes={episodes} />
     </InteriorLayout>
   );
 }
 
 export async function getStaticProps() {
+  const footerLinks = await client.fetch(LegalQuery);
   const episodes = await client.fetch(AllEpisodesQuery);
   return {
     props: {
       episodes,
+      footerLinks,
     },
   };
 }

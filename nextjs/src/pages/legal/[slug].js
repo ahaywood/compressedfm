@@ -2,10 +2,11 @@ import client from 'utils/client';
 import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { LegalPage } from 'modules/legal';
+import { LegalQuery } from '../../queries/Queries';
 
-export default function Legal({ legal }) {
+export default function Legal({ footerLinks, legal }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <LegalPage content={legal} />
     </InteriorLayout>
   );
@@ -37,10 +38,15 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
+
+  // page content
   const { slug } = params;
   const legal = await client.fetch(IndividualLegalQuery, { slug });
   return {
     props: {
+      footerLinks,
       legal,
     },
   };
