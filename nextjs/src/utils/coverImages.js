@@ -3,34 +3,36 @@ import { basename } from 'path';
 import { clientWithEdit, getGuestById, sanityImageBuilder } from './client';
 import { cloudinary } from './cloudinary';
 
-const wrapTitleWords = (title, maxLettersPerLine, maxLines) => {
-  if (title.length <= maxLettersPerLine) return [title];
-  let breakPoint = 0;
-  const lines = [];
+const wrapText = (text, maxLettersPerLine) => {
+  if (text.length <= maxLettersPerLine) return [text];
 
-  for (let i = 0; i < title.length; i += 1) {
-    const letter = title[i];
-    if (i - breakPoint >= maxLettersPerLine && letter === ' ') {
-      lines.push(title.slice(breakPoint, i));
-      breakPoint = i + 1;
+  const lines = [];
+  let currentLine = '';
+  const words = text.split(' ');
+
+  words.forEach((word, i) => {
+    if (currentLine.length + word.length > maxLettersPerLine) {
+      lines.push(currentLine);
+      currentLine = word;
+    } else {
+      currentLine += ` ${word}`;
     }
-    if (lines.length === maxLines - 1 || i === title.length - 1) {
-      lines.push(title.slice(breakPoint));
-      break;
+    if (i === words.length - 1) {
+      lines.push(currentLine.trim());
     }
-  }
+  });
+
   return lines;
 };
 
 const getWrappedTitleTextTransformations = (title) => {
-  const lines = wrapTitleWords(title, 16, 4);
+  const lines = wrapText(title, 24);
   return lines.map((line, i) => {
-    const crop = line.length < 12 ? 'fit' : 'scale';
     const y = (lines.length * -20 + 60 + i * 60).toString();
     return {
       overlay: {
         font_family: 'Montserrat',
-        font_size: 50,
+        font_size: 40,
         font_weight: 900,
         text: line,
         text_align: 'center',
@@ -39,7 +41,7 @@ const getWrappedTitleTextTransformations = (title) => {
       color: '#ffffff',
       y,
       x: '-210',
-      crop,
+      crop: 'fit',
     };
   });
 };
