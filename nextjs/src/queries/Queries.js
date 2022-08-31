@@ -60,7 +60,7 @@ export const RecentEpisodesQuery = groq`*[_type == "episode" && published == tru
     publishedAt,
     briefDescription,
     audioPath
-  }[0...4]`;
+  }[0...5]`;
 
 export const sponsorQuery = groq`*[_type == "sponsor" && associatedEmails match $email && published==true]{
   title,

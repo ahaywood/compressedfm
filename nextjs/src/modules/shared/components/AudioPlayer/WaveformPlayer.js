@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 // styles
@@ -17,7 +17,14 @@ import { useAudioPlayer } from './hooks/AudioPlayer';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const WaveformPlayer = ({ artwork = '/images/podcast-cover.jpg', audioPath, episodeNumber, episodeTitle }) => {
+const WaveformPlayer = ({
+  artwork = '/images/podcast-cover.jpg',
+  audioPath,
+  episodeNumber,
+  episodeTitle,
+  skipTo,
+  play = false,
+}) => {
   // references
   const audioPlayer = useRef(); // set up reference for the audio component
   const progressBar = useRef(); // reference for the progress bar
@@ -32,20 +39,24 @@ const WaveformPlayer = ({ artwork = '/images/podcast-cover.jpg', audioPath, epis
     forwardThirty,
     isPlaying,
     onLoadedMetadata,
-    // skipToTime,
+    skipToTime,
     speed,
     tapSpaceBar,
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
 
-  // useEffect(() => {
-  //   skipToTime(skipTo);
-  // }, [skipTo]);
+  useEffect(() => {
+    skipToTime(skipTo);
+    if (play && !isPlaying) {
+      togglePlaying();
+    }
+    //! removing skipToTime as a dependency is causing unnecessary re-renders
+  }, [skipTo, play]);
 
   return (
     <StyledFeaturedAudioPlayer>
       {/* audio element */}
-      <audio ref={audioPlayer} src={audioPath} preload="metadata" onLoadedMetadata={onLoadedMetadata} />
+      <audio ref={audioPlayer} src={audioPath} preload="metadata" />
 
       {/* album cover */}
       <div className="album-cover">
@@ -112,14 +123,16 @@ WaveformPlayer.propTypes = {
   audioPath: PropTypes.string,
   episodeNumber: PropTypes.number,
   episodeTitle: PropTypes.string,
-  // skipTo: PropTypes.number,
+  skipTo: PropTypes.number,
+  play: PropTypes.bool,
 };
 
 WaveformPlayer.defaultProps = {
   audioPath: '',
   episodeNumber: '',
   episodeTitle: '',
-  // skipTo: 0,
+  skipTo: 0,
+  play: false,
 };
 
 /** -------------------------------------------------

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Breakpoints } from 'styles/Breakpoints';
@@ -34,11 +35,32 @@ const IndividualEpisodePage = ({
 }) => {
   // state
   const [skipTo, setSkipTo] = useState(null);
+  const [play, setPlay] = useState(false);
+  const router = useRouter();
 
   // jump to a specific time on the waveform player
   const skipToTimestamp = (time) => {
+    console.log(time);
     setSkipTo(time);
   };
+
+  const skipToJumpLinkTimestamp = (time) => {
+    skipToTimestamp(time);
+    setPlay(true);
+  };
+
+  useEffect(() => {
+    const UrlParams = router.query;
+    const timeStr = UrlParams.time;
+    const time = Number(timeStr);
+
+    if (!Number.isNaN(time)) {
+      console.log('Set skip time');
+      skipToTimestamp(time);
+    } else {
+      skipToTimestamp(0);
+    }
+  }, [router]);
 
   return (
     <StyledIndividualEpisodePage>
@@ -56,6 +78,7 @@ const IndividualEpisodePage = ({
           audioPath={audioPath}
           episodeNumber={episodeNumber}
           skipTo={skipTo}
+          play={play}
         />
       </div>
       <VerticalDivider />
@@ -67,7 +90,9 @@ const IndividualEpisodePage = ({
 
           <div className="time-links">
             {/* TIME JUMP LINKS */}
-            {timeJump && <JumpLinks className="jump-links time" timeJump={timeJump} handleClick={skipToTimestamp} />}
+            {timeJump && (
+              <JumpLinks className="jump-links time" timeJump={timeJump} skipToTimestamp={skipToJumpLinkTimestamp} />
+            )}
 
             {/* SHOW LINKS */}
             {listLink && <Links listLink={listLink} className="links" />}

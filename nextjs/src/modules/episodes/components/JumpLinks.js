@@ -9,10 +9,10 @@ import { MixinBodyCopy, MixinHeading } from 'styles/Typography';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const JumpLinks = ({ className, timeJump, handleClick }) => {
-  const onClick = (e, time) => {
+const JumpLinks = ({ className, timeJump, skipToTimestamp }) => {
+  const handleClick = (e, time) => {
     e.preventDefault();
-    handleClick(time);
+    skipToTimestamp(Number(time));
   };
 
   return (
@@ -22,7 +22,7 @@ const JumpLinks = ({ className, timeJump, handleClick }) => {
         {timeJump &&
           timeJump.map((one) => (
             <li key={one._key}>
-              <button type="button" onClick={(e) => onClick(e, one.time)}>
+              <button type="button" onClick={(e) => handleClick(e, one.time)}>
                 <div className="time-code">{calculateTime(one.time)}</div>
                 <div className="description">{one.description}</div>
               </button>

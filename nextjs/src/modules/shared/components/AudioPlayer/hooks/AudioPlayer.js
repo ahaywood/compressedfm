@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export const useAudioPlayer = (audioRef, progressBarRef) => {
   const [speed, setSpeed] = useState(1);
@@ -9,9 +9,15 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
 
   const onLoadedMetadata = () => {
     const seconds = Math.floor(audioRef.current.duration);
-    setDuration(seconds);
-    progressBarRef.current.max = seconds;
+    if (!Number.isNaN(seconds)) {
+      setDuration(seconds);
+      progressBarRef.current.max = seconds;
+    }
   };
+
+  useEffect(() => {
+    onLoadedMetadata();
+  }, [audioRef?.current?.loadedmetadata, audioRef?.current?.readyState]);
 
   // when the playhead is moved, update the current time (text)
   const updateCurrentTime = () => {
@@ -112,9 +118,11 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     timeTravel(Number(progressBarRef.current.value) + 30);
   };
 
-  const skipToTime = (newTime) => {
+  const skipToTime = (newTime, autoPlay) => {
     timeTravel(newTime);
-    play();
+    if (autoPlay) {
+      play();
+    }
   };
 
   // toggle play / pause when you tap the space bar
