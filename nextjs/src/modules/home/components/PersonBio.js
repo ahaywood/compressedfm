@@ -1,8 +1,13 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/Typography';
+
+// components
 import { SocialMedia } from 'modules/shared/components/SocialMedia';
+
+// styles
+import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/Typography';
+import { Breakpoints } from 'styles/Breakpoints';
 
 const PersonBio = ({
   className,
@@ -81,8 +86,15 @@ const StyledPersonBio = styled.section`
 
   .meta {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-top: 60px;
     width: 100%;
+
+    @media (${Breakpoints.small}) {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
   }
 
   .avatar {
@@ -117,8 +129,14 @@ const StyledPersonBio = styled.section`
 
   .title {
     font-style: normal;
-    margin-left: -40px;
-    padding: 7px 40px;
+    margin-bottom: 10px;
+    padding: 7px;
+
+    @media (${Breakpoints.medium}) {
+      margin-bottom: 0;
+      margin-left: -40px;
+      padding: 7px 40px;
+    }
   }
 
   .large-body-copy {

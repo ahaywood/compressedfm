@@ -30,9 +30,9 @@ const MixinBodyCopy = css`
 const MixinLargeBodyCopy = css`
   color: ${(props) => props.theme.white};
   font-family: ${(props) => props.theme.sansSerif};
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: ${(props) => props.theme.fontBold};
-  line-height: 1.2;
+  line-height: 1.4;
 
   @media (${Breakpoints.portrait}) {
     font-size: 2.8rem;
@@ -46,13 +46,17 @@ const MixinSectionHeading = css`
   display: inline-block;
   font-family: ${(props) => props.theme.mono};
   font-weight: ${(props) => props.theme.fontNormal};
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-style: italic;
   letter-spacing: 0.2rem;
   margin: 0 auto;
   padding: 20px 48px;
   position: relative;
   text-transform: uppercase;
+
+  @media (${Breakpoints.medium}) {
+    font-size: 2.4rem;
+  }
 `;
 
 const MixinHeading = css`
@@ -68,13 +72,14 @@ const MixinHeading = css`
 const MixinPageTitle = css`
   font-family: ${(props) => props.theme.sansSerif};
   font-weight: ${(props) => props.theme.fontBlack};
-  font-size: 4.8rem;
-  line-height: 1;
+  font-size: 3.8rem;
+  line-height: 1.2;
   margin: 0 ${(props) => props.theme.mobilePadding} 40px;
   text-align: center;
 
   @media (${Breakpoints.portrait}) {
     font-size: 8.5rem;
+    line-height: 1;
     margin: 0 auto 70px;
     max-width: 80%;
   }

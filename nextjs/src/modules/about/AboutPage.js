@@ -1,10 +1,9 @@
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 import styled from 'styled-components';
-
 import { Faq } from './components/Faq';
 
-const AboutPage = ({ faqs, gettingStarted, mostPopular }) => (
+const AboutPage = ({ faqs }) => (
   <StyledAboutPage>
     About Page
     {/* frequently asked questions */}
@@ -17,7 +16,6 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular }) => (
         />
       ))}
     <VerticalDivider />
-    {/* newsletter */}
     <Newsletter />
   </StyledAboutPage>
 );

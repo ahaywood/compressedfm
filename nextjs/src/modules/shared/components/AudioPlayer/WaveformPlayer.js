@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 // styles
@@ -17,7 +17,14 @@ import { useAudioPlayer } from './hooks/AudioPlayer';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
+const WaveformPlayer = ({
+  artwork = '/images/podcast-cover.jpg',
+  audioPath,
+  episodeNumber,
+  episodeTitle,
+  skipTo,
+  play = false,
+}) => {
   // references
   const audioPlayer = useRef(); // set up reference for the audio component
   const progressBar = useRef(); // reference for the progress bar
@@ -39,8 +46,16 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
   } = useAudioPlayer(audioPlayer, progressBar);
 
   useEffect(() => {
+    console.log('Audio player ref changed');
+  }, [audioPlayer]);
+
+  useEffect(() => {
     skipToTime(skipTo);
-  }, [skipToTime, skipTo]);
+    if (play && !isPlaying) {
+      togglePlaying();
+    }
+    //! removing skipToTime as a dependency is causing unnecessary re-renders
+  }, [skipTo, play]);
 
   return (
     <StyledFeaturedAudioPlayer>
@@ -49,7 +64,7 @@ const WaveformPlayer = ({ audioPath, episodeNumber, episodeTitle, skipTo }) => {
 
       {/* album cover */}
       <div className="album-cover">
-        <img src="/images/placeholder__cover.png" alt="Episode Cover" />
+        <img src={artwork} alt="Episode Cover" />
       </div>
 
       {/* episode meta data */}
@@ -113,6 +128,7 @@ WaveformPlayer.propTypes = {
   episodeNumber: PropTypes.number,
   episodeTitle: PropTypes.string,
   skipTo: PropTypes.number,
+  play: PropTypes.bool,
 };
 
 WaveformPlayer.defaultProps = {
@@ -120,6 +136,7 @@ WaveformPlayer.defaultProps = {
   episodeNumber: '',
   episodeTitle: '',
   skipTo: 0,
+  play: false,
 };
 
 /** -------------------------------------------------

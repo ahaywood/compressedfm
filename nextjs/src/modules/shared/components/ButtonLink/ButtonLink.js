@@ -8,9 +8,9 @@ import { Icon } from 'modules/shared/components/Icon';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const ButtonLink = ({ href, label }) => (
-  <Link href={href}>
-    <StyledButtonLink>
+const ButtonLink = ({ className, href, label }) => (
+  <Link href={href} passHref>
+    <StyledButtonLink className={className}>
       {label}
       <Icon name="arrow" />
     </StyledButtonLink>
@@ -18,12 +18,13 @@ const ButtonLink = ({ href, label }) => (
 );
 
 ButtonLink.propTypes = {
-  href: PropTypes.string,
+  className: PropTypes.string,
+  href: PropTypes.string.isRequired,
   label: PropTypes.string,
 };
 
 ButtonLink.defaultProps = {
-  href: '',
+  className: '',
   label: 'Submit',
 };
 
@@ -31,8 +32,14 @@ ButtonLink.defaultProps = {
 * STYLES
 ---------------------------------------------------- */
 const StyledButtonLink = styled.a`
+  --primary: ${(props) => props.theme.yellow};
+
+  &.alt {
+    --primary: ${(props) => props.theme.white};
+  }
+
   align-items: center;
-  background: ${(props) => props.theme.yellow};
+  background: var(--primary);
   border: none;
   bottom: 10px;
   color: ${(props) => props.theme.black};
@@ -57,7 +64,7 @@ const StyledButtonLink = styled.a`
   }
 
   &:before {
-    border: 2px solid ${(props) => props.theme.yellow};
+    border: 2px solid var(--primary);
     content: '';
     display: block;
     height: 100%;

@@ -75,6 +75,7 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
         break;
       case 2:
       default:
+        audioRef.current.playbackRate = 1;
         setSpeed(1);
         break;
     }
@@ -115,9 +116,11 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
     timeTravel(Number(progressBarRef.current.value) + 30);
   };
 
-  const skipToTime = (newTime) => {
+  const skipToTime = (newTime, autoPlay) => {
     timeTravel(newTime);
-    play();
+    if (autoPlay) {
+      play();
+    }
   };
 
   // toggle play / pause when you tap the space bar

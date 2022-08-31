@@ -1,30 +1,21 @@
 import client from 'utils/client';
-import groq from 'groq';
 import { HomePage } from 'modules/home';
 import { HomeLayout } from 'modules/shared/layouts/HomeLayout';
+import { LegalQuery, RecentEpisodesQuery } from 'queries/Queries';
 
-export default function Home({episodes}) {
+export default function Home({ episodes, footerLinks }) {
   return (
-    <HomeLayout>
+    <HomeLayout footerLinks={footerLinks}>
       <HomePage episodes={episodes} />
     </HomeLayout>
   );
 }
 
-const query = groq`*[_type == "episode" && published == true] | order(episodeNumber desc) {
-  _id,
-  title,
-  episodeNumber,
-  episodeCover,
-  slug,
-  publishedAt,
-  briefDescription,
-  audioPath
-}[0...4]`;
+export async function getServerSideProps() {
+  const episodes = await client.fetch(RecentEpisodesQuery);
 
-export async function getServerSideProps(){
-  const episodes =  await client.fetch(query);
+  const footerLinks = await client.fetch(LegalQuery);
   return {
-    props: {episodes}
-  }
+    props: { episodes, footerLinks },
+  };
 }

@@ -31,6 +31,9 @@ import linkList from './objects/linkList'
 import meta from './objects/meta'
 import newsletterPagination from './objects/newsletterPagination'
 import socialMedia from './objects/socialMedia'
+import socialMediaWithMetrics from './objects/socialMediaWithMetrics'
+import sponsorshipOptions from './objects/sponsorshipOptions'
+import sponsorTimecode from './objects/sponsorTimecode'
 import stat from './objects/stat'
 import timeJump from './objects/timeJump'
 import transcript from './objects/transcript'
@@ -67,6 +70,9 @@ export default createSchema({
     newsletterPagination,
     stat,
     socialMedia,
+    socialMediaWithMetrics,
+    sponsorshipOptions,
+    sponsorTimecode,
     timeJump,
     transcript,
 

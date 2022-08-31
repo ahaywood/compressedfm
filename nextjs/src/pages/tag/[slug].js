@@ -1,19 +1,18 @@
-import { getClient } from 'lib/sanity.server';
+import client from 'utils/client';
 import groq from 'groq';
 import { TagPage } from 'modules/tag';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
+import { LegalQuery } from 'queries/Queries';
 
-export default function Tag(props) {
-  console.log('inside page/tag');
-  console.log(props);
+export default function Tag({ content, footerLinks }) {
   return (
-    <InteriorLayout>
-      <TagPage content={props} />
+    <InteriorLayout footerLinks={footerLinks}>
+      <TagPage content={content} />
     </InteriorLayout>
   );
 }
 
-const queryContent = groq`*[_type == "category" && slug.current == $slug ] {
+const TagsQuery = groq`*[_type == "category" && slug.current == $slug ] {
   _id,
   title,
   description,
@@ -28,23 +27,17 @@ const queryContent = groq`*[_type == "category" && slug.current == $slug ] {
   }
 }[0]`;
 
-const queryCategories = groq`*[_type == "category"] {_id, title, slug}`;
+export async function getServerSideProps(context) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
 
-export async function getStaticPaths() {
-  const allCategories = await getClient().fetch(queryCategories);
-
-  const paths = allCategories.map((category) => ({
-    params: { slug: category.slug.current },
-  }));
-
+  // tags content
+  const { slug = '' } = context.query;
+  const content = await client.fetch(TagsQuery, { slug });
   return {
-    paths,
-    fallback: false,
+    props: {
+      content,
+      footerLinks,
+    },
   };
-}
-
-export async function getServerSideProps({ params }) {
-  const post = await getClient().fetch(queryContent, { slug: params.slug });
-  // pass post data to the page via props
-  return { props: { post } };
 }

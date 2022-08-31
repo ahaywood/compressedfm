@@ -41,15 +41,15 @@ const Faq = ({ question, answer }) => {
     <StyledFaq className={isToggled ? 'open' : 'closed'}>
       <div className="icon">
         <motion.div transition={transition} animate={isToggled ? 'open' : 'closed'} variants={iconVariants}>
-          <a href="#" onClick={toggle}>
+          <button href="#" onClick={toggle} type="button">
             <Icon name="plus" />
-          </a>
+          </button>
         </motion.div>
       </div>
       <div className="content">
-        <a href="#" className="question" onClick={toggle}>
+        <button href="#" className="question" onClick={toggle} type="button">
           {question}
-        </a>
+        </button>
         <motion.div
           transition={transition}
           className="answer"
@@ -69,6 +69,16 @@ const Faq = ({ question, answer }) => {
 const StyledFaq = styled.div`
   display: flex;
   padding-bottom: 60px;
+
+  .icon button,
+  .content button {
+    border: none;
+    background: none;
+  }
+
+  .icon button {
+    color: ${(props) => props.theme.yellow};
+  }
 
   .icon {
     margin-right: 10px;

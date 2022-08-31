@@ -58,6 +58,21 @@ export default {
       name: 'bio',
       type: 'array',
       of: [{ type: 'block' }]
-    }
+    },
+    {
+      title: 'Company',
+      name: 'company',
+      type: 'string'
+    },
+    {
+      title: 'Company Logo',
+      name: 'companyLogo',
+      type: 'image'
+    },
+    {
+      title: 'Special Projects',
+      name: 'specialProjects',
+      type: 'string'
+    },
   ]
 };

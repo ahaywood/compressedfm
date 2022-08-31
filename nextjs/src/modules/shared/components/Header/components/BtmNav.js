@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useUser } from '@auth0/nextjs-auth0';
 import client from 'utils/client';
-import { guestQuery, sponsorQuery } from 'utils/queries';
+import { GuestQuery, sponsorQuery } from 'queries/Queries';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -12,6 +12,7 @@ import { guestQuery, sponsorQuery } from 'utils/queries';
 const BtmNav = () => {
   const { user } = useUser();
   const [isSponsor, setIsSponsor] = useState(false);
+  const [sponsorSlug, setSponsorSlug] = useState();
   const [isGuest, setIsGuest] = useState(false);
 
   const router = useRouter();
@@ -27,9 +28,10 @@ const BtmNav = () => {
         const sponsor = await client.fetch(sponsorQuery, {
           email: user.email,
         });
-        const guest = await client.fetch(guestQuery, {
+        const guest = await client.fetch(GuestQuery, {
           email: user.email,
         });
+        setSponsorSlug(sponsor.slug.current);
         setIsSponsor(!!sponsor);
         setIsGuest(!!guest);
       }
@@ -40,35 +42,36 @@ const BtmNav = () => {
   return (
     <StyledBtmNav>
       <ul className={currentPage || 'home'}>
-        <li className="press-kit">
+        {/* <li className="press-kit">
           <Link href="/press-kit">
             <a>Press Kit</a>
           </Link>
-        </li>
-        {!isSponsor && (
+        </li> */}
+        {/* {!isSponsor && (
           <li className="sponsoring">
             <Link href="/sponsoring">
               <a>Sponsoring</a>
             </Link>
           </li>
-        )}
+        )} */}
 
         {isSponsor && (
           <li className="sponsor-dashboard">
-            <Link href="/dashboard/sponsor">
-              <a>Sponsor Dashboard</a>
+            <Link href={`/dashboard/sponsors/${sponsorSlug}`}>
+              <a>Dashboard</a>
             </Link>
           </li>
         )}
 
         {isGuest && (
           <li className="guest-dashboard">
-            <Link href="/dashboard/guest">
-              <a>Guest Dashboard</a>
+            <Link href="/dashboard/guests">
+              <a>Dashboard</a>
             </Link>
           </li>
         )}
 
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <li className="login">{user ? <a href="/api/auth/logout">Logout</a> : <a href="/api/auth/login">Login</a>}</li>
       </ul>
     </StyledBtmNav>

@@ -15,30 +15,27 @@ import { NewsletterPagination } from './components/NewsletterPagination';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const IndividualNewsletterPage = ({ dateSent, subject, content, meta, pagination }) => {
-  console.log(pagination);
-  return (
-    <StyledIndividualNewsletterPage>
-      <Head>
-        <title>{subject} || Compressed.fm</title>
-        {meta && <Meta meta={meta} />}
-      </Head>
+const IndividualNewsletterPage = ({ dateSent, subject, content, meta, pagination }) => (
+  <StyledIndividualNewsletterPage>
+    <Head>
+      <title>{subject} || Compressed.fm</title>
+      {meta && <Meta meta={meta} />}
+    </Head>
 
-      <h3 className="sent-date">Sent {formatShortDate(dateSent)}</h3>
-      <h1 className="page-title">{subject}</h1>
-      <main>
-        <BlockContent blocks={content} serializers={serializers} />
-      </main>
+    <h3 className="sent-date">Sent {formatShortDate(dateSent)}</h3>
+    <h1 className="page-title">{subject}</h1>
+    <main>
+      <BlockContent blocks={content} serializers={serializers} />
+    </main>
 
-      {/* pagination */}
-      <NewsletterPagination pagination={pagination} />
+    {/* pagination */}
+    <NewsletterPagination pagination={pagination} />
 
-      <VerticalDivider />
+    <VerticalDivider />
 
-      <Newsletter />
-    </StyledIndividualNewsletterPage>
-  );
-};
+    <Newsletter />
+  </StyledIndividualNewsletterPage>
+);
 
 IndividualNewsletterPage.propTypes = {
   dateSent: PropTypes.string,

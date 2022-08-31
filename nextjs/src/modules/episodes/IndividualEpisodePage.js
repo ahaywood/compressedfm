@@ -10,7 +10,6 @@ import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { WaveformPlayer } from 'modules/shared/components/AudioPlayer/WaveformPlayer';
 import { EpisodeSummary } from './components/EpisodeSummary';
-import { FullTranscript } from './components/FullTranscript';
 import { Guest } from './components/Guest';
 import { JumpLinks } from './components/JumpLinks';
 import { Links } from './components/Links';
@@ -23,8 +22,8 @@ const IndividualEpisodePage = ({
   episode: {
     audioPath,
     briefDescription,
+    episodeCover,
     episodeNumber,
-    episodeTranscript,
     guest,
     listLink,
     publishedAt,
@@ -36,17 +35,32 @@ const IndividualEpisodePage = ({
 }) => {
   // state
   const [skipTo, setSkipTo] = useState(null);
+  const [play, setPlay] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    const UrlParams = router.query;
-    skipToTimestamp(UrlParams.time);
-  }, [router]);
 
   // jump to a specific time on the waveform player
   const skipToTimestamp = (time) => {
+    console.log(time);
     setSkipTo(time);
   };
+
+  const skipToJumpLinkTimestamp = (time) => {
+    skipToTimestamp(time);
+    setPlay(true);
+  };
+
+  useEffect(() => {
+    const UrlParams = router.query;
+    const timeStr = UrlParams.time;
+    const time = Number(timeStr);
+
+    if (!Number.isNaN(time)) {
+      console.log('Set skip time');
+      skipToTimestamp(time);
+    } else {
+      skipToTimestamp(0);
+    }
+  }, [router]);
 
   return (
     <StyledIndividualEpisodePage>
@@ -58,7 +72,14 @@ const IndividualEpisodePage = ({
         publishedAt={publishedAt}
       />
       <div className="audio-player">
-        <WaveformPlayer episodeTitle={title} audioPath={audioPath} episodeNumber={episodeNumber} skipTo={skipTo} />
+        <WaveformPlayer
+          artwork={episodeCover.asset.url}
+          episodeTitle={title}
+          audioPath={audioPath}
+          episodeNumber={episodeNumber}
+          skipTo={skipTo}
+          play={play}
+        />
       </div>
       <VerticalDivider />
 
@@ -70,7 +91,7 @@ const IndividualEpisodePage = ({
           <div className="time-links">
             {/* TIME JUMP LINKS */}
             {timeJump && (
-              <JumpLinks className="jump-links time" timeJump={timeJump} skipToTimestamp={skipToTimestamp} />
+              <JumpLinks className="jump-links time" timeJump={timeJump} skipToTimestamp={skipToJumpLinkTimestamp} />
             )}
 
             {/* SHOW LINKS */}
