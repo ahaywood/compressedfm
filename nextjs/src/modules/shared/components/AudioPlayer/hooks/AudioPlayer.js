@@ -9,8 +9,10 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
 
   const onLoadedMetadata = () => {
     const seconds = Math.floor(audioRef.current.duration);
-    setDuration(seconds);
-    progressBarRef.current.max = seconds;
+    if (!Number.isNaN(seconds)) {
+      setDuration(seconds);
+      progressBarRef.current.max = seconds;
+    }
   };
 
   useEffect(() => {

@@ -46,10 +46,6 @@ const WaveformPlayer = ({
   } = useAudioPlayer(audioPlayer, progressBar);
 
   useEffect(() => {
-    console.log('Audio player ref changed');
-  }, [audioPlayer]);
-
-  useEffect(() => {
     skipToTime(skipTo);
     if (play && !isPlaying) {
       togglePlaying();
