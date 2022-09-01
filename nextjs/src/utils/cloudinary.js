@@ -16,8 +16,6 @@ const uploadAudio = async (audioPath, episodeNumber) => {
   return publicId;
 };
 
-const uploadAudioFromEpisode = (episode) => uploadAudio(episode.audioPath, episode.episodeNumber);
-
 const getWaveformURLForAudio = (publicId) => {
   const waveformURL = cloudinary.url(`${publicId}.png`, {
     height: 200,
@@ -31,4 +29,4 @@ const getWaveformURLForAudio = (publicId) => {
   return httpsUrl;
 };
 
-export { cloudinary, getWaveformURLForAudio, uploadAudioFromEpisode };
+export { cloudinary, getWaveformURLForAudio, uploadAudio };
