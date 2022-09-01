@@ -118,26 +118,12 @@ const generateGuestCoverURL = async ({ title, guestName, guestImageURL }) => {
   return url;
 };
 
-const uploadSocialPromoImage = async (episode, imageUrl) => {
-  const socialPromoImage = await clientWithEdit.assets.upload('image', request(imageUrl), {
-    filename: basename(imageUrl),
-  });
-  episode.socialCover = {
-    _type: 'image',
-    asset: {
-      _ref: socialPromoImage._id,
-      _type: 'reference',
-    },
-  };
-  return await clientWithEdit.patch(episode._id).set(episode).commit();
-};
-
-const generateAndUploadGuestSocialPromo = async (episode) => {
+const generateSocialCoverUrl = async (episode) => {
   const { _ref: guestId } = episode.guest[0];
   const { avatar, title: guestName } = await getGuestById(guestId);
   const guestImageURL = sanityImageBuilder.image(avatar).url();
   const imageUrl = await generateGuestCoverURL({ title: episode.title, guestName, guestImageURL });
-  await uploadSocialPromoImage(episode, imageUrl);
+  return imageUrl;
 };
 
-export { generateAndUploadGuestSocialPromo };
+export { generateSocialCoverUrl };

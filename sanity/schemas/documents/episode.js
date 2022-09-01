@@ -82,12 +82,10 @@ export default {
       },
     },
     {
-      name: 'socialCover',
-      title: 'Social Cover',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      name: 'socialCoverUrl',
+      title: 'Social Cover URL',
+      description: 'URL for the social cover image stored in Cloudinary',
+      type: 'string',
     },
     {
       name: 'briefDescription',
@@ -107,10 +105,10 @@ export default {
       description: 'Unique ID used for grabbing stats',
     },
     {
-      name: 'waveform',
-      title: 'Waveform',
-      type: 'image',
-      description: 'Recommended Dimensions',
+      name: 'waveformUrl',
+      title: 'Waveform URL',
+      type: 'string',
+      description: 'URL of the waveform in Cloudinary',
     },
     {
       name: 'categories',
@@ -180,6 +178,14 @@ export default {
       title: 'Lead Magnet',
       description: 'PDF',
       type: 'file',
+    },
+    {
+      name: 'automationFailed',
+      title: 'Automation Failed',
+      description:
+        'Set to true if an automation failed to prevent infinite updates. You can manually set this back to false to have automation start again',
+      type: 'boolean',
+      default: false,
     },
   ],
 

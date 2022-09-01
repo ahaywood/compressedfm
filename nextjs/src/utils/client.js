@@ -23,26 +23,7 @@ export const clientWithEdit = sanityClient({
 
 export const sanityImageBuilder = imageUrlBuilder(client);
 
-export const addWaveformToEpisode = async (episodeId, waveformURL) => {
-  console.log('🚀 ~ file: client.js ~ line 27 ~ addWaveformToEpisode ~ waveformURL', waveformURL);
-  const uploadedWaveformImage = await clientWithEdit.assets.upload('image', request(waveformURL), {
-    filename: basename(`episode-${episodeId}-waveform`),
-  });
-  // update episode with waveformURL
-  const updatedEpisode = await clientWithEdit
-    .patch(episodeId)
-    .set({
-      waveform: {
-        _type: 'image',
-        asset: {
-          _ref: uploadedWaveformImage._id,
-          _type: 'reference',
-        },
-      },
-    })
-    .commit();
-  return updatedEpisode;
-};
+export const updateEpisode = (episodeId, changes) => clientWithEdit.patch(episodeId).set(changes).commit();
 
 export const getGuestById = async (id) => {
   const guest = await client.getDocument(id);
