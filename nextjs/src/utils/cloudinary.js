@@ -1,4 +1,5 @@
-const cloudinary = require('cloudinary').v2;
+import { v2 as cloudinary } from 'cloudinary';
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -11,11 +12,9 @@ const uploadAudio = async (audioPath, episodeNumber) => {
     resource_type: 'video',
     upload_preset: 'compressedfm',
   });
-  const { public_id } = audio;
-  return public_id;
+  const { public_id: publicId } = audio;
+  return publicId;
 };
-
-const uploadAudioFromEpisode = (episode) => uploadAudio(episode.audioPath, episode.episodeNumber);
 
 const getWaveformURLForAudio = (publicId) => {
   const waveformURL = cloudinary.url(`${publicId}.png`, {
@@ -26,7 +25,8 @@ const getWaveformURLForAudio = (publicId) => {
     background: 'black',
     resource_type: 'video',
   });
-  return waveformURL;
+  const httpsUrl = waveformURL.replace('http', 'https');
+  return httpsUrl;
 };
 
-export { getWaveformURLForAudio, uploadAudioFromEpisode };
+export { cloudinary, getWaveformURLForAudio, uploadAudio };

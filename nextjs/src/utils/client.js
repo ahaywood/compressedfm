@@ -1,5 +1,6 @@
 // client.js
 import sanityClient from '@sanity/client';
+import imageUrlBuilder from '@sanity/image-url';
 
 const client = sanityClient({
   projectId: 'gqnsvyvh', // you can find this in sanity.json
@@ -8,6 +9,7 @@ const client = sanityClient({
   useCdn: false, // `false` if you want to ensure fresh data
   token: process.env.SANITY_TOKEN,
 });
+export default client;
 
 export const clientWithEdit = sanityClient({
   projectId: 'gqnsvyvh',
@@ -16,4 +18,12 @@ export const clientWithEdit = sanityClient({
   token: process.env.SANITY_WRITE_TOKEN, // or leave blank for unauthenticated usage
   useCdn: false, // `false` if you want to ensure fresh data
 });
-export default client;
+
+export const sanityImageBuilder = imageUrlBuilder(client);
+
+export const updateEpisode = (episodeId, changes) => clientWithEdit.patch(episodeId).set(changes).commit();
+
+export const getGuestById = async (id) => {
+  const guest = await client.getDocument(id);
+  return guest;
+};
