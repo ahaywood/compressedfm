@@ -47,7 +47,7 @@ export default async (req, res) => {
     } else {
       console.info(`No changes were made to episode ${title}`);
     }
-    return res.status(200).json({ msg: 'Updated appropriate information successfully' });
+    return res.status(200).json({ msg: 'Updated appropriate information successfully', updates: episodeUpdates });
   } catch (err) {
     console.error(err);
     episodeUpdates.automationFailed = true;
