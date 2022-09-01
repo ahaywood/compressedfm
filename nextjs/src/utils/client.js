@@ -1,8 +1,6 @@
 // client.js
 import sanityClient from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
-import { basename } from 'path';
-import request from 'request';
 
 const client = sanityClient({
   projectId: 'gqnsvyvh', // you can find this in sanity.json

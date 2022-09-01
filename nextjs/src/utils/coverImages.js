@@ -1,6 +1,4 @@
-import request from 'request';
-import { basename } from 'path';
-import { clientWithEdit, getGuestById, sanityImageBuilder } from './client';
+import { getGuestById, sanityImageBuilder } from './client';
 import { cloudinary } from './cloudinary';
 
 const wrapText = (text, maxLettersPerLine) => {
