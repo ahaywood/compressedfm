@@ -124,4 +124,4 @@ const generateSocialCoverUrl = async (episode) => {
   return imageUrl;
 };
 
-export { generateSocialCoverUrl };
+export { generateSocialCoverUrl, generateGuestCoverURL };
