@@ -90,8 +90,8 @@ const getGuestNameTransformations = (firstName, lastName) => [
 ];
 
 const uploadGuestProfilePicIfNotExists = async (guestName, guestImageURL) => {
-  console.log(`Uploading image for${guestName}`);
-  console.log(`Upload image from ${guestImageURL}`);
+  console.info(`Uploading image for${guestName}`);
+  console.info(`Upload image from ${guestImageURL}`);
   const guestImageName = guestName.replace(' ', '-');
   try {
     await cloudinary.uploader.upload(guestImageURL, {

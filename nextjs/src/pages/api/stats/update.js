@@ -75,7 +75,7 @@ export default async function handler(req, res) {
       }) // Shallow merge
       .commit() // Perform the patch and return a promise
       .then((updatedEpisode) => {
-        console.log(updatedEpisode);
+        console.info(updatedEpisode);
       })
       .catch((err) => {
         console.error('Oh no, the update failed: ', err.message);

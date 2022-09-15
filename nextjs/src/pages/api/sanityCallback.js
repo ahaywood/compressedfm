@@ -5,15 +5,13 @@ import { updateEpisode } from 'utils/client';
 import { generateSocialCoverUrl } from 'utils/coverImages';
 
 export default async (req, res) => {
-  console.log('Sanity callback');
+  console.info('Sanity callback');
   const episode = req.body;
   if (!episode || !episode._id) {
-    console.log('Insuffient episode data');
+    console.warn('Insuffient episode data');
     return res.status(200).json({ msg: 'Nothing to see here.' });
   }
   const { _id: episodeId, audioPath, episodeNumber, waveformUrl, automationFailed, title } = episode;
-  console.log(automationFailed);
-  console.log(typeof automationFailed);
   const episodeUpdates = {};
 
   if (automationFailed) {
@@ -51,7 +49,6 @@ export default async (req, res) => {
   } catch (err) {
     console.error(err);
     episodeUpdates.automationFailed = true;
-    console.log(episodeUpdates);
     updateEpisode(episodeId, episodeUpdates);
     return res.status(500).json({ msg: `I don't know...` });
   }

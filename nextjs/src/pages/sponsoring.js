@@ -1,20 +1,20 @@
 import client from 'utils/client';
-import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SponsoringPage } from 'modules/sponsoring';
-import { LegalQuery } from 'queries/Queries';
+import { LegalQuery, settingsQuery } from 'queries/Queries';
 
-export default function Sponsoring({ footerLinks }) {
+export default function Sponsoring({ footerLinks, settings }) {
   return (
     <InteriorLayout footerLinks={footerLinks}>
-      <SponsoringPage />
+      <SponsoringPage settings={settings} />
     </InteriorLayout>
   );
 }
 
 export async function getServerSideProps() {
   const footerLinks = await client.fetch(LegalQuery);
+  const settings = await client.fetch(settingsQuery);
   return {
-    props: { footerLinks },
+    props: { footerLinks, settings },
   };
 }

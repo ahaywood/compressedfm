@@ -136,3 +136,13 @@ export const GuestQuery = groq`*[_type == "guest" && guestEmail match $email && 
     simplecastId
   }
 }[0]`;
+
+export const pricingQuery = groq`*[_type == "siteSettings"] {
+    SponsorshipOptions
+  }[0]`;
+
+export const settingsQuery = groq`*[_type == "siteSettings"] {
+    SponsorshipOptions,
+    JamesSocialMedia,
+    AmySocialMedia
+  }[0]`;
