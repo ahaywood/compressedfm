@@ -2,7 +2,7 @@
 
 import { getWaveformURLForAudio, uploadAudio } from 'utils/cloudinary';
 import { updateEpisode } from 'utils/client';
-import { generateSocialCoverUrl } from 'utils/coverImages';
+import { generateGuestCoverURLFromEpisode } from 'utils/coverImages';
 
 export default async (req, res) => {
   console.info('Sanity callback');
@@ -32,7 +32,7 @@ export default async (req, res) => {
 
     if (!episode.socialCoverUrl && episode.guest?.length > 0) {
       console.info(`Generating guest cover image for ${title}`);
-      const socialCoverUrl = await generateSocialCoverUrl(episode);
+      const socialCoverUrl = await generateGuestCoverURLFromEpisode(episode);
       episodeUpdates.socialCoverUrl = socialCoverUrl;
       console.info(`Guest cover image generated for ${title}`);
     } else {

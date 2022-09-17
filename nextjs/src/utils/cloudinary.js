@@ -6,6 +6,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+//TODO: don't upload audio if already exists?
 const uploadAudio = async (audioPath, episodeNumber) => {
   const audio = await cloudinary.uploader.upload(audioPath, {
     public_id: episodeNumber,

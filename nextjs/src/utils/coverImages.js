@@ -1,47 +1,22 @@
 import { getGuestById, sanityImageBuilder } from './client';
 import { cloudinary } from './cloudinary';
 
-const wrapText = (text, maxLettersPerLine) => {
-  if (text.length <= maxLettersPerLine) return [text];
-
-  const lines = [];
-  let currentLine = '';
-  const words = text.split(' ');
-
-  words.forEach((word, i) => {
-    if (currentLine.length + word.length > maxLettersPerLine) {
-      lines.push(currentLine);
-      currentLine = word;
-    } else {
-      currentLine += ` ${word}`;
-    }
-    if (i === words.length - 1) {
-      lines.push(currentLine.trim());
-    }
-  });
-
-  return lines;
-};
-
-const getWrappedTitleTextTransformations = (title) => {
-  const lines = wrapText(title, 24);
-  return lines.map((line, i) => {
-    const y = (lines.length * -20 + 60 + i * 60).toString();
-    return {
-      overlay: {
-        font_family: 'Montserrat',
-        font_size: 40,
-        font_weight: 900,
-        text: line,
-        text_align: 'center',
-      },
-      width: 500,
-      color: '#ffffff',
-      y,
-      x: '-210',
-      crop: 'fit',
-    };
-  });
+const getTitleTextTransformation = (title) => {
+  const y = ((title.length % 20) * 4 + 20).toString();
+  return {
+    overlay: {
+      font_family: 'Montserrat',
+      font_size: 40,
+      font_weight: 900,
+      text: title,
+      text_align: 'center',
+    },
+    width: 500,
+    color: '#ffffff',
+    y,
+    x: '-210',
+    crop: 'fit',
+  };
 };
 
 const getGuestImageTransformation = (guestImageName) => ({
@@ -89,6 +64,7 @@ const getGuestNameTransformations = (firstName, lastName) => [
   },
 ];
 
+//TODO: don't upload guest image if it already exists?
 const uploadGuestProfilePicIfNotExists = async (guestName, guestImageURL) => {
   console.info(`Uploading image for${guestName}`);
   console.info(`Upload image from ${guestImageURL}`);
@@ -106,17 +82,17 @@ const uploadGuestProfilePicIfNotExists = async (guestName, guestImageURL) => {
 const generateGuestCoverURL = async ({ title, guestName, guestImageURL }) => {
   const guestImageName = await uploadGuestProfilePicIfNotExists(guestName, guestImageURL);
   const titleWithoutGuestName = title.replace(` with ${guestName}`, '');
-  const titleTexts = getWrappedTitleTextTransformations(titleWithoutGuestName);
+  const titleText = getTitleTextTransformation(titleWithoutGuestName);
   const guestImage = getGuestImageTransformation(guestImageName);
   const [firstName, lastName] = guestName.split(' ');
   const guestNameTransformations = getGuestNameTransformations(firstName, lastName);
   const url = cloudinary.url('compressed/social-cover-base', {
-    transformation: [...titleTexts, guestImage, ...guestNameTransformations],
+    transformation: [titleText, guestImage, ...guestNameTransformations],
   });
   return url;
 };
 
-const generateSocialCoverUrl = async (episode) => {
+const generateGuestCoverURLFromEpisode = async (episode) => {
   const { _ref: guestId } = episode.guest[0];
   const { avatar, title: guestName } = await getGuestById(guestId);
   const guestImageURL = sanityImageBuilder.image(avatar).url();
@@ -125,4 +101,4 @@ const generateSocialCoverUrl = async (episode) => {
   return imageUrl;
 };
 
-export { generateSocialCoverUrl, generateGuestCoverURL };
+export { generateGuestCoverURLFromEpisode, generateGuestCoverURL };

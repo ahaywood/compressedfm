@@ -14,6 +14,7 @@ export default async (req, res) => {
     }
 
     const coverUrl = await generateGuestCoverURL({ title, guestName, guestImageURL });
+    console.log(coverUrl);
     res.status(200).json({ coverUrl });
   } catch (err) {
     console.error(err);
