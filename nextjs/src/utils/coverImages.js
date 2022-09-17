@@ -121,6 +121,7 @@ const generateSocialCoverUrl = async (episode) => {
   const { avatar, title: guestName } = await getGuestById(guestId);
   const guestImageURL = sanityImageBuilder.image(avatar).url();
   const imageUrl = await generateGuestCoverURL({ title: episode.title, guestName, guestImageURL });
+  console.info('🚀 ~ file: coverImages.js ~ line 124 ~ generateSocialCoverUrl ~ imageUrl', imageUrl);
   return imageUrl;
 };
 
