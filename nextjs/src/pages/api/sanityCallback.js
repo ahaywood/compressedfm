@@ -40,7 +40,7 @@ export default async (req, res) => {
     }
 
     if (Object.keys(episodeUpdates).length > 0) {
-      updateEpisode(episodeId, episodeUpdates);
+      await updateEpisode(episodeId, episodeUpdates);
       console.info(`Automation successfully applied to ${title}`);
     } else {
       console.info(`No changes were made to episode ${title}`);
