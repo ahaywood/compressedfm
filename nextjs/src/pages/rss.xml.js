@@ -16,7 +16,7 @@ const xml = (episodes) =>
         <item>
           <title>${episode.title}</title>
           <description>${episode.briefDescription}</description>
-          <link>${`${website}/episodes/${episode.slug.current}`}/</link>
+          <link>${`${website}/episode/${episode.slug.current}`}/</link>
           <pubDate>${new Date(episode.publishedAt)}</pubDate>
         </item>
       `
