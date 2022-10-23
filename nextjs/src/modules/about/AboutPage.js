@@ -1,24 +1,17 @@
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 import styled from 'styled-components';
-<<<<<<< HEAD
 import BlockContent from '@sanity/block-content-to-react';
 import Image from 'next/image';
 import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/Typography';
 import { serializers } from 'modules/shared/blockContent/Serializers';
 import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
 import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
-=======
->>>>>>> 530c8fcd899976760b7ccc05e1721aa8eabb4254
 import { Faq } from './components/Faq';
 import { ColophonColor } from './components/ColophonColor';
 import { TypeSample } from './components/TypeSample';
 
-<<<<<<< HEAD
 const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
-=======
-const AboutPage = ({ faqs }) => (
->>>>>>> 530c8fcd899976760b7ccc05e1721aa8eabb4254
   <StyledAboutPage>
     {/* reasons */}
     <section className="reasons">
@@ -27,8 +20,8 @@ const AboutPage = ({ faqs }) => (
       </h2>
       <ol>
         {siteSettings &&
-          siteSettings.reasonsBehind.map((item) => (
-            <li>
+          siteSettings.reasonsBehind.map((item, index) => (
+            <li key={index}>
               <BlockContent blocks={item.reason} serializers={serializers} />
             </li>
           ))}
@@ -52,7 +45,21 @@ const AboutPage = ({ faqs }) => (
       <div className="section-heading__wrapper">
         <h2 className="section-heading">Colophon</h2>
         <p className="large-body">Since we're web designers and developers, we care about this sort of thing.</p>
-        <p>The website is built on <a href="https://nextjs.org/" target="_blank" rel="noreferrer">Next.js</a> and <a href="https://sanity.io/" target="_blank" rel="noreferrer">Sanity</a> and hosted on <a href="https://vercel.com/" target="_blank" rel="noreferrer">Vercel</a>.</p>
+        <p>
+          The website is built on{' '}
+          <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
+            Next.js
+          </a>{' '}
+          and{' '}
+          <a href="https://sanity.io/" target="_blank" rel="noreferrer">
+            Sanity
+          </a>{' '}
+          and hosted on{' '}
+          <a href="https://vercel.com/" target="_blank" rel="noreferrer">
+            Vercel
+          </a>
+          .
+        </p>
         <div className="logo-line">
           <Image src="/images/logo__nextjs@2x.png" alt="Next.js" width="182" height="114" />
           <Image src="/images/logo__sanity@2x.png" alt="Sanity" width="191" height="38" />
@@ -84,7 +91,9 @@ const AboutPage = ({ faqs }) => (
       <div className="large-body">Want to get more specific?</div>
       <h4>On the Design Side</h4>
       <div className="two-up">
-        <div><p>Amy wrote a blog post on Medium, all about the branding and site design.</p></div>
+        <div>
+          <p>Amy wrote a blog post on Medium, all about the branding and site design.</p>
+        </div>
         <div>{/* <Image /> */}</div>
       </div>
 
@@ -96,9 +105,7 @@ const AboutPage = ({ faqs }) => (
           <div className="large-body">We knew you were our people.</div>
           <p>We’ve open sourced the code and made it available on GitHub. </p>
         </div>
-        <div>
-          {/* <Image /> */}
-        </div>
+        <div>{/* <Image /> */}</div>
       </div>
 
       <br />
@@ -117,14 +124,7 @@ const AboutPage = ({ faqs }) => (
       </div>
 
       {/* frequently asked questions */}
-      {faqs &&
-        faqs.map((faq) => (
-          <Faq
-            key={faq._id}
-            question={faq.question}
-            answer="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          />
-        ))}
+      {faqs && faqs.map((faq) => <Faq key={faq._id} question={faq.question} answer={faq.answer} />)}
     </section>
     <VerticalDivider />
     <Newsletter />
@@ -198,7 +198,6 @@ const StyledAboutPage = styled.div`
     }
 
     h3 {
-
     }
 
     .large-body {
@@ -210,12 +209,12 @@ const StyledAboutPage = styled.div`
       text-align: left;
 
       a {
-        color: ${props => props.theme.yellow};
+        color: ${(props) => props.theme.yellow};
         font-weight: bold;
         text-decoration: underline;
 
         &:hover {
-          color: ${props => props.theme.white};
+          color: ${(props) => props.theme.white};
         }
       }
     }
@@ -228,8 +227,8 @@ const StyledAboutPage = styled.div`
     }
 
     h4 {
-      font-family: ${props => props.theme.mono};
-      color: ${props => props.theme.yellow};
+      font-family: ${(props) => props.theme.mono};
+      color: ${(props) => props.theme.yellow};
       text-transform: uppercase;
       font-size: 1.8rem;
       text-align: left;
@@ -254,12 +253,12 @@ const StyledAboutPage = styled.div`
       }
 
       .greyclif {
-        font-family: ${props => props.theme.sansSerif};
+        font-family: ${(props) => props.theme.sansSerif};
         font-weight: bold;
       }
 
       .dank-mono {
-        font-family: ${props => props.theme.mono};
+        font-family: ${(props) => props.theme.mono};
       }
     }
   }
