@@ -1,30 +1,23 @@
 import client from 'utils/client';
-import groq from 'groq';
 import { EpisodePage } from 'modules/episodes';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
+import { LegalQuery, AllEpisodesQuery } from 'queries/Queries';
 
-export default function Episodes({ episodes }) {
+export default function Episodes({ episodes, footerLinks }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <EpisodePage episodes={episodes} />
     </InteriorLayout>
   );
 }
 
-export const AllEpisodesQuery = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
-  _id,
-  title,
-  "cover": episodeCover.asset->url,
-  episodeNumber,
-  slug,
-  publishedAt,
-  briefDescription,
-  audioPath
-}`;
-
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const footerLinks = await client.fetch(LegalQuery);
   const episodes = await client.fetch(AllEpisodesQuery);
   return {
-    props: { episodes },
+    props: {
+      episodes,
+      footerLinks,
+    },
   };
 }

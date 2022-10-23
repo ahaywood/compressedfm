@@ -4,11 +4,11 @@ import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { IndividualNewsletterPage } from 'modules/newsletter/IndividualNewsletterPage';
 
 // query
-import { AllNewslettersQuery } from "./index";
+import { AllNewslettersQuery, LegalQuery } from 'queries/Queries';
 
-export default function IndividualNewsletter({ newsletter }) {
+export default function IndividualNewsletter({ footerLinks, newsletter }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <IndividualNewsletterPage {...newsletter} />
     </InteriorLayout>
   );
@@ -54,27 +54,31 @@ const IndividualNewsletterQuery = groq`*[_type == "newsletter" && slug.current =
   meta
 }[0]`;
 
-
 export async function getStaticPaths() {
   const allNewsletters = await client.fetch(AllNewslettersQuery);
 
   // Get the paths we want to pre-render based on episodes
   const paths = allNewsletters.map((newsletter) => ({
     params: { slug: newsletter.slug.current },
-  }))
+  }));
 
-  return { paths, fallback: false }
+  return { paths, fallback: 'blocking' };
 }
 
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
+
+  // episode content
   const { slug } = params;
   const newsletter = await client.fetch(IndividualNewsletterQuery, { slug });
   return {
     props: {
-      newsletter
+      footerLinks,
+      newsletter,
     },
-  }
+  };
 }

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
-import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
 import { SearchForm } from 'modules/shared/components/Header/components/SearchForm';
 
 // styles

@@ -1,17 +1,24 @@
 import { Newsletter } from 'modules/shared/components/Newsletter';
 import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import BlockContent from '@sanity/block-content-to-react';
 import Image from 'next/image';
 import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/Typography';
 import { serializers } from 'modules/shared/blockContent/Serializers';
 import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
 import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
+=======
+>>>>>>> 530c8fcd899976760b7ccc05e1721aa8eabb4254
 import { Faq } from './components/Faq';
 import { ColophonColor } from './components/ColophonColor';
 import { TypeSample } from './components/TypeSample';
 
+<<<<<<< HEAD
 const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
+=======
+const AboutPage = ({ faqs }) => (
+>>>>>>> 530c8fcd899976760b7ccc05e1721aa8eabb4254
   <StyledAboutPage>
     {/* reasons */}
     <section className="reasons">
@@ -120,7 +127,6 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
         ))}
     </section>
     <VerticalDivider />
-    {/* newsletter */}
     <Newsletter />
   </StyledAboutPage>
 );

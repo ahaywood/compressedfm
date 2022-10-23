@@ -105,12 +105,10 @@ export const useAudioPlayer = (audioRef, progressBarRef) => {
   };
 
   const backThirty = () => {
-    console.log('back 30');
     timeTravel(Number(progressBarRef.current.value) - 30);
   };
 
   const forwardThirty = () => {
-    console.log('forward 30');
     timeTravel(Number(progressBarRef.current.value) + 30);
   };
 

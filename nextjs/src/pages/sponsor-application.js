@@ -2,10 +2,11 @@ import client from 'utils/client';
 import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SponsorApplicationPage } from 'modules/sponsorApplication';
+import { LegalQuery, pricingQuery } from 'queries/Queries';
 
-export default function SponsorApplication({ futureEpisodes, pricing }) {
+export default function SponsorApplication({ footerLinks, futureEpisodes, pricing }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <SponsorApplicationPage futureEpisodes={futureEpisodes} pricing={pricing} />
     </InteriorLayout>
   );
@@ -24,19 +25,17 @@ const futureEpisodesQuery = groq`*[_type == "episode" && published == true && pu
     _id,
     title,
   },
-}`
+}`;
 
-// get the sponsorship pricing
-const pricingQuery = groq`*[_type == "siteSettings"]`;
-
-// This function gets called at build time on server-side.
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
+  const footerLinks = await client.fetch(LegalQuery);
   const futureEpisodes = await client.fetch(futureEpisodesQuery);
   const pricing = await client.fetch(pricingQuery);
   return {
     props: {
+      footerLinks,
       futureEpisodes,
-      pricing
+      pricing,
     },
-  }
+  };
 }

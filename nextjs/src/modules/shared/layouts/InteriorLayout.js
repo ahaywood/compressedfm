@@ -6,11 +6,11 @@ import { Footer } from '../components/Footer';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const InteriorLayout = ({ children }) => (
+const InteriorLayout = ({ children, footerLinks }) => (
   <StyledPage>
     <Header />
     {children}
-    <Footer />
+    <Footer footerLinks={footerLinks} />
   </StyledPage>
 );
 

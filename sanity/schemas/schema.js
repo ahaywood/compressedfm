@@ -34,6 +34,7 @@ import reasonsBehindPodcast from './objects/reasonsBehindPodcast'
 import socialMedia from './objects/socialMedia'
 import socialMediaWithMetrics from './objects/socialMediaWithMetrics'
 import sponsorshipOptions from './objects/sponsorshipOptions'
+import sponsorTimecode from './objects/sponsorTimecode'
 import stat from './objects/stat'
 import timeJump from './objects/timeJump'
 import transcript from './objects/transcript'
@@ -73,6 +74,7 @@ export default createSchema({
     socialMedia,
     socialMediaWithMetrics,
     sponsorshipOptions,
+    sponsorTimecode,
     timeJump,
     transcript,
 

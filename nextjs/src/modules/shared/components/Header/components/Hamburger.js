@@ -39,7 +39,7 @@ Hamburger.propTypes = {
 
 Hamburger.defaultProps = {
   className: '',
-  onClick: () => { },
+  onClick: () => {},
   navShowing: false,
 };
 

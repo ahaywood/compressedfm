@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { MoreLink } from 'modules/shared/components/MoreLink';
 
 // utilities
 import { EpisodeZeros } from 'utils/EpisodeZeros';

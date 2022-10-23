@@ -1,116 +1,95 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { calculateTime } from 'utils/timeHelpers';
+import { formatLongDate } from 'utils/dateHelpers';
+import { EpisodeZeros } from 'utils/EpisodeZeros';
+import { useAudioPlayer } from './hooks/AudioPlayer';
 
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }) => {
-  // state
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [duration, setDuration] = useState();
-  const [currentTime, setCurrentTime] = useState(0);
-
+const SponsorAudioPlayer = ({
+  chapters,
+  // currentlyPlaying,
+  date,
+  downloads,
+  episodeNumber,
+  // handleMultipleAudioPlayers,
+  listens,
+  title,
+  track,
+}) => {
+  // references
   const audioPlayer = useRef(); // set up reference for the audio component
   const progressBar = useRef(); // reference for the progress bar
-  const animationRef = useRef(); // reference the animation
 
-  // GET THE DURATION - once the meta data has been loaded
-  // loadedmetadata is provided by the browser
-  useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current.duration);
-    setDuration(seconds);
-    progressBar.current.max = seconds;
-  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+  // hooks
+  const {
+    changeAudioToPlayhead,
+    currentTime,
+    duration,
+    isPlaying,
+    onLoadedMetadata,
+    tapSpaceBar,
+    togglePlaying,
+  } = useAudioPlayer(audioPlayer, progressBar);
 
-  // when another audio player starts playing
-  useEffect(() => {
-    if (currentlyPlaying !== id) {
-      setIsPlaying(true);
-      pauseAudio();
-    }
-  }, [currentlyPlaying]);
-
-  // toggle between play and pause
-  const togglePlaying = () => {
-    setIsPlaying((prevVal) => !prevVal);
-    // play
-    if (isPlaying) {
-      audioPlayer.current.play();
-      animationRef.current = requestAnimationFrame(whilePlaying);
-      handleMultipleAudioPlayers(id);
-    } // pause
-    else {
-      pauseAudio();
-    }
-  };
-
-  const pauseAudio = () => {
-    audioPlayer.current.pause();
-    cancelAnimationFrame(animationRef.current);
-  };
-
-  const whilePlaying = () => {
-    progressBar.current.value = Math.floor(audioPlayer.current.currentTime);
-    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
-    updateCurrentTime();
-    animationRef.current = requestAnimationFrame(whilePlaying);
-  };
-
-  // when the playhead is moved, update the current time (text)
-  const updateCurrentTime = () => {
-    setCurrentTime(progressBar.current.value);
-  };
-
-  // the knobby moves when you click on the progress bar
-  // update the audio player to the new point
-  const changeAudioToKnobby = () => {
-    audioPlayer.current.currentTime = progressBar.current.value;
-    progressBar.current.style.setProperty('--seek-before-width', `${(progressBar.current.value / duration) * 100}%`);
-  };
-
-  // toggle play / pause when you tap the space bar
-  const tapSpaceBar = (e) => {
-    if (e.keyCode == 32) {
-      togglePlaying();
-    }
-  };
+  const determineTime = (time) => (time / duration) * 100;
 
   return (
     <StyledFeaturedAudioPlayer>
-      <audio
-        ref={audioPlayer}
-        src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/88284991-93d9-436a-845d-4133c01cde8a/audio/2040cdce-b212-4958-906d-1706fa39f6ac/default_tc.mp3"
-        preload="metadata"
-      />
+      <audio ref={audioPlayer} src={track} preload="metadata" onLoadedMetadata={onLoadedMetadata} />
+
+      {episodeNumber && (
+        <div className="episodeNumber">
+          {EpisodeZeros(episodeNumber)}
+          {episodeNumber}
+        </div>
+      )}
+      <div className="episodeMetaData">
+        <div className="episodeTitle">{title && title}</div>
+        <div className="episodeDate">{date && formatLongDate(date)}</div>
+      </div>
+      {downloads && (
+        <div className="downloads">
+          <div className="number">{downloads}</div>
+          <div className="label">Downloads</div>
+        </div>
+      )}
+      {listens && (
+        <div className="listens">
+          <div className="number">{listens}</div>
+          <div className="label">Listens</div>
+        </div>
+      )}
 
       <div className="controls">
-        <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar}>
-          {isPlaying ? (
-            <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
-              <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
-            </svg>
-          ) : (
-            <svg width="24" height="29" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" className="pause">
-              <rect width="9" height="29" />
-              <rect x="15" width="9" height="29" />
-            </svg>
+        <div>
+          <button className="playPause" onClick={togglePlaying} onKeyPress={tapSpaceBar} type="button">
+            {isPlaying ? (
+              <svg width="24" height="29" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" className="pause">
+                <rect width="9" height="29" />
+                <rect x="15" width="9" height="29" />
+              </svg>
+            ) : (
+              <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg" className="play">
+                <path d="M25.1045 14.8922L0.949477 0.539171L0.949472 29.2453L25.1045 14.8922Z" />
+              </svg>
+            )}
+          </button>
+        </div>
+        <div className="current-time">{calculateTime(currentTime)}</div>
+        <div className="range-wrapper">
+          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onChange={changeAudioToPlayhead} />
+          {chapters?.adStart && chapters?.adEnd && (
+            <StyledBookmarks
+              adStart={determineTime(Number(chapters.adStart))}
+              adEnd={determineTime(Number(chapters.adEnd) - Number(chapters.adStart))}
+            />
           )}
-        </button>
-        <input
-          type="range"
-          min="0"
-          max="100"
-          defaultValue="0"
-          ref={progressBar}
-          onInput={updateCurrentTime}
-          onChange={changeAudioToKnobby}
-        />
-        <div className="bookmark" />
+        </div>
+        <div className="duration">{calculateTime(duration)}</div>
       </div>
-
-      <div className="current-time">{calculateTime(currentTime)}</div>
-      <div className="duration">{calculateTime(duration)}</div>
     </StyledFeaturedAudioPlayer>
   );
 };
@@ -119,6 +98,84 @@ const SponsorAudioPlayer = ({ id, currentlyPlaying, handleMultipleAudioPlayers }
 * STYLES
 ---------------------------------------------------- */
 const StyledFeaturedAudioPlayer = styled.div`
+  background: url(/images/horizontal-divider.svg) left bottom repeat-x;
+  margin: 0 auto;
+  max-width: ${(props) => props.theme.pageWidth};
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 185px 185px;
+  grid-template-areas:
+    'title downloads listens'
+    'player player player';
+  grid-column-gap: 25px;
+  margin-bottom: 45px;
+  padding-bottom: 45px;
+  padding-left: 200px;
+
+  .episodeNumber {
+    color: ${(props) => props.theme.montana};
+    position: absolute;
+    top: -50px;
+    font-size: 13.2rem;
+    font-weight: ${(props) => props.theme.fontBlack};
+    text-align: right;
+    width: 255px;
+    left: -70px;
+
+    .zeros {
+      -webkit-text-stroke: 2px ${(props) => props.theme.montana};
+    }
+  }
+
+  .episodeMetaData {
+    grid-area: title;
+  }
+
+  .episodeTitle {
+    font-family: ${(props) => props.theme.sans};
+    font-size: 4.8rem;
+    font-weight: ${(props) => props.theme.fontBlack};
+    margin-bottom: 4px;
+  }
+
+  .episodeDate {
+    font-family: ${(props) => props.theme.mono};
+    font-size: 1.8rem;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .downloads {
+    grid-area: downloads;
+  }
+
+  .listens {
+    grid-area: listens;
+  }
+
+  .downloads .number,
+  .listens .number {
+    color: ${(props) => props.theme.yellow};
+    font-size: 3.5rem;
+    font-family: ${(props) => props.theme.sans};
+    font-weight: ${(props) => props.theme.fontBlack};
+    margin-bottom: 5px;
+  }
+
+  .downloads .label,
+  .listens .label {
+    font-size: 1.8rem;
+    font-family: ${(props) => props.theme.mono};
+    text-transform: uppercase;
+  }
+
+  .controls {
+    grid-area: player;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
   .playPause {
     align-items: center;
     background: ${(props) => props.theme.charcoal};
@@ -266,17 +323,29 @@ const StyledFeaturedAudioPlayer = styled.div`
     background: ${(props) => props.theme.yellow};
   }
 
-  .bookmark {
-    background: ${(props) => props.theme.yellow};
-    display: block;
-    height: 11px;
-    width: 100px;
+  .range-wrapper {
+    flex: 1;
     position: relative;
-    top: -13px;
-    left: 300px;
-    pointer-events: none;
-    z-index: 1;
+    top: 4px;
   }
+
+  .current-time,
+  .duration {
+    font-size: 1.8rem;
+    font-family: ${(props) => props.theme.mono};
+  }
+`;
+
+const StyledBookmarks = styled.div`
+  background: ${(props) => props.theme.yellow};
+  display: block;
+  height: 11px;
+  width: ${(props) => props.adEnd}%;
+  position: relative;
+  top: -13px;
+  left: ${(props) => props.adStart}%;
+  pointer-events: none;
+  z-index: 1;
 `;
 
 export { SponsorAudioPlayer };

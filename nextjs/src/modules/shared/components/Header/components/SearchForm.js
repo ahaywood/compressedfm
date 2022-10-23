@@ -36,7 +36,7 @@ const SearchForm = () => {
           }}
         />
         <label htmlFor="search">Search</label>
-        <button name="submit" role="submit">
+        <button name="submit" type="submit">
           <Icon name="arrow" height="64" width="64" />
         </button>
       </form>

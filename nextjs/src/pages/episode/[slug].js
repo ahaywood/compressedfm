@@ -6,11 +6,11 @@ import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { IndividualEpisodePage } from 'modules/episodes/IndividualEpisodePage';
 
 // queries
-import { AllEpisodesQuery } from '../episodes';
+import { AllEpisodesQuery, LegalQuery } from 'queries/Queries';
 
-export default function Episode({ episode }) {
+export default function Episode({ episode, footerLinks }) {
   return (
-    <InteriorLayout>
+    <InteriorLayout footerLinks={footerLinks}>
       <IndividualEpisodePage episode={episode} />
     </InteriorLayout>
   );
@@ -49,7 +49,7 @@ const IndividualEpisodeQuery = groq`*[_type == "episode" && slug.current == $slu
     "logo": logo.asset->url,
     offer,
     offerLink,
-    about,
+    aboutText,
     founding,
   },
   timeJump,
@@ -71,20 +71,25 @@ export async function getStaticPaths() {
   // Get the paths we want to pre-render based on episodes
   const paths = allEpisodes.map((episode) => ({
     params: { slug: episode.slug.current },
-  }))
+  }));
 
-  return { paths, fallback: false }
+  return { paths, fallback: 'blocking' };
 }
 
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
+
+  // page content
   const { slug } = params;
   const episode = await client.fetch(IndividualEpisodeQuery, { slug });
   return {
     props: {
-      episode
+      episode,
+      footerLinks,
     },
-  }
+  };
 }

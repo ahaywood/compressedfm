@@ -11,7 +11,7 @@ import { MixinForm, MixinLabel, MixinTextField, MixinTextarea, MixinSelect } fro
 * COMPONENT
 ---------------------------------------------------- */
 const GuestApplicationPage = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => alert(JSON.stringify(data));
 
   return (
@@ -58,8 +58,8 @@ const GuestApplicationPage = () => {
         </div>
 
         <div className="full">
-          <input type="file" id="file" ref={register} />
           <label htmlFor="profilePicture">Profile Picture</label>
+          <input type="file" id="file" ref={register} />
         </div>
 
         <div className="full">
@@ -68,18 +68,12 @@ const GuestApplicationPage = () => {
         </div>
 
         <div className="full">
-          <input type="text" name="podcastTitle" id="podcastTitle" ref={register} placeholder="Best Guess?" />
-          <label htmlFor="podcastTitle">Podcast Title</label>
+          <input type="text" name="podcastTitle" id="podcastTitle" ref={register} placeholder="" />
+          <label htmlFor="podcastTitle">Podcast Title (Best guess?)</label>
         </div>
 
         <div className="full">
-          <input
-            type="text"
-            name="podcastTopic"
-            id="podcastTopic"
-            ref={register}
-            placeholder="What would you like to talk about?"
-          />
+          <input type="text" name="podcastTopic" id="podcastTopic" ref={register} placeholder="" />
           <label htmlFor="podcastTopic">Podcast Topic</label>
         </div>
 

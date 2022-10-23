@@ -9,7 +9,7 @@ import { Icon } from 'modules/shared/components/Icon';
 * COMPONENT
 ---------------------------------------------------- */
 const ButtonLink = ({ className, href, label }) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <StyledButtonLink className={className}>
       {label}
       <Icon name="arrow" />
@@ -19,13 +19,12 @@ const ButtonLink = ({ className, href, label }) => (
 
 ButtonLink.propTypes = {
   className: PropTypes.string,
-  href: PropTypes.string,
+  href: PropTypes.string.isRequired,
   label: PropTypes.string,
 };
 
 ButtonLink.defaultProps = {
   className: '',
-  href: '',
   label: 'Submit',
 };
 

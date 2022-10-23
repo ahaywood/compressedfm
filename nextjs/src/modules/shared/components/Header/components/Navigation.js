@@ -8,8 +8,8 @@ import styled from 'styled-components';
 import { Breakpoints } from 'styles/Breakpoints';
 import { Tag } from './Tag';
 import { TopNav } from './TopNav';
-import { BtmNav } from './BtmNav';
 import { SearchForm } from './SearchForm';
+import { BtmNav } from './BtmNav';
 
 // styles
 
@@ -31,7 +31,9 @@ const Navigation = ({ handleClick, isShowing }) => {
         <TopNav />
       </div>
 
-      <div className="sub-nav">{/* <BtmNav /> */}</div>
+      <div className="sub-nav">
+        <BtmNav />
+      </div>
 
       <div className="search">
         <SearchForm />
@@ -59,6 +61,7 @@ Navigation.propTypes = {
 Navigation.defaultProps = {
   closeNav: () => { },
   isShowing: false,
+  // eslint-disable-next-line prettier/prettier
   handleClick: () => { },
 };
 

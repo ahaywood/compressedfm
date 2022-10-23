@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import client from 'utils/client';
-import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { AboutPage } from 'modules/about';
 import { Meta } from 'modules/shared/components/Meta';
+import { LegalQuery, FaqQuery, GettingStartedEpisodesQuery, PopularEpisodesQuery } from "../queries/Queries";
 
+<<<<<<< HEAD
 export default function About({
   siteSettings,
   gettingStarted,
@@ -14,6 +15,11 @@ export default function About({
 
   return (
     <InteriorLayout>
+=======
+export default function About({ faqs, footerLinks, gettingStarted, mostPopular }) {
+  return (
+    <InteriorLayout footerLinks={footerLinks}>
+>>>>>>> 530c8fcd899976760b7ccc05e1721aa8eabb4254
       <Head>
         <Meta
           seoTitle="About Compressed.fm"
@@ -28,11 +34,16 @@ export default function About({
           url="https://compressed.fm/about"
         />
       </Head>
+<<<<<<< HEAD
       <AboutPage siteSettings={siteSettings} faqs={faqs} gettingStarted={gettingStarted} mostPopular={mostPopular} />
+=======
+      <AboutPage faqs={faqs} gettingStarted={gettingStarted} mostPopular={mostPopular} />
+>>>>>>> 530c8fcd899976760b7ccc05e1721aa8eabb4254
     </InteriorLayout>
   );
 }
 
+<<<<<<< HEAD
 // get siteSettings
 const siteSettingsQuery = groq`*[_type == "siteSettings"]{
      _id,
@@ -87,5 +98,27 @@ export async function getStaticProps(context) {
       mostPopular,
       faqs
     }, // will be passed to the page component as props
+=======
+export async function getStaticProps({ params }) {
+  // footer links
+  const footerLinks = await client.fetch(LegalQuery);
+
+  // get FAQs
+  const faqs = await client.fetch(FaqQuery);
+
+  // get Getting Started Episodes
+  const gettingStarted = await client.fetch(GettingStartedEpisodesQuery);
+
+  // get Popular Episodes
+  const mostPopular = await client.fetch(PopularEpisodesQuery);
+
+  return {
+    props: {
+      faqs,
+      footerLinks,
+      gettingStarted,
+      mostPopular
+    },
+>>>>>>> 530c8fcd899976760b7ccc05e1721aa8eabb4254
   }
 }
