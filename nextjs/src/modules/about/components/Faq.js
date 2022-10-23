@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import BlockContent from '@sanity/block-content-to-react';
+import { serializers } from 'modules/shared/blockContent/Serializers';
 
 // components
 import { Icon } from 'modules/shared/components/Icon';
@@ -57,7 +59,7 @@ const Faq = ({ question, answer }) => {
           animate={isToggled ? 'open' : 'closed'}
           variants={AnswerVariants}
         >
-          <p>{answer}</p>
+          <BlockContent blocks={answer} serializers={serializers} />
         </motion.div>
       </div>
     </StyledFaq>
@@ -101,6 +103,7 @@ const StyledFaq = styled.div`
     color: ${(props) => props.theme.white};
     text-decoration: none;
     position: relative;
+    text-align: left;
 
     &:hover {
       color: ${(props) => props.theme.yellow};
