@@ -7,6 +7,8 @@ import { MixinSectionHeading, MixinBodyCopy, MixinLargeBodyCopy } from 'styles/T
 import { serializers } from 'modules/shared/blockContent/Serializers';
 import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
 import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
+import { WaveformPlayer } from 'modules/shared/components/AudioPlayer/WaveformPlayer';
+import { Breakpoints } from 'styles/Breakpoints';
 import { Faq } from './components/Faq';
 import { ColophonColor } from './components/ColophonColor';
 import { TypeSample } from './components/TypeSample';
@@ -94,7 +96,9 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
         <div>
           <p>Amy wrote a blog post on Medium, all about the branding and site design.</p>
         </div>
-        <div>{/* <Image /> */}</div>
+        <div>
+          <Image src="/images/logo__medium@2x.png" alt="Medium" width={277} height={43} />
+        </div>
       </div>
 
       <br />
@@ -105,27 +109,37 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
           <div className="large-body">We knew you were our people.</div>
           <p>We’ve open sourced the code and made it available on GitHub. </p>
         </div>
-        <div>{/* <Image /> */}</div>
+        <div>
+          <Image src="/images/logo__github@2x.png" alt="GitHub" width={247} height={74} />
+        </div>
       </div>
 
       <br />
 
+      {/* Audio Player */}
       <h4>Still curious?</h4>
       <p>We took an entire episode to talk about the tech behind the site.</p>
-
-      {/* Audio Player */}
+      <WaveformPlayer
+        artwork="/images/cover.png"
+        episodeTitle="The Tech Behind Compressed.fm"
+        audioPath="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/56025005-71cc-47ec-87a2-0724b9eeed6b/audio/bffa7d33-dae5-46bf-a2a5-a1bd556a7253/default_tc.mp3"
+        episodeNumber="3"
+      />
     </section>
+
     <VerticalDivider />
 
     {/* frequently asked questions */}
-    <section className="faqs">
-      <div className="section-heading__wrapper">
-        <h2 className="section-heading">Frequently Asked Questions</h2>
-      </div>
-
-      {/* frequently asked questions */}
-      {faqs && faqs.map((faq) => <Faq key={faq._id} question={faq.question} answer={faq.answer} />)}
-    </section>
+    {faqs.length > 0 && (
+      <section className="faqs">
+        <div className="section-heading__wrapper">
+          <h2 className="section-heading">Frequently Asked Questions</h2>
+        </div>
+        {faqs.map((faq) => (
+          <Faq key={faq._id} question={faq.question} answer={faq.answer} />
+        ))}
+      </section>
+    )}
     <VerticalDivider />
     <Newsletter />
   </StyledAboutPage>
@@ -142,14 +156,22 @@ const StyledAboutPage = styled.div`
   }
 
   .reasons {
-    margin: 0 auto;
+    margin: 0 ${(props) => props.theme.mobilePadding};
     max-width: ${(props) => props.theme.narrowPageWidth};
+
+    @media (${Breakpoints.medium}) {
+      margin: 0 auto;
+    }
 
     h2 {
       color: ${(props) => props.theme.white};
       font-family: ${(props) => props.theme.sansSerif};
-      font-size: 4.8rem;
+      font-size: 3.2rem;
       font-weight: ${(props) => props.theme.fontBlack};
+
+      @media (${Breakpoints.medium}) {
+        font-size: 4.8rem;
+      }
 
       span {
         color: ${(props) => props.theme.yellow};
@@ -159,10 +181,19 @@ const StyledAboutPage = styled.div`
     ol {
       counter-reset: reasons-list;
       list-style-type: none;
+      padding-left: 0;
+
+      @media (${Breakpoints.medium}) {
+        padding-left: 40px;
+      }
 
       li {
-        padding: 1rem 0 2.5rem 7.5rem;
+        padding: 1rem 0 2.5rem 4.2rem;
         position: relative;
+
+        @media (${Breakpoints.medium}) {
+          padding: 1rem 0 2.5rem 7.5rem;
+        }
       }
 
       li:before {
@@ -170,12 +201,16 @@ const StyledAboutPage = styled.div`
         content: counter(reasons-list);
         counter-increment: reasons-list;
         font-family: ${(props) => props.theme.sansSerif};
-        font-size: 8.5rem;
+        font-size: 5.2rem;
         font-weight: ${(props) => props.theme.fontBlack};
         left: 0;
         line-height: 1;
         position: absolute;
         top: 0;
+
+        @media (${Breakpoints.medium}) {
+          font-size: 8.5rem;
+        }
       }
     }
 
@@ -189,8 +224,27 @@ const StyledAboutPage = styled.div`
   }
 
   .colophon {
-    margin: 0 auto;
+    margin: 0 25px 50px;
     max-width: ${(props) => props.theme.narrowPageWidth};
+
+    @media (${Breakpoints.medium}) {
+      margin: 0 auto 50px;
+    }
+
+    .two-up {
+      display: flex;
+      gap: 10px;
+      flex-direction: column-reverse;
+
+      @media (${Breakpoints.small}) {
+        flex-direction: row;
+        gap: 100px;
+      }
+
+      div {
+        flex: 1;
+      }
+    }
 
     .colors {
       display: flex;
@@ -240,10 +294,15 @@ const StyledAboutPage = styled.div`
 
     .typography {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
+      grid-row-gap: 40px;
       text-align: left;
       font-size: 2.2rem;
       line-height: 1.2;
+
+      @media (${Breakpoints.medium}) {
+        grid-template-columns: 1fr 1fr;
+      }
 
       h5 {
         font-size: 3.6rem;

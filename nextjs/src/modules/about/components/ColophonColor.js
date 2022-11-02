@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { Breakpoints } from 'styles/Breakpoints';
 
 const ColophonColor = ({ border, color }) => (
   <StyledColophonColor>
-    <StyledCircle color={color} border={border} />
-    {color}
+    <StyledCircleExtended color={color} border={border} />
+    <StyledColorHex>{color}</StyledColorHex>
   </StyledColophonColor>
 );
 
@@ -20,8 +21,24 @@ const StyledCircle = styled.div((props) => ({
   borderColor: props.border ? props.border : 'transparent',
   borderRadius: '50%',
   margin: '0 auto 16px auto',
-  height: '100px',
-  width: '100px',
 }));
+
+const StyledCircleExtended = styled(StyledCircle)`
+  height: 50px;
+  width: 50px;
+
+  @media (${Breakpoints.small}) {
+    height: 100px;
+    width: 100px;
+  }
+`;
+
+const StyledColorHex = styled.div`
+  display: none;
+
+  @media (${Breakpoints.small}) {
+    display: block;
+  }
+`;
 
 export { ColophonColor };
