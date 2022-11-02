@@ -30,6 +30,7 @@ import episodeTranscript from './objects/episodeTranscript'
 import linkList from './objects/linkList'
 import meta from './objects/meta'
 import newsletterPagination from './objects/newsletterPagination'
+import reasonsBehindPodcast from './objects/reasonsBehindPodcast'
 import socialMedia from './objects/socialMedia'
 import socialMediaWithMetrics from './objects/socialMediaWithMetrics'
 import sponsorshipOptions from './objects/sponsorshipOptions'
@@ -68,6 +69,7 @@ export default createSchema({
     linkList,
     meta,
     newsletterPagination,
+    reasonsBehindPodcast,
     stat,
     socialMedia,
     socialMediaWithMetrics,

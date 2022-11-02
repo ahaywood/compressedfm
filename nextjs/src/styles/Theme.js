@@ -27,6 +27,7 @@ const Theme = {
 
   // margin, padding, spacing
   pageWidth: '1300px',
+  narrowPageWidth: '950px',
   mobilePadding: '25px',
   formWidth: '580px',
   betweenTextBlocks: '35px',

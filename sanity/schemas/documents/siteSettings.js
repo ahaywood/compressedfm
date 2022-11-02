@@ -7,6 +7,12 @@ export default {
   __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
   fields: [
     {
+      name: 'reasonsBehind',
+      title: 'Reasons Behind Podcast',
+      type: 'array',
+      of: [{ type: 'reasonsBehindPodcast' }]
+    },
+    {
       name: 'socialMediaLinks',
       title: 'Social Media',
       type: 'socialMedia',
@@ -36,7 +42,11 @@ export default {
     {
       name: 'SponsorshipOptions',
       title: 'Sponsorship Options',
-      type: 'sponsorshipOptions'
+      type: 'sponsorshipOptions',
+      options: {
+        collapsible: true,
+        collapsed: true
+      }
     }
   ],
 }
