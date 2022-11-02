@@ -1,15 +1,15 @@
 {
-<<<<<<< HEAD
   "cSpell.words": [
+    "abcdefghijklmnoqrstuvwxyz",
+    "greyclif",
+    "Vercel",
     "devto",
     "Hashnode",
     "tiktok"
-  ]
-=======
+  ],
   "workbench.colorCustomizations": {
-    "activityBar.background": "#5D0D0E",
-    "titleBar.activeBackground": "#821214",
-    "titleBar.activeForeground": "#FEFBFB"
+    "activityBar.background": "#8c59ff",
+    "titleBar.activeBackground": "#faff00",
+    "titleBar.activeForeground": "#000000",
   }
->>>>>>> 49a5f64815770ea7a7b86e4d82ddaa45457e39aa
 }

@@ -19,9 +19,11 @@ const TopNav = () => {
             <a>Home</a>
           </Link>
         </li>
-        {/* <li className="about">
-          <Link href="/about"><a>About</a></Link>
-        </li> */}
+        <li className="about">
+          <Link href="/about">
+            <a>About</a>
+          </Link>
+        </li>
         <li className="episodes">
           <Link href="/episodes">
             <a>Episodes</a>
@@ -82,6 +84,7 @@ const StyledTopNav = styled.div`
     &.newsletter li.newsletter a,
     &.contact li.contact a {
       color: ${(props) => props.theme.yellow};
+      cursor: default;
     }
   }
 `;
