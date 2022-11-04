@@ -62,6 +62,12 @@ export default {
       of: [{ type: 'reference', to: { type: 'guest' } }],
     },
     {
+      name: 'hosts',
+      title: 'Hosts',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'guest' } }],
+    },
+    {
       name: 'sponsor',
       title: 'Sponsor',
       type: 'array',
@@ -80,6 +86,12 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'episodeCoverUrl',
+      title: 'Episode Cover URL',
+      description: 'URL for the episode image stored in Cloudinary',
+      type: 'string',
     },
     {
       name: 'socialCoverUrl',
