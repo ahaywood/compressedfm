@@ -1,5 +1,5 @@
-import { getGuestById, sanityImageBuilder } from './client';
-import { cloudinary } from './cloudinary';
+import { getGuestById, sanityImageBuilder, updateEpisode, uploadImage } from './client';
+import { cloudinary, uploadAudio } from './cloudinary';
 import { formatShortDate } from './dateHelpers';
 
 const getGuestTitleTextTransformation = (title) => {
@@ -190,21 +190,58 @@ const generateEpisodeCoverURL = async ({ title, guestName, guestImageURL, episod
   };
 
   transformation.push(titleTransformation, ...imageTransformations, dateTransformation, episodeNumberTransformation);
-  console.log('Generating url!');
-  console.log(transformation);
   const url = cloudinary.url('compressed/episode-cover-base', {
     transformation,
   });
   return url;
 };
 
-const generateEpisodeCoverURLFromEpisode = async (episode) => {
-  const { episodeNumber, title, publishedAt, hosts, guest } = episode;
+const generateSocialCoverUrl = async ({ title, guestName, guestImageURL, hostNames }) => {
+  const transformation = [];
+  if (guestName && guestImageURL) {
+    const [firstName, lastName] = guestName.split(' ');
+    const guestImageName = await uploadGuestProfilePicIfNotExists(guestName, guestImageURL);
+    const guestImageTransformation = getGuestImageTransformation(guestImageName);
+    const guestNameTransformations = getGuestNameTransformations(firstName, lastName);
+
+    transformation.push(guestImageTransformation, ...guestNameTransformations);
+  } else {
+    const Y_VALUES = {
+      1: ['0'],
+      2: ['-150', '250'],
+      3: ['-200', '50', '300'],
+    };
+    const numHosts = hostNames.length;
+    const hostImageTransformations = hostNames.map((host, i) => ({
+      overlay: `compressed:${host}`,
+      height: numHosts > 2 ? '200' : '350',
+      width: numHosts > 2 ? '200' : '350',
+      x: numHosts > 2 ? '250' : '170',
+      y: Y_VALUES[numHosts][i],
+      gravity: 'east',
+      radius: 'max',
+      crop: 'fill',
+      border: '4px_solid_rgb:ffffff',
+    }));
+
+    transformation.push(...hostImageTransformations);
+  }
+  const titleWithoutGuestName = title.replace(` with ${guestName}`, '');
+  const titleText = getGuestTitleTextTransformation(titleWithoutGuestName);
+
+  transformation.push(titleText);
+  const url = cloudinary.url('compressed/social_base_1080p', {
+    transformation,
+  });
+  return url;
+};
+
+const generateCoverForEpisode = async (episode) => {
+  const { _id: episodeId, episodeNumber, title, publishedAt, hosts, guest } = episode;
   const date = formatShortDate(new Date(publishedAt));
 
   const hostRecords = await Promise.all(hosts.map(({ _ref }) => getGuestById(_ref)));
   const hostNames = hostRecords.map(({ firstName, lastName }) => `${firstName}-${lastName}`);
-  console.log(hostNames);
 
   const config = {
     title,
@@ -223,34 +260,78 @@ const generateEpisodeCoverURLFromEpisode = async (episode) => {
   }
 
   const imageUrl = await generateEpisodeCoverURL(config);
-  return imageUrl;
-};
-
-const generateGuestCoverURL = async ({ title, guestName, guestImageURL }) => {
-  const guestImageName = await uploadGuestProfilePicIfNotExists(guestName, guestImageURL);
-  const titleWithoutGuestName = title.replace(` with ${guestName}`, '');
-  const titleText = getGuestTitleTextTransformation(titleWithoutGuestName);
-  const guestImage = getGuestImageTransformation(guestImageName);
-  const [firstName, lastName] = guestName.split(' ');
-
-  const guestNameTransformations = getGuestNameTransformations(firstName, lastName);
-  const url = cloudinary.url('compressed/social_base_1080p', {
-    transformation: [titleText, guestImage, ...guestNameTransformations],
+  const { _id: imageId } = await uploadImage(imageUrl);
+  updateEpisode(episodeId, {
+    episodeCover: {
+      _type: 'image',
+      asset: {
+        _type: 'reference',
+        _ref: imageId,
+      },
+    },
   });
-  return url;
 };
 
-const generateGuestCoverURLFromEpisode = async (episode) => {
-  const { _ref: guestId } = episode.guest[0];
-  const { avatar, title: guestName } = await getGuestById(guestId);
-  const guestImageURL = sanityImageBuilder.image(avatar).url();
-  const imageUrl = await generateGuestCoverURL({ title: episode.title, guestName, guestImageURL });
-  return imageUrl;
+const generateSocialCoverForEpisode = async (episode) => {
+  const { _id: episodeId, guest, title, hosts } = episode;
+  const hostRecords = await Promise.all(hosts.map(({ _ref }) => getGuestById(_ref)));
+  const hostNames = hostRecords.map(({ firstName, lastName }) => `${firstName}-${lastName}`);
+  const config = { title, guestName: null, guestImageURL: null, hostNames };
+
+  if (guest) {
+    const { _ref: guestId } = episode.guest[0];
+    const { avatar, title: guestName } = await getGuestById(guestId);
+    config.guestName = guestName;
+    const guestImageUrl = sanityImageBuilder.image(avatar).url();
+    config.guestImageUrl = guestImageUrl;
+  }
+
+  const imageUrl = await generateSocialCoverUrl(config);
+  const { _id: imageId } = await uploadImage(imageUrl);
+  updateEpisode(episodeId, {
+    socialCover: {
+      _type: 'image',
+      asset: {
+        _type: 'reference',
+        _ref: imageId,
+      },
+    },
+  });
+};
+
+const getWaveformURLForAudio = (publicId) => {
+  const waveformURL = cloudinary.url(`${publicId}.png`, {
+    height: 200,
+    width: 500,
+    flags: 'waveform',
+    color: '#FAFF00',
+    background: 'black',
+    resource_type: 'video',
+  });
+  const httpsUrl = waveformURL.replace('http', 'https');
+  return httpsUrl;
+};
+
+const generateWaveformForEpisode = async (episode) => {
+  const { _id: episodeId, audioPath, episodeNumber } = episode;
+  const publicIds = await uploadAudio(audioPath, episodeNumber);
+  const waveFormUrl = getWaveformURLForAudio(publicIds);
+  const { _id: imageId } = await uploadImage(waveFormUrl);
+  updateEpisode(episodeId, {
+    waveform: {
+      _type: 'image',
+      asset: {
+        _type: 'reference',
+        _ref: imageId,
+      },
+    },
+  });
 };
 
 export {
-  generateGuestCoverURLFromEpisode,
-  generateGuestCoverURL,
+  generateSocialCoverForEpisode,
+  generateSocialCoverUrl,
   generateEpisodeCoverURL,
-  generateEpisodeCoverURLFromEpisode,
+  generateCoverForEpisode,
+  generateWaveformForEpisode,
 };

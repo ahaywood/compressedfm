@@ -16,7 +16,7 @@
     "react-dom": "^17.0",
     "react-icons": "^4.2.0",
     "sanity-plugin-dashboard-widget-vercel": "^1.1.0",
-    "sanity-plugin-media": "^2.0.0-v3-studio.0",
+    "sanity-plugin-media": "^1.4.13",
     "styled-components": "^5.2.0"
   },
   "description": "",

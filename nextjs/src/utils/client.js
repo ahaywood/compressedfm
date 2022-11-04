@@ -1,6 +1,8 @@
 // client.js
 import sanityClient from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
+import { createReadStream } from 'fs';
+import got from 'got';
 
 const client = sanityClient({
   projectId: 'gqnsvyvh', // you can find this in sanity.json
@@ -27,3 +29,5 @@ export const getGuestById = async (id) => {
   const guest = await client.getDocument(id);
   return guest;
 };
+
+export const uploadImage = async (imageUrl) => clientWithEdit.assets.upload('image', got.stream(imageUrl));

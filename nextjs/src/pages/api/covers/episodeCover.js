@@ -8,7 +8,6 @@ export default async (req, res) => {
   }
   try {
     const { title, guestName, guestImageURL, episodeNumber, date, hosts } = req.body;
-    console.log(typeof hosts);
 
     if (!title || !episodeNumber || !date || !hosts) {
       return res
@@ -17,7 +16,6 @@ export default async (req, res) => {
     }
 
     const coverUrl = await generateEpisodeCoverURL({ title, guestName, guestImageURL, episodeNumber, date, hosts });
-    console.log(coverUrl);
     res.status(200).json({ coverUrl });
   } catch (err) {
     console.error(err);
