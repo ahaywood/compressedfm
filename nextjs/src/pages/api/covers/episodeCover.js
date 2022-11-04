@@ -8,11 +8,12 @@ export default async (req, res) => {
   }
   try {
     const { title, guestName, guestImageURL, episodeNumber, date, hosts } = req.body;
+    console.log(typeof hosts);
 
-    if (!title || !guestName || !guestImageURL || !episodeNumber || !date || !hosts) {
+    if (!title || !episodeNumber || !date || !hosts) {
       return res
         .status(400)
-        .json({ msg: 'Make sure to include required fields: title, guestName, episodeNumber, date, and hosts ' });
+        .json({ msg: 'Make sure to include required fields: title, episodeNumber, date, and hosts ' });
     }
 
     const coverUrl = await generateEpisodeCoverURL({ title, guestName, guestImageURL, episodeNumber, date, hosts });

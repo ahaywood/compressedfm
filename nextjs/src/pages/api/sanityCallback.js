@@ -2,7 +2,11 @@
 
 import { getWaveformURLForAudio, uploadAudio } from 'utils/cloudinary';
 import { updateEpisode } from 'utils/client';
-import { generateGuestCoverURLFromEpisode } from 'utils/coverImages';
+import {
+  generateEpisodeCoverURL,
+  generateEpisodeCoverURLFromEpisode,
+  generateGuestCoverURLFromEpisode,
+} from 'utils/coverImages';
 
 export default async (req, res) => {
   console.info('Sanity callback');
@@ -37,6 +41,15 @@ export default async (req, res) => {
       console.info(`Guest cover image generated for ${title}`);
     } else {
       console.info(`Episode ${title} already has a social cover url.`);
+    }
+
+    if (!episode.episodeCoverUrl) {
+      console.info(`Generating episode cover image for ${title}`);
+      const episodeCoverUrl = await generateEpisodeCoverURLFromEpisode(episode);
+      episodeUpdates.episodeCoverUrl = episodeCoverUrl;
+      console.info(`Episode cover image generated for ${title}`);
+    } else {
+      console.info(`Episode ${title} already has a episode cover url.`);
     }
 
     if (Object.keys(episodeUpdates).length > 0) {
