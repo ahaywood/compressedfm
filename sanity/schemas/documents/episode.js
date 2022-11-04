@@ -88,16 +88,20 @@ export default {
       },
     },
     {
-      name: 'episodeCoverUrl',
-      title: 'Episode Cover URL',
-      description: 'URL for the episode image stored in Cloudinary',
-      type: 'string',
+      name: 'socialCover',
+      title: 'Social Cover',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
-      name: 'socialCoverUrl',
-      title: 'Social Cover URL',
-      description: 'URL for the social cover image stored in Cloudinary',
-      type: 'string',
+      name: 'waveform',
+      title: 'Waveform',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'briefDescription',
@@ -116,12 +120,7 @@ export default {
       type: 'string',
       description: 'Unique ID used for grabbing stats',
     },
-    {
-      name: 'waveformUrl',
-      title: 'Waveform URL',
-      type: 'string',
-      description: 'URL of the waveform in Cloudinary',
-    },
+
     {
       name: 'categories',
       title: 'Categories',
@@ -190,6 +189,25 @@ export default {
       title: 'Lead Magnet',
       description: 'PDF',
       type: 'file',
+    },
+    {
+      name: 'waveformUrl',
+      title: 'Waveform URL',
+      type: 'string',
+      description: 'OUTDATED - URL of the waveform in Cloudinary',
+    },
+    {
+      name: 'episodeCoverUrl',
+      title: 'Episode Cover URL',
+      description: 'OUTDATED - URL for the episode image stored in Cloudinary',
+      type: 'string',
+    },
+    {
+      name: 'socialCoverUrl',
+      title: 'Social Cover URL',
+      description:
+        'OUTDATED - URL for the social cover image stored in Cloudinary',
+      type: 'string',
     },
     {
       name: 'automationFailed',
