@@ -6,6 +6,7 @@ import {
 } from './sanity';
 import { cloudinary, uploadAudio } from './cloudinary';
 import { Episode, Guest } from '../types/types';
+import { format } from 'date-fns';
 
 const getGuestTitleTextTransformation = (title: string) => {
   const y = ((title.length % 20) * 6 + 60).toString();
@@ -194,6 +195,7 @@ const generateEpisodeCoverURL = async ({
       font_weight: 900,
       text: episodeNumber.padStart(3, '0'),
       text_align: 'center',
+      letter_spacing: '30',
     },
     width: 2600,
     color: '#FAFF00',
@@ -296,7 +298,7 @@ const generateCoverForEpisode = async (episode: Episode) => {
     guest,
   } = episode;
   console.log(publishedAt);
-  const date = new Intl.DateTimeFormat('en-US').format(new Date(publishedAt));
+  const date = format(new Date(publishedAt), 'MM.dd.yy');
 
   const hostRecords = await Promise.all(
     hosts.map(({ _ref }: any) => getGuestById(_ref))
