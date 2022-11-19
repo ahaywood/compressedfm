@@ -14,7 +14,7 @@ const TheHosts = () => (
       avatar="/images/james.png"
       firstName="James"
       lastName="Q Quick"
-      jobTitle="Fullstack Developer"
+      jobTitle="Technical Content Creator"
       largeBody="I am a JavaScript developer, speaker, and teacher with a passion for teaching developers through various mediums of content."
       body="I'm a firm believer in work-life balance, the on-going pursuit of personal happiness, and empowering others to take control of their career. My personal philosophy of “Learn Build Teach” has blossomed into a growing community of aspiring and established developers focused on helping each succeed."
       twitter="http://twitter.com/jamesqquick"
