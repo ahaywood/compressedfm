@@ -123,7 +123,7 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
         artwork="/images/cover.png"
         episodeTitle="The Tech Behind Compressed.fm"
         audioPath="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/56025005-71cc-47ec-87a2-0724b9eeed6b/audio/bffa7d33-dae5-46bf-a2a5-a1bd556a7253/default_tc.mp3"
-        episodeNumber="3"
+        episodeNumber={3}
       />
     </section>
 

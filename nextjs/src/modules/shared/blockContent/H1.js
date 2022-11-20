@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const H1 = ({ children }) => <StyledH1>{children}</StyledH1>;
 
 H1.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 export { H1 };

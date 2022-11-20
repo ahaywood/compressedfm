@@ -9,6 +9,7 @@ import { VerticalDivider } from 'modules/shared/components/VerticalDivider';
 // styles
 import { TheHosts } from './components/TheHosts';
 import { FeaturedEpisode } from './components/FeaturedEpisode';
+import MyHead from 'modules/shared/components/Header/MyHead';
 
 /** -------------------------------------------------
 * COMPONENT
