@@ -4,30 +4,38 @@ import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { AboutPage } from 'modules/about';
 import { Meta } from 'modules/shared/components/Meta';
+import MyHead from 'modules/shared/components/Header/MyHead';
 import { LegalQuery, FaqQuery, GettingStartedEpisodesQuery, PopularEpisodesQuery } from '../queries/Queries';
 
 export default function About({ siteSettings, gettingStarted, mostPopular, faqs, footerLinks }) {
-  console.log(faqs);
   return (
-    <InteriorLayout footerLinks={footerLinks}>
-      <>
-        <Head>
-          <Meta
-            seoTitle="About Compressed.fm"
-            seoDescription=""
-            ogTitle="About Compressed.fm"
-            ogDescription=""
-            ogImage=""
-            twitterTitle=""
-            twitterDescription=""
-            twitterImage=""
-            twitterImageAlt=""
-            url="https://compressed.fm/about"
+    <>
+      <MyHead title="Compressed.fm - About" />
+      <InteriorLayout footerLinks={footerLinks}>
+        <>
+          <Head>
+            <Meta
+              seoTitle="About Compressed.fm"
+              seoDescription=""
+              ogTitle="About Compressed.fm"
+              ogDescription=""
+              ogImage=""
+              twitterTitle=""
+              twitterDescription=""
+              twitterImage=""
+              twitterImageAlt=""
+              url="https://compressed.fm/about"
+            />
+          </Head>
+          <AboutPage
+            siteSettings={siteSettings}
+            faqs={faqs}
+            gettingStarted={gettingStarted}
+            mostPopular={mostPopular}
           />
-        </Head>
-        <AboutPage siteSettings={siteSettings} faqs={faqs} gettingStarted={gettingStarted} mostPopular={mostPopular} />
-      </>
-    </InteriorLayout>
+        </>
+      </InteriorLayout>
+    </>
   );
 }
 

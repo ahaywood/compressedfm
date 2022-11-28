@@ -7,6 +7,7 @@ import { UserProvider } from '@auth0/nextjs-auth0';
 import NProgress from 'nprogress';
 import Theme from '../styles/Theme';
 import 'styles/nprogress.css';
+import MyHead from 'modules/shared/components/Header/MyHead';
 
 // Bind nProgress Bar
 Router.events.on('routeChangeStart', () => {
@@ -17,14 +18,12 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const { footerLinks, user } = pageProps;
-
+  const title = 'Compressed.fm';
+  const description = 'A weekly podcast about Web Development and Web Design with a little big of zest!';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   return (
     <UserProvider>
       <ThemeProvider theme={Theme}>
-        <Head>
-          <title>Compressed.fm</title>
-          <script src="https://cdn.usefathom.com/script.js" data-site="TRUYKXEJ" defer />
-        </Head>
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
