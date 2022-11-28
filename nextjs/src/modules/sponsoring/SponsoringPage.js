@@ -331,6 +331,22 @@ const SponsoringPage = ({ settings }) => {
         <h2 className="highlight">As part of the sponsorship package, you’ll receive:</h2>
         <ol>
           <li>
+            <p className="large-body-copy">Live Streamed to YouTube and Twitch</p>
+            <p>
+              In addition to being published in traditional podcast format, these episodes will be live streamed to
+              James's{' '}
+              <a href="https://www.youtube.com/c/jamesqquick" target="_blank" rel="noreferrer">
+                YouTube
+              </a>{' '}
+              and{' '}
+              <a href="https://www.twitch.tv/jamesqquick" target="_blank" rel="noreferrer">
+                Twitch
+              </a>{' '}
+              channels. The recorded videos will then live long-term on YouTube with an audience of over 170,000
+              subscribers.
+            </p>
+          </li>
+          <li>
             <p className="large-body-copy">A sponsorship section within the episode show notes.</p>
             <p>
               These notes will be listed on the Compressed.fm website and within the user’s podcatcher of choice. This
@@ -808,6 +824,16 @@ const StyledSponsoringPage = styled.main`
     @media (${Breakpoints.medium}) {
       grid-column: 4 / -4;
       padding: 0;
+    }
+
+    a {
+      color: ${(props) => props.theme.yellow};
+      font-weight: bold;
+      text-decoration: underline;
+
+      &:hover {
+        color: ${(props) => props.theme.white};
+      }
     }
   }
 
