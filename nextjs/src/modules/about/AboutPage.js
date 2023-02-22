@@ -9,6 +9,7 @@ import { EpisodeGrid } from 'modules/shared/components/EpisodeGrid';
 import { HorizontalDivider } from 'modules/shared/components/HorizontalDivider';
 import { WaveformPlayer } from 'modules/shared/components/AudioPlayer/WaveformPlayer';
 import { Breakpoints } from 'styles/Breakpoints';
+import { TheHosts } from 'modules/home/components/TheHosts';
 import { Faq } from './components/Faq';
 import { ColophonColor } from './components/ColophonColor';
 import { TypeSample } from './components/TypeSample';
@@ -29,8 +30,8 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
           ))}
       </ol>
     </section>
+    <TheHosts />
     {/* where to begin? */}
-    <VerticalDivider />
     <section className="begin">
       <EpisodeGrid header="Where to Begin?" episodes={gettingStarted} />
     </section>

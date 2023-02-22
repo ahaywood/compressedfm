@@ -22,6 +22,8 @@ const PersonBio = ({
   github,
   youtube,
   twitch,
+  website,
+  tiktok,
 }) => (
   <StyledPersonBio className={className}>
     <div>
@@ -41,11 +43,13 @@ const PersonBio = ({
     <p className="body-copy">{body}</p>
     <div className="social-media">
       <SocialMedia
-        twitter={twitter || ''}
-        instagram={instagram || ''}
-        github={github || ''}
-        youtube={youtube || ''}
-        twitch={twitch || ''}
+        twitter={twitter}
+        instagram={instagram}
+        github={github}
+        youtube={youtube}
+        twitch={twitch}
+        website={website}
+        tiktok={tiktok}
       />
     </div>
   </StyledPersonBio>

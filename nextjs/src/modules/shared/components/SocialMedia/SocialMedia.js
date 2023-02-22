@@ -5,7 +5,7 @@ import { Icon } from 'modules/shared/components/Icon';
 /** -------------------------------------------------
 * COMPONENT
 ---------------------------------------------------- */
-const SocialMedia = ({ className, socialMedia }) => {
+const SocialMedia = (props) => {
   const {
     devTo,
     discord,
@@ -23,7 +23,8 @@ const SocialMedia = ({ className, socialMedia }) => {
     twitter,
     website,
     youtube,
-  } = socialMedia || '';
+    className,
+  } = props;
   return (
     <StyledSocialMedia className={className}>
       {/* DevTo */}
