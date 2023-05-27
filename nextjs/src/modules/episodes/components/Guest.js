@@ -25,7 +25,7 @@ const Guest = ({ className, guest }) => (
               </div>
             </div>
             <p className="large-body-copy">{largeBody}</p>
-            <BlockContent blocks={bio} serializers={serializers} />
+            {bio && <BlockContent blocks={bio} serializers={serializers} />}
             <div className="social-media">
               <SocialMedia className={className} socialMedia={socialMedia} />
             </div>

@@ -16,6 +16,7 @@ const InteriorLayout = ({ children, footerLinks }) => (
 
 InteriorLayout.propTypes = {
   children: PropTypes.any,
+  footerLinks: PropTypes.any,
 };
 
 /** -------------------------------------------------

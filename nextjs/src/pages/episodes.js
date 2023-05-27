@@ -2,12 +2,16 @@ import client from 'utils/client';
 import { EpisodePage } from 'modules/episodes';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { LegalQuery, AllEpisodesQuery } from 'queries/Queries';
+import MyHead from 'modules/shared/components/Header/MyHead';
 
 export default function Episodes({ episodes, footerLinks }) {
   return (
-    <InteriorLayout footerLinks={footerLinks}>
-      <EpisodePage episodes={episodes} />
-    </InteriorLayout>
+    <>
+      <MyHead title="Compressed.fm - Episodes" />
+      <InteriorLayout footerLinks={footerLinks}>
+        <EpisodePage episodes={episodes} />
+      </InteriorLayout>
+    </>
   );
 }
 

@@ -5,7 +5,7 @@ import { MixinBodyCopy } from 'styles/Typography';
 const P = ({ children }) => <StyledP>{children}</StyledP>;
 
 P.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 export { P };

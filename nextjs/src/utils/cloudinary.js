@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
+import { updateEpisode, uploadImage } from './client';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -17,17 +18,4 @@ const uploadAudio = async (audioPath, episodeNumber) => {
   return publicId;
 };
 
-const getWaveformURLForAudio = (publicId) => {
-  const waveformURL = cloudinary.url(`${publicId}.png`, {
-    height: 200,
-    width: 500,
-    flags: 'waveform',
-    color: '#FAFF00',
-    background: 'black',
-    resource_type: 'video',
-  });
-  const httpsUrl = waveformURL.replace('http', 'https');
-  return httpsUrl;
-};
-
-export { cloudinary, getWaveformURLForAudio, uploadAudio };
+export { cloudinary, uploadAudio };

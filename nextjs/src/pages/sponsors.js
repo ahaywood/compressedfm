@@ -3,12 +3,16 @@ import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SponsorsPage } from 'modules/sponsors';
 import { LegalQuery } from 'queries/Queries';
+import MyHead from 'modules/shared/components/Header/MyHead';
 
 export default function Sponsors({ footerLinks, sponsors }) {
   return (
-    <InteriorLayout footerLinks={footerLinks}>
-      <SponsorsPage sponsors={sponsors} />
-    </InteriorLayout>
+    <>
+      <MyHead title="Compressed.fm - Sponsors" />
+      <InteriorLayout footerLinks={footerLinks}>
+        <SponsorsPage sponsors={sponsors} />
+      </InteriorLayout>
+    </>
   );
 }
 

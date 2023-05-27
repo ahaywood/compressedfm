@@ -1,19 +1,19 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { generateGuestCoverURL } from 'utils/coverImages';
+import { generateSocialCoverUrl } from 'utils/coverImages';
 
 export default async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ err: 'You can only make a post request here!' });
   }
   try {
-    const { title, guestName, guestImageURL } = req.body;
+    const { title, guestName, guestImageURL, hosts } = req.body;
 
-    if (!title || !guestName || !guestImageURL) {
-      return res.status(400).json({ msg: 'Make sure to include required fields: title, guestName, and guestImageURL' });
+    if (!title) {
+      return res.status(400).json({ msg: 'Make sure to include a title' });
     }
 
-    const coverUrl = await generateGuestCoverURL({ title, guestName, guestImageURL });
+    const coverUrl = await generateSocialCoverUrl({ title, guestName, guestImageURL, hosts });
     console.log(coverUrl);
     res.status(200).json({ coverUrl });
   } catch (err) {

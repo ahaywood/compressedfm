@@ -79,11 +79,14 @@ FeaturedEpisode.propTypes = {
     title: PropTypes.string,
     briefDescription: PropTypes.string,
     cover: PropTypes.string,
-    guest: PropTypes.shape({
-      avatar: PropTypes.string,
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-    }),
+
+    guest: PropTypes.arrayOf(
+      PropTypes.shape({
+        avatar: PropTypes.string,
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+      })
+    ),
   }),
 };
 

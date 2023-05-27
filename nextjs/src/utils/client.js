@@ -27,3 +27,5 @@ export const getGuestById = async (id) => {
   const guest = await client.getDocument(id);
   return guest;
 };
+
+export const uploadImage = async (imageUrl) => clientWithEdit.assets.upload('image', got.stream(imageUrl));

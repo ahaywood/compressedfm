@@ -3,10 +3,13 @@ import groq from 'groq';
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { SponsorApplicationPage } from 'modules/sponsorApplication';
 import { LegalQuery, pricingQuery } from 'queries/Queries';
+import MyHead from 'modules/shared/components/Header/MyHead';
 
 export default function SponsorApplication({ footerLinks, futureEpisodes, pricing }) {
   return (
     <InteriorLayout footerLinks={footerLinks}>
+      <MyHead title="Compressed.fm - Interested in Sponsoring?" />
+
       <SponsorApplicationPage futureEpisodes={futureEpisodes} pricing={pricing} />
     </InteriorLayout>
   );

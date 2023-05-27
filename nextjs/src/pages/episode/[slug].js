@@ -7,12 +7,20 @@ import { IndividualEpisodePage } from 'modules/episodes/IndividualEpisodePage';
 
 // queries
 import { AllEpisodesQuery, LegalQuery } from 'queries/Queries';
+import Head from 'next/head';
+import MyHead from 'modules/shared/components/Header/MyHead';
 
 export default function Episode({ episode, footerLinks }) {
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+  const coverImage = episode?.episodeCover?.asset?.url || `${baseURL}/images/podcast-cover.jpg`;
+  const title = `Episode ${episode.episodeNumber} - ${episode.title}`;
   return (
-    <InteriorLayout footerLinks={footerLinks}>
-      <IndividualEpisodePage episode={episode} />
-    </InteriorLayout>
+    <>
+      <MyHead title={title} image={coverImage} description={episode.description} />
+      <InteriorLayout footerLinks={footerLinks}>
+        <IndividualEpisodePage episode={episode} />
+      </InteriorLayout>
+    </>
   );
 }
 

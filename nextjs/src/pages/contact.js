@@ -1,14 +1,17 @@
 import { InteriorLayout } from 'modules/shared/layouts/InteriorLayout';
 import { ContactPage } from 'modules/contact';
 import client from 'utils/client';
-import groq from 'groq';
 import { LegalQuery } from 'queries/Queries';
+import MyHead from 'modules/shared/components/Header/MyHead';
 
 export default function Contact({ footerLinks }) {
   return (
-    <InteriorLayout footerLinks={footerLinks}>
-      <ContactPage />
-    </InteriorLayout>
+    <>
+      <MyHead title="Compressed.fm - Contact Us" />
+      <InteriorLayout footerLinks={footerLinks}>
+        <ContactPage />
+      </InteriorLayout>
+    </>
   );
 }
 

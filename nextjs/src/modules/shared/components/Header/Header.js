@@ -17,7 +17,6 @@ const Header = () => {
   const [navShowing, setNavShowing] = useState(false);
 
   const handleClick = () => {
-    console.log('handling it');
     setNavShowing((prevValue) => !prevValue);
   };
 

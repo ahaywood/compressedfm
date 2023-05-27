@@ -31,7 +31,8 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "dashboard-widget-vercel",
-    "@sanity/dashboard"
+    "@sanity/dashboard",
+    "media"
   ],
   "project": {
     "name": "COMPRESSEDfm"

@@ -513,10 +513,14 @@
   "version" "2.0.0"
 
 "@sindresorhus/is@^4.0.0":
-  "version" "4.0.0"
+  "integrity" "sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw=="
+  "resolved" "https://registry.npmjs.org/@sindresorhus/is/-/is-4.6.0.tgz"
+  "version" "4.6.0"
 
 "@szmarczak/http-timer@^4.0.5":
-  "version" "4.0.5"
+  "integrity" "sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w=="
+  "resolved" "https://registry.npmjs.org/@szmarczak/http-timer/-/http-timer-4.0.6.tgz"
+  "version" "4.0.6"
   dependencies:
     "defer-to-connect" "^2.0.0"
 
@@ -526,7 +530,9 @@
   "version" "1.1.2"
 
 "@types/cacheable-request@^6.0.1":
-  "version" "6.0.1"
+  "integrity" "sha512-B3xVo+dlKM6nnKTcmm5ZtY/OL8bOAOd2Olee9M1zft65ox50OzjEHW91sDiU9j6cvW8Ejg1/Qkf4xd2kugApUA=="
+  "resolved" "https://registry.npmjs.org/@types/cacheable-request/-/cacheable-request-6.0.2.tgz"
+  "version" "6.0.2"
   dependencies:
     "@types/http-cache-semantics" "*"
     "@types/keyv" "*"
@@ -534,7 +540,9 @@
     "@types/responselike" "*"
 
 "@types/http-cache-semantics@*":
-  "version" "4.0.0"
+  "integrity" "sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ=="
+  "resolved" "https://registry.npmjs.org/@types/http-cache-semantics/-/http-cache-semantics-4.0.1.tgz"
+  "version" "4.0.1"
 
 "@types/json-schema@^7.0.5":
   "version" "7.0.7"
@@ -543,14 +551,18 @@
   "version" "0.0.29"
 
 "@types/keyv@*":
-  "version" "3.1.1"
+  "integrity" "sha512-xoBtGl5R9jeKUhc8ZqeYaRDx04qqJ10yhhXYGmJ4Jr8qKpvMsDQQrNUvF/wUJ4klOtmJeJM+p2Xo3zp9uaC3tw=="
+  "resolved" "https://registry.npmjs.org/@types/keyv/-/keyv-4.2.0.tgz"
+  "version" "4.2.0"
   dependencies:
-    "@types/node" "*"
+    "keyv" "*"
 
 "@types/node@*":
   "version" "14.14.39"
 
 "@types/responselike@*", "@types/responselike@^1.0.0":
+  "integrity" "sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA=="
+  "resolved" "https://registry.npmjs.org/@types/responselike/-/responselike-1.0.0.tgz"
   "version" "1.0.0"
   dependencies:
     "@types/node" "*"
@@ -1185,17 +1197,21 @@
     "unset-value" "^1.0.0"
 
 "cacheable-lookup@^5.0.3":
+  "integrity" "sha512-2/kNscPhpcxrOigMZzbiWF7dz8ilhb/nIHU3EyZiXWXpeq/au8qJ8VhdftMkty3n7Gj6HIGalQG8oiBNB3AJgA=="
+  "resolved" "https://registry.npmjs.org/cacheable-lookup/-/cacheable-lookup-5.0.4.tgz"
   "version" "5.0.4"
 
-"cacheable-request@^7.0.1":
-  "version" "7.0.1"
+"cacheable-request@^7.0.2":
+  "integrity" "sha512-pouW8/FmiPQbuGpkXQ9BAPv/Mo5xDGANgSNXzTzJ8DrKGuXOssM4wIQRjfanNRh3Yu5cfYPvcorqbhg2KIJtew=="
+  "resolved" "https://registry.npmjs.org/cacheable-request/-/cacheable-request-7.0.2.tgz"
+  "version" "7.0.2"
   dependencies:
     "clone-response" "^1.0.2"
     "get-stream" "^5.1.0"
     "http-cache-semantics" "^4.0.0"
     "keyv" "^4.0.0"
     "lowercase-keys" "^2.0.0"
-    "normalize-url" "^4.1.0"
+    "normalize-url" "^6.0.1"
     "responselike" "^2.0.0"
 
 "call-bind@^1.0.0", "call-bind@^1.0.2":
@@ -1319,7 +1335,9 @@
     "timers-ext" "^0.1.7"
 
 "clone-response@^1.0.2":
-  "version" "1.0.2"
+  "integrity" "sha512-ROoL94jJH2dUVML2Y/5PEDNaSHgeOdSDicUyS7izcF63G6sTc/FTjLub4b8Il9S8S0beOfYt0TaA5qvFK+w0wA=="
+  "resolved" "https://registry.npmjs.org/clone-response/-/clone-response-1.0.3.tgz"
+  "version" "1.0.3"
   dependencies:
     "mimic-response" "^1.0.0"
 
@@ -1617,6 +1635,8 @@
   "version" "1.5.2"
 
 "defer-to-connect@^2.0.0":
+  "integrity" "sha512-4tvttepXG1VaYGrRibk5EwJd1t4udunSOVMdLSAL6mId1ix438oPwPZMALY41FCijukO1L0twNcGsdzS7dHgDg=="
+  "resolved" "https://registry.npmjs.org/defer-to-connect/-/defer-to-connect-2.0.1.tgz"
   "version" "2.0.1"
 
 "define-properties@^1.1.3", "define-properties@^1.1.4":
@@ -2440,6 +2460,8 @@
   "version" "6.0.0"
 
 "get-stream@^5.1.0":
+  "integrity" "sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA=="
+  "resolved" "https://registry.npmjs.org/get-stream/-/get-stream-5.2.0.tgz"
   "version" "5.2.0"
   dependencies:
     "pump" "^3.0.0"
@@ -2511,14 +2533,16 @@
     "type-fest" "^0.20.2"
 
 "got@^11.8.0":
-  "version" "11.8.2"
+  "integrity" "sha512-o0Je4NvQObAuZPHLFoRSkdG2lTgtcynqymzg2Vupdx6PorhaT5MCbIyXG6d4D94kk8ZG57QeosgdiqfJWhEhlQ=="
+  "resolved" "https://registry.npmjs.org/got/-/got-11.8.5.tgz"
+  "version" "11.8.5"
   dependencies:
     "@sindresorhus/is" "^4.0.0"
     "@szmarczak/http-timer" "^4.0.5"
     "@types/cacheable-request" "^6.0.1"
     "@types/responselike" "^1.0.0"
     "cacheable-lookup" "^5.0.3"
-    "cacheable-request" "^7.0.1"
+    "cacheable-request" "^7.0.2"
     "decompress-response" "^6.0.0"
     "http2-wrapper" "^1.0.0-beta.5.2"
     "lowercase-keys" "^2.0.0"
@@ -2645,6 +2669,8 @@
     "entities" "^2.0.0"
 
 "http-cache-semantics@^4.0.0":
+  "integrity" "sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ=="
+  "resolved" "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz"
   "version" "4.1.0"
 
 "http-errors@^1.8.0":
@@ -2675,6 +2701,8 @@
     "debug" "4"
 
 "http2-wrapper@^1.0.0-beta.5.2":
+  "integrity" "sha512-V+23sDMr12Wnz7iTcDeJr3O6AIxlnvT/bmaAAAP/Xda35C90p9599p0F1eHR/N1KILWSoWVAiOMFjBBXaXSMxg=="
+  "resolved" "https://registry.npmjs.org/http2-wrapper/-/http2-wrapper-1.0.3.tgz"
   "version" "1.0.3"
   dependencies:
     "quick-lru" "^5.1.1"
@@ -3102,6 +3130,8 @@
   "version" "2.5.2"
 
 "json-buffer@3.0.1":
+  "integrity" "sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ=="
+  "resolved" "https://registry.npmjs.org/json-buffer/-/json-buffer-3.0.1.tgz"
   "version" "3.0.1"
 
 "json-parse-better-errors@^1.0.2":
@@ -3144,8 +3174,10 @@
     "array-includes" "^3.1.2"
     "object.assign" "^4.1.2"
 
-"keyv@^4.0.0":
-  "version" "4.0.3"
+"keyv@*", "keyv@^4.0.0":
+  "integrity" "sha512-2YvuMsA+jnFGtBareKqgANOEKe1mk3HKiXu2fRmAfyxG0MJAywNhi5ttWA3PMjl4NmpyjZNbFifR2vNjW1znfA=="
+  "resolved" "https://registry.npmjs.org/keyv/-/keyv-4.5.0.tgz"
+  "version" "4.5.0"
   dependencies:
     "json-buffer" "3.0.1"
 
@@ -3276,6 +3308,8 @@
     "js-tokens" "^3.0.0 || ^4.0.0"
 
 "lowercase-keys@^2.0.0":
+  "integrity" "sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA=="
+  "resolved" "https://registry.npmjs.org/lowercase-keys/-/lowercase-keys-2.0.0.tgz"
   "version" "2.0.0"
 
 "lru-cache@^5.1.1":
@@ -3661,8 +3695,10 @@
 "normalize-path@^3.0.0", "normalize-path@~3.0.0":
   "version" "3.0.0"
 
-"normalize-url@^4.1.0":
-  "version" "4.5.0"
+"normalize-url@^6.0.1":
+  "integrity" "sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A=="
+  "resolved" "https://registry.npmjs.org/normalize-url/-/normalize-url-6.1.0.tgz"
+  "version" "6.1.0"
 
 "nprogress@^0.2.0":
   "version" "0.2.0"
@@ -3797,7 +3833,9 @@
   "version" "0.3.0"
 
 "p-cancelable@^2.0.0":
-  "version" "2.1.0"
+  "integrity" "sha512-BZOr3nRQHOntUjTrH8+Lh54smKHoHyur8We1V8DSMVrl5A2malOOwuJRnKRDjSnkoeBh4at6BwEnb5I7Jl31wg=="
+  "resolved" "https://registry.npmjs.org/p-cancelable/-/p-cancelable-2.1.1.tgz"
+  "version" "2.1.1"
 
 "p-is-promise@^1.1.0":
   "version" "1.1.0"
@@ -4159,6 +4197,8 @@
     "inherits" "~2.0.3"
 
 "quick-lru@^5.1.1":
+  "integrity" "sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA=="
+  "resolved" "https://registry.npmjs.org/quick-lru/-/quick-lru-5.1.1.tgz"
   "version" "5.1.1"
 
 "randombytes@^2.0.0", "randombytes@^2.0.1", "randombytes@^2.0.5", "randombytes@^2.1.0":
@@ -4327,7 +4367,9 @@
   "version" "1.0.0"
 
 "resolve-alpn@^1.0.0":
-  "version" "1.1.1"
+  "integrity" "sha512-0a1F4l73/ZFZOakJnQ3FvkJ2+gSTQWz/r2KE5OdDY0TxPm5h4GkqkWWfM47T7HsbnOtcJVEF4epCVy6u7Q3K+g=="
+  "resolved" "https://registry.npmjs.org/resolve-alpn/-/resolve-alpn-1.2.1.tgz"
+  "version" "1.2.1"
 
 "resolve-from@^4.0.0":
   "version" "4.0.0"
@@ -4350,7 +4392,9 @@
     "path-parse" "^1.0.6"
 
 "responselike@^2.0.0":
-  "version" "2.0.0"
+  "integrity" "sha512-4gl03wn3hj1HP3yzgdI7d3lCkF95F21Pz4BPGvKHinyQzALR5CapwC8yIi0Rh58DEMQ/SguC03wFj2k0M/mHhw=="
+  "resolved" "https://registry.npmjs.org/responselike/-/responselike-2.0.1.tgz"
+  "version" "2.0.1"
   dependencies:
     "lowercase-keys" "^2.0.0"
 
