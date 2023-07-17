@@ -27,7 +27,7 @@ const Navigation = ({ handleClick, isShowing }) => {
 
   // SET UP THE ESCAPE KEY
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
+    const handleEsc = (e) => {
       if (e.key === 'Escape') {
         handleClick();
       }
