@@ -19,11 +19,26 @@ import { BtmNav } from './BtmNav';
 const Navigation = ({ handleClick, isShowing }) => {
   const [tags, setTags] = useState();
 
-  // GET TAGS
+  // GET TAGS FROM SANITY
   useEffect(() => {
     const query = groq`*[_type == "category"] {_id, title, slug}`;
     client.fetch(query).then((res) => setTags(res));
   }, []);
+
+  // SET UP THE ESCAPE KEY
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') {
+        handleClick();
+      }
+    };
+
+    document.addEventListener('keydown', handleEsc);
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [handleClick]);
 
   return (
     <StyledNavigation className={isShowing ? 'showing' : ''}>
