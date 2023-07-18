@@ -12,9 +12,7 @@ const NewsletterListItem = ({ dateSent, slug, subject }) => (
   <StyledNewsletterListItem>
     <div className="date-sent">{formatLongDate(dateSent)}</div>
     <div className="subject">
-      <Link href={`/newsletter/${slug.current}`}>
-        <a>{subject}</a>
-      </Link>
+      <Link href={`/newsletter/${slug.current}`}>{subject}</Link>
     </div>
     <MoreLink className="more" href={`/newsletter/${slug.current}`} />
   </StyledNewsletterListItem>

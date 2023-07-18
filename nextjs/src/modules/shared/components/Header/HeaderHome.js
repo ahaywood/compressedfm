@@ -9,6 +9,7 @@ import { Constants } from 'utils/constants';
 import { Breakpoints } from 'styles/Breakpoints';
 import { Navigation } from './components/Navigation';
 import { Hamburger } from './components/Hamburger';
+import Link from 'next/link';
 
 // styles
 
@@ -29,17 +30,17 @@ const HeaderHome = () => {
 
       <div>
         <h1>
-          <Image src="/images/logo.svg" width={850} height={272} layout="intrinsic" />
+          <Image src="/images/logo.svg" width={850} height={272} />
         </h1>
         <h2>
           A weekly podcast about web design and development from{' '}
-          <a href={Constants.JAMES_WEBSITE_URL} target="_blank" rel="noreferrer">
+          <Link href={Constants.JAMES_WEBSITE_URL} target="_blank" rel="noreferrer">
             James Q Quick
-          </a>{' '}
+          </Link>{' '}
           and{' '}
-          <a href={Constants.AMY_WEBSITE_URL} target="_blank" rel="noreferrer">
+          <Link href={Constants.AMY_WEBSITE_URL} target="_blank" rel="noreferrer">
             Amy Dutton
-          </a>
+          </Link>
           .
         </h2>
       </div>

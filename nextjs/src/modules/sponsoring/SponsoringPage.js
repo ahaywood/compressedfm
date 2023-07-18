@@ -11,6 +11,7 @@ import { ButtonLink } from 'modules/shared/components/ButtonLink';
 // styles
 import { MixinBodyCopy, MixinLargeBodyCopy, MixinPageTitle, MixinSectionHeading } from 'styles/Typography';
 import { Breakpoints } from 'styles/Breakpoints';
+import Link from 'next/link';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -148,9 +149,9 @@ const SponsoringPage = ({ settings }) => {
           </div>
           <div className="current-audience__social__featured-number">{JamesSocialMedia.twitterFollowers} Followers</div>
           <div className="current-audience__social__link">
-            <a href="http://twitter.com/jamesqquick" target="_blank" rel="noreferrer">
+            <Link href="http://twitter.com/jamesqquick" target="_blank" rel="noreferrer">
               twitter.com/jamesqquick
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -160,9 +161,9 @@ const SponsoringPage = ({ settings }) => {
           </div>
           <div className="current-audience__social__featured-number">{JamesSocialMedia.twitchFollowers} Followers</div>
           <div className="current-audience__social__link">
-            <a href="http://twitch.com/jamesqquick" target="_blank" rel="noreferrer">
+            <Link href="http://twitch.com/jamesqquick" target="_blank" rel="noreferrer">
               twitch.com/jamesqquick
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -172,9 +173,9 @@ const SponsoringPage = ({ settings }) => {
           </div>
           <div className="current-audience__social__featured-number">{JamesSocialMedia.discordMembers} Members</div>
           <div className="current-audience__social__link">
-            <a href="http://learnbuildteach.com" target="_blank" rel="noreferrer">
+            <Link href="http://learnbuildteach.com" target="_blank" rel="noreferrer">
               Discord Server
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -186,9 +187,9 @@ const SponsoringPage = ({ settings }) => {
             {JamesSocialMedia.youtubeSubscribers} Subscribers
           </div>
           <div className="current-audience__social__link">
-            <a href="http://youtube.com/c/jamesqquick" target="_blank" rel="noreferrer">
+            <Link href="http://youtube.com/c/jamesqquick" target="_blank" rel="noreferrer">
               youtube.com/c/jamesqquick
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -200,9 +201,9 @@ const SponsoringPage = ({ settings }) => {
             {AmySocialMedia.youtubeSubscribers} Subscribers
           </div>
           <div className="current-audience__social__link">
-            <a href="http://youtube.com/c/selfteachme" target="_blank" rel="noreferrer">
+            <Link href="http://youtube.com/c/selfteachme" target="_blank" rel="noreferrer">
               youtube.com/c/selfteachme
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -212,9 +213,9 @@ const SponsoringPage = ({ settings }) => {
           </div>
           <div className="current-audience__social__featured-number">{AmySocialMedia.twitterFollowers} Followers</div>
           <div className="current-audience__social__link">
-            <a href="http://twitter.com/selfteachme" target="_blank" rel="noreferrer">
+            <Link href="http://twitter.com/selfteachme" target="_blank" rel="noreferrer">
               twitter.com/selfteachme
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -335,13 +336,13 @@ const SponsoringPage = ({ settings }) => {
             <p>
               In addition to being published in traditional podcast format, these episodes will be live streamed to
               James's{' '}
-              <a href="https://www.youtube.com/c/jamesqquick" target="_blank" rel="noreferrer">
+              <Link href="https://www.youtube.com/c/jamesqquick" target="_blank" rel="noreferrer">
                 YouTube
-              </a>{' '}
+              </Link>{' '}
               and{' '}
-              <a href="https://www.twitch.tv/jamesqquick" target="_blank" rel="noreferrer">
+              <Link href="https://www.twitch.tv/jamesqquick" target="_blank" rel="noreferrer">
                 Twitch
-              </a>{' '}
+              </Link>{' '}
               channels. The recorded videos will then live long-term on YouTube with an audience of over 170,000
               subscribers.
             </p>

@@ -16,7 +16,7 @@ import { MixinHeadingWithHorizontalLines } from 'styles/Typography';
 const ContactPage = () => {
   const { register, handleSubmit } = useForm();
   // eslint-disable-next-line prettier/prettier
-  const onSubmit = () => { };
+  const onSubmit = () => {};
 
   useEffect(() => {
     kwesforms.init();
@@ -35,15 +35,27 @@ const ContactPage = () => {
         action="https://kwes.io/api/foreign/forms/XZx7xaYdws6HQLePBoFC"
       >
         <div className="half">
-          <input type="text" name="firstName" id="firstName" ref={register} placeholder=" " rules="required" />
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            {...register('firstName', { required: true })}
+            placeholder=" "
+          />
           <label htmlFor="firstName">First Name*</label>
         </div>
         <div className="half">
-          <input type="text" name="lastName" id="lastName" ref={register} placeholder=" " rules="required" />
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            {...register('lastName', { required: true })}
+            placeholder=" "
+          />
           <label htmlFor="lastName">Last Name*</label>
         </div>
         <div className="full">
-          <input type="email" name="email" ref={register} placeholder=" " rules="required" />
+          <input type="email" name="email" {...register('email', { required: true })} placeholder=" " />
           <label htmlFor="email">Email Address*</label>
         </div>
         <div className="full">
@@ -55,7 +67,7 @@ const ContactPage = () => {
           <label htmlFor="Subject">Subject*</label>
         </div>
         <div className="full">
-          <textarea name="message" id="message" ref={register} placeholder=" " rules="required" />
+          <textarea name="message" id="message" {...register('message', { required: true })} placeholder=" " />
           <label htmlFor="message">Message*</label>
         </div>
         <div className="full action-buttons">

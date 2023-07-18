@@ -7,7 +7,6 @@ import { IndividualEpisodePage } from 'modules/episodes/IndividualEpisodePage';
 
 // queries
 import { AllEpisodesQuery, LegalQuery } from 'queries/Queries';
-import Head from 'next/head';
 import MyHead from 'modules/shared/components/Header/MyHead';
 
 export default function Episode({ episode, footerLinks }) {

@@ -10,7 +10,6 @@ function MyHead({ title, description, image }) {
   return (
     <Head>
       <title>Compressed.fm</title>
-      <script src="https://cdn.usefathom.com/script.js" data-site="TRUYKXEJ" defer />
       <meta name="title" content={title || defaultTitle} key="title" />
       <meta name="description" content={description || defaultDescription} />
 

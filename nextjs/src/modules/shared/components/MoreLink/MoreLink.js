@@ -6,10 +6,8 @@ import { Icon } from 'modules/shared/components/Icon';
 const MoreLink = ({ className, href, label }) => (
   <StyledMoreLink className={className}>
     <Link href={href}>
-      <a>
-        {label}
-        <Icon name="arrow" />
-      </a>
+      {label}
+      <Icon name="arrow" />
     </Link>
   </StyledMoreLink>
 );

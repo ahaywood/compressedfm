@@ -31,7 +31,7 @@ const Newsletter = () => {
         className="kwes-form"
         action="https://kwes.io/api/foreign/forms/VBsOqTJ8MTds1LU9utSf"
       >
-        <input type="email" name="email" id="email" ref={register} placeholder=" " rules="required" />
+        <input type="email" name="email" id="email" {...register('email', { required: true })} placeholder=" " />
         <label htmlFor="email">Email Address</label>
         <button className="submit" type="submit" onClick={onSubmit}>
           <Icon name="arrow" height="64" width="64" />

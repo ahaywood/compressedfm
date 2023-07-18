@@ -31,7 +31,7 @@ ButtonLink.defaultProps = {
 /** -------------------------------------------------
 * STYLES
 ---------------------------------------------------- */
-const StyledButtonLink = styled.a`
+const StyledButtonLink = styled.span`
   --primary: ${(props) => props.theme.yellow};
 
   &.alt {

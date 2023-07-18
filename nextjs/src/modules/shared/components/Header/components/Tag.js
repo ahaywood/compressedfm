@@ -9,8 +9,8 @@ import { slugify } from 'utils/slugify';
 ---------------------------------------------------- */
 const Tag = ({ handleClick, name }) => (
   <StyledTag>
-    <Link href={`/tag/${slugify(name)}`}>
-      <a onClick={handleClick}>{name}</a>
+    <Link href={`/tag/${slugify(name)}`} onClick={handleClick}>
+      {name}
     </Link>
   </StyledTag>
 );
@@ -22,7 +22,7 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   // eslint-disable-next-line prettier/prettier
-  handleClick: () => { },
+  handleClick: () => {},
 };
 
 /** -------------------------------------------------

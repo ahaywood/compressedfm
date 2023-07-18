@@ -29,7 +29,7 @@ const PersonBio = ({
     <div>
       <div className="meta">
         <div className="avatar">
-          <Image alt="{firstName} {lastName}" src={avatar} height={187} width={187} layout="intrinsic" />
+          <Image alt="{firstName} {lastName}" src={avatar} height={187} width={187} />
         </div>
         <div>
           <h2 className="name">
