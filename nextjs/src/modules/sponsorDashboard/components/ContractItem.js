@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Tag } from 'modules/shared/components/Tag';
 import { Icon } from 'modules/shared/components/Icon';
+import Link from 'next/link';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -17,9 +18,9 @@ const ContractItem = ({ contract }) => {
       <div className="contract-quantity">{quantity}</div>
       <div className="contract-description">{contractDescription}</div>
       <div className="contract-arrow">
-        <a href={contractPDF} target="_blank" rel="noreferrer">
+        <Link href={contractPDF} target="_blank" rel="noreferrer">
           <Icon name="arrow" width="44" height="44" />
-        </a>
+        </Link>
       </div>
     </StyledContractItem>
   );

@@ -13,6 +13,7 @@ import { TheHosts } from 'modules/home/components/TheHosts';
 import { Faq } from './components/Faq';
 import { ColophonColor } from './components/ColophonColor';
 import { TypeSample } from './components/TypeSample';
+import Link from 'next/link';
 
 const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
   <StyledAboutPage>
@@ -50,17 +51,20 @@ const AboutPage = ({ faqs, gettingStarted, mostPopular, siteSettings }) => (
         <p className="large-body">Since we're web designers and developers, we care about this sort of thing.</p>
         <p>
           The website is built on{' '}
-          <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
+          <Link href="https://nextjs.org/" target="_blank" rel="noreferrer">
+            {' '}
             Next.js
-          </a>{' '}
+          </Link>{' '}
           and{' '}
-          <a href="https://sanity.io/" target="_blank" rel="noreferrer">
+          <Link href="https://sanity.io/" target="_blank" rel="noreferrer">
+            {' '}
             Sanity
-          </a>{' '}
+          </Link>{' '}
           and hosted on{' '}
-          <a href="https://vercel.com/" target="_blank" rel="noreferrer">
+          <Link href="https://vercel.com/" target="_blank" rel="noreferrer">
+            {' '}
             Vercel
-          </a>
+          </Link>
           .
         </p>
         <div className="logo-line">

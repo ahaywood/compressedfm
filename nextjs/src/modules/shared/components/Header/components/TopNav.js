@@ -15,34 +15,22 @@ const TopNav = () => {
     <StyledTopNav>
       <ul className={currentPage || 'home'}>
         <li className="home">
-          <Link href="/">
-            <a>Home</a>
-          </Link>
+          <Link href="/">Home</Link>
         </li>
         <li className="about">
-          <Link href="/about">
-            <a>About</a>
-          </Link>
+          <Link href="/about">About</Link>
         </li>
         <li className="episodes">
-          <Link href="/episodes">
-            <a>Episodes</a>
-          </Link>
+          <Link href="/episodes">Episodes</Link>
         </li>
         <li className="sponsors">
-          <Link href="/sponsors">
-            <a>Sponsors</a>
-          </Link>
+          <Link href="/sponsors">Sponsors</Link>
         </li>
         <li className="newsletter">
-          <Link href="/newsletter">
-            <a>Newsletter</a>
-          </Link>
+          <Link href="/newsletter">Newsletter</Link>
         </li>
         <li className="contact">
-          <Link href="/contact">
-            <a>Contact</a>
-          </Link>
+          <Link href="/contact">Contact</Link>
         </li>
       </ul>
     </StyledTopNav>

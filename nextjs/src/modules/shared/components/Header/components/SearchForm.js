@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -14,7 +13,6 @@ import { MixinTextField, MixinLabel, MixinButtonWithArrow } from 'styles/Form';
 ---------------------------------------------------- */
 const SearchForm = () => {
   const { register, handleSubmit } = useForm();
-  const searchInput = useRef();
   const router = useRouter();
 
   const onSubmit = (data) => {
@@ -25,16 +23,7 @@ const SearchForm = () => {
   return (
     <StyledSearchForm>
       <form onSubmit={handleSubmit(onSubmit)} method="get">
-        <input
-          type="text"
-          name="keywords"
-          id="search"
-          placeholder=" "
-          ref={(e) => {
-            searchInput.current = e;
-            register(e, { required: true });
-          }}
-        />
+        <input type="text" placeholder=" " {...register('keywords', { required: true })} />
         <label htmlFor="search">Search</label>
         <button name="submit" type="submit">
           <Icon name="arrow" height="64" width="64" />

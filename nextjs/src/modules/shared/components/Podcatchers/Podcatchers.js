@@ -7,6 +7,7 @@ import { Constants } from 'utils/constants';
 
 // styles
 import { Breakpoints } from 'styles/Breakpoints';
+import Link from 'next/link';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -18,54 +19,54 @@ const Podcatchers = ({ className, showHeading }) => (
       {/* ITUNES */}
       {Constants.ITUNES_URL !== '' && (
         <li>
-          <a href={Constants.ITUNES_URL} target="_blank" rel="noreferrer">
+          <Link href={Constants.ITUNES_URL} target="_blank" rel="noreferrer">
             <Image src="/images/itunes@2x.png" alt="iTunes" width={146} height={46} />
-          </a>
+          </Link>
         </li>
       )}
 
       {/* GOOGLE PODCASTS */}
       {Constants.GOOGLE_URL !== '' && (
         <li>
-          <a href={Constants.GOOGLE_URL} target="_blank" rel="noreferrer">
+          <Link href={Constants.GOOGLE_URL} target="_blank" rel="noreferrer">
             <Image src="/images/google-podcasts@2x.png" alt="Google Podcasts" width={187} height={38} />
-          </a>
+          </Link>
         </li>
       )}
 
       {/* SPOTIFY */}
       {Constants.SPOTIFY_URL !== '' && (
         <li>
-          <a href={Constants.SPOTIFY_URL} target="_blank" rel="noreferrer">
+          <Link href={Constants.SPOTIFY_URL} target="_blank" rel="noreferrer">
             <Image src="/images/spotify@2x.png" alt="Spotify" width={135} height={47} />
-          </a>
+          </Link>
         </li>
       )}
 
       {/* STITCHER */}
       {Constants.STITCHER_URL !== '' && (
         <li>
-          <a href={Constants.STITCHER_URL} target="_blank" rel="noreferrer">
+          <Link href={Constants.STITCHER_URL} target="_blank" rel="noreferrer">
             <Image src="/images/stitcher@2x.png" alt="Sitcher" width={95} height={50} />
-          </a>
+          </Link>
         </li>
       )}
 
       {/* CASTBOX */}
       {Constants.CASTBOX_URL !== '' && (
         <li>
-          <a href={Constants.CASTBOX_URL} target="_blank" rel="noreferrer">
+          <Link href={Constants.CASTBOX_URL} target="_blank" rel="noreferrer">
             <Image src="/images/castbox@2x.png" alt="Listen on Castbox" width={158} height={56} />
-          </a>
+          </Link>
         </li>
       )}
 
       {/* POCKET CASTS */}
       {Constants.POCKET_CASTS_URL !== '' && (
         <li>
-          <a href={Constants.POCKET_CASTS_URL} target="_blank" rel="noreferrer">
+          <Link href={Constants.POCKET_CASTS_URL} target="_blank" rel="noreferrer">
             <Image src="/images/pocket-casts@2x.png" alt="Listen on Pocket Casts" width={180} height={44} />
-          </a>
+          </Link>
         </li>
       )}
     </ul>

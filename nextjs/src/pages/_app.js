@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
 import Router from 'next/router';
-import Head from 'next/head';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import { UserProvider } from '@auth0/nextjs-auth0';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import NProgress from 'nprogress';
 import Theme from '../styles/Theme';
 import 'styles/nprogress.css';
-import MyHead from 'modules/shared/components/Header/MyHead';
+import Script from 'next/script';
 
 // Bind nProgress Bar
 Router.events.on('routeChangeStart', () => {
@@ -17,17 +16,16 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
-  const { footerLinks, user } = pageProps;
-  const title = 'Compressed.fm';
-  const description = 'A weekly podcast about Web Development and Web Design with a little big of zest!';
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   return (
-    <UserProvider>
-      <ThemeProvider theme={Theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </UserProvider>
+    <>
+      <Script src="https://cdn.usefathom.com/script.js" data-site="TRUYKXEJ" defer />
+      <UserProvider>
+        <ThemeProvider theme={Theme}>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </UserProvider>
+    </>
   );
 }
 
