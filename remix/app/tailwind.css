@@ -1,0 +1,640 @@
+@font-face {
+  font-family: 'DankMono';
+  src: url('/fonts/dank/DankMono-Bold.woff2') format('woff2'), /* Modern Browsers */
+        url('/fonts/dank/DankMono-Bold.otf') format('opentype'); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'DankMono';
+  src: url('/fonts/dank/DankMono-Regular.woff2') format('woff2'), /* Modern Browsers */
+        url('/fonts/dank/DankMono-Regular.otf') format('opentype'); /* Safari, Android, iOS */
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'DankMono';
+  src: url('/fonts/dank/DankMono-Italic.woff2') format('woff2'), /* Modern Browsers */
+        url('/fonts/dank/DankMono-Italic.otf') format('opentype'); /* Safari, Android, iOS */
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Greycliff';
+  src: url('/fonts/greycliff/GreycliffCF-Bold.eot'),
+      url('/fonts/greycliff/GreycliffCF-Bold.woff') format('woff'),
+      url('/fonts/greycliff/GreycliffCF-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Greycliff';
+  src: url('/fonts/greycliff/GreycliffCF-BoldOblique.eot'),
+      url('/fonts/greycliff/GreycliffCF-BoldOblique.woff') format('woff'),
+      url('/fonts/greycliff/GreycliffCF-BoldOblique.woff2') format('woff2');
+  font-style: italic;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Greycliff';
+  src: url('/fonts/greycliff/GreycliffCF-Heavy.eot'),
+      url('/fonts/greycliff/GreycliffCF-Heavy.woff') format('woff'),
+      url('/fonts/greycliff/GreycliffCF-Heavy.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 900;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Greycliff';
+  src: url('/fonts/greycliff/GreycliffCF-Regular.eot'),
+      url('/fonts/greycliff/GreycliffCF-Regular.woff') format('woff'),
+      url('/fonts/greycliff/GreycliffCF-Regular.woff2') format('woff2');
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Greycliff';
+  src: url('/fonts/greycliff/GreycliffCF-RegularOblique.eot'),
+      url('/fonts/greycliff/GreycliffCF-RegularOblique.woff') format('woff'),
+      url('/fonts/greycliff/GreycliffCF-RegularOblique.woff2') format('woff2');
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+:root {
+  --montana: #393939;
+  --gray: #808080;
+  --shipGray: #505050;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white font-sans;
+  }
+
+  form.form {
+    @apply grid grid-cols-1 gap-x-6 my-[60px] mx-auto max-w-formWidth md:grid-cols-2
+  }
+
+  .field {
+    @apply relative
+  }
+
+  label {
+    @apply text-yellow cursor-text block font-mono tracking-wider mb-[10px] absolute uppercase left-0 right-0 transition-all duration-300 ease-in-out sm:text-lg;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    @apply bg-transparent border-b border-white text-white font-sans text-lg h-[55px] mt-[30px] px-[15px] w-full focus:border-yellow focus:outline-none;
+  }
+
+  input[type="email"]:placeholder-shown + .kw-field-error-message + label,
+  input[type="email"]:placeholder-shown + label,
+  input[type="password"]:placeholder-shown + .kw-field-error-message + label,
+  input[type="password"]:placeholder-shown + label,
+  input[type="text"]:placeholder-shown + .kw-field-error-message + label,
+  input[type="text"]:placeholder-shown + label {
+    @apply left-[15px] top-[48px];
+  }
+
+  input[type="email"]:focus + .kw-field-error-message + label,
+  input[type="email"]:focus + label,
+  input[type="password"]:focus + .kw-field-error-message + label,
+  input[type="password"]:focus + label,
+  input[type="text"]:focus + .kw-field-error-message + label,
+  input[type="text"]:focus + label {
+    @apply left-0 top-0;
+  }
+
+  textarea {
+    @apply bg-transparent border-[1px] border-white text-white font-sans text-lg leading-normal h-[175px] mt-[30px] mx-0 mb-0 p-[15px] w-full focus:border-yellow focus:outline-none
+  }
+
+  textarea:placeholder-shown + label {
+    @apply left-[15px] top-[48px];
+  }
+
+  /* must be listed below the :placeholder-shown pseudo class */
+  textarea:focus + label {
+    @apply left-0 top-0
+  }
+
+  select {
+    background: url('/images/select.svg') 98% center no-repeat;
+    @apply appearance-none border-[1px] border-white text-white font-sans text-lg h-[55px] mt-[30px] mx-0 mb-0 py-0 pr-[15px] ml-[125px] w-full focus:border-yellow focus:outline-none
+  }
+
+  select + label {
+    @apply cursor-default left-[15px] pointer-events-none top-[49px]
+  }
+
+  form button {
+    @apply bg-none border-none text-yellow cursor-pointer absolute right-0 top-6 transition-all duration-300 ease-in-out hover:text-lavenderIndigo hover:-right-[10px];
+  }
+
+  li,
+  p {
+    @apply leading-7 mt-0 mx-0 mb-[20px]
+  }
+
+  li a,
+  p a {
+    @apply border-b-1 border-yellow text-yellow font-bold no-underline hover:border-lavenderIndigo hover:text-lavenderIndigo
+  }
+
+  svg {
+    @apply fill-current;
+  }
+}
+
+@layer components {
+  .page-title {
+    @apply font-sans font-black text-[38px] leading-tight mt-0 px-mobilePadding mb-10 text-center md:text-[85px] md:leading-none md:mx-auto md:mb-[70px] md:px-0 md:max-w-[80%]
+  }
+
+  .auth-title {
+    @apply font-sans font-black text-[38px] md:text-[68px] leading-tight mt-0 mb-10 md:leading-none text-yellow
+  }
+
+  /* form layout */
+  .half,
+  .full {
+    @apply relative
+  }
+
+  .full {
+    @apply md:col-span-2
+  }
+
+  .button-link,
+  .form-submit-button {
+    @apply center bg-white border-none bottom-[10px] text-black cursor-pointer font-mono text-lg left-[10px] mt-[15px] py-[15px] pr-[50px] pl-[70px] relative uppercase transition-all duration-200 ease-in-out z-button hover:bg-yellow hover:-translate-x-[15px] hover:translate-y-[15px];
+  }
+
+  .button-link:before,
+  .form-submit-button:before {
+    content: '';
+    @apply border-2 border-white block h-full -left-[15px] absolute top-[15px] transition-all duration-200 ease-in-out w-full z-buttonBefore;
+  }
+
+  .button-link:hover:before,
+  .form-submit-button:hover:before {
+    @apply border-yellow transition translate-x-[13px] -translate-y-[17px]
+  }
+
+  .button-link svg,
+  .form-submit-button svg {
+    transition: right 0.25s ease-in-out;
+  }
+
+  .action-buttons {
+    @apply text-right
+  }
+
+  .action-buttons button {
+    @apply ml-auto;
+  }
+
+
+  .kw-alert {
+    @apply absolute max-w-[445px] col-span-2
+  }
+
+  .kw-alert-error {
+    @apply max-w-[445px] col-span-2
+  }
+
+  .kw-field-error-message {
+    @apply text-sm
+  }
+
+  .kwes-form .kw-border-error {
+    @apply !border-t-0 !border-l-0 !border-r-0
+  }
+
+  .zeros {
+    -webkit-text-stroke: 1px #FAFF00;
+  }
+
+  ol.reasons-list {
+    counter-reset: reasons-list;
+  }
+
+  ol.reasons-list li:before {
+    content: counter(reasons-list);
+    counter-increment: reasons-list;
+    @apply text-lavenderIndigo font-sans text-[52px] font-black left-0 leading-none absolute top-0 md:text-[85px]
+  }
+
+  ol.reasons-list h3 {
+    @apply mb-1 leading-tight
+  }
+
+  .sponsoring-is-perfect li {
+    @apply font-sans text-[28px] font-black text-white mb-0 -indent-12 md:indent-0
+  }
+
+  .sponsoring-is-perfect li svg {
+    @apply fill-yellow relative top-[14px]
+  }
+
+  .heading {
+    @apply border-b-[1px] border-b-white font-mono text-sm tracking-wide mb-[30px] pb-5 uppercase
+  }
+
+  .section-heading {
+    @apply border-white border-1 text-white inline-block font-mono font-normal text-xl italic tracking-wider my-0 mx-auto py-5 px-12 relative uppercase md:text-2xl
+  }
+
+  .heading-with-horizontal-lines {
+    @apply text-center
+  }
+
+  .heading-with-horizontal-lines h1 {
+    background: url('/images/horizontal-divider.svg') left center no-repeat,
+      url('/images/horizontal-divider.svg') right center no-repeat;
+    @apply text-white inline-block font-mono text-2xl italic tracking-wide my-0 mx-auto py-0 px-[125px] uppercase
+  }
+
+  .reasons-list h3,
+  .large-body-copy {
+    @apply text-white font-sans text-lg md:text-[28px] font-bold leading-7
+  }
+
+  body.banner .hamburger {
+    @apply top-14;
+  }
+
+  .hamburger .line {
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+    @apply fill-none stroke-white;
+  }
+
+  .hamburger:hover .line {
+    @apply stroke-yellow
+  }
+
+  .hamburger path {
+    stroke-dasharray: 31.71 70;
+    stroke-dashoffset: 33;
+  }
+
+  .hamburger .top,
+  .hamburger .bottom {
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hamburger .middle {
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hamburger .x .line {
+    @apply stroke-yellow
+  }
+
+  .hamburger .x .middle {
+    @apply opacity-0
+  }
+
+  .hamburger .x .top,
+  .hamburger .x .bottom {
+    stroke-dashoffset: 101;
+  }
+
+  .navigation {
+    grid-template-areas:
+      'main search'
+      'sub search';
+  }
+
+  .main-nav {
+    grid-area: main;
+  }
+
+  .sub-nav {
+    grid-area: sub;
+  }
+
+  .search {
+    grid-area: search;
+  }
+
+  .social-media li {
+    @apply mb-11
+  }
+
+  .podcatchers img {
+    @apply mix-blend-screen
+  }
+
+  .newsletter-podcatchers ul {
+    @apply flex-wrap
+  }
+
+  .featured-episode {
+    grid-template-areas:
+      'episodeNumberDate'
+      'cover'
+      'episodeContent'
+      'player';
+  }
+
+  @media (min-width: 768px) {
+    .featured-episode {
+      grid-template-areas:
+      'episodeNumberDate episodeNumberDate'
+      'cover episodeContent'
+      'player player';
+    }
+  }
+
+  .featured-episode .episode-number-date__wrapper {
+    grid-area: episodeNumberDate;
+  }
+
+  .featured-episode .podcast-cover {
+    grid-area: cover;
+  }
+
+  .featured-episode .episode-content {
+    grid-area: episodeContent;
+  }
+
+  .featured-episode .episode,
+  .featured-episode .episode-publish-date {
+    @apply text-white font-mono text-lg tracking-wide uppercase
+  }
+
+  .featured-episode .audio-player {
+    grid-area: player;
+  }
+
+  /*
+    remove the dotted line for items on the end
+    - The section header throws off the counting
+  */
+  /* when we're 2-up */
+  .episode-grid.w-section-header > .episode-card:nth-child(2n + 1),
+  .episode-grid.no-section-header > .episode-card:nth-child(2n) {
+    @apply md:bg-none lg:bg-verticalDivider bg-right-top bg-repeat-y
+  }
+
+  /* when we're 3-up */
+  .episode-grid.w-section-header > .episode-card:nth-child(3n + 1),
+  .episode-grid.no-section-header > .episode-card:nth-child(3n) {
+    @apply bg-none
+  }
+
+  /* epsiode heading */
+  .thumbnail-with-content h4 {
+    @apply text-doveGray tracking-widest m-0 mb-[10px] p-0
+  }
+
+  /* episode title */
+  .thumbnail-with-content h3 {
+    @apply m-0 p-0
+  }
+
+  .thumbnail-with-content h3 a {
+    @apply text-yellow no-underline
+  }
+
+  .answer p {
+    @apply mb-0 pb-0
+  }
+
+  .episode-summary {
+    grid-template-areas:
+    'number'
+    'title'
+    'description';
+  }
+
+  @media (min-width: 768px) {
+    .episode-summary {
+      grid-template-areas:
+      'title number'
+      'title description';
+    }
+  }
+
+  .episode-summary .title {
+    grid-area: title;
+  }
+
+  .episode-summary .description {
+    grid-area: description;
+  }
+
+  .episode-summary .episode-number {
+    grid-area: number;
+  }
+
+  button.time-jump:hover .time-code,
+  button.time-jump:hover .description {
+    @apply text-lavenderIndigo
+  }
+
+  footer .social-media a {
+    @apply text-mediumOrchard hover:text-yellow;
+  }
+
+  footer .social-media svg {
+    @apply w-8 h-8;
+  }
+
+  footer .legal li:first-child:before {
+    content: '*';
+    @apply mr-[10px]
+  }
+
+  footer .legal li:after {
+    content: '*';
+    @apply mx-[10px]
+  }
+
+  /* audio players - featured audio player */
+  .featured-audio-player button.forwardBackward {
+    @apply bg-none flex items-center mx-auto relative border-0 text-yellow cursor-pointer font-mono text-lg w-[75px] relative
+  }
+
+  .featured-audio-player button.forwardBackward svg {
+    @apply relative transition-transform duration-300 ease-in-out
+  }
+
+  .featured-audio-player button.forwardBackward:hover svg {
+    @apply transform translate-x-1
+  }
+
+  .featured-audio-player button.forwardBackward .back {
+    @apply transform rotate-180;
+  }
+
+  .featured-audio-player button.forwardBackward:hover .back {
+    @apply transform rotate-180 translate-x-1;
+  }
+
+  .featured-audio-player input[type='range'] {
+    --buffered-width: 0;
+    --seek-before-width: 0;
+
+    --bar-bg: var(--montana);
+    --seek-before-color: var(--gray);
+    --buffered-color: var(--shipGray);
+
+    @apply appearance-none rounded-[10px] relative w-full h-[11px] outline-none;
+    background: var(--bar-bg);
+  }
+
+  .featured-audio-player input[type='range']::-webkit-slider-runnable-track {
+    background: linear-gradient(
+      to right,
+      var(--buffered-color) 0%,
+      var(--buffered-color) var(--buffered-width),
+      transparent var(--buffered-width),
+      transparent 100%
+    );
+    @apply h-[11px] w-full cursor-pointer rounded-l-[10px]
+  }
+
+  /* progress bar - chrome */
+  .featured-audio-player input[type='range']::before {
+    background-color: var(--seek-before-color);
+    content: '';
+    width: var(--seek-before-width);
+    z-index: 2;
+    @apply rounded-l-[10px] cursor-pointer h-[11px] left-0 absolute top-0 mix-blend-screen;
+  }
+
+  /* progress bar - firefox */
+  .featured-audio-player input[type='range']::-moz-range-track {
+    background: linear-gradient(
+      to right,
+      var(--buffered-color) var(--buffered-width),
+      var(--bar-bg) var(--buffered-width)
+    );
+    @apply w-full h-full cursor-pointer rounded-[10px];
+  }
+
+  .featured-audio-player input[type='range']::-moz-focus-outer {
+    @apply border-none;
+  }
+
+  /* played bar - firefox */
+  .featured-audio-player input[type='range']::-moz-range-progress {
+    @apply bg-gray rounded-l-[10px] h-[11px];
+  }
+
+  .featured-audio-player input[type='range']::-moz-focus-outer {
+    @apply border-none;
+  }
+
+  /* knobby - safari */
+  .featured-audio-player input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
+    z-index: 3;
+    @apply relative border-none h-[15px] w-[15px] rounded-full bg-white cursor-pointer -mt-[2px] mb-0 mx-0;
+  }
+
+  /* knobby while dragging - safari */
+  .featured-audio-player input[type='range']:active::-webkit-slider-thumb {
+    @apply bg-yellow transform scale-125;
+  }
+
+  /* knobby - firefox */
+  .featured-audio-player input[type='range']::-moz-range-thumb {
+    box-sizing: content-box;
+    z-index: 3;
+    @apply border-transparent h-[15px] w-[15px] rounded-full cursor-pointer bg-white relative;
+  }
+
+  .featured-audio-player input[type='range']:active::-moz-range-thumb {
+    @apply transform scale-125 bg-yellow;
+  }
+
+  .featured-audio-player .bookmark {
+    z-index: 1;
+    @apply bg-yellow block h-[11px] left-[300px] pointer-events-none relative -top-[13px] w-[100px];
+  }
+
+  .waveform-audio-player {
+    background: linear-gradient(
+      ${(props) => props.theme.black} 0%,
+      ${(props) => props.theme.black} 50%,
+      ${(props) => props.theme.bastille} 50%,
+      ${(props) => props.theme.bastille} 100%
+    );
+    display: grid;
+    grid-template-areas:
+      'cover meta'
+      'controls controls';
+    grid-template-columns: 125px 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .waveform-audio-player {
+      grid-template-areas:
+        'cover meta'
+        'cover controls';
+      grid-template-columns: 160px 1fr;
+      grid-column-gap: 20px;
+    }
+  }
+
+  .waveform-audio-player .album-cover {
+    grid-area: cover;
+  }
+
+  .waveform-audio-player .meta {
+    grid-area: meta;
+  }
+
+  @media (min-width: 640px) {
+    .waveform-audio-player .episode-number:before {
+      content: '|| ';
+    }
+  }
+
+  .waveform-audio-player .controls {
+    grid-area: controls;
+  }
+
+  .waveform-audio-player .forwardBackward {
+    @apply items-center bg-none border-non text-yellow cursor-pointer flex font-mono text-sm absolute width-[75px]
+  }
+
+  .forwardBackward svg {
+    @apply relative transition-transform duration-300 ease-in-out hover:translate-x-[5px]
+  }
+
+  .forwardBackward .current-time,
+  .forwardBackward .duration {
+    @apply bg-black text-white font-mono txt-xs py-[3px] px-0 absolute w-[45px] z-20
+  }
+}
+
+@layer utilities {
+  .center {
+    @apply flex items-center justify-center
+  }
+}

@@ -7,6 +7,22 @@ export default {
   __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
   fields: [
     {
+      name: 'currentlyRecording',
+      title: 'Currently Recording?',
+      type: 'boolean',
+      description: 'If checked, the a banner will appear on the site saying that we\'re currently recording. Join us.',
+    },
+    {
+      name: 'recordingOnYouTube',
+      title: 'Recording on YouTube Link',
+      type: 'url',
+    },
+    {
+      name: 'recordingOnTwitch',
+      title: 'Recording on Twitch Link',
+      type: 'url',
+    },
+    {
       name: 'reasonsBehind',
       title: 'Reasons Behind Podcast',
       type: 'array',
@@ -23,7 +39,7 @@ export default {
     },
     {
       name: 'AmySocialMedia',
-      title: 'Amy\'s Social Media',
+      title: 'Amy\'s Info',
       type: 'socialMediaWithMetrics',
       options: {
         collapsible: true,
@@ -32,7 +48,7 @@ export default {
     },
     {
       name: 'JamesSocialMedia',
-      title: 'James\'s Social Media',
+      title: 'James Info',
       type: 'socialMediaWithMetrics',
       options: {
         collapsible: true,

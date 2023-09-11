@@ -4,6 +4,21 @@ export default {
   tite: 'Social Media with Metrics',
   fields: [
     {
+      title: 'Job Title',
+      name: 'jobTitle',
+      type: 'string',
+    },
+    {
+      title: 'Bio (Large Text)',
+      name: 'bioLargeText',
+      type: 'text',
+    },
+    {
+      title: 'Bio (Body)',
+      name: 'bioBodyText',
+      type: 'text',
+    },
+    {
       title: 'Show Twitter on Sponsor Prospectus',
       name: 'twitterOnProspectus',
       type: 'boolean',
