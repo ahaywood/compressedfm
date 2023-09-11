@@ -21,6 +21,8 @@ const TheHosts = () => (
       github="http://github.com/jamesqquick"
       youtube="http://youtube.com/jamesqquick"
       twitch="http://twitch.com/jamesqquick"
+      website="https://jamesqquick.com/"
+      tiktok="https://www.tiktok.com/@jamesqquick"
     />
 
     {/* amy */}
@@ -37,6 +39,7 @@ const TheHosts = () => (
       github="http://github.com/ahaywood"
       youtube="http://youtube.com/c/selfteachme"
       twitch="http://twitch.com/selfteachme"
+      website="https://selfteach.me/"
     />
   </StyledTheHosts>
 );

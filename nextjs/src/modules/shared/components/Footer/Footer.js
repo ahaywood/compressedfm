@@ -31,9 +31,7 @@ const Footer = ({ footerLinks }) => {
             <ul>
               {footerLinks.map((link) => (
                 <li key={link._id}>
-                  <Link href={`/legal/${link.slug.current}`}>
-                    <a>{link.title}</a>
-                  </Link>
+                  <Link href={`/legal/${link.slug.current}`}>{link.title}</Link>
                 </li>
               ))}
             </ul>

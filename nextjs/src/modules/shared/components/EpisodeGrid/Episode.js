@@ -26,9 +26,7 @@ const Episode = ({ className, episode: { publishedAt, briefDescription, episodeN
       </span>
     </div>
     <h2>
-      <Link href={`/episode/${slug.current}`}>
-        <a>{title}</a>
-      </Link>
+      <Link href={`/episode/${slug.current}`}>{title}</Link>
     </h2>
     <h4>{formatLongDate(publishedAt)}</h4>
     <p>{briefDescription}</p>

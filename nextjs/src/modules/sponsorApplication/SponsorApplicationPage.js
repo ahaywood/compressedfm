@@ -67,39 +67,49 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
             type="text"
             name="firstName"
             id="firstName"
-            ref={register}
+            {...register('firstName', { required: true })}
             placeholder=" "
-            rules="required"
-            {...register('first-name')}
           />
           <label htmlFor="firstName">First Name*</label>
         </div>
         <div className="half">
           <input
-            {...register('last-name')}
             type="text"
             name="lastName"
             id="lastName"
-            ref={register}
+            {...register('lastName', { required: true })}
             placeholder=" "
-            rules="required"
           />
           <label htmlFor="lastName">Last Name*</label>
         </div>
         <div className="full">
-          <input {...register('email')} type="email" name="email" ref={register} placeholder=" " rules="required" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            {...register('email', { required: true })}
+            placeholder=" "
+            rules="required"
+          />
           <label htmlFor="email">Email Address*</label>
         </div>
         <div className="full">
-          <input {...register('phone-number')} type="tel" name="phone-number" ref={register} placeholder=" " />
+          <input {...register('phone-number')} type="tel" id="phone-number" name="phone-number" placeholder=" " />
           <label htmlFor="phone-number">Phone Number</label>
         </div>
         <div className="full">
-          <input {...register('company')} type="text" name="company" ref={register} placeholder=" " rules="required" />
+          <input {...register('company')} type="text" id="company" name="company" placeholder=" " />
           <label htmlFor="company">Company*</label>
         </div>
         <div className="full">
-          <input {...register('url')} type="text" name="url" ref={register} placeholder=" " rules="required" />
+          <input
+            type="text"
+            name="websiteUrl"
+            id="websiteUrl"
+            {...register('websiteUrl', { required: true })}
+            placeholder=" "
+            rules="required"
+          />
           <label htmlFor="websiteUrl">Website URL*</label>
         </div>
         <div className="full">
@@ -162,7 +172,6 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
                       value={episode.title}
                       id={`future-episodes__${formatDashes(episode.publishedAt)}`}
                       {...register('futureEpisodes')}
-                      ref={register}
                     />
                     <label htmlFor={`future-episodes__${formatDashes(episode.publishedAt)}`}>
                       <div className="date">{formatShortDate(episode.publishedAt)}</div>
@@ -175,15 +184,20 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
           )}
         </fieldset>
         <div className="full">
-          <input {...register('promo-code')} type="text" ref={register} placeholder=" " name="promo-code" />
+          <input {...register('promo-code')} type="text" placeholder=" " id="promo-code" name="promo-code" />
           <label htmlFor="promoCode">Promo Code</label>
           <p className="no-btm-margin">
             Do you have a coupon code that we can promote to incentivize listeners to try out your product?
           </p>
         </div>
         <div className="full">
-          <textarea {...register('access-information')} ref={register} placeholder=" " name="access-information" />
-          <label htmlFor="accessInformation">Access Information</label>
+          <textarea
+            {...register('access-information')}
+            id="access-information"
+            placeholder=" "
+            name="access-information"
+          />
+          <label htmlFor="access-information">Access Information</label>
           <p className="no-btm-margin">
             The most successful campaigns are ones where Amy and James have access to the product and can speak from
             personal experience.
@@ -192,12 +206,12 @@ const SponsorApplicationPage = ({ futureEpisodes, pricing }) => {
         <div className="full">
           <textarea
             {...register('talking-points')}
-            ref={register}
+            id="talking-points"
             placeholder=" "
             name="talking-points"
             rules="required"
           />
-          <label htmlFor="talkingPoints">Talking Points*</label>
+          <label htmlFor="talking-points">Talking Points*</label>
           <p className="no-btm-margin">
             What are the most important features of your product that we should highlight?
           </p>

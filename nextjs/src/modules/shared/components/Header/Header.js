@@ -28,9 +28,7 @@ const Header = () => {
       <div>
         <h1>
           <Link href="/">
-            <a>
-              <Image src="/images/logo.svg" width={435} height={185} layout="intrinsic" />
-            </a>
+            <Image src="/images/logo.svg" width={435} height={185} />
           </Link>
         </h1>
       </div>

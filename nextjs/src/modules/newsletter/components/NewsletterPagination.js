@@ -17,14 +17,12 @@ const NewsletterPagination = ({ pagination }) => {
           {/* NEXT */}
           {next && next?.published && (
             <Link href={`/newsletter/${next.slug.current}`}>
-              <a>
-                <div className="arrow">
-                  <Icon name="arrow" className="left-arrow" />
-                  Next
-                </div>
-                <div className="date">{formatLongDate(next.dateSent)}</div>
-                <div className="subject">{next.subject}</div>
-              </a>
+              <div className="arrow">
+                <Icon name="arrow" className="left-arrow" />
+                Next
+              </div>
+              <div className="date">{formatLongDate(next.dateSent)}</div>
+              <div className="subject">{next.subject}</div>
             </Link>
           )}
         </div>
@@ -32,14 +30,12 @@ const NewsletterPagination = ({ pagination }) => {
         <div className="previous">
           {previous && previous?.published && (
             <Link href={`/newsletter/${previous.slug.current}`}>
-              <a>
-                <div className="arrow">
-                  Previous
-                  <Icon name="arrow" />
-                </div>
-                <div className="date">{formatLongDate(previous.dateSent)}</div>
-                <div className="subject">{previous.subject}</div>
-              </a>
+              <div className="arrow">
+                Previous
+                <Icon name="arrow" />
+              </div>
+              <div className="date">{formatLongDate(previous.dateSent)}</div>
+              <div className="subject">{previous.subject}</div>
             </Link>
           )}
         </div>

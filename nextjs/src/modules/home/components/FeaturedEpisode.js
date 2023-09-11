@@ -37,29 +37,21 @@ const FeaturedEpisode = ({
     </div>
     <div className="episode-content">
       <h3>
-        <Link href={`/episode/${slug.current}`}>
-          <a>{title}</a>
-        </Link>
+        <Link href={`/episode/${slug.current}`}>{title}</Link>
       </h3>
       <p>{briefDescription}</p>
       <MoreLink href={`/episode/${slug.current}`} className="more-link" />
       <ul className="tiny-avatars">
         <li>
-          <Image src="/images/james.png" height={60} width={60} alt="James Q Quick" layout="intrinsic" />
+          <Image src="/images/james.png" height={60} width={60} alt="James Q Quick" />
         </li>
         <li>
-          <Image src="/images/amy.png" height={60} width={60} alt="Amy Dutton" layout="intrinsic" />
+          <Image src="/images/amy.png" height={60} width={60} alt="Amy Dutton" />
         </li>
         {guest &&
           guest.map((one, index) => (
             <li key={index}>
-              <Image
-                src={one.avatar}
-                height={60}
-                width={60}
-                alt={`${one.firstName} ${one.lastName}`}
-                layout="intrinsic"
-              />
+              <Image src={one.avatar} height={60} width={60} alt={`${one.firstName} ${one.lastName}`} />
             </li>
           ))}
       </ul>

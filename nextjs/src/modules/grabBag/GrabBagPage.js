@@ -14,9 +14,8 @@ import { MixinHeadingWithHorizontalLines } from 'styles/Typography';
 * COMPONENT
 ---------------------------------------------------- */
 const GrabBagPage = () => {
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
   // eslint-disable-next-line prettier/prettier
-  const onSubmit = () => {};
 
   useEffect(() => {
     kwesforms.init();
@@ -30,19 +29,31 @@ const GrabBagPage = () => {
 
       <form className="kwes-form" action="https://kwesforms.com/api/foreign/forms/BftEOFeXu1k4PfngTSIt">
         <div className="half">
-          <input type="text" name="firstName" id="firstName" ref={register} placeholder=" " rules="required" />
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            {...register('firstName', { required: true })}
+            placeholder=" "
+          />
           <label htmlFor="firstName">First Name*</label>
         </div>
         <div className="half">
-          <input type="text" name="lastName" id="lastName" ref={register} placeholder=" " rules="required" />
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            {...register('lastName', { required: true })}
+            placeholder=" "
+          />
           <label htmlFor="lastName">Last Name*</label>
         </div>
         <div className="full">
-          <input type="email" name="email" ref={register} placeholder=" " rules="required" />
+          <input type="email" name="email" {...register('email', { required: true })} placeholder=" " />
           <label htmlFor="email">Email Address*</label>
         </div>
         <div className="full">
-          <textarea name="message" id="message" ref={register} placeholder=" " rules="required" />
+          <textarea name="message" id="message" {...register('message', { required: true })} placeholder=" " />
           <label htmlFor="message">Message*</label>
         </div>
         <div className="full action-buttons">

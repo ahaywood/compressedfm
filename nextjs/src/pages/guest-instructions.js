@@ -6,7 +6,7 @@ export default function GuestInstructions() {
   return (
     <>
       <MyHead title="Compressed.fm - Guest Instructions" />
-      <InteriorLayout>Guest Instructions</InteriorLayout>;
+      <InteriorLayout>Guest Instructions</InteriorLayout>
     </>
   );
 }

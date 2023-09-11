@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Icon } from 'modules/shared/components/Icon';
 import { Tag } from 'modules/shared/components/Tag';
+import Link from 'next/link';
 
 /** -------------------------------------------------
 * COMPONENT
@@ -17,9 +18,9 @@ const InvoiceItem = ({ invoice }) => {
       <div className="invoice-description">{invoiceDescription}</div>
       <div className="invoice-amount">${invoiceAmount}</div>
       <div className="invoice-arrow">
-        <a href={invoiceLink}>
+        <Link href={invoiceLink}>
           <Icon name="arrow" width="44" height="44" />
-        </a>
+        </Link>
       </div>
     </StyledInvoiceItem>
   );

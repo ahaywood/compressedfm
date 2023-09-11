@@ -1,9 +1,9 @@
-import { useUser, withPageAuthRequired, getSession } from '@auth0/nextjs-auth0';
+import { useUser, withPageAuthRequired, getSession } from '@auth0/nextjs-auth0/client';
 import CustomError from 'pages/customError';
 import client from 'utils/client';
 import { LegalQuery, GuestQuery } from 'queries/Queries';
 
-export default function Guest({ footerLinks, guest }) {
+export default function Guest({ guest }) {
   const { user, error, isLoading } = useUser();
 
   if (!guest) {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { useUser } from '@auth0/nextjs-auth0';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import client from 'utils/client';
 import { GuestQuery, sponsorQuery } from 'queries/Queries';
 
@@ -44,35 +44,33 @@ const BtmNav = () => {
       <ul className={currentPage || 'home'}>
         {/* <li className="press-kit">
           <Link href="/press-kit">
-            <a>Press Kit</a>
+            Press Kit
           </Link>
         </li> */}
         {/* {!isSponsor && (
           <li className="sponsoring">
             <Link href="/sponsoring">
-              <a>Sponsoring</a>
+              Sponsoring
             </Link>
           </li>
         )} */}
 
         {isSponsor && (
           <li className="sponsor-dashboard">
-            <Link href={`/dashboard/sponsors/${sponsorSlug}`}>
-              <a>Dashboard</a>
-            </Link>
+            <Link href={`/dashboard/sponsors/${sponsorSlug}`}>Dashboard</Link>
           </li>
         )}
 
         {isGuest && (
           <li className="guest-dashboard">
-            <Link href="/dashboard/guests">
-              <a>Dashboard</a>
-            </Link>
+            <Link href="/dashboard/guests">Dashboard</Link>
           </li>
         )}
 
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <li className="login">{user ? <a href="/api/auth/logout">Logout</a> : <a href="/api/auth/login">Login</a>}</li>
+        <li className="login">
+          {user ? <Link href="/api/auth/logout">Logout</Link> : <Link href="/api/auth/login">Login</Link>}
+        </li>
       </ul>
     </StyledBtmNav>
   );
