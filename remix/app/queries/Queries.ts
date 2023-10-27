@@ -149,6 +149,21 @@ export const settingsQuery = groq`*[_type == "siteSettings"] {
 
 export const TagsQuery = groq`*[_type == "category"] {_id, title, slug}`;
 
+export const TagQuery = groq`*[_type == "category" && slug.current == $slug ] {
+  _id,
+  title,
+  description,
+  "episodes": *[_type=='episode' && references(^._id)] {
+    title,
+    categories[]->,
+    episodeNumber,
+    slug,
+    publishedAt,
+    briefDescription,
+    audioPath
+  }
+}[0]`;
+
 export const HostDetailsQuery = groq`*[_type == "siteSettings"] {AmySocialMedia, JamesSocialMedia}[0]`;
 
 export const CurrentlyRecordingQuery = groq`*[_type == "siteSettings"] {currentlyRecording, recordingOnYouTube, recordingOnTwitch}[0]`;
