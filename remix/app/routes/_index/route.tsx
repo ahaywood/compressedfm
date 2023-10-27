@@ -1,31 +1,19 @@
-import { useLoaderData } from "@remix-run/react";
-import type { V2_MetaFunction } from "@remix-run/node";
-import { getClient } from "~/lib/sanity";
+import { useLoaderData } from '@remix-run/react';
+import { getClient } from '~/lib/sanity';
 import {
   HostDetailsQuery,
   LegalQuery,
   RecentEpisodesQuery,
   TagsQuery,
-} from "~/queries/Queries";
-import { HeaderHome } from "./HeaderHome";
-import { Footer } from "~/components/Footer";
-import { Podcatchers } from "~/components/Podcatchers";
-import { VerticalDivider } from "~/components/VerticalDivider";
-import { FeaturedEpisode } from "~/components/FeaturedEpisode";
-import { TheHosts } from "./TheHosts";
-import { EpisodeGrid } from "~/components/EpisodeGrid/EpisodeGrid";
-import { Newsletter } from "~/components/Newsletter";
-
-export const meta: V2_MetaFunction = () => {
-  return [
-    { title: "Compressed.fm" },
-    {
-      name: "description",
-      content:
-        "A weekly podcast, hosted by Amy Dutton and James Q Quick, all about web design and development with a little bit of zest.",
-    },
-  ];
-};
+} from '~/queries/Queries';
+import { HeaderHome } from './HeaderHome';
+import { Footer } from '~/components/Footer';
+import { Podcatchers } from '~/components/Podcatchers';
+import { VerticalDivider } from '~/components/VerticalDivider';
+import { FeaturedEpisode } from '~/components/FeaturedEpisode';
+import { TheHosts } from './TheHosts';
+import { EpisodeGrid } from '~/components/EpisodeGrid/EpisodeGrid';
+import { Newsletter } from '~/components/Newsletter';
 
 export const loader = async () => {
   const episodes = await getClient().fetch(RecentEpisodesQuery);

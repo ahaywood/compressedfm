@@ -1,5 +1,5 @@
-import { EpisodeZeros } from "~/components/EpisodeZeros";
-import { formatLongDate } from "~/lib/dateHelpers";
+import { EpisodeZeros } from '~/components/EpisodeZeros';
+import { formatLongDate } from '~/lib/dateHelpers';
 
 interface EpisodeSummaryProps {
   briefDescription: string;
