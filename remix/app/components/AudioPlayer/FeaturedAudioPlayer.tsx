@@ -1,7 +1,7 @@
-import { useRef } from "react";
-import { useAudioPlayer } from "react-hook-audio";
-import { calculateTime } from "~/lib/timeHelpers";
-import { Icon } from "../Icon";
+import { useRef } from 'react';
+import { useAudioPlayer } from 'react-hook-audio';
+import { calculateTime } from '~/lib/timeHelpers';
+import { Icon } from '../Icon';
 
 interface FeaturedAudioPlayerProps {
   track: string;
@@ -23,8 +23,6 @@ const FeaturedAudioPlayer = ({ track }: FeaturedAudioPlayerProps) => {
     tapSpaceBar,
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
-
-  console.log({ isPlaying });
 
   return (
     <div className="featured-audio-player relative">

@@ -1,36 +1,54 @@
-import type { LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { useState } from "react";
-import { getClient } from "~/lib/sanity";
-import { IndividualEpisodeQuery } from "~/queries/Queries";
-import { VerticalDivider } from "~/components/VerticalDivider";
-import { EpisodeGrid } from "~/components/EpisodeGrid/EpisodeGrid";
-import { Podcatchers } from "~/components/Podcatchers";
-import { EpisodeSummary } from "./EpisodeSummary";
-import { WaveformPlayer } from "~/components/AudioPlayer/WaveformPlayer";
-import { Guest } from "./Guest";
-import { JumpLinks } from "./JumpLinks";
-import { Links } from "./Links";
-import { Sponsors } from "./Sponsors";
-import { Newsletter } from "~/components/Newsletter";
+import type { LoaderArgs, V2_MetaFunction } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { useState } from 'react';
+import { getClient } from '~/lib/sanity';
+import { IndividualEpisodeQuery } from '~/queries/Queries';
+import { VerticalDivider } from '~/components/VerticalDivider';
+import { EpisodeGrid } from '~/components/EpisodeGrid/EpisodeGrid';
+import { Podcatchers } from '~/components/Podcatchers';
+import { EpisodeSummary } from './EpisodeSummary';
+import { WaveformPlayer } from '~/components/AudioPlayer/WaveformPlayer';
+import { Guest } from './Guest';
+import { JumpLinks } from './JumpLinks';
+import { Links } from './Links';
+import { Sponsors } from './Sponsors';
+import { Newsletter } from '~/components/Newsletter';
+interface LoaderReturn {
+  episode: Episode;
+}
 
-export const loader = async ({ params }: LoaderArgs) => {
+export const loader = async ({ params }: LoaderArgs): Promise<LoaderReturn> => {
   const slug = params.slug;
-  const episode = await getClient().fetch(IndividualEpisodeQuery, { slug });
+  const episode = (await getClient().fetch(IndividualEpisodeQuery, {
+    slug,
+  })) as Episode;
   return { episode };
 };
 
+export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
+  const { episode } = data as LoaderReturn;
+  return [
+    { title: `Compressed.fm - ${episode.title}` },
+    {
+      name: 'description',
+      content: episode.briefDescription,
+    },
+    {
+      name: 'og:image',
+      content: episode.episodeCover.asset.url,
+    },
+  ];
+};
+
 export default function IndividualEpisode() {
-  const { episode } = useLoaderData();
-  console.log({ episode });
+  const { episode } = useLoaderData<LoaderReturn>();
 
   // state
-  const [skipTo, setSkipTo] = useState<string | null>(null);
-  console.log({ skipTo });
+  //   const [skipTo, setSkipTo] = useState<string | null>(null);
 
   // jump to a specific time on the waveform player
   const skipToTimestamp = (time: string) => {
-    setSkipTo(time);
+    // setSkipTo(time);
   };
 
   return (
@@ -39,7 +57,7 @@ export default function IndividualEpisode() {
         className="my-0 mx-auto max-w-pageWidth relative"
         title={episode.title}
         briefDescription={episode.briefDescription}
-        episodeNumber={episode.episodeNumber}
+        episodeNumber={episode.episodeNumber.toString()}
         publishedAt={episode.publishedAt}
       />
       <div className="my-[60px] text-center">
@@ -48,7 +66,6 @@ export default function IndividualEpisode() {
           episodeTitle={episode.title}
           audioPath={episode.audioPath}
           episodeNumber={episode.episodeNumber}
-          skipTo={episode.skipTo}
         />
       </div>
       <VerticalDivider />

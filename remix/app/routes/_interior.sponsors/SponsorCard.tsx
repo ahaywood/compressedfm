@@ -1,12 +1,11 @@
-import { PortableText } from "@portabletext/react";
-import { MoreLink } from "~/components/MoreLink";
+import { PortableText } from '@portabletext/react';
+import { MoreLink } from '~/components/MoreLink';
 
 interface SponsorCardProps {
   sponsor: Sponsor;
 }
 
 const SponsorCard = ({ sponsor }: SponsorCardProps) => {
-  console.log({ sponsor });
   return (
     <div className="py-0 px-mobilePadding md:px-0">
       <div className="flex h-[75px] mb-5 justify-start items-end">

@@ -1,7 +1,7 @@
-import { Link } from "@remix-run/react";
-import { EpisodeZeros } from "../EpisodeZeros";
-import { formatLongDate } from "~/lib/dateHelpers";
-import { MoreLink } from "../MoreLink";
+import { Link } from '@remix-run/react';
+import { EpisodeZeros } from '../EpisodeZeros';
+import { formatLongDate } from '~/lib/dateHelpers';
+import { MoreLink } from '../MoreLink';
 
 interface EpisodeProps {
   className?: string;
@@ -19,7 +19,7 @@ const Episode = ({ className, episode }: EpisodeProps) => {
           Episode
         </span>
         <span className="text-yellow text-[132px] font-black leading-none flex items-center">
-          {EpisodeZeros(episodeNumber)}
+          {EpisodeZeros(episodeNumber.toString())}
           {episodeNumber}
         </span>
       </div>
