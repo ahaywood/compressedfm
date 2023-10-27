@@ -8,7 +8,7 @@ This is a mono repo for Compressed.fm Website.
 ## Install Dependencies
 1. Clone the repo from GitHub
 2. Within the Terminal, open the **nextjs** folder. Run `yarn install`
-3. Within the Terminal, open the **sanity** folder. Run `yarn run dev`
+3. Within the Terminal, open the **sanity** folder. Run `yarn install`
 
 ## Environmental Variables
 You'll need to create a file called `.env.local` and provide the following environmental variables:
