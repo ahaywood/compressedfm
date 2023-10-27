@@ -1,27 +1,38 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction } from "@remix-run/node";
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-} from "@remix-run/react";
-import stylesheet from "~/tailwind.css";
-import { LiveNow } from "./components/LiveNow";
-import { getClient } from "./lib/sanity";
-import { CurrentlyRecordingQuery } from "./queries/Queries";
+import { cssBundleHref } from '@remix-run/css-bundle';
+import type { LinksFunction, V2_MetaFunction } from '@remix-run/node';
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
+import stylesheet from '~/tailwind.css';
+import { LiveNow } from './components/LiveNow';
+import { getClient } from './lib/sanity';
+import { CurrentlyRecordingQuery } from './queries/Queries';
 
 export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  { rel: "stylesheet", href: stylesheet },
+  ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
+  { rel: 'stylesheet', href: stylesheet },
 ];
 
 export const loader = async () => {
   const data = await getClient().fetch(CurrentlyRecordingQuery);
   return { data };
+};
+
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: 'Compressed.fm' },
+    {
+      name: 'description',
+      content:
+        'A weekly podcast, hosted by Amy Dutton and James Q Quick, all about web design and development with a little bit of zest.',
+    },
+    {
+      name: 'og:image',
+      content: '/images/podcast-cover.jpg',
+    },
+    {
+      name: 'og:image:alt',
+      content: 'Compressed.fm Podcast Cover',
+    },
+  ];
 };
 
 export default function App() {
@@ -37,9 +48,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        {currentlyRecording ? (
-          <LiveNow youtube={recordingOnYouTube} twitch={recordingOnTwitch} />
-        ) : null}
+        {currentlyRecording ? <LiveNow youtube={recordingOnYouTube} twitch={recordingOnTwitch} /> : null}
         <Outlet />
         <ScrollRestoration />
         <Scripts />

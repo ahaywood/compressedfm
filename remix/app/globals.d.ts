@@ -3,13 +3,23 @@ interface Episode {
   audioPath: string;
   guest: Guest[];
   publishedAt: string;
-  episodeNumber: string;
+  episodeNumber: number;
+  episodeCover: {
+    asset: {
+      url: string;
+    };
+  };
   slug: {
-    current: string
-  }
+    current: string;
+  };
   title: string;
   briefDescription: string;
   cover: string;
+  relatedEpisodes: Episode[];
+  //todo: fix anys
+  timeJump?: TimeJump[];
+  listLink?: ListLink[];
+  sponsor?: Sponsor[];
 }
 
 interface Faq {

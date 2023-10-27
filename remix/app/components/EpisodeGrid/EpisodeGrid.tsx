@@ -1,4 +1,4 @@
-import { Episode } from "./Episode";
+import { Episode as EpisodeComponent } from './Episode';
 
 interface EpisodeGridProps {
   header: string;
@@ -9,7 +9,7 @@ const EpisodeGrid = ({ header, episodes }: EpisodeGridProps) => {
   return (
     <div
       className={`episode-grid grid grid-cols-1 md:grid-cols-2 regular:grid-cols-3 gap-y-14 my-[60px] mx-auto max-w-pageWidth ${
-        header ? "w-section-header" : "no-section-header"
+        header ? 'w-section-header' : 'no-section-header'
       }`}
     >
       {header && (
@@ -19,7 +19,11 @@ const EpisodeGrid = ({ header, episodes }: EpisodeGridProps) => {
       )}
       {episodes &&
         episodes.map((item) => (
-          <Episode className="episode-card" key={item._id} episode={item} />
+          <EpisodeComponent
+            className="episode-card"
+            key={item._id}
+            episode={item}
+          />
         ))}
     </div>
   );
