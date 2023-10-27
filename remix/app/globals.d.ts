@@ -17,9 +17,9 @@ interface Episode {
   cover: string;
   relatedEpisodes: Episode[];
   //todo: fix anys
-  timeJump?: any[];
-  listLink?: any;
-  sponsor?: any;
+  timeJump?: TimeJump[];
+  listLink?: ListLink[];
+  sponsor?: Sponsor[];
 }
 
 interface Faq {

@@ -1,14 +1,14 @@
 import { calculateTime } from '~/lib/timeHelpers';
 import { Icon } from '../Icon';
 import { useAudioPlayer } from 'react-hook-audio';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface WaveformPlayerProps {
   artwork: string;
   episodeTitle: string;
   audioPath: string;
   episodeNumber: number;
-  //   skipTo: number;
+  skipTo: number | null;
 }
 
 const WaveformPlayer = ({
@@ -16,10 +16,11 @@ const WaveformPlayer = ({
   audioPath,
   episodeNumber,
   episodeTitle,
+  skipTo,
 }: WaveformPlayerProps) => {
   // references
-  const audioPlayer = useRef<HTMLAudioElement>(); // set up reference for the audio component
-  const progressBar = useRef<HTMLInputElement>(); // reference for the progress bar
+  const audioPlayer = useRef<HTMLAudioElement>(null); // set up reference for the audio component
+  const progressBar = useRef<HTMLInputElement>(null); // reference for the progress bar
 
   // hooks
   const {
@@ -31,15 +32,17 @@ const WaveformPlayer = ({
     forwardThirty,
     isPlaying,
     onLoadedMetadata,
-    // skipToTime,
+    skipToTime,
     speed,
     tapSpaceBar,
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
 
-  // useEffect(() => {
-  //   skipToTime(skipTo);
-  // }, [skipTo]);
+  useEffect(() => {
+    if (skipTo !== null) {
+      skipToTime(skipTo);
+    }
+  }, [skipTo]);
 
   return (
     <div className="waveform-audio-player border-bastille border-1 p-5 max-w-[660px] my-0 mx-auto relative w-full">
