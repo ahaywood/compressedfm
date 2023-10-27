@@ -11,7 +11,6 @@ interface NavigationProps {
 }
 
 const Navigation = ({ handleClick, isShowing, tags }: NavigationProps) => {
-  // TODO: Escape key will also open the navigation
   useEscapeKey(() => handleClick(true));
   return (
     <div
