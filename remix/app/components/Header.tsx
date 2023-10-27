@@ -1,7 +1,7 @@
-import { Link } from "@remix-run/react";
-import { Hamburger } from "./Nav/Hamburger";
-import { Navigation } from "./Nav/Navigation";
-import { useState } from "react";
+import { Link } from '@remix-run/react';
+import { Hamburger } from './Nav/Hamburger';
+import { Navigation } from './Nav/Navigation';
+import { useState } from 'react';
 
 interface HeaderProps {
   tags: Tag[];
@@ -10,7 +10,11 @@ interface HeaderProps {
 const Header = ({ tags }: HeaderProps) => {
   const [navShowing, setNavShowing] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (forceClose = false) => {
+    if (forceClose) {
+      setNavShowing(false);
+      return;
+    }
     setNavShowing((prevValue) => !prevValue);
   };
 

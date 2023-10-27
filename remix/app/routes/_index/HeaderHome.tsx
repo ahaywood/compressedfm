@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Hamburger } from "~/components/Nav/Hamburger";
-import { Navigation } from "~/components/Nav/Navigation";
-import { Constants } from "~/lib/constants";
+import { useState } from 'react';
+import { Hamburger } from '~/components/Nav/Hamburger';
+import { Navigation } from '~/components/Nav/Navigation';
+import { Constants } from '~/lib/constants';
 
 interface HeaderHomeProps {
   tags: Tag[];
@@ -10,8 +10,12 @@ interface HeaderHomeProps {
 const HeaderHome = ({ tags }: HeaderHomeProps) => {
   const [navShowing, setNavShowing] = useState(false);
 
-  const handleClick = () => {
-    setNavShowing(!navShowing);
+  const handleClick = (forceClose = false) => {
+    if (forceClose) {
+      setNavShowing(false);
+      return;
+    }
+    setNavShowing((prevValue) => !prevValue);
   };
 
   return (
@@ -38,7 +42,7 @@ const HeaderHome = ({ tags }: HeaderHomeProps) => {
           />
         </h1>
         <h2 className="font-sans text-2xl font-black text-left mx-auto pt-0 px-mobilePadding md:pl-16 pb-[120px] relative max-w-full md:text-4xl md:w-[710px]">
-          A weekly podcast about web design and development from{" "}
+          A weekly podcast about web design and development from{' '}
           <a
             className="text-[#aaa] hover:text-yellow md:whitespace-nowrap"
             href={Constants.JAMES_WEBSITE_URL}
@@ -46,8 +50,8 @@ const HeaderHome = ({ tags }: HeaderHomeProps) => {
             rel="noreferrer"
           >
             James Q Quick
-          </a>{" "}
-          and{" "}
+          </a>{' '}
+          and{' '}
           <a
             href={Constants.AMY_WEBSITE_URL}
             target="_blank"
