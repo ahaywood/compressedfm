@@ -8,7 +8,7 @@ interface EpisodeGridProps {
 const EpisodeGrid = ({ header, episodes }: EpisodeGridProps) => {
   return (
     <div
-      className={`episode-grid grid grid-cols-1 md:grid-cols-2 regular:grid-cols-3 my-[60px] mx-auto max-w-pageWidth ${
+      className={`episode-grid grid grid-cols-1 md:grid-cols-2 regular:grid-cols-3 gap-y-14 my-[60px] mx-auto max-w-pageWidth ${
         header ? "w-section-header" : "no-section-header"
       }`}
     >

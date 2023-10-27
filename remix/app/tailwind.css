@@ -620,7 +620,7 @@
   }
 
   .waveform-audio-player .forwardBackward {
-    @apply items-center bg-none border-non text-yellow cursor-pointer flex font-mono text-sm absolute width-[75px]
+    @apply items-center bg-none border-none text-yellow cursor-pointer flex font-mono text-sm absolute w-[75px]
   }
 
   .forwardBackward svg {
@@ -629,7 +629,7 @@
 
   .forwardBackward .current-time,
   .forwardBackward .duration {
-    @apply bg-black text-white font-mono txt-xs py-[3px] px-0 absolute w-[45px] z-20
+    @apply bg-black text-white font-mono text-xs py-[3px] px-0 absolute w-[45px] z-20
   }
 }
 
