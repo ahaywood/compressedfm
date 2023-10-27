@@ -1,15 +1,18 @@
-import { calculateTime } from "~/lib/timeHelpers";
+import { calculateTime } from '~/lib/timeHelpers';
 
 interface JumpLinksProps {
   className: string;
   timeJump: TimeJump[];
-  handleClick: (time: string) => void;
+  handleClick: (time: number) => void;
 }
 
 const JumpLinks = ({ className, timeJump, handleClick }: JumpLinksProps) => {
-  const onClick = (e: React.MouseEvent<HTMLButtonElement>, time: string) => {
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>, timeStr: string) => {
     e.preventDefault();
-    handleClick(time);
+    const time = Number(timeStr);
+    if (!isNaN(time)) {
+      handleClick(time);
+    }
   };
 
   return (
