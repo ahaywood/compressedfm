@@ -1,6 +1,6 @@
-import { Hamburger } from "~/components/Nav/Hamburger";
-import { Navigation } from "~/components/Nav/Navigation";
-import { useState } from "react";
+import { Hamburger } from '~/components/Nav/Hamburger';
+import { Navigation } from '~/components/Nav/Navigation';
+import { useState } from 'react';
 
 interface AuthHeaderProps {
   tags: Tag[];
@@ -9,7 +9,11 @@ interface AuthHeaderProps {
 const AuthHeader = ({ tags }: AuthHeaderProps) => {
   const [navShowing, setNavShowing] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (forceClose = false) => {
+    if (forceClose) {
+      setNavShowing(false);
+      return;
+    }
     setNavShowing((prevValue) => !prevValue);
   };
 

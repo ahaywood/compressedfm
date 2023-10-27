@@ -1,22 +1,21 @@
-import { useEscapeKey } from "~/hooks/useEscapeKey";
-import { BtmNav } from "./BtmNav";
-import { SearchForm } from "./SearchForm";
-import { TopNav } from "./TopNav";
-import { Tag } from "./Tag";
+import { useEscapeKey } from '~/hooks/useEscapeKey';
+import { BtmNav } from './BtmNav';
+import { SearchForm } from './SearchForm';
+import { TopNav } from './TopNav';
+import { Tag } from './Tag';
 
 interface NavigationProps {
-  handleClick: () => void;
+  handleClick: (forceClose: boolean) => void;
   isShowing: boolean;
   tags: Tag[];
 }
 
 const Navigation = ({ handleClick, isShowing, tags }: NavigationProps) => {
-  // TODO: Escape key will also open the navigation
-  useEscapeKey(() => handleClick());
+  useEscapeKey(() => handleClick(true));
   return (
     <div
       className={`navigation bg-bastille grid grid-cols-[1fr_2fr] grid-rows-[auto_auto] h-screen left-0 fixed transition-all duration-500 ease-in-out right-0 w-screen z-navigation ${
-        isShowing ? "bottom-0" : "bottom-[200vh]"
+        isShowing ? 'bottom-0' : 'bottom-[200vh]'
       }`}
     >
       {/* TODO: Make side bar scroll when overflow - need to combine top nav and bottom nav container */}
