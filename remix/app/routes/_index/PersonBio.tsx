@@ -35,6 +35,7 @@ const PersonBio = ({
         <div className="flex flex-col sm:flex-row justify-center sm:justify-start pt-[60px] w-full">
           <div className="rounded-full mr-5 w-[187px]">
             <img
+              className="rounded-full border-4 border-white"
               alt={`${firstName} ${lastName}`}
               src={avatar}
               height="187"

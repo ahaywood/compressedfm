@@ -48,7 +48,25 @@ export default {
     },
     {
       name: 'JamesSocialMedia',
-      title: 'James Info',
+      title: 'James\'s Info',
+      type: 'socialMediaWithMetrics',
+      options: {
+        collapsible: true,
+        collapsed: true
+      }
+    },
+    {
+      name: 'BekahSocialMedia',
+      title: 'Bekah\'s Info',
+      type: 'socialMediaWithMetrics',
+      options: {
+        collapsible: true,
+        collapsed: true
+      }
+    },
+    {
+      name: 'BradSocialMedia',
+      title: 'Brad\'s Info',
       type: 'socialMediaWithMetrics',
       options: {
         collapsible: true,

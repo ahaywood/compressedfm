@@ -23,13 +23,15 @@ export default function Sponsoring() {
       },
       JamesSocialMedia,
       AmySocialMedia,
+      BekahSocialMedia,
+      BradSocialMedia,
     },
   } = useLoaderData();
 
   return (
     <main className="grid grid-cols-12 gap-x-5">
-      <section className="mb-[25px] col-start-4 col-end-4 md:mb-[50px]">
-        <h1 className="page-title text-left">
+      <section className="mb-[25px] col-start-4 col-span-6 md:mb-[50px]">
+        <h1 className="page-title text-left md:!mx-0">
           Are you interested in reaching other web designers and developers?{" "}
           <span className="highlight">We’d love to help!</span>
         </h1>
@@ -85,6 +87,8 @@ export default function Sponsoring() {
           details={{
             AmySocialMedia: AmySocialMedia,
             JamesSocialMedia: JamesSocialMedia,
+            BekahSocialMedia: BekahSocialMedia,
+            BradSocialMedia: BradSocialMedia,
           }}
         />
       </div>
@@ -100,7 +104,7 @@ export default function Sponsoring() {
         <VerticalDivider />
       </div>
 
-      <section className="sponsoring-is-perfect col-span-12 my-[75px] py-0 px-mobilePadding md:grid-start-4 md:grid-end-4 md:p-0">
+      <section className="sponsoring-is-perfect col-span-12 my-[75px] py-0 px-mobilePadding md:grid-start-4 md:col-span-6 md:p-0">
         <h2 className="m-0">Sponsoring is perfect for:</h2>
         <ul className="m-0 p-0 pl-[40px] list-none md:pl-0">
           <li>

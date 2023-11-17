@@ -143,8 +143,22 @@ export const pricingQuery = groq`*[_type == "siteSettings"] {
 
 export const settingsQuery = groq`*[_type == "siteSettings"] {
     SponsorshipOptions,
-    JamesSocialMedia,
-    AmySocialMedia
+    JamesSocialMedia{
+      ...,
+      "headshot": headshot.asset->url
+    },
+    AmySocialMedia{
+      ...,
+      "headshot": headshot.asset->url
+    },
+    BekahSocialMedia{
+      ...,
+      "headshot": headshot.asset->url
+    },
+    BradSocialMedia{
+      ...,
+      "headshot": headshot.asset->url
+    },
   }[0]`;
 
 export const TagsQuery = groq`*[_type == "category"] {_id, title, slug}`;
@@ -164,7 +178,12 @@ export const TagQuery = groq`*[_type == "category" && slug.current == $slug ] {
   }
 }[0]`;
 
-export const HostDetailsQuery = groq`*[_type == "siteSettings"] {AmySocialMedia, JamesSocialMedia}[0]`;
+export const HostDetailsQuery = groq`*[_type == "siteSettings"] {
+  AmySocialMedia{..., "headshot": headshot.asset->url},
+  JamesSocialMedia{..., "headshot": headshot.asset->url},
+  BekahSocialMedia{..., "headshot": headshot.asset->url},
+  BradSocialMedia{..., "headshot": headshot.asset->url}
+}[0]`;
 
 export const CurrentlyRecordingQuery = groq`*[_type == "siteSettings"] {currentlyRecording, recordingOnYouTube, recordingOnTwitch}[0]`;
 

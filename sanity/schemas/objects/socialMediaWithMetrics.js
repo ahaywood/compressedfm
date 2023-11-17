@@ -4,6 +4,11 @@ export default {
   tite: 'Social Media with Metrics',
   fields: [
     {
+      title: 'Headshot',
+      name: 'headshot',
+      type: 'image',
+    },
+    {
       title: 'Job Title',
       name: 'jobTitle',
       type: 'string',
@@ -101,6 +106,11 @@ export default {
     {
       title: 'GitHub',
       name: 'github',
+      type: 'string',
+    },
+    {
+      title: 'LinkedIn',
+      name: 'linkedin',
       type: 'string',
     },
   ]
