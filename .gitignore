@@ -40,3 +40,9 @@ yarn-error.log*
 #netlify
 .netlify
 .yarn
+
+#remix
+remix/api/*
+remix/api/metafile.css.json
+remix/api/manifest.js.json
+remix/api/manifest.server.json
