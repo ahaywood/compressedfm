@@ -1,0 +1,28 @@
+name: Feature Request
+description: Recommend a feature
+title: "[RFC]: "
+labels: ["triage"]
+assignees:
+  - ahaywood
+body:
+  - type: textarea
+    id: describe
+    attributes:
+      label: Describe the Problem to be Solved
+      description: Please present a concise description of the problem to be addressed by this feature request. Please be clear what parts of the problem are considered to be in-scope and out-of-scope.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Suggest a Solution
+      description: A concise description of your preferred solution. Things to address include Details of the technical implementation, tradeoffs made in design decisions, and caveats and considerations for the future
+    validations:
+      required: false
+  - type: textarea
+    id: multiple
+    attributes:
+      label: If there are multiple solutions, please present each one separately.
+      description: Save comparisons for the very end.
+    validations:
+      required: false
