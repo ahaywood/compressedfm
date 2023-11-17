@@ -32,6 +32,12 @@ export const PopularEpisodesQuery = groq`*[_type == "episode" && published == tr
 
 export const AllEpisodesQuery = groq`*[_type == "episode" && published == true && publishedAt < now()] | order(episodeNumber desc) {
     _id,
+    hosts[]->{
+      _id,
+      firstName,
+      lastName,
+      "avatar": avatar.asset->url,
+    },
     title,
     "cover": episodeCover.asset->url,
     guest[]->{

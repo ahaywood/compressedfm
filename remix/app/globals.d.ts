@@ -2,6 +2,7 @@ interface Episode {
   _id: string;
   audioPath: string;
   guest: Guest[];
+  hosts: Guest[];
   publishedAt: string;
   episodeNumber: string;
   slug: {

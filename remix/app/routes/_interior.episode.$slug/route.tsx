@@ -22,7 +22,6 @@ export const loader = async ({ params }: LoaderArgs) => {
 
 export default function IndividualEpisode() {
   const { episode } = useLoaderData();
-  console.log({ episode });
 
   // state
   const [skipTo, setSkipTo] = useState<string | null>(null);

@@ -18,6 +18,7 @@ const FeaturedEpisode = ({
     title,
     briefDescription,
     cover,
+    hosts,
   },
 }: FeaturedEpisodeProps) => {
   return (
@@ -55,24 +56,17 @@ const FeaturedEpisode = ({
           label="More"
         />
         <ul className="tiny-avatars none md:flex flex-row-reverse list-none m-0 p-0 relative -top-[25px]">
-          <li className="-ml-[10px]">
-            <img
-              className="rounded-full border-1 border-white"
-              src="/images/james.png"
-              height="60"
-              width="60"
-              alt="James Q Quick"
-            />
-          </li>
-          <li className="-ml-[10px]">
-            <img
-              className="rounded-full border-1 border-white"
-              src="/images/amy.png"
-              height="60"
-              width="60"
-              alt="Amy Dutton"
-            />
-          </li>
+          {hosts.map((host) => (
+            <li className="-ml-[10px]" key={host._id}>
+              <img
+                className="rounded-full border-1 border-white"
+                src={host.avatar}
+                height="60"
+                width="60"
+                alt={`${host.firstName} ${host.lastName}`}
+              />
+            </li>
+          ))}
           {guest &&
             guest.map((one, index) => (
               <li className="-ml-[10px]" key={index}>
