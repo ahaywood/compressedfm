@@ -19,7 +19,7 @@ export const GettingStartedEpisodesQuery = groq`*[_type == "episode" && publishe
   slug,
   publishedAt,
   briefDescription
-}[0...3]`;
+}[0...6]`;
 
 export const PopularEpisodesQuery = groq`*[_type == "episode" && published == true && popularEpisode == true] | order(episodeNumber desc) {
   _id,
@@ -166,6 +166,9 @@ export const settingsQuery = groq`*[_type == "siteSettings"] {
       "headshot": headshot.asset->url
     },
   }[0]`;
+
+export const StoreQuery = groq`*[_type == "store"] | order(order asc) {_id, title, slug, price, category, "image": image.asset->url}`;
+export const ProductQuery = groq`*[_type == "store" && product.current == $slug] | order(order asc) {_id, title, slug, price, category, "image": image.asset->url}`;
 
 export const TagsQuery = groq`*[_type == "category"] {_id, title, slug}`;
 
