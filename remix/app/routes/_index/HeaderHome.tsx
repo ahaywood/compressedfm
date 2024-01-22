@@ -37,26 +37,9 @@ const HeaderHome = ({ tags }: HeaderHomeProps) => {
             height="272"
           />
         </h1>
-        <h2 className="font-sans text-2xl font-black text-left mx-auto pt-0 px-mobilePadding md:pl-16 pb-[120px] relative max-w-full md:text-4xl md:w-[710px]">
-          A weekly podcast about web design and development from{" "}
-          <a
-            className="text-[#aaa] hover:text-yellow md:whitespace-nowrap"
-            href={Constants.JAMES_WEBSITE_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            James Q Quick
-          </a>{" "}
-          and{" "}
-          <a
-            href={Constants.AMY_WEBSITE_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="text-[#aaa] hover:text-yellow md:whitespace-nowrap"
-          >
-            Amy Dutton
-          </a>
-          .
+        <h2 className="font-sans text-2xl font-black text-left mx-auto pt-0 px-mobilePadding md:pl-16 pb-[120px] relative max-w-full md:text-4xl md:w-[710px] md:leading-tight">
+          A weekly podcast all about web design and development with a little
+          bit of zest.
         </h2>
       </div>
     </div>
