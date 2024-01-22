@@ -10,6 +10,7 @@
     "@sanity/preview-kit": "^2.3.3",
     "@vercel/node": "^2.10.3",
     "date-fns": "^2.30.0",
+    "fathom-client": "^3.6.0",
     "framer-motion": "^10.13.0",
     "isbot": "^3.6.8",
     "kwesforms": "^2.1.27",

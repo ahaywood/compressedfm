@@ -13,6 +13,7 @@ import stylesheet from "~/tailwind.css";
 import { LiveNow } from "./components/LiveNow";
 import { getClient } from "./lib/sanity";
 import { CurrentlyRecordingQuery } from "./queries/Queries";
+import Fathom from "./components/Fathom";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -37,6 +38,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <Fathom />
         {currentlyRecording ? (
           <LiveNow youtube={recordingOnYouTube} twitch={recordingOnTwitch} />
         ) : null}
