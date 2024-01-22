@@ -12,6 +12,10 @@ coverage
 /nextjs/.next/
 /nextjs/out/
 
+# remix
+/remix/api/index.js
+/remix/api/index.js.map
+
 # production
 /nextjs/build
 
