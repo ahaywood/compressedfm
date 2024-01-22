@@ -1,3 +1,9 @@
+import { Newsletter as NewsletterForm } from "~/components/Newsletter";
+
 export default function Newsletter() {
-  return <div>Newsletter</div>;
+  return (
+    <div>
+      <NewsletterForm />
+    </div>
+  );
 }
