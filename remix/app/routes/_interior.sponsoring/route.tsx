@@ -7,6 +7,7 @@ import { getClient } from "~/lib/sanity";
 import { settingsQuery } from "~/queries/Queries";
 import { TheHosts } from "../_index/TheHosts";
 import { ButtonLink } from "~/components/ButtonLink";
+import { Constants } from "~/lib/constants";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const settings = await getClient().fetch(settingsQuery);
@@ -31,7 +32,7 @@ export default function Sponsoring() {
   return (
     <main className="grid grid-cols-12 gap-x-5">
       <section className="mb-[25px] col-start-4 col-span-6 md:mb-[50px]">
-        <h1 className="page-title text-left md:!mx-0">
+        <h1 className="page-title text-6xl text-left md:!mx-0">
           Are you interested in reaching other web designers and developers?{" "}
           <span className="highlight">We’d love to help!</span>
         </h1>
@@ -47,7 +48,7 @@ export default function Sponsoring() {
         </p>
       </section>
 
-      <div className="full">
+      <div className="full col-span-12">
         <VerticalDivider />
       </div>
 
@@ -405,9 +406,9 @@ export default function Sponsoring() {
             </p>
             <p>
               In addition to being published in traditional podcast format,
-              these episodes will be live streamed to James's{" "}
+              these episodes will be live streamed to Compressed's{" "}
               <a
-                href="https://www.youtube.com/c/jamesqquick"
+                href={Constants.COMPRESSEDFM_YOUTUBE}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -415,14 +416,13 @@ export default function Sponsoring() {
               </a>{" "}
               and{" "}
               <a
-                href="https://www.twitch.tv/jamesqquick"
+                href={Constants.COMPRESSEDFM_TWITCH}
                 target="_blank"
                 rel="noreferrer"
               >
                 Twitch
               </a>{" "}
-              channels. The recorded videos will then live long-term on YouTube
-              with an audience of over 170,000 subscribers.
+              channels.
             </p>
           </li>
           <li>
