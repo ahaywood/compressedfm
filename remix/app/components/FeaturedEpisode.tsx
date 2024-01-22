@@ -55,23 +55,24 @@ const FeaturedEpisode = ({
           className="relative -top-7 md:top-0"
           label="More"
         />
-        <ul className="tiny-avatars none md:flex flex-row-reverse list-none m-0 p-0 relative -top-[25px]">
-          {hosts.map((host) => (
-            <li className="-ml-[10px]" key={host._id}>
-              <img
-                className="rounded-full border-1 border-white"
-                src={host.avatar}
-                height="60"
-                width="60"
-                alt={`${host.firstName} ${host.lastName}`}
-              />
-            </li>
-          ))}
+        <ul className="tiny-avatars none md:flex flex-row-reverse list-none m-0 p-0 relative -top-[25px] pointer-events-none">
+          {hosts &&
+            hosts.map((host) => (
+              <li className="-ml-[10px]" key={host._id}>
+                <img
+                  className="rounded-full border-1 border-white"
+                  src={host.avatar}
+                  height="60"
+                  width="60"
+                  alt={`${host.firstName} ${host.lastName}`}
+                />
+              </li>
+            ))}
           {guest &&
             guest.map((one, index) => (
               <li className="-ml-[10px]" key={index}>
                 <img
-                  className="rounded-full border-1 border-white"
+                  className="rounded-full border-1 border-white w-[60px] h-[60px] object-cover"
                   src={one.avatar}
                   height="60"
                   width="60"
