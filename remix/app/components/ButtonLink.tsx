@@ -2,7 +2,7 @@ import { Icon } from "./Icon";
 
 interface ButtonLinkProps {
   alt?: boolean;
-  className: string;
+  className?: string;
   href: string;
   label: string;
   primary?: boolean;
@@ -10,7 +10,7 @@ interface ButtonLinkProps {
 
 const ButtonLink = ({
   alt = false,
-  className,
+  className = "",
   href,
   label,
   primary = false,

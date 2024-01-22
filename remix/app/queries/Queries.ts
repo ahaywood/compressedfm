@@ -168,7 +168,7 @@ export const settingsQuery = groq`*[_type == "siteSettings"] {
   }[0]`;
 
 export const StoreQuery = groq`*[_type == "store"] | order(order asc) {_id, title, slug, price, category, "image": image.asset->url}`;
-export const ProductQuery = groq`*[_type == "store" && product.current == $slug] | order(order asc) {_id, title, slug, price, category, "image": image.asset->url}`;
+export const ProductQuery = groq`*[_type == "store" && slug.current == $slug] | order(order asc) {_id, title, slug, price, category, description, "image": image.asset->url}[0]`;
 
 export const TagsQuery = groq`*[_type == "category"] {_id, title, slug}`;
 

@@ -8,7 +8,7 @@ const BtmNav = ({ handleClick }: BtmNavProps) => {
   return (
     <div>
       <ul className="list-none p-0 m-0">
-        <li className="font-sans text-2xl font-medium leading-loose mb-0">
+        {/* <li className="font-sans text-2xl font-medium leading-loose mb-0">
           <NavLink
             className={({ isActive, isPending }) =>
               isPending
@@ -22,7 +22,7 @@ const BtmNav = ({ handleClick }: BtmNavProps) => {
           >
             Press Kit
           </NavLink>
-        </li>
+        </li> */}
         {/* {!isSponsor && (
           <li className="sponsoring">
             <Link href="/sponsoring">
@@ -47,7 +47,7 @@ const BtmNav = ({ handleClick }: BtmNavProps) => {
           </li>
         )} */}
 
-        <li className="font-sans text-2xl font-medium leading-loose mb-0">
+        {/* <li className="font-sans text-2xl font-medium leading-loose mb-0">
           <NavLink
             className={({ isActive, isPending }) =>
               isPending
@@ -61,7 +61,7 @@ const BtmNav = ({ handleClick }: BtmNavProps) => {
           >
             Login
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

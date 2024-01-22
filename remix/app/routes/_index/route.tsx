@@ -22,7 +22,7 @@ export const meta: V2_MetaFunction = () => {
     {
       name: "description",
       content:
-        "A weekly podcast, hosted by Amy Dutton and James Q Quick, all about web design and development with a little bit of zest.",
+        "A weekly podcast all about web design and development with a little bit of zest.",
     },
   ];
 };

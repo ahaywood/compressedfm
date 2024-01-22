@@ -695,4 +695,12 @@
   .center {
     @apply flex items-center justify-center
   }
+
+  .label {
+    @apply text-yellow cursor-text block font-mono tracking-wider mb-[10px] uppercase sm:text-lg;
+  }
+
+  .size-button {
+    @apply text-white font-mono border-white border-1 inline-flex h-[55px] w-[57px] justify-center items-center hover:bg-white hover:text-black;
+  }
 }

@@ -23,6 +23,11 @@ export default {
       type: 'url',
     },
     {
+      name: 'streamYardRecordingLink',
+      title: 'Recording link for StreamYard',
+      type: 'url',
+    },
+    {
       name: 'reasonsBehind',
       title: 'Reasons Behind Podcast',
       type: 'array',

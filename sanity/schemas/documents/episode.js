@@ -191,25 +191,6 @@ export default {
       type: 'file',
     },
     {
-      name: 'waveformUrl',
-      title: 'Waveform URL',
-      type: 'string',
-      description: 'OUTDATED - URL of the waveform in Cloudinary',
-    },
-    {
-      name: 'episodeCoverUrl',
-      title: 'Episode Cover URL',
-      description: 'OUTDATED - URL for the episode image stored in Cloudinary',
-      type: 'string',
-    },
-    {
-      name: 'socialCoverUrl',
-      title: 'Social Cover URL',
-      description:
-        'OUTDATED - URL for the social cover image stored in Cloudinary',
-      type: 'string',
-    },
-    {
       name: 'automationFailed',
       title: 'Automation Failed',
       description:

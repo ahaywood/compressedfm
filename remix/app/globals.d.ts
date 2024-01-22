@@ -85,3 +85,15 @@ interface TimeJump {
   time: string;
   description: string;
 }
+
+interface Swag {
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  slug: {
+    current: string;
+  }
+  price: number;
+  category: 'hoodies' | 'tshirts'
+}

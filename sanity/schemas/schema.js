@@ -21,6 +21,7 @@ import legal from './documents/legal'
 import newsletter from './documents/newsletter'
 import siteSettings from './documents/siteSettings'
 import sponsor from './documents/sponsor'
+import store from './documents/store'
 
 // object schemas
 import blockContent from './objects/blockContent'
@@ -58,6 +59,7 @@ export default createSchema({
     siteSettings,
     sponsor,
     faq,
+    store,
 
     // OBJECTS
     // When added to this list, object types can be used as
