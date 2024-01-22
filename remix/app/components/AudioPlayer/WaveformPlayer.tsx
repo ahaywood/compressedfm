@@ -1,14 +1,14 @@
 import { calculateTime } from "~/lib/timeHelpers";
 import { Icon } from "../Icon";
 import { useAudioPlayer } from "react-hook-audio";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface WaveformPlayerProps {
   artwork: string;
   episodeTitle: string;
   audioPath: string;
   episodeNumber: number;
-  skipTo: number;
+  skipTo?: number;
 }
 
 const WaveformPlayer = ({
@@ -16,7 +16,8 @@ const WaveformPlayer = ({
   audioPath,
   episodeNumber,
   episodeTitle,
-}: WaveformPlayerProps) => {
+}: // skipTo = 0,
+WaveformPlayerProps) => {
   // references
   const audioPlayer = useRef<HTMLAudioElement>(); // set up reference for the audio component
   const progressBar = useRef<HTMLInputElement>(); // reference for the progress bar
@@ -39,7 +40,7 @@ const WaveformPlayer = ({
 
   // useEffect(() => {
   //   skipToTime(skipTo);
-  // }, [skipTo]);
+  // }, [skipTo, skipToTime]);
 
   return (
     <div className="waveform-audio-player border-bastille border-1 p-5 max-w-[660px] my-0 mx-auto relative w-full">
@@ -62,13 +63,13 @@ const WaveformPlayer = ({
 
       {/* episode meta data */}
       <div className="text-left py-0 px-5">
-        <h4 className="text-gray font-mono text-sm font-normal leading-none mt-0 mb-[10px] mx-0 p-0">
+        <h4 className="text-yellow font-mono text-sm font-normal leading-none mt-0 mb-[10px] mx-0 p-0">
           <span className="block sm:inline">COMPRESSED.fm</span>{" "}
           <span className="block sm:inline episode-number">
             {episodeNumber && `Episode ${episodeNumber}`}
           </span>
         </h4>
-        <h2 className="font-sans text-xl leading-none m-0 p-0">
+        <h2 className="font-sans text-xl leading-none m-0 p-0 font-bold">
           {episodeTitle}
         </h2>
       </div>
@@ -106,12 +107,12 @@ const WaveformPlayer = ({
         </button>
 
         {/* current time */}
-        <div className="current-time top-[15px] left-[100px]">
+        <div className="current-time bg-black text-white font-mono text-xs py-1 px-0 absolute w-[45px] z-[2] text-center top-[15px] left-[100px]">
           {calculateTime(currentTime)}
         </div>
 
         {/* progress bar */}
-        <div className="progress-bar">
+        <div className="progress-bar flex-1 mr-4 relative">
           <input
             type="range"
             min="0"
@@ -123,7 +124,7 @@ const WaveformPlayer = ({
         </div>
 
         {/* duration */}
-        <div className="duration top-[15px] right-5">
+        <div className="duration top-[15px] right-5 bg-black text-white font-mono text-xs py-1 px-0 absolute w-[45px] z-[2] text-center">
           {duration && calculateTime(duration)}
         </div>
 
@@ -150,7 +151,7 @@ const WaveformPlayer = ({
         {/* change playback speed */}
         <button
           type="button"
-          className="playbackSpeed bg-none border-white border-1 text-white cursor-pointer font-mono text-xs absolute left-[90px] top-[55px] hover:bg-yellow hover:border-yellow hover:text-black"
+          className="playbackSpeed px-[6px] bg-none border-white border-1 text-white cursor-pointer font-mono text-xs absolute left-[90px] top-[55px] hover:bg-yellow hover:border-yellow hover:text-black"
           onClick={changePlaybackSpeed}
         >
           {speed}X

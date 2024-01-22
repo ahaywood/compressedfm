@@ -274,7 +274,7 @@
 
   .reasons-list h3,
   .large-body-copy {
-    @apply text-white font-sans text-lg md:text-[28px] font-bold leading-7
+    @apply text-white font-sans text-lg md:text-[28px] font-normal leading-7 md:leading-snug
   }
 
   body.banner .hamburger {
@@ -579,10 +579,10 @@
 
   .waveform-audio-player {
     background: linear-gradient(
-      ${(props) => props.theme.black} 0%,
-      ${(props) => props.theme.black} 50%,
-      ${(props) => props.theme.bastille} 50%,
-      ${(props) => props.theme.bastille} 100%
+      black 0%,
+      black 50%,
+      #2e2e2e 50%,
+      #2e2e2e 100%
     );
     display: grid;
     grid-template-areas:
@@ -621,6 +621,64 @@
 
   .waveform-audio-player .forwardBackward {
     @apply items-center bg-none border-none text-yellow cursor-pointer flex font-mono text-sm absolute w-[75px]
+  }
+
+  .waveform-audio-player input[type='range'] {
+    --buffered-width: 0;
+    --seek-before-width: 0;
+
+    --bar-bg: #393939;
+    --seek-before-color: #808080;
+    --buffered-color: #505050;
+
+    background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png')
+      left top no-repeat;
+    @apply appearance-none rounded-lg h-[40px] max-w-[375px] outline-none relative -top-[10px] w-full z-[1]
+  }
+
+  /* progress bar - chrome */
+  .waveform-audio-player input[type='range']::before {
+    background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:white,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
+    content: '';
+    width: var(--seek-before-width);
+    @apply cursor-pointer h-[40px] left-0 absolute top-0 z-[2]
+  }
+
+  /* progress bar - firefox */
+  .waveform-audio-player input[type='range']::-moz-range-track {
+    background: url('https://res.cloudinary.com/ahha/video/upload/h_40,w_375,fl_waveform,co_rgb:5d5d5d,b_rgb:2e2e2e/v1616512497/compressedfm/212_full_body-rock_0159_zmnaay.png') left top no-repeat;
+    @apply w-full h-[40px] cursor-pointer;
+  }
+
+  .waveform-audio-player input[type='range']::-moz-focus-outer {
+    border: 0;
+  }
+
+  /* played bar - firefox */
+  .waveform-audio-player input[type='range']::-moz-range-progress {
+    @apply h-[11px] rounded-bl-lg rounded-tl-lg bg-gray
+  }
+
+  /* knobby - safari */
+  .waveform-audio-player input[type='range']::-webkit-slider-thumb {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.45);
+    @apply relative appearance-none box-content border-none h-[50px] w-[3px] bg-yellow cursor-pointer top-0 z-[3] -mt-[2px] mb-0 mx-0
+  }
+
+  /* knobby while dragging - safari */
+  .waveform-audio-player input[type='range']:active::-webkit-slider-thumb {
+    transform: scale(1.1);
+    @apply bg-yellow
+  }
+
+  /* knobby - firefox */
+  .waveform-audio-player input[type='range']::-moz-range-thumb {
+    @apply box-content border-transparent h-10 w-[2px] bg-yellow z-[3] cursor-pointer relative;
+  }
+
+  .waveform-audio-player input[type='range']:active::-moz-range-thumb {
+    transform: scale(1.2);
+    @apply bg-yellow
   }
 
   .forwardBackward svg {
