@@ -1,5 +1,5 @@
 // components
-import { PortableText } from "@portabletext/react";
+import { PortableText } from '@portabletext/react';
 
 interface ThumbnailWithContentProps {
   node: {
@@ -16,12 +16,7 @@ const ThumbnailWithContent = ({ node }: ThumbnailWithContentProps) => {
   return (
     <div className="thumbnail-with-content grid grid-cols-[160px_1fr] gap-[25px] mb-[50px]">
       <div>
-        <img
-          src={thumbUrl.url}
-          alt={alt}
-          width="160"
-          className="border-1 border-bastille"
-        />
+        <img src={thumbUrl.url} alt={alt} width="160" className="border-1 border-bastille" />
       </div>
       <div>
         <PortableText value={content} />

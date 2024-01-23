@@ -1,8 +1,8 @@
-import type { LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { getClient } from "~/lib/sanity";
-import { IndividualLegalQuery } from "~/queries/Queries";
-import { PortableText } from "@portabletext/react";
+import type { LoaderArgs } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { getClient } from '~/lib/sanity';
+import { IndividualLegalQuery } from '~/queries/Queries';
+import { PortableText } from '@portabletext/react';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const slug = params.slug;

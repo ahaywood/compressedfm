@@ -1,5 +1,5 @@
-import { Link } from "@remix-run/react";
-import { Icon } from "./Icon";
+import { Link } from '@remix-run/react';
+import { Icon } from './Icon';
 
 interface MoreLinkProps {
   className?: string;
@@ -7,7 +7,7 @@ interface MoreLinkProps {
   label?: string;
 }
 
-const MoreLink = ({ className, href, label = "More" }: MoreLinkProps) => {
+const MoreLink = ({ className, href, label = 'More' }: MoreLinkProps) => {
   return (
     <div className={className}>
       <Link

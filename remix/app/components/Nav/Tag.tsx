@@ -1,5 +1,5 @@
-import { Link } from "@remix-run/react";
-import { slugify } from "~/lib/slugify";
+import { Link } from '@remix-run/react';
+import { slugify } from '~/lib/slugify';
 
 interface TagProps {
   handleClick: () => void;

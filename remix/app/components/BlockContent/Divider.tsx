@@ -1,16 +1,16 @@
-import { HorizontalDivider } from "../HorizontalDivider";
-import { VerticalDivider } from "../VerticalDivider";
+import { HorizontalDivider } from '../HorizontalDivider';
+import { VerticalDivider } from '../VerticalDivider';
 
 interface DividerProps {
   node: {
-    type?: "horizontal" | "vertical" | "";
+    type?: 'horizontal' | 'vertical' | '';
   };
 }
 
 const Divider = ({ node }: DividerProps) => {
   const { type } = node;
 
-  if (type === "horizontal") {
+  if (type === 'horizontal') {
     return <HorizontalDivider />;
   }
 

@@ -1,6 +1,9 @@
 declare module 'react-hook-audio';
 
-declare const useAudioPlayer: (audioRef: React.RefObject<HTMLAudioElement>, progressBarRef: React.RefObject<HTMLInputElement>) => {
+declare const useAudioPlayer: (
+  audioRef: React.RefObject<HTMLAudioElement>,
+  progressBarRef: React.RefObject<HTMLInputElement>
+) => {
   backThirty: () => void;
   changeAudioToPlayhead: () => void;
   changePlaybackSpeed: () => void;
