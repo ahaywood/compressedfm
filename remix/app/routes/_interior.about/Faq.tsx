@@ -1,7 +1,7 @@
-import { PortableText } from "@portabletext/react";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Icon } from "~/components/Icon";
+import { PortableText } from '@portabletext/react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { Icon } from '~/components/Icon';
 
 interface FaqProps {
   question: string;
@@ -25,7 +25,7 @@ const Faq = ({ question, answer }: FaqProps) => {
 
   // Framer Motion -- Answer Variants
   const AnswerVariants = {
-    open: { opacity: 1, height: "auto" },
+    open: { opacity: 1, height: 'auto' },
     closed: { opacity: 0, height: 0 },
   };
 
@@ -43,7 +43,7 @@ const Faq = ({ question, answer }: FaqProps) => {
           onClick={toggle}
           type="button"
           transition={transition}
-          animate={isToggled ? "open" : "closed"}
+          animate={isToggled ? 'open' : 'closed'}
           variants={iconVariants}
         >
           <Icon name="plus" />
@@ -60,7 +60,7 @@ const Faq = ({ question, answer }: FaqProps) => {
         <motion.div
           className="answer"
           transition={transition}
-          animate={isToggled ? "open" : "closed"}
+          animate={isToggled ? 'open' : 'closed'}
           variants={AnswerVariants}
         >
           <PortableText value={answer} />

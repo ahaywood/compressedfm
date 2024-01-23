@@ -1,7 +1,7 @@
-import { calculateTime } from "~/lib/timeHelpers";
-import { Icon } from "../Icon";
-import { useAudioPlayer } from "react-hook-audio";
-import { useEffect, useRef } from "react";
+import { calculateTime } from '~/lib/timeHelpers';
+import { Icon } from '../Icon';
+import { useAudioPlayer } from 'react-hook-audio';
+import { useEffect, useRef } from 'react';
 
 interface WaveformPlayerProps {
   artwork: string;
@@ -12,7 +12,7 @@ interface WaveformPlayerProps {
 }
 
 const WaveformPlayer = ({
-  artwork = "/images/podcast-cover.jpg",
+  artwork = '/images/podcast-cover.jpg',
   audioPath,
   episodeNumber,
   episodeTitle,
@@ -45,12 +45,7 @@ WaveformPlayerProps) => {
   return (
     <div className="waveform-audio-player border-bastille border-1 p-5 max-w-[660px] my-0 mx-auto relative w-full">
       {/* audio element */}
-      <audio
-        ref={audioPlayer}
-        src={audioPath}
-        preload="metadata"
-        onLoadedMetadata={onLoadedMetadata}
-      />
+      <audio ref={audioPlayer} src={audioPath} preload="metadata" onLoadedMetadata={onLoadedMetadata} />
 
       {/* album cover */}
       <div className="album-cover">
@@ -64,14 +59,10 @@ WaveformPlayerProps) => {
       {/* episode meta data */}
       <div className="text-left py-0 px-5">
         <h4 className="text-yellow font-mono text-sm font-normal leading-none mt-0 mb-[10px] mx-0 p-0">
-          <span className="block sm:inline">COMPRESSED.fm</span>{" "}
-          <span className="block sm:inline episode-number">
-            {episodeNumber && `Episode ${episodeNumber}`}
-          </span>
+          <span className="block sm:inline">COMPRESSED.fm</span>{' '}
+          <span className="block sm:inline episode-number">{episodeNumber && `Episode ${episodeNumber}`}</span>
         </h4>
-        <h2 className="font-sans text-xl leading-none m-0 p-0 font-bold">
-          {episodeTitle}
-        </h2>
+        <h2 className="font-sans text-xl leading-none m-0 p-0 font-bold">{episodeTitle}</h2>
       </div>
 
       {/* play / pause */}
@@ -113,14 +104,7 @@ WaveformPlayerProps) => {
 
         {/* progress bar */}
         <div className="progress-bar flex-1 mr-4 relative">
-          <input
-            type="range"
-            min="0"
-            max="100"
-            defaultValue="0"
-            ref={progressBar}
-            onChange={changeAudioToPlayhead}
-          />
+          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onChange={changeAudioToPlayhead} />
         </div>
 
         {/* duration */}
@@ -129,21 +113,13 @@ WaveformPlayerProps) => {
         </div>
 
         {/* back thirty */}
-        <button
-          type="button"
-          onClick={backThirty}
-          className="forwardBackward backward left-[120px] top-[47px]"
-        >
+        <button type="button" onClick={backThirty} className="forwardBackward backward left-[120px] top-[47px]">
           <Icon name="arrow" className="back rotate-180" />
           30
         </button>
 
         {/* forward thirty */}
-        <button
-          type="button"
-          onClick={forwardThirty}
-          className="forwardBackward forward right-0 top-[47px]"
-        >
+        <button type="button" onClick={forwardThirty} className="forwardBackward forward right-0 top-[47px]">
           30
           <Icon name="arrow" />
         </button>

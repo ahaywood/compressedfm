@@ -1,5 +1,5 @@
-import { EpisodeZeros } from "~/components/EpisodeZeros";
-import { formatLongDate } from "~/lib/dateHelpers";
+import { EpisodeZeros } from '~/components/EpisodeZeros';
+import { formatLongDate } from '~/lib/dateHelpers';
 
 interface EpisodeSummaryProps {
   briefDescription: string;
@@ -9,17 +9,9 @@ interface EpisodeSummaryProps {
   publishedAt: string;
 }
 
-const EpisodeSummary = ({
-  briefDescription,
-  className,
-  title,
-  episodeNumber,
-  publishedAt,
-}: EpisodeSummaryProps) => {
+const EpisodeSummary = ({ briefDescription, className, title, episodeNumber, publishedAt }: EpisodeSummaryProps) => {
   return (
-    <section
-      className={`episode-summary grid grid-cols-1 md:grid-cols-2 gap-[50px] ${className}`}
-    >
+    <section className={`episode-summary grid grid-cols-1 md:grid-cols-2 gap-[50px] ${className}`}>
       <div className="title px-mobilePadding md:px-0 md:pb-mobilePadding regular:pb-0">
         <h3 className="font-mono text-lg font-normal tracking-wider m-0 pt-[75px] uppercase md:p-0">
           {formatLongDate(publishedAt)}

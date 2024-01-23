@@ -1,4 +1,4 @@
-import { SocialMedia } from "~/components/SocialMedia";
+import { SocialMedia } from '~/components/SocialMedia';
 
 interface PersonBioProps {
   className: string;
@@ -44,7 +44,7 @@ const PersonBio = ({
           </div>
           <div className="flex-1">
             <h2 className="font-sans font-black text-[68px] leading-[0.9] mx-0 mb-[10px] p-0">
-              <span className="text-yellow block">{firstName}</span>{" "}
+              <span className="text-yellow block">{firstName}</span>{' '}
               <span className="block whitespace-nowrap">{lastName}</span>
             </h2>
             <h3 className="section-heading mb-[10px] md:mb-[20px] md:p-[7px] md:-ml-10 md:py-[7px] md:px-10">
@@ -56,10 +56,7 @@ const PersonBio = ({
       <p className="large-body-copy">{largeBody}</p>
       <p>{body}</p>
       <div className="social-media">
-        <SocialMedia
-          className="personal-bio-social"
-          socialMedia={{ twitter, instagram, github, youtube, twitch }}
-        />
+        <SocialMedia className="personal-bio-social" socialMedia={{ twitter, instagram, github, youtube, twitch }} />
       </div>
     </div>
   );

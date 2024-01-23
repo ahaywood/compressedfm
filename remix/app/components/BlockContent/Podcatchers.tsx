@@ -1,4 +1,4 @@
-import { Podcatchers as StandardPodcatchers } from "../Podcatchers";
+import { Podcatchers as StandardPodcatchers } from '../Podcatchers';
 
 interface PodcatchersProps {
   node: {
@@ -12,10 +12,7 @@ const Podcatchers = ({ node }: PodcatchersProps) => {
     <section>
       <h2>{heading}</h2>
       <div className="podcatchers">
-        <StandardPodcatchers
-          showHeading={false}
-          className="newsletter-podcatchers"
-        />
+        <StandardPodcatchers showHeading={false} className="newsletter-podcatchers" />
       </div>
     </section>
   );

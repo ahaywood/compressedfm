@@ -3,7 +3,7 @@ interface ColophonColorProps {
   color: string;
 }
 
-const ColophonColor = ({ border = "", color }: ColophonColorProps) => {
+const ColophonColor = ({ border = '', color }: ColophonColorProps) => {
   return (
     <div className="font-mono text-lg text-center uppercase">
       <div

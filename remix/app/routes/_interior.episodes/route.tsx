@@ -1,12 +1,12 @@
-import type { LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { EpisodeGrid } from "~/components/EpisodeGrid/EpisodeGrid";
-import { FeaturedEpisode } from "~/components/FeaturedEpisode";
-import { Newsletter } from "~/components/Newsletter";
-import { Podcatchers } from "~/components/Podcatchers";
-import { VerticalDivider } from "~/components/VerticalDivider";
-import { getClient } from "~/lib/sanity";
-import { AllEpisodesQuery } from "~/queries/Queries";
+import type { LoaderArgs } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { EpisodeGrid } from '~/components/EpisodeGrid/EpisodeGrid';
+import { FeaturedEpisode } from '~/components/FeaturedEpisode';
+import { Newsletter } from '~/components/Newsletter';
+import { Podcatchers } from '~/components/Podcatchers';
+import { VerticalDivider } from '~/components/VerticalDivider';
+import { getClient } from '~/lib/sanity';
+import { AllEpisodesQuery } from '~/queries/Queries';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const episodes = await getClient().fetch(AllEpisodesQuery);

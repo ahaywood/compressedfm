@@ -1,9 +1,9 @@
-import type { LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderArgs } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 // import { useState } from "react";
 // import { Icon } from "~/components/Icon";
-import { getClient } from "~/lib/sanity";
-import { ProductQuery } from "~/queries/Queries";
+import { getClient } from '~/lib/sanity';
+import { ProductQuery } from '~/queries/Queries';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const slug = params.product;
@@ -104,10 +104,7 @@ export default function IndividualProduct() {
           </button> */}
 
           <p className="text-sm">
-            <em>
-              Our apologies, but we are currently only shipping within the
-              United States of America.
-            </em>
+            <em>Our apologies, but we are currently only shipping within the United States of America.</em>
           </p>
         </div>
       </div>

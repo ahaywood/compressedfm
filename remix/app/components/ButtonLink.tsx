@@ -1,4 +1,4 @@
-import { Icon } from "./Icon";
+import { Icon } from './Icon';
 
 interface ButtonLinkProps {
   alt?: boolean;
@@ -8,20 +8,9 @@ interface ButtonLinkProps {
   primary?: boolean;
 }
 
-const ButtonLink = ({
-  alt = false,
-  className = "",
-  href,
-  label,
-  primary = false,
-}: ButtonLinkProps) => {
+const ButtonLink = ({ alt = false, className = '', href, label, primary = false }: ButtonLinkProps) => {
   return (
-    <a
-      href={href}
-      className={`button-link ${primary && `bg-yellow`}  ${
-        alt && `bg-white`
-      } ${className}`}
-    >
+    <a href={href} className={`button-link ${primary && `bg-yellow`}  ${alt && `bg-white`} ${className}`}>
       {label}
       <Icon name="arrow" />
     </a>

@@ -1,7 +1,7 @@
-import { Constants } from "~/lib/constants";
-import { VerticalDivider } from "./VerticalDivider";
-import { SocialMedia } from "./SocialMedia";
-import { Link } from "@remix-run/react";
+import { Constants } from '~/lib/constants';
+import { VerticalDivider } from './VerticalDivider';
+import { SocialMedia } from './SocialMedia';
+import { Link } from '@remix-run/react';
 
 interface FooterProps {
   footerLinks: Link[];
@@ -40,9 +40,7 @@ const Footer = ({ footerLinks }: FooterProps) => {
           </div>
         )}
         <div className="italic text-center mx-auto max-w-[1245px] relative">
-          <span className="whitespace-nowrap">
-            Copyright &copy;{getCurrentYear()}. Compressed.fm.
-          </span>{" "}
+          <span className="whitespace-nowrap">Copyright &copy;{getCurrentYear()}. Compressed.fm.</span>{' '}
           <span className="whitespace-nowrap">All Rights Reserved.</span>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import { ButtonLink } from "~/components/ButtonLink";
+import React from 'react';
+import { ButtonLink } from '~/components/ButtonLink';
 
 interface StoreThumbnailProps {
   alt: string;
@@ -9,13 +9,7 @@ interface StoreThumbnailProps {
   slug: string;
 }
 
-const StoreThumbnail = ({
-  alt,
-  image,
-  link,
-  price,
-  slug,
-}: StoreThumbnailProps) => {
+const StoreThumbnail = ({ alt, image, link, price, slug }: StoreThumbnailProps) => {
   return (
     <div>
       <div className="aspect-[1/1.1] flex items-center justify-center bg-white mb-5 w-full">

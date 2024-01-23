@@ -1,7 +1,7 @@
-import { redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import groq from "groq";
-import { getClient } from "~/lib/sanity";
+import { redirect } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import groq from 'groq';
+import { getClient } from '~/lib/sanity';
 
 export const loader = async () => {
   const query = groq`*[_type == "siteSettings" && published == true] {

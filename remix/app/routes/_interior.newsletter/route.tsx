@@ -1,4 +1,4 @@
-import { Newsletter as NewsletterForm } from "~/components/Newsletter";
+import { Newsletter as NewsletterForm } from '~/components/Newsletter';
 
 export default function Newsletter() {
   return (

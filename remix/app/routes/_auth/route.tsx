@@ -1,8 +1,8 @@
-import { Outlet, useLoaderData } from "@remix-run/react";
-import { AuthHeader } from "./AuthHeader";
-import { getClient } from "~/lib/sanity";
-import type { LoaderArgs } from "@remix-run/node";
-import { TagsQuery } from "~/queries/Queries";
+import { Outlet, useLoaderData } from '@remix-run/react';
+import { AuthHeader } from './AuthHeader';
+import { getClient } from '~/lib/sanity';
+import type { LoaderArgs } from '@remix-run/node';
+import { TagsQuery } from '~/queries/Queries';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const tags = await getClient().fetch(TagsQuery);

@@ -1,4 +1,4 @@
-import { Link, NavLink } from "@remix-run/react";
+import { Link, NavLink } from '@remix-run/react';
 
 interface BtmNavProps {
   handleClick: () => void;
