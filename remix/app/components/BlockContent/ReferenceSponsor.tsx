@@ -1,4 +1,4 @@
-import { MoreLink } from "../MoreLink";
+import { MoreLink } from '../MoreLink';
 
 interface ReferenceSponsorProps {
   node: {

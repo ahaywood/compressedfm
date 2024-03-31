@@ -1,4 +1,4 @@
-import { calculateTime } from "~/lib/timeHelpers";
+import { calculateTime } from '~/lib/timeHelpers';
 
 interface JumpLinksProps {
   className: string;

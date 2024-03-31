@@ -1,4 +1,4 @@
-import { Button } from "~/components/Form/Button";
+import { Button } from '~/components/Form/Button';
 
 export default function Login() {
   return (

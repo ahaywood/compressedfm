@@ -1,10 +1,10 @@
-import { createClient } from "@sanity/client";
-import type { SanityClient } from "@sanity/client";
+import { createClient } from '@sanity/client';
+import type { SanityClient } from '@sanity/client';
 
 // Copy these from your Studio's sanity.config.ts
 export const projectId = process.env.SANITY_PROJECT_ID;
 export const dataset = process.env.SANITY_DATASET;
-export const apiVersion = "2023-07-01";
+export const apiVersion = '2023-07-01';
 
 export function getClient(preview?: { token?: string }): SanityClient {
   const client = createClient({
@@ -12,19 +12,17 @@ export function getClient(preview?: { token?: string }): SanityClient {
     dataset,
     apiVersion,
     useCdn: true,
-    perspective: "published",
+    perspective: 'published',
   });
   if (preview) {
     if (!preview.token) {
-      throw new Error(
-        "Attempted to activate Preview but a token was not provided"
-      );
+      throw new Error('Attempted to activate Preview but a token was not provided');
     }
     return client.withConfig({
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
-      perspective: "previewDrafts",
+      perspective: 'previewDrafts',
     });
   }
   return client;
@@ -38,4 +36,4 @@ export const getClientWithEdit = () => {
     token: process.env.SANITY_WRITE_TOKEN, // or leave blank for unauthenticated usage
     useCdn: true, // `false` if you want to ensure fresh data
   });
-}
+};

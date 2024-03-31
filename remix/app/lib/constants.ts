@@ -42,8 +42,6 @@ const Constants = Object.freeze({
   BEKAH_GITHUB_URL: 'https://github.com/BekahHW',
   BEKAH_TWITTER_URL: 'https://twitter.com/BekahHW',
   BEKAH_LINKEDIN_URL: 'https://www.linkedin.com/in/bekah-hawrot-weigel/',
-
-
 });
 
 export { Constants };

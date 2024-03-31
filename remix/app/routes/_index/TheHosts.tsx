@@ -1,4 +1,4 @@
-import { PersonBio } from "./PersonBio";
+import { PersonBio } from './PersonBio';
 
 interface TheHostsProps {
   details: {

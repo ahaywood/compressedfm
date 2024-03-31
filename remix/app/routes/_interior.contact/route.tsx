@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import kwesforms from "kwesforms";
-import { Button } from "~/components/Form/Button";
+import { useEffect } from 'react';
+import kwesforms from 'kwesforms';
+import { Button } from '~/components/Form/Button';
 
 export default function Contact() {
   useEffect(() => {
@@ -13,39 +13,17 @@ export default function Contact() {
         <h1>Contact Us</h1>
       </div>
 
-      <form
-        method="post"
-        className="form kwes-form"
-        action="https://kwes.io/api/foreign/forms/XZx7xaYdws6HQLePBoFC"
-      >
+      <form method="post" className="form kwes-form" action="https://kwes.io/api/foreign/forms/XZx7xaYdws6HQLePBoFC">
         <div className="half">
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            placeholder=" "
-            rules="required"
-          />
+          <input type="text" name="firstName" id="firstName" placeholder=" " rules="required" />
           <label htmlFor="firstName">First Name*</label>
         </div>
         <div className="half">
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            placeholder=" "
-            rules="required"
-          />
+          <input type="text" name="lastName" id="lastName" placeholder=" " rules="required" />
           <label htmlFor="lastName">Last Name*</label>
         </div>
         <div className="full">
-          <input
-            id="email"
-            type="email"
-            name="email"
-            placeholder=" "
-            rules="required"
-          />
+          <input id="email" type="email" name="email" placeholder=" " rules="required" />
           <label htmlFor="email">Email Address*</label>
         </div>
         <div className="full">
@@ -57,12 +35,7 @@ export default function Contact() {
           <label htmlFor="Subject">Subject*</label>
         </div>
         <div className="full">
-          <textarea
-            name="message"
-            id="message"
-            placeholder=" "
-            rules="required"
-          />
+          <textarea name="message" id="message" placeholder=" " rules="required" />
           <label htmlFor="message">Message*</label>
         </div>
         <div className="full action-buttons">

@@ -3,14 +3,8 @@ interface YouTubeProps {
   size?: number;
 }
 
-const YouTube = ({ className = "", size = 32 }: YouTubeProps) => (
-  <svg
-    className={className}
-    width={size}
-    height={size}
-    viewBox="0 0 32 32"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const YouTube = ({ className = '', size = 32 }: YouTubeProps) => (
+  <svg className={className} width={size} height={size} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
     <path
       opacity="0.3"
       fillRule="evenodd"

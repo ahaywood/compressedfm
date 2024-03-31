@@ -1,4 +1,4 @@
-import { Constants } from "~/lib/constants";
+import { Constants } from '~/lib/constants';
 
 interface PodcatchersProps {
   className: string;
@@ -18,12 +18,7 @@ const Podcatchers = ({ className, showHeading }: PodcatchersProps) => {
         {Constants.ITUNES_URL && (
           <li className="justify-between pt-0 px-5 pb-5 md:flex-nowrap">
             <a href={Constants.ITUNES_URL} target="_blank" rel="noreferrer">
-              <img
-                src="/images/itunes@2x.png"
-                alt="iTunes"
-                width="146"
-                height="46"
-              />
+              <img src="/images/itunes@2x.png" alt="iTunes" width="146" height="46" />
             </a>
           </li>
         )}
@@ -32,12 +27,7 @@ const Podcatchers = ({ className, showHeading }: PodcatchersProps) => {
         {Constants.GOOGLE_URL && (
           <li className="justify-between pt-0 px-5 pb-5 md:flex-nowrap">
             <a href={Constants.GOOGLE_URL} target="_blank" rel="noreferrer">
-              <img
-                src="/images/google-podcasts@2x.png"
-                alt="Google Podcasts"
-                width="187"
-                height="38"
-              />
+              <img src="/images/google-podcasts@2x.png" alt="Google Podcasts" width="187" height="38" />
             </a>
           </li>
         )}
@@ -46,12 +36,7 @@ const Podcatchers = ({ className, showHeading }: PodcatchersProps) => {
         {Constants.SPOTIFY_URL && (
           <li className="justify-between pt-0 px-5 pb-5 md:flex-nowrap">
             <a href={Constants.SPOTIFY_URL} target="_blank" rel="noreferrer">
-              <img
-                src="/images/spotify@2x.png"
-                alt="Spotify"
-                width="135"
-                height="47"
-              />
+              <img src="/images/spotify@2x.png" alt="Spotify" width="135" height="47" />
             </a>
           </li>
         )}
@@ -60,12 +45,7 @@ const Podcatchers = ({ className, showHeading }: PodcatchersProps) => {
         {Constants.STITCHER_URL && (
           <li className="justify-between pt-0 px-5 pb-5 md:flex-nowrap">
             <a href={Constants.STITCHER_URL} target="_blank" rel="noreferrer">
-              <img
-                src="/images/stitcher@2x.png"
-                alt="Sitcher"
-                width="95"
-                height="50"
-              />
+              <img src="/images/stitcher@2x.png" alt="Sitcher" width="95" height="50" />
             </a>
           </li>
         )}
@@ -74,12 +54,7 @@ const Podcatchers = ({ className, showHeading }: PodcatchersProps) => {
         {Constants.CASTBOX_URL && (
           <li className="justify-between pt-0 px-5 pb-5 md:flex-nowrap">
             <a href={Constants.CASTBOX_URL} target="_blank" rel="noreferrer">
-              <img
-                src="/images/castbox@2x.png"
-                alt="Listen on Castbox"
-                width="158"
-                height="56"
-              />
+              <img src="/images/castbox@2x.png" alt="Listen on Castbox" width="158" height="56" />
             </a>
           </li>
         )}
@@ -87,17 +62,8 @@ const Podcatchers = ({ className, showHeading }: PodcatchersProps) => {
         {/* POCKET CASTS */}
         {Constants.POCKET_CASTS_URL && (
           <li className="justify-between pt-0 px-5 pb-5 md:flex-nowrap">
-            <a
-              href={Constants.POCKET_CASTS_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src="/images/pocket-casts@2x.png"
-                alt="Listen on Pocket Casts"
-                width="180"
-                height="44"
-              />
+            <a href={Constants.POCKET_CASTS_URL} target="_blank" rel="noreferrer">
+              <img src="/images/pocket-casts@2x.png" alt="Listen on Pocket Casts" width="180" height="44" />
             </a>
           </li>
         )}
