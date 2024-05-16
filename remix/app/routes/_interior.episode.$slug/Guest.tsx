@@ -1,5 +1,5 @@
-import { PortableText } from "@portabletext/react";
-import { SocialMedia } from "~/components/SocialMedia";
+import { PortableText } from '@portabletext/react';
+import { SocialMedia } from '~/components/SocialMedia';
 
 interface GuestProps {
   className: string;
@@ -24,22 +24,17 @@ const Guest = ({ className, guest }: GuestProps) => {
                   </div>
                   <div>
                     <h2 className="font-sans text-[68px] font-black leading-[0.9] mt-[25px] mx-0 mb-[15px] p-0">
-                      <span className="text-yellow">{item.firstName}</span>{" "}
+                      <span className="text-yellow">{item.firstName}</span>{' '}
                       <span className="whitespace-nowrap">{item.lastName}</span>
                     </h2>
-                    <h3 className="section-heading -ml-10 py-[7px] px-10">
-                      {item.jobTitle}
-                    </h3>
+                    <h3 className="section-heading -ml-10 py-[7px] px-10">{item.jobTitle}</h3>
                   </div>
                 </div>
               </div>
               <p className="large-body-copy">{item.largeBody}</p>
-              {item.bio && <PortableText components={item.bio} />}
+              {item.bio && <PortableText value={item.bio} />}
               <div className="pt-[10px]">
-                <SocialMedia
-                  className="text-[#747474] hover:text-yellow"
-                  socialMedia={item.socialMedia}
-                />
+                <SocialMedia className="text-[#747474] hover:text-yellow" socialMedia={item.socialMedia} />
               </div>
             </div>
           );
