@@ -1,18 +1,18 @@
-import type { LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { useState } from "react";
-import { getClient } from "~/lib/sanity";
-import { IndividualEpisodeQuery } from "~/queries/Queries";
-import { VerticalDivider } from "~/components/VerticalDivider";
-import { EpisodeGrid } from "~/components/EpisodeGrid/EpisodeGrid";
-import { Podcatchers } from "~/components/Podcatchers";
-import { EpisodeSummary } from "./EpisodeSummary";
-import { WaveformPlayer } from "~/components/AudioPlayer/WaveformPlayer";
-import { Guest } from "./Guest";
-import { JumpLinks } from "./JumpLinks";
-import { Links } from "./Links";
-import { Sponsors } from "./Sponsors";
-import { Newsletter } from "~/components/Newsletter";
+import type { LoaderArgs } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { useState } from 'react';
+import { getClient } from '~/lib/sanity';
+import { IndividualEpisodeQuery } from '~/queries/Queries';
+import { VerticalDivider } from '~/components/VerticalDivider';
+import { EpisodeGrid } from '~/components/EpisodeGrid/EpisodeGrid';
+import { Podcatchers } from '~/components/Podcatchers';
+import { EpisodeSummary } from './EpisodeSummary';
+import { WaveformPlayer } from '~/components/AudioPlayer/WaveformPlayer';
+import { Guest } from './Guest';
+import { JumpLinks } from './JumpLinks';
+import { Links } from './Links';
+import { Sponsors } from './Sponsors';
+import { Newsletter } from '~/components/Newsletter';
 
 export const loader = async ({ params }: LoaderArgs) => {
   const slug = params.slug;
@@ -55,24 +55,16 @@ export default function IndividualEpisode() {
       <div className="grid grid-cols-1 gap-x-5 mx-auto max-w-pageWidth py-0 px-mobilePadding relative md:grid-cols-[2fr_1fr] regular:p-0">
         <main>
           {/* GUEST */}
-          {episode.guest && episode.guest.length > 0 && (
-            <Guest guest={episode.guest} className="mb-[200px]" />
-          )}
+          {episode.guest && episode.guest.length > 0 && <Guest guest={episode.guest} className="mb-[200px]" />}
 
           <div className="grid grid-cols-1 gap-x-5 mb-[75px] md:grid-cols-2">
             {/* TIME JUMP LINKS */}
             {episode.timeJump && (
-              <JumpLinks
-                className="mb-[75px] md:mb-0"
-                timeJump={episode.timeJump}
-                handleClick={skipToTimestamp}
-              />
+              <JumpLinks className="mb-[75px] md:mb-0" timeJump={episode.timeJump} handleClick={skipToTimestamp} />
             )}
 
             {/* SHOW LINKS */}
-            {episode.listLink && (
-              <Links listLink={episode.listLink} className="links" />
-            )}
+            {episode.listLink && <Links listLink={episode.listLink} className="links" />}
           </div>
 
           {/* TRANSCRIPT */}
@@ -87,7 +79,7 @@ export default function IndividualEpisode() {
 
         {/* SPONSORS */}
         <aside className="sponsor-list">
-          {episode.sponsor && (
+          {episode.sponsor && episode.sponsor.length > 0 && (
             <Sponsors className="pb-[60px]" sponsor={episode.sponsor} />
           )}
         </aside>
@@ -101,10 +93,7 @@ export default function IndividualEpisode() {
       {/* EPISODE GRID */}
       {episode.relatedEpisodes && (
         <>
-          <EpisodeGrid
-            header="Related Episodes"
-            episodes={episode.relatedEpisodes}
-          />
+          <EpisodeGrid header="Related Episodes" episodes={episode.relatedEpisodes} />
           <VerticalDivider />
         </>
       )}

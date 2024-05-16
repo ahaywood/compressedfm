@@ -1,5 +1,5 @@
-import { PortableText } from "@portabletext/react";
-import { MoreLink } from "~/components/MoreLink";
+import { PortableText } from '@portabletext/react';
+import { MoreLink } from '~/components/MoreLink';
 
 interface SponsorsProps {
   className: string;
@@ -7,6 +7,7 @@ interface SponsorsProps {
 }
 
 const Sponsors = ({ className, sponsor }: SponsorsProps) => {
+  console.log({ sponsor });
   return (
     <div className={className}>
       <h4 className="heading">Sponsors</h4>
@@ -15,13 +16,7 @@ const Sponsors = ({ className, sponsor }: SponsorsProps) => {
           <li key={item._id} className="mb-[60px]">
             <img src={item.logo} alt={item.title} className="max-w-[180px]" />
             <br />
-            {item.offerLink && item.offer && (
-              <MoreLink
-                href={item.offerLink}
-                label={item.offer}
-                className="mb-[7px]"
-              />
-            )}
+            {item.offerLink && item.offer && <MoreLink href={item.offerLink} label={item.offer} className="mb-[7px]" />}
             {item.aboutText && <PortableText value={item.aboutText} />}
           </li>
         ))}
