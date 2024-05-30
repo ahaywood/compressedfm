@@ -70,7 +70,7 @@ export default function Sponsoring() {
           <li>
             <p className="large-body-copy">
               There are podcasts that focus on web development and podcasts that
-              focus on web development, but few, if any, account for both.{" "}
+              focus on web design, but few, if any, account for both.{" "}
             </p>
             <p>
               You don’t have to know code to be a good designer. You don’t have
