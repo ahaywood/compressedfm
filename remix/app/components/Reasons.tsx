@@ -1,7 +1,13 @@
 import { PortableText } from '@portabletext/react';
 import React from 'react';
 
-const Reasons = ({ siteSettings }) => {
+interface Props {
+  siteSettings: {
+    reasonsBehind: [];
+  };
+}
+
+const Reasons = ({ siteSettings }: Props) => {
   return (
     <section className="my-0 mx-mobilePadding md:mx-auto max-w-narrowPageWidth">
       <h2 className="text-white font-sans text-[32px] font-black md:text-[48px]">
