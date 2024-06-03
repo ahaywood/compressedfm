@@ -1,4 +1,4 @@
-import { PersonBio } from "./PersonBio";
+import { PersonBio } from './PersonBio';
 
 interface TheHostsProps {
   details: {
@@ -24,7 +24,6 @@ interface HostDetails {
 }
 
 const TheHosts = ({ details }: TheHostsProps) => {
-  console.log(details);
   return (
     <div className="grid grid-cols[1fr] md:grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)] gap-x-0 gap-y-10 my-[60px] mx-auto max-w-pageWidth w-full ">
       <div className="mb-[60px] text-center w-full md:col-span-2">

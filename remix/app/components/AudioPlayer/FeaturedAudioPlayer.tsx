@@ -1,7 +1,7 @@
-import { useRef } from "react";
-import { useAudioPlayer } from "react-hook-audio";
-import { calculateTime } from "~/lib/timeHelpers";
-import { Icon } from "../Icon";
+import { useRef } from 'react';
+import { useAudioPlayer } from 'react-hook-audio';
+import { calculateTime } from '~/lib/timeHelpers';
+import { Icon } from '../Icon';
 
 interface FeaturedAudioPlayerProps {
   track: string;
@@ -24,24 +24,13 @@ const FeaturedAudioPlayer = ({ track }: FeaturedAudioPlayerProps) => {
     togglePlaying,
   } = useAudioPlayer(audioPlayer, progressBar);
 
-  console.log({ isPlaying });
-
   return (
     <div className="featured-audio-player relative">
-      <audio
-        ref={audioPlayer}
-        src={track}
-        preload="metadata"
-        onLoadedMetadata={onLoadedMetadata}
-      />
+      <audio ref={audioPlayer} src={track} preload="metadata" onLoadedMetadata={onLoadedMetadata} />
 
       <div className="grid items-center grid-cols-[60px_1fr_60px] md:flex lg:p-0">
         <div className="flex justify-end">
-          <button
-            type="button"
-            onClick={backThirty}
-            className="forwardBackward"
-          >
+          <button type="button" onClick={backThirty} className="forwardBackward">
             <Icon name="arrow" className="back" />
             30
           </button>
@@ -75,26 +64,13 @@ const FeaturedAudioPlayer = ({ track }: FeaturedAudioPlayerProps) => {
             </svg>
           )}
         </button>
-        <button
-          type="button"
-          onClick={forwardThirty}
-          className="forwardBackward"
-        >
+        <button type="button" onClick={forwardThirty} className="forwardBackward">
           30
           <Icon name="arrow" />
         </button>
-        <div className="current-time text-white font-mono text-lg w-[50px]">
-          {calculateTime(currentTime)}
-        </div>
+        <div className="current-time text-white font-mono text-lg w-[50px]">{calculateTime(currentTime)}</div>
         <div className="progress-bar flex-1 mr-4 flex">
-          <input
-            type="range"
-            min="0"
-            max="100"
-            defaultValue="0"
-            ref={progressBar}
-            onChange={changeAudioToPlayhead}
-          />
+          <input type="range" min="0" max="100" defaultValue="0" ref={progressBar} onChange={changeAudioToPlayhead} />
         </div>
         <div className="duration text-white font-mono text-lg w-[50px]">
           {duration && !Number.isNaN(duration) && calculateTime(duration)}

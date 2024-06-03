@@ -7,7 +7,6 @@ interface SponsorsProps {
 }
 
 const Sponsors = ({ className, sponsor }: SponsorsProps) => {
-  console.log({ sponsor });
   return (
     <div className={className}>
       <h4 className="heading">Sponsors</h4>
