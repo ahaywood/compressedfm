@@ -7,7 +7,6 @@ import { getClient } from '~/lib/sanity';
 import { settingsQuery, siteSettingsQuery } from '~/queries/Queries';
 import { TheHosts } from '../_index/TheHosts';
 import { ButtonLink } from '~/components/ButtonLink';
-import { Constants } from '~/lib/constants';
 import Reasons from '~/components/Reasons';
 
 export const loader = async ({ params }: LoaderArgs) => {
