@@ -133,7 +133,7 @@ export default function Sponsoring() {
         <VerticalDivider />
       </div>
 
-      <section className="current-audience lg:grid col-span-12 lg:grid-cols-2 my-[75px] mx-0 xl:col-start-2 xl:col-span-10 2xl:col-start-3 2xl:col-span-8">
+      {/* <section className="current-audience lg:grid col-span-12 lg:grid-cols-2 my-[75px] mx-0 xl:col-start-2 xl:col-span-10 2xl:col-start-3 2xl:col-span-8">
         <div className="heading-wrapper text-center mb-[75px] col-span-2">
           <h3 className="section-heading mx-auto">Current Audience</h3>
         </div>
@@ -216,7 +216,8 @@ export default function Sponsoring() {
       </section>
       <div className="full col-span-12">
         <VerticalDivider />
-      </div>
+      </div> */}
+
       <section className="audience-interests">
         <h2 className="font-sans font-black text-[64px] text-yellow">Audience Interests</h2>
         <h3>Hard Skills</h3>
@@ -349,7 +350,7 @@ export default function Sponsoring() {
               more about how I’ve used MailGun in the past.”
             </p>
           </li>
-          <li>
+          {/* <li>
             <p className="large-body-copy font-bold mb-1">
               A one to two minute sponsor spot at the 10 or 20-minute-mark.
             </p>
@@ -358,7 +359,7 @@ export default function Sponsoring() {
               product or service and our own personal experience with your product. This gives your product a personal
               touch and results in better conversions.
             </p>
-          </li>
+          </li> */}
           <li>
             <p className="large-body-copy font-bold mb-1">An evergreen listing on the Compressed.fm sponsors page.</p>
             <p>
@@ -366,13 +367,13 @@ export default function Sponsoring() {
               to recall which episode, coupon code, or link was used during the ad read.{' '}
             </p>
           </li>
-          <li>
+          {/* <li>
             <p className="large-body-copy font-bold mb-1">Access to a password-protected Dashboard. </p>
             <p>
               This will include easy access to all documents (invoices and contracts), as well as, individual episode
               analytics.
             </p>
-          </li>
+          </li> */}
         </ol>
       </section>
       <div className="full col-span-12">
