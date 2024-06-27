@@ -383,11 +383,10 @@ export default function Sponsoring() {
         <VerticalDivider />
       </div>
       <section className="interested-in-working-together col-span-12 grid md:col-start-4 md:col-span-6">
-        <h2 className="text-yellow text-[48px] leading-none font-black mb-9">Interested in Working Together?</h2>
-        <p className="large-body-copy">
-          Please complete the sponsorship application if you’re interested in sponsoring the podcast.
-        </p>
-        <ButtonLink className="button-link alt" href="/sponsor-application" label="Apply to Sponsor" />
+        <h2 className="text-yellow text-[48px] leading-none font-black mb-9 text-center">
+          Interested in Working Together?
+        </h2>
+        <ButtonLink className="button-link alt" href="mailto:amy@compressed.fm" label="Apply to Sponsor" />
       </section>
     </main>
   );
