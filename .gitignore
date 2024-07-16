@@ -28,8 +28,6 @@ sanity/dist
 
 # debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # local env files
 .env
@@ -43,7 +41,6 @@ yarn-error.log*
 
 #netlify
 .netlify
-.yarn
 
 #remix
 remix/api/*
