@@ -302,12 +302,6 @@ export default function Sponsoring() {
         <div className="bg-yellow text-black p-5 mb-4 md:mb-9 md:p-[50px] lg:px-[65px] lg:py-[100px]">
           <ul className="list-none m-0 p-0">
             <li>
-              <div className="description"> Dedicated Episode</div>
-              <div className="separator" />
-              <div className="pricing">$1k USD/ea</div>
-            </li>
-
-            <li>
               <div className="description"> 1-3 episodes</div>
               <div className="separator" />
               <div className="pricing">${singleShow} USD/ea</div>
