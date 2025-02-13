@@ -21,6 +21,7 @@ coverage
 
 # sanity
 sanity/dist
+sanity/.yarn
 
 # misc
 .DS_Store
@@ -47,3 +48,6 @@ remix/api/*
 remix/api/metafile.css.json
 remix/api/manifest.js.json
 remix/api/manifest.server.json
+remix/.yarn
+
+.yarn
