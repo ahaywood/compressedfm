@@ -76,6 +76,11 @@ export default {
       title: 'Dribbble',
       name: 'dribbble',
       type: 'string'
+    },
+    {
+      title: 'BlueSky',
+      name: 'bluesky',
+      type: 'string'
     }
   ]
 }
