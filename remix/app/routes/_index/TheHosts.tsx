@@ -29,20 +29,6 @@ const TheHosts = ({ details }: TheHostsProps) => {
       <div className="mb-[60px] text-center w-full md:col-span-2">
         <h3 className="section-heading">The Hosts</h3>
       </div>
-      {/* james */}
-      <PersonBio
-        className="flex flex-col h-full py-0 px-mobilePadding sm:border-r-1 sm:border-r-white sm:pr-[85px] regular:pl-0"
-        avatar={details.JamesSocialMedia.headshot}
-        firstName="James"
-        lastName="Q Quick"
-        jobTitle={details.JamesSocialMedia.jobTitle}
-        largeBody={details.JamesSocialMedia.bioLargeText}
-        body={details.JamesSocialMedia.bioBodyText}
-        twitter={details.JamesSocialMedia.twitter}
-        github={details.JamesSocialMedia.github}
-        youtube={details.JamesSocialMedia.youtube}
-        twitch={details.JamesSocialMedia.twitch}
-      />
 
       {/* amy */}
       <PersonBio
@@ -58,22 +44,6 @@ const TheHosts = ({ details }: TheHostsProps) => {
         github={details.AmySocialMedia.github}
         youtube={details.AmySocialMedia.youtube}
         twitch={details.AmySocialMedia.twitch}
-      />
-
-      {/* bekah */}
-      <PersonBio
-        className="flex flex-col h-full py-0 px-mobilePadding sm:border-r-1 sm:border-r-white sm:pr-[85px] regular:pl-0"
-        avatar={details.BekahSocialMedia.headshot}
-        firstName="Bekah"
-        lastName="HW"
-        jobTitle={details.BekahSocialMedia.jobTitle}
-        largeBody={details.BekahSocialMedia.bioLargeText}
-        body={details.BekahSocialMedia.bioBodyText}
-        twitter={details.BekahSocialMedia.twitter}
-        instagram={details.BekahSocialMedia.instagram}
-        github={details.BekahSocialMedia.github}
-        youtube={details.BekahSocialMedia.youtube}
-        twitch={details.BekahSocialMedia.twitch}
       />
 
       {/* brad */}
