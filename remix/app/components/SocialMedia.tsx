@@ -1,15 +1,13 @@
-import { Icon } from "./Icon";
+import { Icon } from './Icon';
 
 interface SocialMediaProps {
   className?: string;
   socialMedia: SocialMedia;
 }
 
-const SocialMedia = ({ className = "", socialMedia }: SocialMediaProps) => {
+const SocialMedia = ({ className = '', socialMedia }: SocialMediaProps) => {
   return (
-    <ul
-      className={`social-media list-none gap-x-11 flex items-center text-lavenderIndigo m-0 p-0 ${className}`}
-    >
+    <ul className={`social-media list-none gap-x-11 flex items-center text-lavenderIndigo m-0 p-0 ${className}`}>
       {/* DevTo */}
       {socialMedia?.devTo && (
         <li>
@@ -114,6 +112,15 @@ const SocialMedia = ({ className = "", socialMedia }: SocialMediaProps) => {
         <li>
           <a href={socialMedia?.twitter} target="_blank" rel="noreferrer">
             <Icon name="twitter" />
+          </a>
+        </li>
+      )}
+
+      {/* BlueSky */}
+      {socialMedia?.bluesky && (
+        <li>
+          <a href={socialMedia?.bluesky} target="_blank" rel="noreferrer">
+            <Icon name="bluesky" />
           </a>
         </li>
       )}

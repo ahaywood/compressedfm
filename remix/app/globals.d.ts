@@ -6,8 +6,8 @@ interface Episode {
   publishedAt: string;
   episodeNumber: string;
   slug: {
-    current: string
-  }
+    current: string;
+  };
   title: string;
   briefDescription: string;
   cover: string;
@@ -57,6 +57,7 @@ interface Sponsor {
 }
 
 interface SocialMedia {
+  bluesky?: string;
   devTo?: string;
   discord?: string;
   dribbble?: string;
@@ -93,7 +94,7 @@ interface Swag {
   image: string;
   slug: {
     current: string;
-  }
+  };
   price: number;
-  category: 'hoodies' | 'tshirts'
+  category: 'hoodies' | 'tshirts';
 }
