@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 export default {
   content: ['./app/**/*.{js,jsx,ts,tsx}'],
@@ -7,13 +7,13 @@ export default {
       backgroundImage: {
         bg: 'url("/images/bg.png")',
         horizontalDivider: 'url("/images/horizontal-divider.svg")',
-        verticalDivider: 'url("/images/vertical-divider.svg")'
+        verticalDivider: 'url("/images/vertical-divider.svg")',
       },
       backgroundSize: {
-        '100-auto': '100% auto'
+        '100-auto': '100% auto',
       },
       borderWidth: {
-        '1': '1px'
+        '1': '1px',
       },
       colors: {
         yellow: '#FAFF00',
@@ -31,18 +31,18 @@ export default {
         black: '#000',
       },
       margin: {
-        betweenTextBlocks: '35px'
+        betweenTextBlocks: '35px',
       },
       maxWidth: {
         formWidth: '580px',
         narrowPageWidth: '950px',
-        pageWidth: '1300px'
+        pageWidth: '1300px',
       },
       padding: {
-        mobilePadding: '25px'
+        mobilePadding: '25px',
       },
       screens: {
-        regular: '1300px'
+        regular: '1300px',
       },
       width: {
         formWidth: '580px',
@@ -55,14 +55,13 @@ export default {
         buttonBefore: '4',
         episodeTitle: '3',
         episodeNumber: '2',
-        content: '1'
-      }
+        content: '1',
+      },
     },
     fontFamily: {
-      sans: ['Greycliff', 'sans-serif'],
+      sans: ['Poppins', 'sans-serif'],
       mono: ['Dank Mono', 'monospace'],
     },
   },
   plugins: [],
-} satisfies Config
-
+} satisfies Config;
